@@ -1,0 +1,73 @@
+<div class="header" align="center">
+  <div class="text-center">
+    <h3>Parlamentares</h3>
+  </div>
+  <form class="col-sm-4 col-sm-offset-4 search" role="search" method="get" action="/busca">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Buscar entre os deputados" #search>
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit" (click)="loadPage(1, search.value)">
+          <i class="glyphicon glyphicon-search"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="loading">
+    <p>Carregando dados...</p>
+    <div class="loader"></div>
+  </div>
+</div>
+<br>
+
+<div *ngIf="!loading">
+  <div class="col-md-3 text-center vote" *ngFor="let p of parliamentarians">
+
+    <a routerLink="/parlamentares/{{p['id']}}" routerLinkActivate="active">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title namesize">
+            <span>{{p['name']}} </span>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <img src="{{p['photo']}}" width="114" height="152" alt="woops, someting went wrong">
+        </div>
+        <div class="panel-footer text-muted">{{p['political_party']}}/{{p['federal_unit']}}</div>
+        <div *ngIf="tokenValue !== ''" class="panel-footer text-muted alternative">{{p['compatibility']}}% de compatibilidade</div>
+      </div>
+    </a>
+
+  </div>
+</div>
+<table style="width:100%" *ngIf="pages > 0">
+  <tr>
+    <div class="row">
+      <div class="col-sm-12">
+        <ul class="nav nav-pills center">
+          <td>
+            <button id="beforeBtn1" class="btn" (click)="loadPage(1, term)">Inicio</button>
+          </td>
+          <td>
+            <button id="beforeBtn2" class="btn" (click)="loadPage(offset-1, term)">Ant.</button>
+          </td>
+          <td>
+            <input id="pageBtn1" type="text" size="3" class="form-control" #page>
+          </td>
+          <td>
+            <button id="pageBtn2" class="btn" (click)="loadPage(page.value, term)">Ir</button>
+          </td>
+          <td>
+            <button id="afterBtn1" class="btn" (click)="loadPage(offset+1, term)">Prox.</button>
+          </td>
+          <td>
+            <button id="afterBtn2" class="btn" (click)="loadPage(pages, term)">Fim</button>
+          </td>
+        </ul>
+        <br>
+        <br>
+        <p class="p-center">Página: {{offset}}/{{pages}}</p>
+        <br>
+      </div>
+    </div>
+  </tr>
+</table>

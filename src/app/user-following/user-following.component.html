@@ -1,0 +1,84 @@
+<div class="header" align="center">
+  <div class="text-center">
+    <h3>Parlamentares seguidos</h3>
+  </div>
+  <form class="col-sm-4 col-sm-offset-4 search" role="search" method="get" action="/busca">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Buscar entre os deputados" #search>
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit" (click)="loadPage(1, search.value)">
+          <i class="glyphicon glyphicon-search"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<br>
+<div *ngIf="loading" align="center">
+  <p>Carregando dados...</p>
+  <div class="loader"></div>
+</div>
+<ng-container *ngIf="!loading">
+<div *ngIf="pages > 0">
+  <div class="col-md-3 text-center vote" *ngFor="let p of parliamentarians">
+    <a routerLink="/parlamentares/{{p.parliamentary['id']}}" routerLinkActivate="active">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title namesize">
+            <span>{{p.parliamentary['name']}} </span>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <img src="{{p.parliamentary['photo']}}" width="114" height="152" alt="woops, someting went wrong">
+        </div>
+        <div class="panel-footer text-muted">{{p.parliamentary['political_party']}}/{{p.parliamentary['federal_unit']}}</div>
+        <div *ngIf="tokenValue !== ''" class="panel-footer text-muted alternative">{{p.parliamentary['compatibility']}}% de compatibilidade</div>
+      </div>
+    </a>
+  </div>
+</div>
+</ng-container>
+<div class="row" *ngIf="pages == 0">
+  <div class="main-card">
+    <div class="main-card-content">
+      <p *ngIf="term === ''">Você ainda não segue deputados,
+        <a href="/parliamentarians">veja a lista de deputados</a> e escolha os que você quiser seguir
+      </p>
+      <p *ngIf="term !== ''">Sua busca não retornou resultados :( Talvez você não siga este deputado, procure-o
+        <a href="/parliamentarians">aqui</a>.
+      </p>
+    </div>
+  </div>
+</div>
+<table style="width:100%" *ngIf="pages > 0 && !loading">
+  <tr>
+    <div class="row">
+      <div class="col-sm-12">
+        <ul class="nav nav-pills center">
+          <td>
+            <button *ngIf="offset > 1" class="btn" (click)="loadPage(1, term)">Inicio</button>
+          </td>
+          <td>
+            <button *ngIf="offset > 1" class="btn" (click)="loadPage(offset-1, term)">Ant.</button>
+          </td>
+          <td>
+            <input *ngIf="pages > 1" type="text" size="3" class="form-control" #page>
+          </td>
+          <td>
+            <button *ngIf="pages > 1" class="btn" (click)="loadPage(page.value, term)">Ir</button>
+          </td>
+          <td>
+            <button *ngIf="offset < pages" class="btn" (click)="loadPage(offset+1, term)">Prox.</button>
+          </td>
+          <td>
+            <button *ngIf="offset < pages" class="btn" (click)="loadPage(pages, term)">Fim</button>
+          </td>
+        </ul>
+        <br>
+        <br>
+        <p class="p-center" *ngIf="pages > 1">Página: {{offset}}/{{pages}}</p>
+        <br>
+      </div>
+    </div>
+  </tr>
+</table>

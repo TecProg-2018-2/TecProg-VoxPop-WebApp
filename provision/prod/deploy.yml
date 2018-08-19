@@ -1,0 +1,51 @@
+---
+- hosts: "voxpop_{{ env }}"
+  vars_files:
+    - vars.yml
+    - "{{ install_root }}/.credentials/db.yml"
+  gather_facts: false
+  become: yes
+
+  tasks:
+    - name: Install system packages
+      apt:
+        pkg: "{{ item }}"
+        update-cache: yes
+      with_items: "{{ system_packages }}"
+
+    - name: Clean repository directory
+      file:
+        state: absent
+        path: "{{ install_root }}/{{ project_name }}"
+
+    - name: Clone/pull project repository
+      git:
+        repo: "{{ repository_url }}"
+        version: master
+        dest: "{{ install_root }}/{{ project_name }}"
+        accept_hostkey: yes
+        force: yes
+
+    - name: Stop application container if running
+      shell: "docker stop $(docker ps -a -q) || true"
+      become: true
+      args:
+        chdir: "{{ install_root }}/{{ project_name }}"
+
+    - name: Remove application container if exists
+      shell: "docker rm $(docker ps -a -q) || true"
+      become: true
+      args:
+        chdir: "{{ install_root }}/{{ project_name }}"
+
+    - name: Build/rebuild application image
+      command: "docker build -t {{ project_name }}:{{ env }} -f provision/{{ env }}/Dockerfile ."
+      become: true
+      args:
+        chdir: "{{ install_root }}/{{ project_name }}"
+
+    - name: Create/recreate application container
+      command: "docker run -d -p 4200:80 {{ project_name }}:{{ env }}"
+      become: true
+      args:
+        chdir: "{{ install_root }}/{{ project_name }}"

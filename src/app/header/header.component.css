@@ -1,0 +1,55 @@
+.navbar-custom {
+  background-color: #7386D5;
+  height: 50px;
+}
+.navbar-default .navbar-brand {
+  color: #ffffff;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #d4dbe0;
+  background-color: transparent;
+}
+.navbar-custom .navbar-text {
+  color: #ffffff;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: white;
+  background-color: #5bc0de;
+}
+.navbar-custom .navbar-nav > .open > a .caret,
+.navbar-custom .navbar-nav > .open > a:hover .caret,
+.navbar-custom .navbar-nav > .open > a:focus .caret {
+  border-top-color: #c0c0c0;
+  border-bottom-color: #c0c0c0;
+}
+.navbar-default .navbar-link {
+  color: #ffffff;
+}
+.navbar-default .navbar-link:hover {
+    color: #5bc0de;
+}
+
+.menu {
+  background-color: #7386D5;
+}
+
+.glyphicon-menu-hamburger {
+  color: white;
+  font-size: 16px;
+}
+
+.navbar-default {
+  background-color: #7386d5;
+  border-color: #7386d5;
+}
+
+.navbar-toggle, .navbar-toggle:hover, .navbar-toggle:focus {
+  background-color: white;
+  color: gray;
+}
