@@ -42,7 +42,6 @@ describe('RegisterFormComponent', () => {
   });
 
   it('should register user', () => {
-
     component.user = {
       username: 'johndoe',
       first_name: 'john',
@@ -58,16 +57,13 @@ describe('RegisterFormComponent', () => {
         birth_date: null
       }
     };
-    const statusCode = 0;
-    component.registerUser().subscribe( (resp) => {
-      //  = resp.status;
+    component.registerUser().subscribe( () => {
       expect(component.registerUser().statusUser).not.toBe(0);
     });
 
   });
 
   it('should register user', () => {
-
     component.user = {
       username: 123,
       first_name: 'john',
@@ -83,11 +79,8 @@ describe('RegisterFormComponent', () => {
         birth_date: null
       }
     };
-    const statusCode = 0;
-    component.registerUser().subscribe( (resp) => {
-      //  = resp.status;
+    component.registerUser().subscribe( () => {
       expect(component.registerUser().statusUser).not.toBe(0);
     });
-
   });
 });

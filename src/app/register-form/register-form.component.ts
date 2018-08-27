@@ -29,7 +29,8 @@ export class RegisterFormComponent implements OnInit {
     }
   };
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private requester: RequestsService,
     private validator: InputValidatorService,
     private cookieService: CookieService
@@ -38,21 +39,20 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit() {
   }
 
-
   registerUser() {
-    if(this.user.social_information.region == 'null') {
+    if (this.user.social_information.region == 'null') {
       this.user.social_information.region = null;
     }
-    if(this.user.social_information.income == 'null') {
+    if (this.user.social_information.income == 'null') {
       this.user.social_information.income = null;
     }
-    if(this.user.social_information.education == 'null') {
+    if (this.user.social_information.education == 'null') {
       this.user.social_information.education = null;
     }
-    if(this.user.social_information.race == 'null') {
+    if (this.user.social_information.race == 'null') {
       this.user.social_information.race = null;
     }
-    if(this.user.social_information.gender == 'null') {
+    if (this.user.social_information.gender == 'null') {
       this.user.social_information.gender = null;
     }
     let req;
@@ -68,8 +68,7 @@ export class RegisterFormComponent implements OnInit {
         this.router.navigate(['login']);
         this.cookieService.set('success', 'true');
       }
-    },
-    error => {
+    }, error => {
       const statusAuth = error.status;
       this.validator.errorHandler(statusAuth);
     });
