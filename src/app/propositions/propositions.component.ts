@@ -13,14 +13,14 @@ import { TokenService } from '../token.service';
 })
 export class PropositionsComponent implements OnInit {
 
-  tokenValue = '';
-  idValue = 0;
+  tokenValue: string = '';
+  idUser: number = 0;
 
   proposition: any = {
     proposition_id: 0,
     proposition_type: '',
     proposition_type_initials: '',
-    number: 0,
+    codeProposition: 0,
     year: 0,
     abstract: '',
     processing: '',
@@ -31,53 +31,49 @@ export class PropositionsComponent implements OnInit {
   }
 
   constructor(
-    private router:Router,
-    private requester:RequestsService,
-    private cookieService:CookieService,
-    private token:TokenService
+    private router: Router,
+    private requester: RequestsService,
+    private cookieService: CookieService,
+    private token: TokenService
   ) { }
 
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.token.filterRestrictPage(this.tokenValue);
-    this.idValue = +this.cookieService.get('userID');
+    this.idUser = +this.cookieService.get('userID');
     this.projects();
   }
 
-  projects(){
+  projects() {
     const req = this.requester.getProjects();
     this.projectsHandler(req);
     return req;
   }
 
-  projectsHandler(request){
-    request.subscribe( response =>{
+  projectsHandler(request) {
+    request.subscribe(response => {
       response['parliamentarians_approval'] = parseFloat(response['parliamentarians_approval']);
       response['population_approval'] = parseFloat(response['population_approval']);
       this.proposition = response['body'];
     });
   }
 
-  answerPL(opinion: string){
-    var response;
-    var request;
+  answerPL(opinion: string) {
     var status;
 
-     var vote : VoteModel = {
-      //  user: this.idValue,
-       proposition: this.proposition.id,
-       option: opinion
+    var vote: VoteModel = {
+      proposition: this.proposition.id,
+      option: opinion
     }
     this.requester.postVote(vote).subscribe(response => {
       status = response.status;
 
-      if (!this.requester.didSucceed(status)){
+      if (!this.requester.didSucceed(status)) {
         alert("Voto não registrado, favor tentar de novo mais tarde");
       } else {
-        this.requester.getProjects().subscribe( response =>{
+        this.requester.getProjects().subscribe(response => {
           this.proposition = response['body'];
-          // console.log(response['body']);
         });
       }
     });
