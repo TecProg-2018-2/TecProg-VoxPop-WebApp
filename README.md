@@ -1,7 +1,6 @@
 # VoxPop - WebApp
 
-<p><img src="https://sonarcloud.io/api/project_badges/measure?project=tecprog-api&metric=alert_status"></p> <p><img src="
-https://sonarcloud.io/api/project_badges/measure?project=tecprog-api&metric=bugs"></p> <p><img src="https://sonarcloud.io/api/project_badges/measure?project=tecprog-api&metric=duplicated_lines_density"></p> <p><img src="https://sonarcloud.io/api/project_badges/measure?project=tecprog-api&metric=ncloc"></p> 
+<img src="https://sonarcloud.io/api/project_badges/measure?project=tecprog-api&metric=alert_status"> <img src="https://sonarcloud.io/api/project_badges/measure?project=tecprog-api&metric=bugs"> <img src="https://sonarcloud.io/api/project_badges/measure?project=tecprog-api&metric=duplicated_lines_density"> <img src="https://sonarcloud.io/api/project_badges/measure?project=tecprog-api&metric=ncloc">
 
 Repositório voltado para a aplicação de boas práticas de programação no código fonte.
 
