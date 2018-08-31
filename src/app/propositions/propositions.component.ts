@@ -31,7 +31,6 @@ export class PropositionsComponent implements OnInit {
   }
 
   constructor(
-    private router: Router,
     private requester: RequestsService,
     private cookieService: CookieService,
     private token: TokenService

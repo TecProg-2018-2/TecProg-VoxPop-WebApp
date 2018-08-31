@@ -41,8 +41,10 @@ export class UserFollowingComponent implements OnInit {
     }
   ];
 
-  constructor(private requester: RequestsService,
-    private token: TokenService) { }
+  constructor(
+    private requester: RequestsService,
+    private token: TokenService
+  ) { }
 
   ngOnInit() {
     this.tokenValue = this.token.getToken();
