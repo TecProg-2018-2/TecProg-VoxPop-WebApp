@@ -7,15 +7,12 @@ import { AppComponent } from '../app.component';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   constructor(
     private cookieService: CookieService,
     private appComponent: AppComponent,
   ) { }
-
-  ngOnInit() {
-  }
 
   callLogout() {
     this.appComponent.logout(this.cookieService);
@@ -24,9 +21,14 @@ export class HeaderComponent implements OnInit {
   toggleMenu() {
      const sidebar = document.getElementById('sidebar');
      sidebar.classList.toggle('active');
+
      const content = document.getElementById('content');
      content.classList.toggle('active');
-     if (sidebar.classList.contains('active')) {
+
+     //T8
+     const elementsSidebar = sidebar.classList.contains('active');
+
+     if (elementsSidebar) {
        this.cookieService.set('sidebar', 'false');
        return false;
      } else {

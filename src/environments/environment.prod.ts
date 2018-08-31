@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseURL: 'https://api.voxpop.ml/api/'
+  baseURL: 'http://127.0.0.1:8000/api/'
 };
