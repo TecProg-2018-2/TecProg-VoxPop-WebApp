@@ -25,7 +25,6 @@ export class HeaderComponent {
      const content = document.getElementById('content');
      content.classList.toggle('active');
 
-     //T8
      const elementsSidebar = sidebar.classList.contains('active');
 
      if (elementsSidebar) {

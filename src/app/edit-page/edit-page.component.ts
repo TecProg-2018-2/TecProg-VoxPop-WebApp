@@ -15,7 +15,6 @@ import { InputValidatorService } from '../input-validator.service';
 
 export class EditPageComponent implements OnInit {
 
-  //T6
   tokenValue: string = '';
   userID: number = 0;
 
@@ -37,7 +36,6 @@ export class EditPageComponent implements OnInit {
     },
   };
 
-  //T1
   constructor(
     private router: Router,
     private requester: RequestsService,
@@ -63,7 +61,6 @@ export class EditPageComponent implements OnInit {
   }
 
   updateUser() {
-    // T8
     const userSocialInformation = this.user.social_information;
     const user = this.user;
 
