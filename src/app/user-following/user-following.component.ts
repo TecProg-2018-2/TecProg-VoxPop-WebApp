@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../requests.service';
-import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 
 @Component({
@@ -43,7 +42,6 @@ export class UserFollowingComponent implements OnInit {
   ];
 
   constructor(private requester: RequestsService,
-    private cookieService: CookieService,
     private token: TokenService) { }
 
   ngOnInit() {
@@ -57,13 +55,11 @@ export class UserFollowingComponent implements OnInit {
     this.term = term;
     let req: any;
     term = term.toUpperCase();
-    console.log(Number(offset));
     if (offset < 1 || isNaN(Number(offset))) {
       alert('Número de páginas inválido, favor digitar um número positivo');
       return;
     }
     this.offset = Number(offset);
-    console.log(this.offset);
     req =  this.requester.getSearchFollowingParliamentarians(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage, term);
     this.handleFollowingParliamentariansResponse(req, this.offset);
   }
@@ -72,18 +68,10 @@ export class UserFollowingComponent implements OnInit {
     request.subscribe( response => {
       this.auxParliamentarian = response['body']['results'];
       const auxPages = Math.ceil(response['body']['count'] / this.itemsPerPage);
-      // if (this.auxParliamentarian.length <= 0) {
-      //   alert('Número da página inválido, favor digitar entre 1 e ' + this.pages);
-      //   this.loading = false;
-      //   return;
-      // }
       this.pages = auxPages;
-      console.log(this.pages);
       this.parliamentarians = this.auxParliamentarian;
       this.parliamentarians = this.auxParliamentarian;
       this.loading = false;
-      // console.log(this.parliamentarians);
-      // console.log(this.pages);
     });
   }
 }

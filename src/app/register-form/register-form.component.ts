@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestsService } from '../requests.service';
-import { UserModel } from '../../models/user';
-import { SocialInformationModel } from '../../models/socialInformation'
-import { and } from '@angular/router/src/utils/collection';
 import { InputValidatorService } from '../input-validator.service';
 import { CookieService } from 'ngx-cookie-service';
 
