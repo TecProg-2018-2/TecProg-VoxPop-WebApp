@@ -26,7 +26,7 @@ export class SidebarComponent implements OnInit {
     if (sidebarCookie === 'false') {
       const sidebarStatus: HTMLElement = document.getElementById('sidebar');
       sidebarStatus.classList.toggle('active');
-      const contentStatus = document.getElementById('content');
+      const contentStatus: HTMLElement = document.getElementById('content');
       contentStatus.classList.toggle('active');
     }
   }
