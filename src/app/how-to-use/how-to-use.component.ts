@@ -8,13 +8,12 @@ import { TokenService } from '../token.service';
 })
 export class HowToUseComponent implements OnInit {
 
-  constructor(private token: TokenService) { }
-  
   tokenValue: string = '';
 
+  constructor(private token: TokenService) { }
+  
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
   }
-
 }
