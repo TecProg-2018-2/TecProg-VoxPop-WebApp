@@ -2,19 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../token.service';
 
 @Component({
-  selector: 'app-como-utilizar',
-  templateUrl: './como-utilizar.component.html',
-  styleUrls: ['./como-utilizar.component.css']
+  selector: 'app-how-to-use',
+  templateUrl: './how-to-use.component.html',
+  styleUrls: ['./how-to-use.component.css']
 })
-export class ComoUtilizarComponent implements OnInit {
+export class HowToUseComponent implements OnInit {
 
-  tokenValue = '';
+  tokenValue: string = '';
 
   constructor(private token: TokenService) { }
-
+  
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
   }
-
 }

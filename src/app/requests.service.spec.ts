@@ -172,7 +172,7 @@ describe('RequestsService', () => {
     const msg: MessageModel = {
       topic: 'abc',
       email: 'abc@123.com',
-      choice: 'A',
+      contactReason: 'A',
       text: 'aaabbb'
     }
 

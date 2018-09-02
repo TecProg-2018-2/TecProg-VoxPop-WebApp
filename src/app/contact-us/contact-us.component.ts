@@ -10,27 +10,28 @@ import { TokenService } from '../token.service';
   styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit {
-  tokenValue = '';
-  idValue = 0;
-
+  
+  tokenValue: string = '';
+  idValue: number = 0;
   input = {
     topic: '',
     email: '',
-    choice: '',
+    contactReason: '',
     text: ''
   };
 
   constructor(private router: Router,
-              private requester: RequestsService,
-              private cookieService: CookieService,
-              private token: TokenService) { }
-
-  ngOnInit() {
+    private requester: RequestsService,
+    private cookieService: CookieService,
+    private token: TokenService) { }
+    
+    
+    ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.idValue = +this.cookieService.get('userID');
   }
-
+  
   postMsg() {
     const request = this.input;
     const response = this.requester.postMessage(this.input);
@@ -40,8 +41,7 @@ export class ContactUsComponent implements OnInit {
 
   postMsgHandler(request) {
     request.subscribe(response => {
-      const statusMsg = response.status;
-      // console.log('STATUS CODE RETURNED ON USER: ' + statusUser);
+      const statusMsg: any = response.status;
       if (this.requester.didSucceed(statusMsg)) {
         document.getElementById('contactSuccess').style.display = 'block';
       }
@@ -50,20 +50,20 @@ export class ContactUsComponent implements OnInit {
     });
   }
 
-  back() {
+  backToHomepage() {
     this.router.navigate(['']);
   }
 
-  errorHandler(status) {
-    if (status === 401) {
+  errorHandler(statusRequest: any) {
+    if (statusRequest === 401) {
       document.getElementById('contactFail').style.display = 'block';
       return true;
     }
-    if (status === 500) {
+    if (statusRequest === 500) {
       document.getElementById('contactFail').style.display = 'block';
       return true;
     }
-    if (status === 400) {
+    if (statusRequest === 400) {
       document.getElementById('contactFail').style.display = 'block';
       return true;
     }
