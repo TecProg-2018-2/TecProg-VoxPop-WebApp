@@ -10,20 +10,43 @@ import { TokenService } from '../token.service';
 })
 export class UserFollowingComponent implements OnInit {
 
-  term = '';
-  tokenValue = '';
-  offset = 1;
-  itemsPerPage = 36;
-  pages = 1;
-  loading = true;
+  constructor(
+    private requester: RequestsService,
+    private cookieService: CookieService,
+    private token: TokenService
+  ) { }
+
+  tokenValue: string = '';
+  ngOnInit() {
+    this.tokenValue = this.token.getToken();
+    this.token.checkToken(this.tokenValue);
+    this.token.filterRestrictPage(this.tokenValue);
+    this.loadPage(1, '');
+  }
+
+  offset: number = 1;
+  itemsPerPage: number = 36;
+  termOnSearch: string = '';
+  loadPage(offset: number, termOnSearch) {
+    this.termOnSearch = termOnSearch;
+    let requisition: any; // T5 - NOME DE VARIÁVEIS MAIS SIGNIFICATIVOS
+    termOnSearch = termOnSearch.toUpperCase();
+    if (offset < 1 || isNaN(Number(offset))) {
+      alert('Número de páginas inválido, favor digitar um número positivo');
+      return;
+    }
+    this.offset = Number(offset);
+    requisition =  this.requester.getSearchFollowingParliamentarians(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage, termOnSearch);
+    this.handleFollowingParliamentariansResponse(requisition, this.offset);
+  }
 
   parliamentarians: any = [
     {
       parliamentary: {
-        parliamentarian_id: null,
+        parliamentarianId: null,
         name: '',
         gender: '',
-        federal_unit: '',
+        federalUnit: '',
         photo: '',
         compatibility: '',
       }
@@ -32,58 +55,26 @@ export class UserFollowingComponent implements OnInit {
   auxParliamentarian: any = [
     {
       parliamentary: {
-        parliamentarian_id: null,
+        parliamentarianId: null,
         name: '',
         gender: '',
-        federal_unit: '',
+        federalUnit: '',
         photo: '',
         compatibility: '',
       }
     }
   ];
 
-  constructor(private requester: RequestsService,
-    private cookieService: CookieService,
-    private token: TokenService) { }
-
-  ngOnInit() {
-    this.tokenValue = this.token.getToken();
-    this.token.checkToken(this.tokenValue);
-    this.token.filterRestrictPage(this.tokenValue);
-    this.loadPage(1, '');
-  }
-
-  loadPage(offset: number, term) {
-    this.term = term;
-    let req: any;
-    term = term.toUpperCase();
-    console.log(Number(offset));
-    if (offset < 1 || isNaN(Number(offset))) {
-      alert('Número de páginas inválido, favor digitar um número positivo');
-      return;
-    }
-    this.offset = Number(offset);
-    console.log(this.offset);
-    req =  this.requester.getSearchFollowingParliamentarians(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage, term);
-    this.handleFollowingParliamentariansResponse(req, this.offset);
-  }
-
+  loading: boolean = true;
+  pages: number = 1;
   handleFollowingParliamentariansResponse(request, offset) {
     request.subscribe( response => {
       this.auxParliamentarian = response['body']['results'];
       const auxPages = Math.ceil(response['body']['count'] / this.itemsPerPage);
-      // if (this.auxParliamentarian.length <= 0) {
-      //   alert('Número da página inválido, favor digitar entre 1 e ' + this.pages);
-      //   this.loading = false;
-      //   return;
-      // }
       this.pages = auxPages;
-      console.log(this.pages);
       this.parliamentarians = this.auxParliamentarian;
       this.parliamentarians = this.auxParliamentarian;
       this.loading = false;
-      // console.log(this.parliamentarians);
-      // console.log(this.pages);
     });
   }
 }

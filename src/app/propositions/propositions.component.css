@@ -14,23 +14,21 @@
 }
 
 .main-card-content {
-padding: 5% 10%;
-color: #122a38;
-text-align: center;
+  padding: 5% 10%;
+  color: #122a38;
+  text-align: center;
 }
 
 .btn{
-border-color: gray;
-
+  border-color: gray;
 }
 
 .progress-wrapper {
-width: 30%;
-length: 30%;
-position: relative;
-margin: 20rpx auto;
-font-size: 20px;
-margin:auto;
-padding-bottom: 10px;
-
+  width: 30%;
+  length: 30%;
+  position: relative;
+  margin: 20rpx auto;
+  font-size: 20px;
+  margin:auto;
+  padding-bottom: 10px;
 }

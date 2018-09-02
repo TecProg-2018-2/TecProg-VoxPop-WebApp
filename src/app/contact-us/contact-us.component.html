@@ -24,7 +24,7 @@
         </div>
         <div class="form-group">
           <label data-toggle="tooltip" title="Escolha o motivo de contato">Motivo do Contato</label>
-          <select name="choice" class="form-control" [(ngModel)]="input.choice">
+          <select name="contactReason" class="form-control" [(ngModel)]="input.contactReason">
             <option value="A" selected>Dúvida</option>
             <option value="B">Sugestão</option>
             <option value="C">Reclamação</option>
@@ -35,7 +35,7 @@
         </textarea>
         <br>
         <div class="text-center">
-          <button class="btn btn-danger" type="submit" id="cancelBtn" (click)="back()">Voltar</button>
+          <button class="btn btn-danger" type="submit" id="cancelBtn" (click)="backToHomepage()">Voltar</button>
           <button class="btn btn-primary" type="submit" id="submitBtn" [disabled]="input.text == '' || input.topic == ''" (click)="postMsg()">Enviar</button>
         </div>
       </div>

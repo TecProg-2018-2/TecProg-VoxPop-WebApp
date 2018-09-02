@@ -1,6 +1,6 @@
 export interface MessageModel{
     topic: string;
     email: string;
-    choice: string;
+    contactReason: string;
     text: string;    
 }
