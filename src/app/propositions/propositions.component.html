@@ -11,18 +11,18 @@
   <div class="col-sm-8 col-sm-offset-2">
     <div class="panel panel-primary text-center">
       <div class="panel-heading">
-        <h3 class="panel-title">{{proposition['proposition_type_initials']}} {{proposition['codeProposition']}}/{{proposition['year']}}</h3>
+        <h3 class="panel-title">{{proposition['propositionTypeInitials']}} {{proposition['codeProposition']}}/{{proposition['year']}}</h3>
       </div>
       <div class="panel-body">
-        <h5>{{proposition['proposition_type']}}</h5>
+        <h5>{{proposition['propositionType']}}</h5>
         <p>{{proposition['abstract']}}</p>
         <br>
         <div class="row">
           <div class="col-sm-6">
             <div style="font-weight: bold">Aprovação dos Parlamentares</div>
             <div class="progress-wrapper">
-              <p>{{proposition['parliamentarians_approval']}}/100</p>
-              <round-progress [current]=proposition.parliamentarians_approval [max]="100" [responsive]="true" [radius]="50" [color]="'#449D44'"
+              <p>{{proposition['parliamentariansApproval']}}/100</p>
+              <round-progress [current]=proposition.parliamentariansApproval [max]="100" [responsive]="true" [radius]="50" [color]="'#449D44'"
                 [background]="'#C9302C'"></round-progress>
             </div>
           </div>
@@ -30,7 +30,7 @@
             <div style="font-weight: bold">Aprovação dos Usuários</div>
             <div class="progress-wrapper">
               <p>{{proposition['population_approval']}}/100</p>
-              <round-progress [current]=proposition.population_approval [max]="100" [responsive]="true" [radius]="50" [color]="'#449D44'"
+              <round-progress [current]=proposition.populationApproval [max]="100" [responsive]="true" [radius]="50" [color]="'#449D44'"
                 [background]="'#C9302C'"></round-progress>
             </div>
           </div>
@@ -48,7 +48,7 @@
           </div>
         </div>
       </div>
-      <div class="panel-footer text-muted">atualizada {{proposition['days_ago']}} dia(s) atrás</div>
+      <div class="panel-footer text-muted">atualizada {{proposition['daysAgo']}} dia(s) atrás</div>
     </div>
   </div>
 </div>
