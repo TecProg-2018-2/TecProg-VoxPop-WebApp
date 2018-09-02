@@ -47,7 +47,6 @@ export class SeePlComponent implements OnInit {
     }
   ];
 
-  /* Standard method constructor for a component. */
   constructor(
     private requester: RequestsService,
     private cookieService: CookieService,
@@ -63,7 +62,10 @@ export class SeePlComponent implements OnInit {
     this.token.checkToken(this.tokenValue);
   }
 
-  /* Método para carregar a página numérica, inserida na barra de pesquisa. */
+  /**
+  *  Método para carregar a página
+  *  de acordo com o número inserido na barra de pesquisa
+  */
   loadPage(offset: number) {
     let request: any;
     if (offset < 1 || isNaN(Number(offset))) {
@@ -76,7 +78,10 @@ export class SeePlComponent implements OnInit {
     return request;
   }
 
-  /* Método para tratar respostas obtidas. */
+  /**
+   * Método para verificar informações obtidas obtidas de uma dada página
+   * e tratar os dados da mesma
+   */
   handlePropositionsResponse(request, offset) {
     this.requester.getProposition(this.itemsPerPage, (offset - 1) * this.itemsPerPage).subscribe( response => {
       this.auxProposition = response.body['results'];
