@@ -38,14 +38,14 @@ describe('LoginComponent', () => {
         RouterTestingModule,
         HttpClientModule
       ],
-      declarations: [ LoginComponent ],
+      declarations: [LoginComponent],
       providers: [
         RequestsService,
         CookieService,
         TokenService,
       ]
     })
-    .compileComponents();
+      .compileComponents();
     fixture = TestBed.createComponent(LoginComponent);
     submitEl = fixture.debugElement.query(By.css('#loginBtn'));
     usernameEl = fixture.debugElement.query(By.css('input[type=username]'));
@@ -62,7 +62,7 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should login', () =>  {
+  it('should login', () => {
     usernameEl.nativeElement.value = 'teste';
     passwordEl.nativeElement.value = 'teste';
 
@@ -89,7 +89,7 @@ describe('LoginComponent', () => {
     var statusCode = 0;
     var token = 'token';
 
-    component.login(user.username, user.password).subscribe( (resp) => {
+    component.login(user.username, user.password).subscribe((resp) => {
       this.statusCode = resp.status;
       this.token = resp.body['token'];
       expect(this.token).not.toBe('token');
