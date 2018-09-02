@@ -26,11 +26,11 @@
             </div>
             <div class="form-group">
               <label>Primeiro Nome</label>
-              <input name="first_name" type="text" class="form-control" placeholder="Digite o seu primeiro nome" [(ngModel)]="user.first_name">
+              <input name="firstName" type="text" class="form-control" placeholder="Digite o seu primeiro nome" [(ngModel)]="user.firstName">
             </div>
             <div class="form-group">
               <label>Sobrenome</label>
-              <input name="last_name" type="text" class="form-control" placeholder="Digite o seu sobrenome" [(ngModel)]="user.last_name">
+              <input name="lastName" type="text" class="form-control" placeholder="Digite o seu sobrenome" [(ngModel)]="user.lastName">
             </div>
             <div class="form-group">
               <span class="required">*</span>
@@ -79,7 +79,7 @@
           <div style="display:none" id="secondPart">
             <div class="form-group">
               <label data-toggle="tooltip" title="Escolha a região em que você mora entre as opções abaixo">Região</label>
-              <select name="region" class="form-control" [(ngModel)]="user.social_information['region']">
+              <select name="region" class="form-control" [(ngModel)]="user.socialInformation['region']">
                 <option value=null selected="selected">Prefiro não responder</option>
                 <option value="N">Norte</option>
                 <option value="NE">Nordeste</option>
@@ -90,7 +90,7 @@
             </div>
             <div class="form-group">
               <label data-toggle="tooltip" title="Escolha a sua renda mensal entre as opções abaixo">Renda</label>
-              <select name="income" class="form-control" [(ngModel)]="user.social_information['income']">
+              <select name="income" class="form-control" [(ngModel)]="user.socialInformation['income']">
                 <option value=null selected="selected">Prefiro não responder</option>
                 <option value="E">Entre R$0,00 até R$1874,00</option>
                 <option value="D">Entre R$1874,01 até R$3748,00</option>
@@ -101,7 +101,7 @@
             </div>
             <div class="form-group">
               <label data-toggle="tooltip" title="Escolha o seu nível de escolaridade entre as opções abaixo">Formação </label>
-              <select name="education" class="form-control" [(ngModel)]="user.social_information['education']">
+              <select name="education" class="form-control" [(ngModel)]="user.socialInformation['education']">
                 <option value=null selected="selected">Prefiro não responder</option>
                 <option value="SE">Sem Escolaridade</option>
                 <option value="EF">Ensino Fundamental</option>
@@ -112,7 +112,7 @@
             </div>
             <div class="form-group">
               <label data-toggle="tooltip" title="Escolha a sua raça entre as opções abaixo">Raça </label>
-              <select name="race" class="form-control" [(ngModel)]="user.social_information['race']">
+              <select name="race" class="form-control" [(ngModel)]="user.socialInformation['race']">
                 <option value=null selected="selected">Prefiro não responder</option>
                 <option value="B">Branca</option>
                 <option value="PR">Preta</option>
@@ -123,7 +123,7 @@
             </div>
             <div class="form-group">
               <label data-toggle="tooltip" title="Escolha o seu gênero entre as opções abaixo">Gênero </label>
-              <select name="gender" class="form-control" [(ngModel)]="user.social_information['gender']">
+              <select name="gender" class="form-control" [(ngModel)]="user.socialInformation['gender']">
                 <option value=null selected="selected">Prefiro não responder</option>
                 <option value="M">Masculino</option>
                 <option value="F">Feminino</option>
@@ -132,7 +132,7 @@
             </div>
             <div class="form-group">
               <label data-toggle="tooltip" title="Digite a data do seu nascimento">Data de Nascimento</label>
-              <input name="birth_date" type="date" class="form-control" [(ngModel)]="user.social_information['birth_date']">
+              <input name="birthDate" type="date" class="form-control" [(ngModel)]="user.socialInformation['birthDate']">
             </div>
             <p style="text-align: center">
               Ao se cadastrar você concorda com nossa
