@@ -5,14 +5,6 @@ import { Token } from '@angular/compiler';
 import { RequestsService } from '../requests.service';
 import { PropositionModel } from '../../models/proposition';
 
-/**
- * Primeira Técnica de programação: Estilo de Design
- * Indentação: 2 espaços
- * Uma linha para separar dois blocos de código
- * Declarar o tipo das variáveis
- * Remover variáveis que não estão sendo utilizadas.
- */
-
 @Component({
   selector: 'app-parliamentarian',
   templateUrl: './parliamentarian.component.html',
@@ -20,7 +12,6 @@ import { PropositionModel } from '../../models/proposition';
 })
 export class ParliamentarianComponent implements OnInit {
 
-  /*Variáveis globais */
   pages: number = 1;
   itemsPerPage: number = 36;
   offset: number = 1;
@@ -28,16 +19,15 @@ export class ParliamentarianComponent implements OnInit {
 
   constructor(
     private cookieService: CookieService,
-    private tokenService: TokenService, /*Técnica: nomes significativos */
-    private requestService: RequestsService,  /*Técnica: nomes significativos */
+    private tokenService: TokenService,
+    private requestService: RequestsService,  
   ) { }
 
   ngOnInit() {
-    const tokenValue: string = this.tokenService.getToken(); /*Técnica: Utilizar constante, inicializar e declarar o mais tarde. */
-    // console.log(this.tokenValue);
+    const tokenValue: string = this.tokenService.getToken(); 
     this.tokenService.checkToken(tokenValue);
     this.loadPage(1, '');
-    if (tokenValue !== '') { /*Adequando a folha de estilo */
+    if (tokenValue !== '') { 
       document.getElementById('userFollowing').style.display = 'block';
     }
   }
@@ -49,13 +39,12 @@ export class ParliamentarianComponent implements OnInit {
    * @param termValue query para ser utilizada na pesquisa por parlamentares.
    */
   loadPage(offset: number, termValue) {
-    const term: string = termValue.toUpperCase(); /*Técnica: utilizar constante, declarar o mais tarde e inicializar. */
+    const term: string = termValue.toUpperCase(); 
     if (offset < 1 || isNaN(Number(offset))) {
       alert('Número de páginas inválido, favor digitar um número positivo');
       return;
     }
     this.offset = Number(offset);
-    /*Técnica: declarar o mais tarde, usar constante e inicializar. */
     const request: any =  this.requestService.getSearchedParliamentarian(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage, term);
     this.handleParliamentariansSearchResponse(request, this.offset, term);
   }
@@ -70,7 +59,7 @@ export class ParliamentarianComponent implements OnInit {
     this.requestService.getSearchedParliamentarian(this.itemsPerPage, (offset - 1) * this.itemsPerPage, termValue).subscribe( response => {
       const parliamentarians: any[] = response['body']['results'];
       const auxPages: number = Math.ceil(response['body']['count'] / this.itemsPerPage);
-      if (auxPages == 0) { /*Adequando a folha de estilo */
+      if (auxPages == 0) { 
         alert('A pesquisa não retornou resultados');
         return;
       } else if (parliamentarians.length <= 0) {
