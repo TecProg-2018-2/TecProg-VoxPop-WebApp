@@ -10,25 +10,23 @@ import { Injectable, NgModule } from '@angular/core';
 
 export class InputValidatorService {
 
-  valueErrorHandler = '';
-  valuePassword = '';
-  valueInvalidPassword = '';
-  valueUsername = '';
-  valueEmail = '';
-  valueInvalidInput = '';
-  password = '';
-  confirmPassword = '';
-  username = '';
-  statusPassword = false;
-  statusValidPassword = false;
-  statusUsername = false;
-  statusEmail = false;
-  danger = '#d9534f';
-  sucess = '#5cb85c';
+  valueErrorHandler: string = '';
+  valuePassword: string = '';
+  valueInvalidPassword: string = '';
+  valueUsername: string = '';
+  valueEmail: string = '';
+  valueInvalidInput: string = '';
+  password: string = '';
+  confirmPassword: string = '';
+  username: string = '';
+  statusPassword: boolean = false;
+  statusValidPassword: boolean = false;
+  statusUsername: boolean = false;
+  statusEmail: boolean = false;
+  colorDanger: string = '#d9534f';
+  colorSucess: string = '#5cb85c';
 
-  constructor() { }
-
-  errorHandler(status) {
+  errorHandler(status: number) {
     if (status === 500) {
       document.getElementById('alert-invalid').style.display = 'block';
       this.valueErrorHandler = 'Error interno, tente novamente mais tarde';
@@ -38,76 +36,82 @@ export class InputValidatorService {
     }
   }
 
-  onKeyPassword(e: any) {
-    this.password = e.target.value;
-    if (!this.isValidPassword(this.password)) {
+  onKeyPassword(eventPassword: any) {
+    this.password = eventPassword.target.value;
+    
+    const validPassword = this.isPasswordValid(this.password);
+
+    if (!validPassword) {
       this.valueInvalidPassword = 'Sua senha deve ter no mínimo 6 caracteres';
       document.getElementById('alert-invalid-password').style.display = 'block';
       this.statusValidPassword = false;
-      this.borderColor('password', this.danger);
+      this.borderColor('password', this.colorDanger);
     } else {
       document.getElementById('alert-invalid-password').style.display = 'none';
       this.statusValidPassword = true;
-      this.borderColor('password', this.sucess);
+      this.borderColor('password', this.colorSucess);
     }
   }
-
-  onKeyConfirmPassword(e: any) {
-    this.confirmPassword = e.target.value;
+  
+  onKeyConfirmPassword(eventPassword: any) {
+    this.confirmPassword = eventPassword.target.value;
   }
+  
+  onKeyUsername(eventUsername: any) {
+    let username = eventUsername.target.value;
 
-  onKeyUsername(e: any) {
-    let username = e.target.value;
-    if (this.isUsernameValid(username)) {
+    const validUsername = this.isUsernameValid(username);
+
+    if (validUsername) {
       document.getElementById('alert-username').style.display = 'none';
       this.valueUsername = '';
       this.statusUsername = true;
-      this.borderColor('username', this.sucess);
+      this.borderColor('username', this.colorSucess);
     } else {
       this.valueUsername = 'Nome de usuário inválido';
       document.getElementById('alert-username').style.display = 'block';
       this.statusUsername = false;
-      this.borderColor('username', this.danger);
+      this.borderColor('username', this.colorDanger);
     } if (!this.isUsernameSizeValid(username)) {
       this.valueUsername = 'Nome de usuário deve ter entre 4 e 20 caracteres';
       document.getElementById('alert-username').style.display = 'block';
       this.statusUsername = false;
-      this.borderColor('username', this.danger);
+      this.borderColor('username', this.colorDanger);
     }
 
   }
 
-  onKeyEmail(e: any) {
-    let email = e.target.value;
+  onKeyEmail(eventEmail: any) {
+    let email = eventEmail.target.value;
     if (this.isEmailValid(email)){
       document.getElementById('alert-email').style.display = 'none';
       this.valueEmail = '';
       this.statusEmail = true;
-      this.borderColor('email', this.sucess);
+      this.borderColor('email', this.colorSucess);
     } else {
       document.getElementById('alert-email').style.display = 'block';
       this.valueEmail = 'Formato do E-mail está incorreto';
       this.statusEmail = false;
-      this.borderColor('email', this.danger);
+      this.borderColor('email', this.colorDanger);
     } if (email.length < 4) {
       document.getElementById('alert-email').style.display = 'block';
       this.valueEmail = 'Formato do E-mail está incorreto';
       this.statusEmail = false;
-      this.borderColor('email', this.danger);
+      this.borderColor('email', this.colorDanger);
     }
   }
 
-  onKeyValidatorPassword(e: any) {
+  onKeyValidatorPassword() {
     if (this.isConfirmedPassword(this.confirmPassword, this.password)) {
       document.getElementById('alert-password').style.display = 'none';
       this.valuePassword = '';
       this.statusPassword = true;
-      this.borderColor('confirm-password', this.sucess);
+      this.borderColor('confirm-password', this.colorSucess);
     } else {
       this.valuePassword = 'A confirmação de senha não corresponde';
       document.getElementById('alert-password').style.display = 'block';
       this.statusPassword = false;
-      this.borderColor('confirm-password', this.danger);
+      this.borderColor('confirm-password', this.colorDanger);
     }
   }
 
@@ -142,7 +146,7 @@ export class InputValidatorService {
     return false;
   }
 
-  isValidPassword(password) {
+  isPasswordValid(password) {
     if (password.length > 5 && password.length < 50) {
       return true;
     }
@@ -150,28 +154,20 @@ export class InputValidatorService {
   }
 
   validatorEditUser() {
-    // if (!this.statusPassword && !this.statusUsername && !this.statusEmail && !this.statusValidPassword) {
     if (!this.statusUsername && !this.statusEmail) {
       document.getElementById('alert-invalid-inputs').style.display = 'block';
       this.valueInvalidInput = 'Por favor, preencha os campos obrigatórios';
-      // if (!this.statusPassword) {
-      // this.borderColor('password', this.danger);
-      // this.borderColor('confirm-password', this.danger);
-      // } else {
-      //   this.borderColor('password', this.sucess);
-      //   this.borderColor('confirm-password', this.sucess);
-      // }
 
       if (!this.statusUsername) {
-        this.borderColor('username', this.danger);
+        this.borderColor('username', this.colorDanger);
       } else {
-        this.borderColor('username', this.sucess);
+        this.borderColor('username', this.colorSucess);
       }
 
       if (!this.statusEmail) {
-        this.borderColor('email', this.danger);
+        this.borderColor('email', this.colorDanger);
       } else {
-        this.borderColor('email', this.sucess);
+        this.borderColor('email', this.colorSucess);
       }
     }
   }
@@ -184,23 +180,23 @@ export class InputValidatorService {
       document.getElementById('alert-invalid-inputs').style.display = 'block';
       this.valueInvalidInput = 'Por favor, preencha os campos obrigatórios';
       if (!this.statusPassword) {
-      this.borderColor('password', this.danger);
-      this.borderColor('confirm-password', this.danger);
+      this.borderColor('password', this.colorDanger);
+      this.borderColor('confirm-password', this.colorDanger);
       } else {
-        this.borderColor('password', this.sucess);
-        this.borderColor('confirm-password', this.sucess);
+        this.borderColor('password', this.colorSucess);
+        this.borderColor('confirm-password', this.colorSucess);
       }
 
       if (!this.statusUsername) {
-        this.borderColor('username', this.danger);
+        this.borderColor('username', this.colorDanger);
       } else {
-        this.borderColor('username', this.sucess);
+        this.borderColor('username', this.colorSucess);
       }
 
       if (!this.statusEmail) {
-        this.borderColor('email', this.danger);
+        this.borderColor('email', this.colorDanger);
       } else {
-        this.borderColor('email', this.sucess);
+        this.borderColor('email', this.colorSucess);
       }
     }
  }
