@@ -6,11 +6,11 @@ import { TokenService } from '../token.service';
 import { UpdateVoteModel } from '../../models/vote';
 
 @Component({
-  selector: 'app-minhas-pls',
-  templateUrl: './minhas-pls.component.html',
-  styleUrls: ['./minhas-pls.component.css']
+  selector: 'app-my-pls',
+  templateUrl: './my-pls.component.html',
+  styleUrls: ['./my-pls.component.css']
 })
-export class MinhasPlsComponent implements OnInit {
+export class MyPlsComponent implements OnInit {
 
   term: string = '';
   tokenValue: string = '';

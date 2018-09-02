@@ -1,21 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MinhasPlsComponent } from './minhas-pls.component';
+import { MyPlsComponent } from './my-pls.component';
 import { RequestsService } from '../requests.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TokenService } from '../token.service';
 import { CookieService } from 'ngx-cookie-service';
 
-describe('MinhasPlsComponent', () => {
-  let component: MinhasPlsComponent;
-  let fixture: ComponentFixture<MinhasPlsComponent>;
+describe('MyPlsComponent', () => {
+  let component: MyPlsComponent;
+  let fixture: ComponentFixture<MyPlsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule
       ],
-      declarations: [MinhasPlsComponent],
+      declarations: [MyPlsComponent],
       providers: [
         CookieService,
         RequestsService,
@@ -27,7 +27,7 @@ describe('MinhasPlsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MinhasPlsComponent);
+    fixture = TestBed.createComponent(MyPlsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
