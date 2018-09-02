@@ -5,6 +5,14 @@ import { Token } from '@angular/compiler';
 import { RequestsService } from '../requests.service';
 import { PropositionModel } from '../../models/proposition';
 
+/**
+ * Primeira Técnica de programação: Estilo de Design
+ * Indentação: 2 espaços
+ * Uma linha para separar dois blocos de código
+ * Declarar o tipo das variáveis
+ * Remover variáveis que não estão sendo utilizadas.
+ */
+
 @Component({
   selector: 'app-parliamentarian',
   templateUrl: './parliamentarian.component.html',
@@ -12,88 +20,74 @@ import { PropositionModel } from '../../models/proposition';
 })
 export class ParliamentarianComponent implements OnInit {
 
-  tokenValue = '';
-  idValue: Number;
-  pages = 1;
-  itemsPerPage = 36;
-  offset = 1;
-  term = '';
-  loading = true;
-
-  parliamentarians: any = [
-    {
-      parliamentarian_id: null,
-      name: '',
-      gender: '',
-      federal_unit: '',
-      photo: '',
-      compatibility: '',
-    }
-  ];
-  auxParliamentarian: any = [
-    {
-      parliamentarian_id: null,
-      name: '',
-      gender: '',
-      federal_unit: '',
-      photo: '',
-      compatibility: '',
-    }
-  ];
+  /*Variáveis globais */
+  pages: number = 1;
+  itemsPerPage: number = 36;
+  offset: number = 1;
+  loading: boolean = true;
 
   constructor(
     private cookieService: CookieService,
-    private token: TokenService,
-    private requester: RequestsService,
+    private tokenService: TokenService, /*Técnica: nomes significativos */
+    private requestService: RequestsService,  /*Técnica: nomes significativos */
   ) { }
 
-
   ngOnInit() {
-    this.tokenValue = this.token.getToken();
+    const tokenValue: string = this.tokenService.getToken(); /*Técnica: Utilizar constante, inicializar e declarar o mais tarde. */
     // console.log(this.tokenValue);
-    this.token.checkToken(this.tokenValue);
-    this.idValue = +this.cookieService.get('userID');
+    this.tokenService.checkToken(tokenValue);
     this.loadPage(1, '');
-    if (this.tokenValue === '') {
-      return false;
-    } else {
+    if (tokenValue !== '') { /*Adequando a folha de estilo */
       document.getElementById('userFollowing').style.display = 'block';
-      return true;
     }
   }
 
-  loadPage(offset: number, term) {
-    let req: any;
-    this.term = term.toUpperCase();
-    // console.log(Number(offset));
+  /**
+   * Busca por parlamentares de acordo com o número de páginas
+   * para ser carregado na página HTML
+   * @param offset valor do deslocamento de páginas.
+   * @param termValue query para ser utilizada na pesquisa por parlamentares.
+   */
+  loadPage(offset: number, termValue) {
+    const term: string = termValue.toUpperCase(); /*Técnica: utilizar constante, declarar o mais tarde e inicializar. */
     if (offset < 1 || isNaN(Number(offset))) {
       alert('Número de páginas inválido, favor digitar um número positivo');
       return;
     }
     this.offset = Number(offset);
-    // console.log(this.offset);
-    req =  this.requester.getSearchedParliamentarian(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage, this.term);
-    this.handleParliamentariansSearchResponse(req, this.offset, this.term);
+    /*Técnica: declarar o mais tarde, usar constante e inicializar. */
+    const request: any =  this.requestService.getSearchedParliamentarian(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage, term);
+    this.handleParliamentariansSearchResponse(request, this.offset, term);
   }
 
-  handleParliamentariansSearchResponse(request, offset, term) {
-    this.requester.getSearchedParliamentarian(this.itemsPerPage, (offset - 1) * this.itemsPerPage, term).subscribe( response => {
-      this.auxParliamentarian = response['body']['results'];
-      const auxPages = Math.ceil(response['body']['count'] / this.itemsPerPage);
-      if (auxPages === 0) {
+  /**
+   * Método que carrega a página HTML com o resultado da requisição.
+   * @param request resultado da pesquisa a API
+   * @param offset valor do deslocamento de páginas
+   * @param term query para ser utilizada na pesquisa por parlamentares. 
+   */
+  handleParliamentariansSearchResponse(request, offset, termValue) {
+    this.requestService.getSearchedParliamentarian(this.itemsPerPage, (offset - 1) * this.itemsPerPage, termValue).subscribe( response => {
+      const parliamentarians: any[] = response['body']['results'];
+      const auxPages: number = Math.ceil(response['body']['count'] / this.itemsPerPage);
+      if (auxPages == 0) { /*Adequando a folha de estilo */
         alert('A pesquisa não retornou resultados');
         return;
-      } else if (this.auxParliamentarian.length <= 0) {
+      } else if (parliamentarians.length <= 0) {
         alert('Número da página inválido, favor digitar entre 1 e ' + this.pages);
         return;
       }
       this.pages = auxPages;
       this.updateButtonsAppearence(this.offset, this.pages);
-      this.parliamentarians = this.auxParliamentarian;
       this.loading = false;
     });
   }
 
+  /**
+   * Método responsável por atualizar o estilo dos botões
+   * @param offset  valor do deslocamento de páginas
+   * @param limit valor do limite de páginas
+   */
   updateButtonsAppearence(offset, limit) {
     if (offset === 1) {
       document.getElementById('beforeBtn1').style.display = 'none';

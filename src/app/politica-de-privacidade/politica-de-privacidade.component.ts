@@ -3,6 +3,13 @@ import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 
+/**
+ * Primeira Técnica de programação: Estilo de Design
+ * Indentação: 2 espaços
+ * Uma linha para separar dois blocos de código
+ * Declarar o tipo das variáveis
+ * Remover variáveis que não estão sendo utilizadas.
+ */
 @Component({
   selector: 'app-politica-de-privacidade',
   templateUrl: './politica-de-privacidade.component.html',
@@ -10,11 +17,9 @@ import { TokenService } from '../token.service';
 })
 export class PoliticaDePrivacidadeComponent implements OnInit {
 
-  tokenValue = '';
+  tokenValue: string = '';
 
-  constructor(private requester: RequestsService,
-              private cookieService: CookieService,
-              private token: TokenService) { }
+  constructor(private token: TokenService) { } /*Técnica: nomes significativos */
 
   ngOnInit() {
     this.tokenValue = this.token.getToken();
