@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 import { RequestsService } from '../requests.service';
+
+/**
+ * Primeira Técnica de programação: Estilo de Design
+ * Indentação: 2 espaços
+ * Uma linha para separar dois blocos de código
+ * Declarar o tipo das variáveis
+ */
 
 @Component({
   selector: 'app-most-followed',
@@ -10,32 +16,27 @@ import { RequestsService } from '../requests.service';
 })
 export class MostFollowedComponent implements OnInit {
 
-  tokenValue = '';
-  loading = true;
-  most_followed: any = [];
+  loading: boolean = true;
 
   constructor(
-    private cookieService: CookieService,
-    private token: TokenService,
-    private requester: RequestsService,
+    private tokenService: TokenService, /*Técnica: nomes significativos*/
+    private requestService: RequestsService, /*Técnica: nomes significativos*/
   ) { }
 
   ngOnInit() {
-    this.tokenValue = this.token.getToken();
-    this.token.checkToken(this.tokenValue);
-    this.mostFollowed();
+    const tokenValue: string = this.tokenService.getToken(); /*Técnica: declarar o mais tarde, inicializar e usar constante*/
+    this.tokenService.checkToken(tokenValue);
+    this.parliamentariansMoreOften();
   }
 
-  mostFollowed() {
-    let req: any;
-    req =  this.requester.getMostFollowed();
-    this.handleMostFollowedResponse(req);
-    return req;
+  parliamentariansMoreOften() { /*Técnica: nomes significativos*/
+    const request: any =  this.requestService.getMostFollowed(); /*Técnica: nomes significativos, inicializar e usar constante.*/
+    this.handleParliamentariansMoreOften(request);
   }
 
-  handleMostFollowedResponse(req) {
-    req.subscribe( response => {
-      this.most_followed = response['body']['results'];
+  handleParliamentariansMoreOften(request) { /*Técnica: nomes significativos*/
+    request.subscribe( response => {
+      const parliamentariansMoreOftenValue: any[] = response['body']['results']; /*Técnica: nomes significativos, declarar o mais tarde e usar constante*/
       this.loading = false;
     });
   }
