@@ -15,7 +15,7 @@ export class PropositionComponent implements OnInit {
 
   tokenValue = '';
   sub: any;
-  id = 0;
+  idUser = 0;
   loading = true;
   social_information: any;
   region_ctx: HTMLElement;
@@ -58,12 +58,12 @@ export class PropositionComponent implements OnInit {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id'];
+      this.idUser = +params['id'];
     });
-    this.requester.getPropositionSpecific(this.id).subscribe( response => {
+    this.requester.getPropositionSpecific(this.idUser).subscribe( response => {
       this.proposition = response['body'];
     });
-    this.requester.getPropositionSpecificSocialInfo(this.id).subscribe( response => {
+    this.requester.getPropositionSpecificSocialInfo(this.idUser).subscribe( response => {
       this.social_information = response['body'];
       this.loading = false;
 

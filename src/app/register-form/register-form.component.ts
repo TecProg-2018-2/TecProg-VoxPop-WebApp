@@ -13,21 +13,6 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent implements OnInit {
-  user: any = {
-    username: '',
-    first_name: '',
-    last_name: '',
-    email: '',
-    password: '',
-    social_information: {
-      region: null,
-      income: null,
-      education: null,
-      race: null,
-      gender: null,
-      birth_date: null
-    }
-  };
 
   constructor(private router: Router,
     private requester: RequestsService,
@@ -35,30 +20,44 @@ export class RegisterFormComponent implements OnInit {
     private cookieService: CookieService
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { } 
 
+  user: any = {
+    username: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    socialInformation: {
+      region: null,
+      income: null,
+      education: null,
+      race: null,
+      gender: null,
+      birthDate: null
+    }
+  };
 
   registerUser() {
-    if(this.user.social_information.region == 'null') {
-      this.user.social_information.region = null;
+    if(this.user.socialInformation.region == 'null') {
+      this.user.socialInformation.region = null;
     }
-    if(this.user.social_information.income == 'null') {
-      this.user.social_information.income = null;
+    if(this.user.socialInformation.income == 'null') {
+      this.user.socialInformation.income = null;
     }
-    if(this.user.social_information.education == 'null') {
-      this.user.social_information.education = null;
+    if(this.user.socialInformation.education == 'null') {
+      this.user.socialInformation.education = null;
     }
-    if(this.user.social_information.race == 'null') {
-      this.user.social_information.race = null;
+    if(this.user.socialInformation.race == 'null') {
+      this.user.socialInformation.race = null;
     }
-    if(this.user.social_information.gender == 'null') {
-      this.user.social_information.gender = null;
+    if(this.user.socialInformation.gender == 'null') {
+      this.user.socialInformation.gender = null;
     }
-    let req;
-    req = this.requester.postUser(this.user);
-    this.registerUserHandler(req);
-    return req;
+    let requisition; 
+    requisition = this.requester.postUser(this.user);
+    this.registerUserHandler(requisition);
+    return requisition;
   }
 
   registerUserHandler(request) {

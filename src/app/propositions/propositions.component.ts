@@ -13,74 +13,65 @@ import { TokenService } from '../token.service';
 })
 export class PropositionsComponent implements OnInit {
 
-  tokenValue = '';
-  idValue = 0;
-
-  proposition: any = {
-    proposition_id: 0,
-    proposition_type: '',
-    proposition_type_initials: '',
-    number: 0,
-    year: 0,
-    abstract: '',
-    processing: '',
-    situation: '',
-    url_full: '',
-    parliamentarians_approval: '',
-    population_approval: '',
-  }
-
   constructor(
-    private router:Router,
-    private requester:RequestsService,
-    private cookieService:CookieService,
-    private token:TokenService
+    private router: Router,
+    private requester: RequestsService,
+    private cookieService: CookieService,
+    private token: TokenService
   ) { }
 
+  idValue: number = 0;
+  tokenValue: string = ''; 
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.token.filterRestrictPage(this.tokenValue);
-    this.idValue = +this.cookieService.get('userID');
     this.projects();
   }
 
-  projects(){
-    const req = this.requester.getProjects();
-    this.projectsHandler(req);
-    return req;
+  projects() {
+    const requisition = this.requester.getProjects();
+    this.projectsHandler(requisition);
+    return requisition;
   }
 
-  projectsHandler(request){
-    request.subscribe( response =>{
-      response['parliamentarians_approval'] = parseFloat(response['parliamentarians_approval']);
-      response['population_approval'] = parseFloat(response['population_approval']);
+  proposition: any = {
+    propositionId: 0,
+    propositionType: '',
+    propositionTypeInitials: '',
+    codeProposition: 0,
+    year: 0,
+    abstract: '',
+    processing: '',
+    situation: '',
+    urlFull: '',
+    parliamentariansApproval: '',
+    populationApproval: '',
+  }
+
+  projectsHandler(request) {
+    request.subscribe(response => {
+      response['parliamentariansApproval'] = parseFloat(response['parliamentariansApproval']);
+      response['populationApproval'] = parseFloat(response['populationApproval']);
       this.proposition = response['body'];
     });
   }
 
-  answerPL(opinion: string){
-    var response;
-    var request;
-    var status;
-
-     var vote : VoteModel = {
-      //  user: this.idValue,
-       proposition: this.proposition.id,
-       option: opinion
+  answerPL(opinion: string) {
+    var vote: VoteModel = {
+      proposition: this.proposition.id,
+      option: opinion
     }
     this.requester.postVote(vote).subscribe(response => {
+      var status;
       status = response.status;
-
-      if (!this.requester.didSucceed(status)){
+      if (!this.requester.didSucceed(status)) {
         alert("Voto não registrado, favor tentar de novo mais tarde");
       } else {
-        this.requester.getProjects().subscribe( response =>{
+        this.requester.getProjects().subscribe(response => {
           this.proposition = response['body'];
-          // console.log(response['body']);
         });
       }
     });
-
   }
 }
