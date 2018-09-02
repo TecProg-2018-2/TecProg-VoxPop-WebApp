@@ -8,7 +8,11 @@ import { TokenService } from '../token.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  
+
+
+  sidebar: string = '';
+  tokenValue: string = '';
+
   constructor(
     private cookieService: CookieService,
     private token: TokenService,
@@ -26,7 +30,7 @@ export class SidebarComponent implements OnInit {
     if (sidebarCookie === 'false') {
       const sidebarStatus: HTMLElement = document.getElementById('sidebar');
       sidebarStatus.classList.toggle('active');
-      const contentStatus = document.getElementById('content');
+      const contentStatus: HTMLElement = document.getElementById('content');
       contentStatus.classList.toggle('active');
     }
   }

@@ -10,11 +10,9 @@ import { TokenService } from '../token.service';
 })
 export class PoliticaDePrivacidadeComponent implements OnInit {
 
-  tokenValue = '';
+  tokenValue: string = '';
 
-  constructor(private requester: RequestsService,
-              private cookieService: CookieService,
-              private token: TokenService) { }
+  constructor(private token: TokenService) { } /*Técnica: nomes significativos */
 
   ngOnInit() {
     this.tokenValue = this.token.getToken();
