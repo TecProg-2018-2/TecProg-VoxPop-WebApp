@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestsService } from '../requests.service';
+import { UserModel } from '../../models/user';
+import { SocialInformationModel } from '../../models/socialInformation'
+import { and } from '@angular/router/src/utils/collection';
 import { InputValidatorService } from '../input-validator.service';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -10,6 +13,15 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent implements OnInit {
+
+  constructor(private router: Router,
+    private requester: RequestsService,
+    private validator: InputValidatorService,
+    private cookieService: CookieService
+  ) { }
+
+  ngOnInit() { } 
+
   user: any = {
     username: '',
     firstName: '',
@@ -26,33 +38,23 @@ export class RegisterFormComponent implements OnInit {
     }
   };
 
-  constructor(
-    private router: Router,
-    private requester: RequestsService,
-    private validator: InputValidatorService,
-    private cookieService: CookieService
-  ) { }
-
-  ngOnInit() {
-  }
-
   registerUser() {
-    if (this.user.socialInformation.region == 'null') {
+    if(this.user.socialInformation.region == 'null') {
       this.user.socialInformation.region = null;
     }
-    if (this.user.socialInformation.income == 'null') {
+    if(this.user.socialInformation.income == 'null') {
       this.user.socialInformation.income = null;
     }
-    if (this.user.socialInformation.education == 'null') {
+    if(this.user.socialInformation.education == 'null') {
       this.user.socialInformation.education = null;
     }
-    if (this.user.socialInformation.race == 'null') {
+    if(this.user.socialInformation.race == 'null') {
       this.user.socialInformation.race = null;
     }
-    if (this.user.socialInformation.gender == 'null') {
+    if(this.user.socialInformation.gender == 'null') {
       this.user.socialInformation.gender = null;
     }
-    let requisition;
+    let requisition; 
     requisition = this.requester.postUser(this.user);
     this.registerUserHandler(requisition);
     return requisition;
@@ -65,7 +67,8 @@ export class RegisterFormComponent implements OnInit {
         this.router.navigate(['login']);
         this.cookieService.set('success', 'true');
       }
-    }, error => {
+    },
+    error => {
       const statusAuth = error.status;
       this.validator.errorHandler(statusAuth);
     });
