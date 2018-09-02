@@ -20,7 +20,7 @@ export class PropositionsComponent implements OnInit {
     private token: TokenService
   ) { }
 
-  idUser: number = 0;
+  idValue: number = 0;
   tokenValue: string = ''; 
   ngOnInit() {
     this.tokenValue = this.token.getToken();
