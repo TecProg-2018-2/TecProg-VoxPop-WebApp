@@ -51,7 +51,7 @@ describe('ContactUsComponent', () => {
   });
 
   it('should go to back page', () => {
-    expect(component.back()).toBeUndefined();
+    expect(component.backToHomepage()).toBeUndefined();
   });
 
 });
