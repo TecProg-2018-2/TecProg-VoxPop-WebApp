@@ -9,10 +9,6 @@ import { TokenService } from '../token.service';
 })
 export class SidebarComponent implements OnInit {
 
-
-  sidebar: string = '';
-  tokenValue: string = '';
-
   constructor(
     private cookieService: CookieService,
     private token: TokenService,
