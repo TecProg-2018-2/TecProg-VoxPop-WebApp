@@ -12,12 +12,12 @@ import { UpdateVoteModel } from '../../models/vote';
 })
 export class MinhasPlsComponent implements OnInit {
 
-  term = '';
-  tokenValue = '';
-  showEditButtons = false;
-  pages = 1;
-  offset = 0;
-  itemsPerPage = 10;
+  term: string = '';
+  tokenValue: string = '';
+  showEditButtons: boolean = false;
+  pages: number = 1;
+  offset: number = 0;
+  itemsPerPage: number = 10;
   votePosition: number;
   userId: number;
   numberPLsVoted: number;
@@ -60,17 +60,17 @@ export class MinhasPlsComponent implements OnInit {
       return;
     }
     this.term = term.toUpperCase();
-    let req: any;
+    let requisition: any;
     this.pages = 1;
     this.numberPLsVoted = 1;
     this.proposition = [];
-    req =  this.requester.getSearchVotedProposition((offset - 1) * this.itemsPerPage, this.term);
-    this.handlePropositionsSearchResponse(req, offset);
-    return req;
+    requisition = this.requester.getSearchVotedProposition((offset - 1) * this.itemsPerPage, this.term);
+    this.handlePropositionsSearchResponse(requisition, offset);
+    return requisition;
   }
 
   handlePropositionsSearchResponse(request, offset) {
-    request.subscribe( response => {
+    request.subscribe(response => {
       const body = response['body'];
       this.propositionVote = body['results'];
       // console.log(this.propositionVote);
@@ -87,10 +87,10 @@ export class MinhasPlsComponent implements OnInit {
 
   editVote(opinion: string) {
     let status;
-     const vote: UpdateVoteModel = {
-       user: this.userId,
-       proposition: this.propositionVote[this.votePosition].proposition.id,
-       option: opinion
+    const vote: UpdateVoteModel = {
+      user: this.userId,
+      proposition: this.propositionVote[this.votePosition].proposition.id,
+      option: opinion
     };
 
     this.requester.updateVote(vote, this.propositionVote[this.votePosition]['id']).subscribe(response => {

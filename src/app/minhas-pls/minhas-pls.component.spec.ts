@@ -15,7 +15,7 @@ describe('MinhasPlsComponent', () => {
       imports: [
         HttpClientModule
       ],
-      declarations: [ MinhasPlsComponent ],
+      declarations: [MinhasPlsComponent],
       providers: [
         CookieService,
         RequestsService,
@@ -23,7 +23,7 @@ describe('MinhasPlsComponent', () => {
         TokenService,
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

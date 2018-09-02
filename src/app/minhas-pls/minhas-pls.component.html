@@ -1,24 +1,24 @@
 <div class="header" align="center">
-    <h1 class="card-title">Meus votos</h1>
-    <form class="col-sm-4 col-sm-offset-4 search" role="search" method="get" action="/busca">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Buscar entre os projetos de lei votados" #search>
-        <div class="input-group-btn">
-          <button class="btn btn-default" type="submit" (click)="propositions(1, search.value)">
-            <i class="glyphicon glyphicon-search"></i>
-          </button>
-        </div>
+  <h1 class="card-title">Meus votos</h1>
+  <form class="col-sm-4 col-sm-offset-4 search" role="search" method="get" action="/busca">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Buscar entre os projetos de lei votados" #search>
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit" (click)="propositions(1, search.value)">
+          <i class="glyphicon glyphicon-search"></i>
+        </button>
       </div>
-    </form>
-  </div>
-  <br>
-  <br>
-  <br>
-  <div *ngIf="loading" align="center">
-    <p>Carregando dados...</p>
-    <div class="loader"></div>
-  </div>
-  <ng-container *ngIf="!loading" class="center">
+    </div>
+  </form>
+</div>
+<br>
+<br>
+<br>
+<div *ngIf="loading" align="center">
+  <p>Carregando dados...</p>
+  <div class="loader"></div>
+</div>
+<ng-container *ngIf="!loading" class="center">
   <div class="row">
     <div class="col-sm-6 text-center" *ngFor="let p of propositionVote let j = index">
       <div class="panel panel-primary">
@@ -39,29 +39,31 @@
               </p>
             </div>
             <p>
-            Seu voto:
-            <ng-container *ngIf="p['option'] === 'Y'">
-              <span class="glyphicon glyphicon-ok"></span> SIM</ng-container>
-            <ng-container *ngIf="p['option'] === 'A'">
-              <span class="glyphicon glyphicon-minus"></span> ABSTENÇÃO</ng-container>
-            <ng-container *ngIf="p['option'] === 'N'">
-              <span class="glyphicon glyphicon-remove"></span> NÃO</ng-container>
-          </p>
+              Seu voto:
+              <ng-container *ngIf="p['option'] === 'Y'">
+                <span class="glyphicon glyphicon-ok"></span> SIM</ng-container>
+              <ng-container *ngIf="p['option'] === 'A'">
+                <span class="glyphicon glyphicon-minus"></span> ABSTENÇÃO</ng-container>
+              <ng-container *ngIf="p['option'] === 'N'">
+                <span class="glyphicon glyphicon-remove"></span> NÃO</ng-container>
+            </p>
           </div>
           <br>
           <div class="row">
             <div class="col-sm-4 col-sm-offset-1">
-                <div style="font-weight: bold">Aprovação dos Parlamentares</div>
-                <div class="progress-wrapper">
-                  <p>{{p.proposition['parliamentarians_approval']}}/100</p>
-                  <round-progress [current]=p.proposition.parliamentarians_approval [max]="100" [responsive]="true" [radius]="50" [color]="'#449D44'" [background]="'#C9302C'"></round-progress>
-                </div>
+              <div style="font-weight: bold">Aprovação dos Parlamentares</div>
+              <div class="progress-wrapper">
+                <p>{{p.proposition['parliamentarians_approval']}}/100</p>
+                <round-progress [current]=p.proposition.parliamentarians_approval [max]="100" [responsive]="true" [radius]="50" [color]="'#449D44'"
+                  [background]="'#C9302C'"></round-progress>
+              </div>
             </div>
             <div class="col-sm-4 col-sm-offset-2">
-                <div style="font-weight: bold">Aprovação dos Usuários</div>
+              <div style="font-weight: bold">Aprovação dos Usuários</div>
               <div class="progress-wrapper">
-                  <p>{{p.proposition['population_approval']}}/100</p>
-                  <round-progress [current]=p.proposition.population_approval [max]="100" [responsive]="true" [radius]="50" [color]="'#449D44'" [background]="'#C9302C'"></round-progress>
+                <p>{{p.proposition['population_approval']}}/100</p>
+                <round-progress [current]=p.proposition.population_approval [max]="100" [responsive]="true" [radius]="50" [color]="'#449D44'"
+                  [background]="'#C9302C'"></round-progress>
               </div>
             </div>
           </div>
@@ -85,57 +87,58 @@
     </div>
   </div>
 </ng-container>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header" *ngIf="showEditButtons">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" *ngIf="showEditButtons">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="exampleModalLabel">Editar Voto</h4>
+      </div>
+      <div class="modal-body" *ngIf="propositionVote?.length > 0">
+        <button type="button" *ngIf="!showEditButtons" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h5 class="card-title">
+          {{propositionVote[votePosition].proposition['proposition_type']}} - Número: {{propositionVote[votePosition].proposition['number']}}
+        </h5>
+        <p>Ano: {{propositionVote[votePosition].proposition['year']}}</p>
+        <p>Abstract: {{propositionVote[votePosition].proposition['abstract']}}</p>
+        <p>Situação: {{propositionVote[votePosition].proposition['situation']}}</p>
+        <p> Seu voto:
+          <ng-container *ngIf="propositionVote[votePosition]['option'] === 'Y'">
+            <span class="glyphicon glyphicon-ok"></span> SIM
+          </ng-container>
+          <ng-container *ngIf="propositionVote[votePosition]['option'] === 'A'">
+            <span class="glyphicon glyphicon-minus"></span> ABSTENÇÃO
+          </ng-container>
+          <ng-container *ngIf="propositionVote[votePosition]['option'] === 'N'">
+            <span class="glyphicon glyphicon-remove"></span> NÃO
+          </ng-container><br>
+        </p>
+        <!-- TODO, referenciar essa parada aí em baixo direito! -->
+        <div class="text-center">
+          <button class="btn btn-primary" (click)="openProposition(propositionVote[votePosition].proposition['url_full'])">Veja
+            na íntegra</button>
+        </div>
+      </div>
+      <div class="modal-footer" *ngIf="showEditButtons">
+        <div style="text-align: center; margin-bottom: 10px">
+          <button class='btn btn-success' data-toggle="tooltip" title="Concordo" data-dismiss="modal" (click)="editVote('Y')">
+            <span class="glyphicon glyphicon-ok"></span>
           </button>
-          <h4 class="modal-title" id="exampleModalLabel">Editar Voto</h4>
-        </div>
-        <div class="modal-body" *ngIf="propositionVote?.length > 0">
-            <button type="button" *ngIf="!showEditButtons" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          <h5 class="card-title">
-            {{propositionVote[votePosition].proposition['proposition_type']}} - Número: {{propositionVote[votePosition].proposition['number']}}
-          </h5>
-          <p>Ano: {{propositionVote[votePosition].proposition['year']}}</p>
-          <p>Abstract: {{propositionVote[votePosition].proposition['abstract']}}</p>
-          <p>Situação: {{propositionVote[votePosition].proposition['situation']}}</p>
-          <p> Seu voto:
-            <ng-container *ngIf="propositionVote[votePosition]['option'] === 'Y'">
-              <span class="glyphicon glyphicon-ok"></span> SIM
-            </ng-container>
-            <ng-container *ngIf="propositionVote[votePosition]['option'] === 'A'">
-              <span class="glyphicon glyphicon-minus"></span> ABSTENÇÃO
-            </ng-container>
-            <ng-container *ngIf="propositionVote[votePosition]['option'] === 'N'">
-              <span class="glyphicon glyphicon-remove"></span> NÃO
-            </ng-container><br>
-          </p>
-          <!-- TODO, referenciar essa parada aí em baixo direito! -->
-          <div class="text-center">
-            <button class="btn btn-primary" (click)="openProposition(propositionVote[votePosition].proposition['url_full'])">Veja na íntegra</button>
-          </div>
-        </div>
-        <div class="modal-footer" *ngIf="showEditButtons">
-          <div style="text-align: center; margin-bottom: 10px">
-            <button class='btn btn-success' data-toggle="tooltip" title="Concordo" data-dismiss="modal" (click)="editVote('Y')">
-              <span class="glyphicon glyphicon-ok"></span>
-            </button>
-            <button class='btn btn-light' data-toggle="tooltip" title="Me abstenho" data-dismiss="modal" (click)="editVote('A')">
-              <span class="glyphicon glyphicon-minus"></span>
-            </button>
-            <button class='btn btn-danger' data-toggle="tooltip" title="Discordo" data-dismiss="modal" (click)="editVote('N')">
-              <span class="glyphicon glyphicon-remove"></span>
-            </button>
-          </div>
+          <button class='btn btn-light' data-toggle="tooltip" title="Me abstenho" data-dismiss="modal" (click)="editVote('A')">
+            <span class="glyphicon glyphicon-minus"></span>
+          </button>
+          <button class='btn btn-danger' data-toggle="tooltip" title="Discordo" data-dismiss="modal" (click)="editVote('N')">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
         </div>
       </div>
     </div>
   </div>
+</div>
 <table style="width:100%" *ngIf="pages > 0 && !loading">
   <tr>
     <div class="row">
