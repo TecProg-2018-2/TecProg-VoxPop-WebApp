@@ -12,7 +12,7 @@ import { InputValidatorService } from '../input-validator.service';
 import { of } from 'rxjs/observable/of';
 
 
-describe('SeePoliticianDetailedComponent', () => {
+describePolitician('SeePoliticianDetailedComponent', () => {
   let component: SeePoliticianDetailedComponent;
   let fixture: ComponentFixture<SeePoliticianDetailedComponent>;
   let element;
