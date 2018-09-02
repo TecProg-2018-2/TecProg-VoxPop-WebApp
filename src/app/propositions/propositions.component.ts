@@ -13,29 +13,15 @@ import { TokenService } from '../token.service';
 })
 export class PropositionsComponent implements OnInit {
 
-  tokenValue: string = '';
-  idUser: number = 0;
-
-  proposition: any = {
-    proposition_id: 0,
-    proposition_type: '',
-    proposition_type_initials: '',
-    codeProposition: 0,
-    year: 0,
-    abstract: '',
-    processing: '',
-    situation: '',
-    url_full: '',
-    parliamentarians_approval: '',
-    population_approval: '',
-  }
-
   constructor(
+    private router: Router,
     private requester: RequestsService,
     private cookieService: CookieService,
     private token: TokenService
   ) { }
 
+  idUser: number = 0;
+  tokenValue: string = ''; 
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
@@ -45,29 +31,41 @@ export class PropositionsComponent implements OnInit {
   }
 
   projects() {
-    const req = this.requester.getProjects();
-    this.projectsHandler(req);
-    return req;
+    const requisition = this.requester.getProjects();
+    this.projectsHandler(requisition);
+    return requisition;
+  }
+
+  proposition: any = {
+    propositionId: 0,
+    propositionType: '',
+    propositionTypeInitials: '',
+    codeProposition: 0,
+    year: 0,
+    abstract: '',
+    processing: '',
+    situation: '',
+    urlFull: '',
+    parliamentariansApproval: '',
+    populationApproval: '',
   }
 
   projectsHandler(request) {
     request.subscribe(response => {
-      response['parliamentarians_approval'] = parseFloat(response['parliamentarians_approval']);
-      response['population_approval'] = parseFloat(response['population_approval']);
+      response['parliamentariansApproval'] = parseFloat(response['parliamentariansApproval']);
+      response['populationApproval'] = parseFloat(response['populationApproval']);
       this.proposition = response['body'];
     });
   }
 
   answerPL(opinion: string) {
-    var status;
-
     var vote: VoteModel = {
       proposition: this.proposition.id,
       option: opinion
     }
     this.requester.postVote(vote).subscribe(response => {
+      var status;
       status = response.status;
-
       if (!this.requester.didSucceed(status)) {
         alert("Voto não registrado, favor tentar de novo mais tarde");
       } else {
@@ -76,6 +74,5 @@ export class PropositionsComponent implements OnInit {
         });
       }
     });
-
   }
 }
