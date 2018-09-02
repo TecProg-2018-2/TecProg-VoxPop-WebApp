@@ -15,31 +15,30 @@ export class SeeCompatibleParliamenterianComponent  implements OnInit {
   mostCompatible: any[] = [];
 
 
-  /* Standard method constructor for a component. */
   constructor(
     private cookieService: CookieService,
     private token: TokenService,
     private requester: RequestsService,
   ) { }
 
-  /* Standard method of starting a component. */
+  /* Método padrão para se inicializar um componente. */
   ngOnInit() {
-      this.tokenValue = this.token.getToken();
-      this.token.checkToken(this.tokenValue);
-      this.token.filterRestrictPage(this.tokenValue);
-      this.getMostCompatible();
+    this.tokenValue = this.token.getToken();
+    this.token.checkToken(this.tokenValue);
+    this.token.filterRestrictPage(this.tokenValue);
+    this.getMostCompatible();
   }
 
-  /* Method for get a most compatible response. */
+  /* Recebe o a resposta mais compatível da requisição. */
   getMostCompatible() {
-      let request: any = null;
-      this.mostCompatible = [];
-      request =  this.requester.getMostCompatible();
-      this.handleMostCompatibleResponse(request);
-      return request;
+    let request: any = null;
+    this.mostCompatible = [];
+    request =  this.requester.getMostCompatible();
+    this.handleMostCompatibleResponse(request);
+    return request;
   }
 
-  /* Method for handle a most compatible response. */
+  /*  Manipula a resposta obtida. */
   handleMostCompatibleResponse(request: any) {
     request.subscribe( response => {
         this.mostCompatible = response['body']['results'];

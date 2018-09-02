@@ -54,7 +54,7 @@ export class SeePlComponent implements OnInit {
     private token: TokenService,
   ) { }
 
-  /* Standard method of starting a component. */
+  /* Método padrão para inicilizar um componente. */
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
@@ -63,7 +63,7 @@ export class SeePlComponent implements OnInit {
     this.token.checkToken(this.tokenValue);
   }
 
-  /* Method for load the number page inserted into search bar. */
+  /* Método para carregar a página numérica, inserida na barra de pesquisa. */
   loadPage(offset: number) {
     let request: any;
     if (offset < 1 || isNaN(Number(offset))) {
@@ -76,7 +76,7 @@ export class SeePlComponent implements OnInit {
     return request;
   }
 
-  /* Method for treating responses obtained fo requests. */
+  /* Método para tratar respostas obtidas. */
   handlePropositionsResponse(request, offset) {
     this.requester.getProposition(this.itemsPerPage, (offset - 1) * this.itemsPerPage).subscribe( response => {
       this.auxProposition = response.body['results'];
@@ -92,7 +92,7 @@ export class SeePlComponent implements OnInit {
     });
   }
 
-  /* Method for update the visual of buttons. */
+  /* Atualiza o visual dos botões. */
   updateButtonsAppearence(offset, limit) {
     if (offset === 1) {
       document.getElementById('beforeBtn1').style.display = 'none';
@@ -111,7 +111,7 @@ export class SeePlComponent implements OnInit {
     return true;
   }
 
-  /* Method for set the specifica proposition according index inserted. */
+  /* Método para definir a proposição específica de acordo com o índice inserido. */
   setSpecificProposition(index) {
     this.position = index;
   }
