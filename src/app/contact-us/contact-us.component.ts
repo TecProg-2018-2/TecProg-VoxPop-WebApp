@@ -20,6 +20,7 @@ export class ContactUsComponent implements OnInit {
     text: ''
   };
 
+
   constructor(private router: Router,
     private requester: RequestsService,
     private cookieService: CookieService,
@@ -31,6 +32,7 @@ export class ContactUsComponent implements OnInit {
     this.token.checkToken(this.tokenValue);
     this.idValue = +this.cookieService.get('userID');
   }
+
   
   postMsg() {
     const request = this.input;

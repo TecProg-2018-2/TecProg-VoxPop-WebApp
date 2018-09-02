@@ -11,7 +11,7 @@ export class HowToUseComponent implements OnInit {
   tokenValue: string = '';
 
   constructor(private token: TokenService) { }
-  
+
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);

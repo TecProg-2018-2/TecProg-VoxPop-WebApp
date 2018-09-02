@@ -8,24 +8,24 @@ import { TokenService } from '../token.service';
 import { AppComponent } from '../app.component';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 
 
 export class LoginComponent implements OnInit {
 
-    valueInvalid = 'Usuário ou senha inválida';
-    tokenValue = '';
-    registerSuccess = '';
-    logging = false;
+    valueInvalidMsg: string = 'Usuário ou senha inválida';
+    tokenValue: string = '';
+    registerSuccess: string = '';
+    logging: boolean = false;
 
     constructor(private router: Router,
-                private requester: RequestsService,
-                private token: TokenService,
-                private cookieService: CookieService,
-                private appComponent: AppComponent,) { }
+        private requester: RequestsService,
+        private token: TokenService,
+        private cookieService: CookieService,
+        private appComponent: AppComponent, ) { }
 
     ngOnInit() {
         this.tokenValue = this.token.getToken();
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
             password: password
         };
 
-        req =  this.requester.postAuthentication(user);
+        req = this.requester.postAuthentication(user);
         this.handleLoginResponse(req);
         return req;
 
@@ -53,31 +53,31 @@ export class LoginComponent implements OnInit {
 
     checkRegister(success) {
         if (success === 'true') {
-            let registerAlert = document.getElementById('registerAlert').style.display = 'block';
+            const registerAlert: string = document.getElementById('registerAlert').style.display = 'block';
         }
     }
 
     handleLoginResponse(request) {
-      request.subscribe(response => {
-          if (this.requester.didSucceed(response.status)) {
-              this.cookieService.set('basic_token', response.body['token']);
-              this.cookieService.set('userID', response.body['id']);
-              this.cookieService.set('userUsername', response.body['username']);
-              this.cookieService.set('userFirstName', response.body['first_name']);
-              this.cookieService.set('userLastName', response.body['last_name']);
-              this.router.navigate(['']);
-              this.logging = false;
-          }
-      },
-      error => {
-          console.log(error);
-          const statusAuth = error.status;
-          this.errorHandler(statusAuth);
-          this.logging = false;
-      });
+        request.subscribe(response => {
+            if (this.requester.didSucceed(response.status)) {
+                this.cookieService.set('basic_token', response.body['token']);
+                this.cookieService.set('userID', response.body['id']);
+                this.cookieService.set('userUsername', response.body['username']);
+                this.cookieService.set('userFirstName', response.body['first_name']);
+                this.cookieService.set('userLastName', response.body['last_name']);
+                this.router.navigate(['']);
+                this.logging = false;
+            }
+        },
+            error => {
+                console.log(error);
+                const statusAuth = error.status;
+                this.errorHandler(statusAuth);
+                this.logging = false;
+            });
     }
 
-    errorHandler (status) {
+    errorHandler(status) {
         if (status === 400) {
             document.getElementById('alert-invalid').style.display = 'block';
             return false;
