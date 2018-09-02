@@ -10,27 +10,27 @@ import { TokenService } from '../token.service';
   styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit {
-      
+  
+  tokenValue: string = '';
+  idValue: number = 0;
+  input = {
+    topic: '',
+    email: '',
+    contactReason: '',
+    text: ''
+  };
+
   constructor(private router: Router,
     private requester: RequestsService,
     private cookieService: CookieService,
     private token: TokenService) { }
     
-  tokenValue: string = '';
-  idValue: number = 0;
     
     ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.idValue = +this.cookieService.get('userID');
   }
-
-  input = {
-      topic: '',
-      email: '',
-      contactReason: '',
-      text: ''
-    };
   
   postMsg() {
     const request = this.input;
@@ -50,7 +50,7 @@ export class ContactUsComponent implements OnInit {
     });
   }
 
-  back() {
+  backToHomepage() {
     this.router.navigate(['']);
   }
 

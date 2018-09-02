@@ -15,18 +15,18 @@ describe('UserFollowingComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule.withRoutes([{ path: 'parliamentarians/:id', component: UserFollowingComponent}]),
+        RouterTestingModule.withRoutes([{ path: 'parliamentarians/:id', component: UserFollowingComponent }]),
         HttpClientModule,
         RouterModule,
       ],
-      declarations: [ UserFollowingComponent ],
+      declarations: [UserFollowingComponent],
       providers: [
         RequestsService,
         TokenService,
         CookieService,
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -38,7 +38,6 @@ describe('UserFollowingComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 
   it('should loadPage return error code', () => {
     expect(component.loadPage(0, '')).toBeUndefined();
