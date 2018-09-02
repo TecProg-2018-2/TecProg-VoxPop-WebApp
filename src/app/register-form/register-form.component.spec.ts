@@ -42,52 +42,45 @@ describe('RegisterFormComponent', () => {
   });
 
   it('should register user', () => {
-
     component.user = {
       username: 'johndoe',
-      first_name: 'john',
-      last_name: 'doe',
+      firstName: 'john',
+      lastName: 'doe',
       email: 'john@doe.com',
       password: '123qwe!@#QWE',
-      social_information: {
+      socialInformation: {
         region: null,
         income: null,
         education: null,
         race: null,
         gender: null,
-        birth_date: null
+        birthDate: null
       }
     };
-    const statusCode = 0;
-    component.registerUser().subscribe( (resp) => {
-      //  = resp.status;
+    component.registerUser().subscribe( () => {
       expect(component.registerUser().statusUser).not.toBe(0);
     });
 
   });
 
   it('should register user', () => {
-
     component.user = {
       username: 123,
-      first_name: 'john',
-      last_name: 'doe',
+      firstName: 'john',
+      lastName: 'doe',
       email: 'john',
       password: '123qwe!@#QWE',
-      social_information: {
+      socialInformation: {
         region: null,
         income: null,
         education: null,
         race: null,
         gender: null,
-        birth_date: null
+        birthDate: null
       }
     };
-    const statusCode = 0;
-    component.registerUser().subscribe( (resp) => {
-      //  = resp.status;
+    component.registerUser().subscribe( () => {
       expect(component.registerUser().statusUser).not.toBe(0);
     });
-
   });
 });
