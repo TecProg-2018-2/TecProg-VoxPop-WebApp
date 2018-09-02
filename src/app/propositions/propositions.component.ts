@@ -26,7 +26,6 @@ export class PropositionsComponent implements OnInit {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.token.filterRestrictPage(this.tokenValue);
-    this.idUser = +this.cookieService.get('userID');
     this.projects();
   }
 
