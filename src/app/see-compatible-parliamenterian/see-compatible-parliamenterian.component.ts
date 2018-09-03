@@ -8,13 +8,12 @@ import { TokenService } from '../token.service';
   templateUrl: './see-compatible-parliamenterian.component.html',
   styleUrls: ['./see-compatible-parliamenterian.component.css']
 })
-export class SeeCompatibleParliamenterianComponent implements OnInit {
+export class SeeCompatibleParliamenterianComponent  implements OnInit {
 
-  tokenValue = '';
-  term = '';
-  loading = true;
-  most_compatible: any = [
-  ];
+  tokenValue: string = '';
+  loadingStatus: boolean = true;
+  mostCompatible: any[] = [];
+
 
   constructor(
     private cookieService: CookieService,
@@ -22,25 +21,28 @@ export class SeeCompatibleParliamenterianComponent implements OnInit {
     private requester: RequestsService,
   ) { }
 
+  /* Método padrão para se inicializar um componente. */
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.token.filterRestrictPage(this.tokenValue);
-    this.mostCompatible();
+    this.getMostCompatible();
   }
 
-  mostCompatible() {
-    let req: any;
-    this.most_compatible = [];
-    req =  this.requester.getMostCompatible();
-    this.handleMostCompatibleResponse(req);
-    return req;
+  /* Recebe o a resposta mais compatível da requisição. */
+  getMostCompatible() {
+    let request: any = null;
+    this.mostCompatible = [];
+    request =  this.requester.getMostCompatible();
+    this.handleMostCompatibleResponse(request);
+    return request;
   }
 
-  handleMostCompatibleResponse(req) {
-    req.subscribe( response => {
-      this.most_compatible = response['body']['results'];
-      this.loading = false;
+  /*  Manipula a resposta obtida. */
+  handleMostCompatibleResponse(request: any) {
+    request.subscribe( response => {
+        this.mostCompatible = response['body']['results'];
+        this.loadingStatus = false;
     });
   }
 }

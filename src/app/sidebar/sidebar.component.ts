@@ -9,34 +9,34 @@ import { TokenService } from '../token.service';
 })
 export class SidebarComponent implements OnInit {
 
-  sidebar = '';
-  tokenValue = '';
-
   constructor(
     private cookieService: CookieService,
     private token: TokenService,
   ) { }
+
+  sidebar: string = '';
+  tokenValue: string = '';
 
   ngOnInit() {
     this.sidebar = this.cookieService.get('sidebar');
     this.setSidebar(this.sidebar);
   }
 
-  setSidebar(sidebarCookie) {
+  setSidebar(sidebarCookie: any) {
     if (sidebarCookie === 'false') {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('active');
-      const content = document.getElementById('content');
-      content.classList.toggle('active');
+      const sidebarStatus: HTMLElement = document.getElementById('sidebar');
+      sidebarStatus.classList.toggle('active');
+      const contentStatus: HTMLElement = document.getElementById('content');
+      contentStatus.classList.toggle('active');
     }
   }
 
   getStyle() {
-    let style = '';
+    let styleStatus: string = '';
     if (this.token.getToken() === '') {
-      style = 'disabled';
+      styleStatus = 'disabled';
     }
-    return style;
+    return styleStatus;
   }
 
   isLogged() {

@@ -11,13 +11,13 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class SeePlComponent implements OnInit {
 
-  tokenValue = '';
+  tokenValue: string = '';
   numberPLs: number;
-  pages = 1;
-  itemsPerPage = 20;
-  offset = 1;
-  loading = true;
-  position = 0;
+  pages: number = 1;
+  itemsPerPage: number = 20;
+  offset: number = 1;
+  loading: boolean = true;
+  position: number = 0;
 
   proposition: any = [
     {
@@ -53,7 +53,7 @@ export class SeePlComponent implements OnInit {
     private token: TokenService,
   ) { }
 
-
+  /* Método padrão para inicilizar um componente. */
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
@@ -62,18 +62,26 @@ export class SeePlComponent implements OnInit {
     this.token.checkToken(this.tokenValue);
   }
 
+  /**
+  *  Método para carregar a página
+  *  de acordo com o número inserido na barra de pesquisa
+  */
   loadPage(offset: number) {
-    let req: any;
+    let request: any;
     if (offset < 1 || isNaN(Number(offset))) {
       alert('Número de páginas inválido, favor digitar um número positivo');
       return false;
     }
     this.offset = Number(offset);
-    req =  this.requester.getProposition(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage);
-    this.handlePropositionsResponse(req, this.offset);
-    return req;
+    request =  this.requester.getProposition(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage);
+    this.handlePropositionsResponse(request, this.offset);
+    return request;
   }
 
+  /**
+   * Método para verificar informações obtidas obtidas de uma dada página
+   * e tratar os dados da mesma
+   */
   handlePropositionsResponse(request, offset) {
     this.requester.getProposition(this.itemsPerPage, (offset - 1) * this.itemsPerPage).subscribe( response => {
       this.auxProposition = response.body['results'];
@@ -85,11 +93,11 @@ export class SeePlComponent implements OnInit {
       }
       this.updateButtonsAppearence(this.offset, this.pages);
       this.proposition = this.auxProposition;
-      console.log(this.proposition);
       this.loading = false;
     });
   }
 
+  /* Atualiza o visual dos botões. */
   updateButtonsAppearence(offset, limit) {
     if (offset === 1) {
       document.getElementById('beforeBtn1').style.display = 'none';
@@ -108,6 +116,7 @@ export class SeePlComponent implements OnInit {
     return true;
   }
 
+  /* Método para definir a proposição específica de acordo com o índice inserido. */
   setSpecificProposition(index) {
     this.position = index;
   }

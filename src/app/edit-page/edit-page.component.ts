@@ -15,8 +15,8 @@ import { InputValidatorService } from '../input-validator.service';
 
 export class EditPageComponent implements OnInit {
 
-  tokenValue = '';
-  userID = 0;
+  tokenValue: string = '';
+  userID: number = 0;
 
   user: any = {
     username: '',
@@ -36,42 +36,51 @@ export class EditPageComponent implements OnInit {
     },
   };
 
-  constructor(private router: Router,
-              private requester: RequestsService,
-              private cookieService: CookieService,
-              private token: TokenService,
-              private validator: InputValidatorService
+  constructor(
+    private router: Router,
+    private requester: RequestsService,
+    private cookieService: CookieService,
+    private token: TokenService,
+    public validator: InputValidatorService
   ) { }
 
   ngOnInit() {
     this.tokenValue = this.token.getToken();
+    
     this.token.checkToken(this.tokenValue);
+    
     this.token.filterRestrictPage(this.tokenValue);
+    
     this.userID = +this.cookieService.get('userID');
-    this.requester.getUser(this.userID).subscribe( response => {
-      this.user = response['body'];
-      // console.log(this.user);
+
+    this.requester.getUser(this.userID)
+    .subscribe( 
+      response => {
+        this.user = response['body'];
     });
   }
 
   updateUser() {
-    if(this.user.social_information.region == 'null') {
-      this.user.social_information.region = null;
+    const userSocialInformation = this.user.social_information;
+    const user = this.user;
+
+    if(userSocialInformation.region == 'null') {
+      userSocialInformation.region = null;
     }
-    if(this.user.social_information.income == 'null') {
-      this.user.social_information.income = null;
+    if(userSocialInformation.income == 'null') {
+      userSocialInformation.income = null;
     }
-    if(this.user.social_information.education == 'null') {
-      this.user.social_information.education = null;
+    if(userSocialInformation.education == 'null') {
+      userSocialInformation.education = null;
     }
-    if(this.user.social_information.race == 'null') {
-      this.user.social_information.race = null;
+    if(userSocialInformation.race == 'null') {
+      userSocialInformation.race = null;
     }
-    if(this.user.social_information.gender == 'null') {
-      this.user.social_information.gender = null;
+    if(userSocialInformation.gender == 'null') {
+      userSocialInformation.gender = null;
     }
-    if(this.user.email != '') {
-      const request = this.requester.putUser(this.user, this.userID);
+    if(user.email != '') {
+      const request = this.requester.putUser(user, this.userID);
       this.updateUserHandler(request);
       return request;
     }
@@ -81,7 +90,7 @@ export class EditPageComponent implements OnInit {
   updateUserHandler(request) {
     request.subscribe(response => {
       const statusUser = response.status;
-      // console.log('STATUS CODE RETURNED ON USER: ' + statusUser);
+
       if (this.requester.didSucceed(statusUser)) {
         this.router.navigate(['']);
       }
@@ -90,7 +99,7 @@ export class EditPageComponent implements OnInit {
     });
   }
 
-  errorHandler(status) {
+  errorHandler(status: number) {
     if (status === 401) {
       document.getElementById('alert-invalid').style.display = 'block';
       return true;

@@ -15,7 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from './token.service';
 import { ProfileComponent } from './profile/profile.component';
-import { MinhasPlsComponent } from './minhas-pls/minhas-pls.component';
+import { MyPlsComponent } from './my-pls/my-pls.component';
 import { PropositionsComponent } from './propositions/propositions.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ParliamentarianComponent } from './parliamentarian/parliamentarian.component';
@@ -31,7 +31,7 @@ import { PoliticaDePrivacidadeComponent } from './politica-de-privacidade/politi
 import { TermosDeServicoComponent } from './termos-de-servico/termos-de-servico.component';
 import { MostFollowedComponent } from './most-followed/most-followed.component';
 import { PropositionComponent } from './proposition/proposition.component';
-import { ComoUtilizarComponent } from './como-utilizar/como-utilizar.component';
+import { HowToUseComponent } from './how-to-use/how-to-use.component';
 
 
 const appRoutes: Routes = [
@@ -45,7 +45,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'proposicoes-votadas',
-    component: MinhasPlsComponent
+    component: MyPlsComponent
   },
   {
     path: '',
@@ -105,7 +105,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'como-utilizar',
-    component: ComoUtilizarComponent
+    component: HowToUseComponent
   },
 ];
 
@@ -118,7 +118,7 @@ const appRoutes: Routes = [
     MainPageComponent,
     LoginComponent,
     ProfileComponent,
-    MinhasPlsComponent,
+    MyPlsComponent,
     PropositionsComponent,
     SidebarComponent,
     ParliamentarianComponent,
@@ -132,7 +132,7 @@ const appRoutes: Routes = [
     TermosDeServicoComponent,
     MostFollowedComponent,
     PropositionComponent,
-    ComoUtilizarComponent,
+    HowToUseComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

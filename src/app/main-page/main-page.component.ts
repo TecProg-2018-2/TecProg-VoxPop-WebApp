@@ -13,13 +13,13 @@ declare var Chart: any;
 })
 export class MainPageComponent implements OnInit {
 
-  tokenValue = '';
-  loading = true;
-  idValue: Number;
-  proposition_ctx: HTMLElement;
-  parliamentary_ctx: HTMLElement;
-  proposition_chart: any;
-  parliamentary_chart: any;
+  tokenValue: string = '';
+  loadingStatus: boolean = true;
+  idValue: number;
+  propositionCtx: HTMLElement;
+  parliamentaryCtx: HTMLElement;
+  propositionChart: any;
+  parliamentaryChart: any;
 
   proposition: any = [{
     proposition_id: 0,
@@ -33,7 +33,7 @@ export class MainPageComponent implements OnInit {
     url_full: ''
   }];
 
-  most_actives: any = [
+  mostActivesParliamentaries: any = [
     {
       parliamentary: null,
       votes: '',
@@ -52,24 +52,24 @@ export class MainPageComponent implements OnInit {
     this.idValue = +this.cookieService.get('userID');
     this.propositions(3, 0);
     this.mostActives(3, 0);
-    this.proposition_ctx = document.getElementById('propositionChart');
-    this.parliamentary_ctx = document.getElementById('parliamentaryChart');
+    this.propositionCtx = document.getElementById('propositionChart');
+    this.parliamentaryCtx = document.getElementById('parliamentaryChart');
   }
 
   propositions(limit: number, offset: number) {
-    let req: any;
+    let requisition: any;
     this.proposition = [];
-    req = this.requester.getProposition(limit, offset);
-    this.handlePropositionsResponse(req, limit, offset);
-    return req;
+    requisition = this.requester.getProposition(limit, offset);
+    this.handlePropositionsResponse(requisition, limit, offset);
+    return requisition;
   }
 
   mostActives(limit: number, offset: number) {
-    let req: any;
-    this.most_actives = [];
-    req = this.requester.getMostActive(limit, offset);
-    this.handleMostActivesResponse(req, limit, offset);
-    return req;
+    let requisition: any;
+    this.mostActivesParliamentaries = [];
+    requisition = this.requester.getMostActive(limit, offset);
+    this.handleMostActivesResponse(requisition, limit, offset);
+    return requisition;
   }
 
   handlePropositionsResponse(request, limit, offset) {
@@ -77,7 +77,7 @@ export class MainPageComponent implements OnInit {
       const body = response['body'];
       this.proposition = body['results'];
 
-      this.proposition_chart = new Chart(this.proposition_ctx, {
+      this.propositionChart = new Chart(this.propositionCtx, {
         // The type of chart we want to create
         type: 'horizontalBar',
 
@@ -101,15 +101,16 @@ export class MainPageComponent implements OnInit {
   handleMostActivesResponse(request, limit, offset) {
     this.requester.getMostActive(limit, offset).subscribe(response => {
       const body = response['body'];
-      this.most_actives = body['results'];
+      this.mostActivesParliamentaries = body['results'];
 
-      let i, labels_list = [], data_list = [];
-      for (i = 0; i < this.most_actives.length; i++) {
-        labels_list.push(this.most_actives[i]['parliamentary'].name);
-        data_list.push(this.most_actives[i].votes);
+      let i: number;
+      const labels_list: any = [], data_list: any = [];
+      for (i = 0; i < this.mostActivesParliamentaries.length; i++) {
+        labels_list.push(this.mostActivesParliamentaries[i]['parliamentary'].name);
+        data_list.push(this.mostActivesParliamentaries[i].votes);
       }
       data_list.push(200);
-      this.parliamentary_chart = new Chart(this.parliamentary_ctx, {
+      this.parliamentaryChart = new Chart(this.parliamentaryCtx, {
         // The type of chart we want to create
         type: 'horizontalBar',
 
@@ -127,7 +128,7 @@ export class MainPageComponent implements OnInit {
         // Configuration options go here
         options: {}
       });
-      this.loading = false;
+      this.loadingStatus = false;
     });
   }
 

@@ -27,7 +27,7 @@
       <div class="row text-center">
         <div class="col-sm-6">
           <h4 >O QUE ESTÁ SENDO VOTADO</h4>
-            <div *ngIf="loading">
+            <div *ngIf="loadingStatus">
               <p>Carregando dados</p>
               <!-- <img src="http://1.bp.blogspot.com/-AKZikJyNdEQ/TrmZtRb5UVI/AAAAAAAACOo/dAoYDzPIBK4/s1600/carregando-cinza-psdtutz.gif"> -->
               <div class="loader"></div>
@@ -37,7 +37,7 @@
         </div>
         <div class="col-sm-6">
           <h4>PARLAMENTARES MAIS ATIVOS</h4>
-          <div *ngIf="loading">
+          <div *ngIf="loadingStatus">
             <p>Carregando dados</p>
             <!-- <img src="http://1.bp.blogspot.com/-AKZikJyNdEQ/TrmZtRb5UVI/AAAAAAAACOo/dAoYDzPIBK4/s1600/carregando-cinza-psdtutz.gif"> -->
             <div class="loader"></div>
@@ -47,7 +47,7 @@
         </div>
       </div>
 
-      <div *ngIf="proposition && proposition.length > 0 && most_actives && most_actives.length > 0">
+      <div *ngIf="proposition && proposition.length > 0 && mostActivesParliamentaries && mostActivesParliamentaries.length > 0">
         <div class="row">
           <div class="col-sm-6 text-center">
             <!-- <div *ngFor="let p of proposition"> -->
@@ -69,7 +69,7 @@
             <div class="panel panel-primary">
               <div class="panel-heading">
                 <h3 class="panel-title">
-                  <span>Deputado {{most_actives[0]['parliamentary']['name']}} </span>
+                  <span>Deputado {{mostActivesParliamentaries[0]['parliamentary']['name']}} </span>
                   <i class="glyphicon glyphicon-star" style="color:yellow"></i>
                   <i class="glyphicon glyphicon-star" style="color:yellow"></i>
                   <i class="glyphicon glyphicon-star" style="color:yellow"></i>
@@ -77,15 +77,15 @@
               </div>
               <div class="panel-body">
                 <div class="col-sm-6">
-                  <img src="{{most_actives[0]['parliamentary']['photo']}}" width="114" height="152" alt="woops, someting went wrong">
+                  <img src="{{mostActivesParliamentaries[0]['parliamentary']['photo']}}" width="114" height="152" alt="woops, someting went wrong">
                 </div>
                 <div class="col-sm-6">
                   <h5>1ª lugar</h5><p class="help-block">Este é o deputado mais ativo!</p>
-                  <p>{{most_actives[0]['parliamentary']['political_party']}}/{{most_actives[0]['parliamentary']['federal_unit']}}</p>
-                  <a routerLink="/parlamentares/{{most_actives[0]['parliamentary']['id']}}" routerLinkActivate="active" class="btn btn-primary">Ver parlamentar</a>
+                  <p>{{mostActivesParliamentaries[0]['parliamentary']['political_party']}}/{{mostActivesParliamentaries[0]['parliamentary']['federal_unit']}}</p>
+                  <a routerLink="/parlamentares/{{mostActivesParliamentaries[0]['parliamentary']['id']}}" routerLinkActivate="active" class="btn btn-primary">Ver parlamentar</a>
                 </div>
               </div>
-              <div class="panel-footer text-muted">Quantidade de votos: {{most_actives[0]['votes']}}</div>
+              <div class="panel-footer text-muted">Quantidade de votos: {{mostActivesParliamentaries[0]['votes']}}</div>
             </div>
 
             <!-- </div> -->
@@ -113,22 +113,22 @@
             <div class="panel panel-primary">
               <div class="panel-heading">
                 <h3 class="panel-title">
-                  <span>Deputado {{most_actives[1]['parliamentary']['name']}} </span>
+                  <span>Deputado {{mostActivesParliamentaries[1]['parliamentary']['name']}} </span>
                   <i class="glyphicon glyphicon-star" style="color:yellow"></i>
                   <i class="glyphicon glyphicon-star" style="color:yellow"></i>
                 </h3>
               </div>
               <div class="panel-body">
                 <div class="col-sm-6">
-                  <img src="{{most_actives[1]['parliamentary']['photo']}}" width="114" height="152" alt="woops, someting went wrong">
+                  <img src="{{mostActivesParliamentaries[1]['parliamentary']['photo']}}" width="114" height="152" alt="woops, someting went wrong">
                 </div>
                 <div class="col-sm-6">
                   <h5>2ª lugar</h5><p class="help-block">Este é o segundo deputado mais ativo!</p>
-                  <p>{{most_actives[1]['parliamentary']['political_party']}}/{{most_actives[1]['parliamentary']['federal_unit']}}</p>
-                  <a routerLink="/parlamentares/{{most_actives[1]['parliamentary']['id']}}" routerLinkActivate="active" class="btn btn-primary">Ver parlamentar</a>
+                  <p>{{mostActivesParliamentaries[1]['parliamentary']['political_party']}}/{{mostActivesParliamentaries[1]['parliamentary']['federal_unit']}}</p>
+                  <a routerLink="/parlamentares/{{mostActivesParliamentaries[1]['parliamentary']['id']}}" routerLinkActivate="active" class="btn btn-primary">Ver parlamentar</a>
                 </div>
               </div>
-              <div class="panel-footer text-muted">Quantidade de votos: {{most_actives[1]['votes']}}</div>
+              <div class="panel-footer text-muted">Quantidade de votos: {{mostActivesParliamentaries[1]['votes']}}</div>
             </div>
 
           </div>
@@ -155,21 +155,21 @@
             <div class="panel panel-primary">
               <div class="panel-heading">
                 <h3 class="panel-title">
-                  <span>Deputado {{most_actives[2]['parliamentary']['name']}} </span>
+                  <span>Deputado {{mostActivesParliamentaries[2]['parliamentary']['name']}} </span>
                   <i class="glyphicon glyphicon-star" style="color:yellow"></i>
                 </h3>
               </div>
               <div class="panel-body">
                 <div class="col-sm-6">
-                  <img src="{{most_actives[2]['parliamentary']['photo']}}" width="114" height="152" alt="woops, someting went wrong">
+                  <img src="{{mostActivesParliamentaries[2]['parliamentary']['photo']}}" width="114" height="152" alt="woops, someting went wrong">
                 </div>
                 <div class="col-sm-6">
                   <h5>3ª lugar</h5><p class="help-block">Este é o terceiro deputado mais ativo!</p>
-                  <p>{{most_actives[2]['parliamentary']['political_party']}}/{{most_actives[2]['parliamentary']['federal_unit']}}</p>
-                  <a routerLink="/parlamentares/{{most_actives[2]['parliamentary']['id']}}" routerLinkActivate="active" class="btn btn-primary">Ver parlamentar</a>
+                  <p>{{mostActivesParliamentaries[2]['parliamentary']['political_party']}}/{{mostActivesParliamentaries[2]['parliamentary']['federal_unit']}}</p>
+                  <a routerLink="/parlamentares/{{mostActivesParliamentaries[2]['parliamentary']['id']}}" routerLinkActivate="active" class="btn btn-primary">Ver parlamentar</a>
                 </div>
               </div>
-              <div class="panel-footer text-muted">Quantidade de votos: {{most_actives[2]['votes']}}</div>
+              <div class="panel-footer text-muted">Quantidade de votos: {{mostActivesParliamentaries[2]['votes']}}</div>
             </div>
 
             <!-- <div class="main-card vote">

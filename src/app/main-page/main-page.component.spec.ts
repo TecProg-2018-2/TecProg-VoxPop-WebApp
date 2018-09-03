@@ -18,7 +18,7 @@ describe('MainPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule.withRoutes([{ path: 'parliamentarians/:id', component: MainPageComponent}]),
+        RouterTestingModule.withRoutes([{ path: 'parliamentarians/:id', component: MainPageComponent }]),
         HttpClientModule,
         HttpClientTestingModule,
       ],
@@ -28,10 +28,10 @@ describe('MainPageComponent', () => {
         TokenService,
         MockBackend,
       ],
-      declarations: [ MainPageComponent ]
+      declarations: [MainPageComponent]
     })
 
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -56,7 +56,7 @@ describe('MainPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should return a preposition', fakeAsync (() => {
+  it('should return a preposition', fakeAsync(() => {
     const response = {
       "results": [
         {
