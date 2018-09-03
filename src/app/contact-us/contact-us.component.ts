@@ -10,7 +10,7 @@ import { TokenService } from '../token.service';
   styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit {
-  
+
   tokenValue: string = '';
   idValue: number = 0;
   input = {
@@ -20,20 +20,18 @@ export class ContactUsComponent implements OnInit {
     text: ''
   };
 
-
   constructor(private router: Router,
     private requester: RequestsService,
     private cookieService: CookieService,
     private token: TokenService) { }
-    
-    
+
+
     ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.idValue = +this.cookieService.get('userID');
   }
 
-  
   postMsg() {
     const request = this.input;
     const response = this.requester.postMessage(this.input);
