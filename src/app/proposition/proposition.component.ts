@@ -11,27 +11,28 @@ declare var Chart: any;
   templateUrl: './proposition.component.html',
   styleUrls: ['./proposition.component.css']
 })
+
 export class PropositionComponent implements OnInit {
 
-  tokenValue = '';
-  sub: any;
-  idUser = 0;
-  loading = true;
-  social_information: any;
-  region_ctx: HTMLElement;
-  region_chart: any;
-  income_ctx: HTMLElement;
-  income_chart: any;
-  education_ctx: HTMLElement;
-  education_chart: any;
-  race_ctx: HTMLElement;
-  race_chart: any;
-  gender_ctx: HTMLElement;
-  gender_chart: any;
-  parliamentarian_ctx: HTMLElement;
-  parliamentarian_chart: any;
-  population_ctx: HTMLElement;
-  population_chart: any;
+  tokenValue: string = '';
+  sub: any = 0;
+  idProposition: number = 0;
+  loadingStatus: boolean = true;
+  socialInformation: any = 0;
+  regionContext: HTMLElement;
+  regionChart: any = 0;
+  incomeContext: HTMLElement;
+  incomeChart: any = 0;
+  educationContext: HTMLElement;
+  educationChart: any = 0;
+  raceContext: HTMLElement;
+  raceChart: any = 0;
+  genderContext: HTMLElement;
+  genderChart: any = 0;
+  parliamentarianContext: HTMLElement;
+  parliamentarianChart: any = 0 ;
+  populationContext: HTMLElement;
+  populationChart: any = 0 ;
 
   proposition: any = {
     proposition_id: 0,
@@ -58,18 +59,23 @@ export class PropositionComponent implements OnInit {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.sub = this.route.params.subscribe(params => {
-      this.idUser = +params['id'];
+      this.idProposition = +params['id'];
     });
-    this.requester.getPropositionSpecific(this.idUser).subscribe( response => {
+    this.requester.getPropositionSpecific(this.idProposition).subscribe(response => {
       this.proposition = response['body'];
     });
-    this.requester.getPropositionSpecificSocialInfo(this.idUser).subscribe( response => {
-      this.social_information = response['body'];
-      this.loading = false;
+    this.requester.getPropositionSpecificSocialInfo(this.idProposition).subscribe(response => {
 
-      // Region chart
-      let region_labels_list = [];
-      region_labels_list = [
+      const approvalText: string = 'Porcentagem de aprovação';
+      const disapprovingText: string = 'Porcentagem de desaprovação';
+      const abstentionText: string = 'Porcentagem de abstenção';
+      const noVoteText: string = 'Sem voto';
+
+      this.socialInformation = response['body'];
+      this.loadingStatus = false;
+
+      /* Region chart */
+      const regionLabelsList: string[] = [
         'Norte',
         'Nordeste',
         'Centro-Oeste',
@@ -78,9 +84,89 @@ export class PropositionComponent implements OnInit {
         'Não informada'
       ]
 
-      //income chart
-      let income_labels_list = [];
-      income_labels_list = [
+      /* Region. */
+      let regionAproveDataList: any[] = [];
+      regionAproveDataList.push(this.socialInformation['region']['N']['Y']);
+      regionAproveDataList.push(this.socialInformation['region']['NE']['Y']);
+      regionAproveDataList.push(this.socialInformation['region']['CO']['Y']);
+      regionAproveDataList.push(this.socialInformation['region']['SE']['Y']);
+      regionAproveDataList.push(this.socialInformation['region']['S']['Y']);
+      regionAproveDataList.push(this.socialInformation['region']['null']['Y']);
+
+      let regionDisapproveDataList: any[] = [];
+      regionDisapproveDataList.push(this.socialInformation['region']['N']['N']);
+      regionDisapproveDataList.push(this.socialInformation['region']['NE']['N']);
+      regionDisapproveDataList.push(this.socialInformation['region']['CO']['N']);
+      regionDisapproveDataList.push(this.socialInformation['region']['SE']['N']);
+      regionDisapproveDataList.push(this.socialInformation['region']['S']['N']);
+      regionDisapproveDataList.push(this.socialInformation['region']['null']['N']);
+
+      let regionAbstentionDataList: any[] = [];
+      regionAbstentionDataList.push(this.socialInformation['region']['N']['A']);
+      regionAbstentionDataList.push(this.socialInformation['region']['NE']['A']);
+      regionAbstentionDataList.push(this.socialInformation['region']['CO']['A']);
+      regionAbstentionDataList.push(this.socialInformation['region']['SE']['A']);
+      regionAbstentionDataList.push(this.socialInformation['region']['S']['A']);
+      regionAbstentionDataList.push(this.socialInformation['region']['null']['A']);
+
+      this.regionContext = document.getElementById('regionChart');
+      this.regionChart = new Chart(this.regionContext, {
+        type: 'bar',
+        data: {
+          labels: regionLabelsList,
+          datasets: [
+            {
+              label: approvalText,
+              backgroundColor: 'rgb(68,157,68)',
+              borderColor: 'rgb(255, 255, 255)',
+              data: regionAproveDataList,
+            },
+            {
+              label: disapprovingText,
+              backgroundColor: 'rgb(201,48,44)',
+              borderColor: 'rgb(255, 255, 255)',
+              data: regionDisapproveDataList,
+            },
+            {
+              label: abstentionText,
+              backgroundColor: 'rgb(255,255,0)',
+              borderColor: 'rgb(255, 255, 255)',
+              data: regionAbstentionDataList,
+            }
+          ]
+        },
+        options: {
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem, data) {
+                var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                if (label) {
+                  label += ': ';
+                }
+                label += Math.round(tooltipItem.yLabel * 100) / 100;
+                return label + "%";
+              }
+            }
+          },
+          scales: {
+            xAxes: [
+              {
+                stacked: false,
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  min: 0,
+                  autoSkip: false
+                }
+              }
+            ]
+          }
+        }
+      });
+
+      /* Income chart. */
+      const incomeLabelsList: string[] = [
         'Classe A',
         'Classe B',
         'Classe C',
@@ -89,9 +175,89 @@ export class PropositionComponent implements OnInit {
         'Não informada'
       ]
 
-      //education chart
-      let education_labels_list = [];
-      education_labels_list = [
+      /* Income */
+      let incomeApproveDataList: any[] = [];
+      incomeApproveDataList.push(this.socialInformation['income']['A']['Y']);
+      incomeApproveDataList.push(this.socialInformation['income']['B']['Y']);
+      incomeApproveDataList.push(this.socialInformation['income']['C']['Y']);
+      incomeApproveDataList.push(this.socialInformation['income']['D']['Y']);
+      incomeApproveDataList.push(this.socialInformation['income']['E']['Y']);
+      incomeApproveDataList.push(this.socialInformation['income']['null']['Y']);
+
+      let incomeDisapproveDataList: any[] = [];
+      incomeDisapproveDataList.push(this.socialInformation['income']['A']['N']);
+      incomeDisapproveDataList.push(this.socialInformation['income']['B']['N']);
+      incomeDisapproveDataList.push(this.socialInformation['income']['C']['N']);
+      incomeDisapproveDataList.push(this.socialInformation['income']['D']['N']);
+      incomeDisapproveDataList.push(this.socialInformation['income']['E']['N']);
+      incomeDisapproveDataList.push(this.socialInformation['income']['null']['N']);
+
+      let incomeAbstentionDataList: any[] = [];
+      incomeAbstentionDataList.push(this.socialInformation['income']['A']['A']);
+      incomeAbstentionDataList.push(this.socialInformation['income']['B']['A']);
+      incomeAbstentionDataList.push(this.socialInformation['income']['C']['A']);
+      incomeAbstentionDataList.push(this.socialInformation['income']['D']['A']);
+      incomeAbstentionDataList.push(this.socialInformation['income']['E']['A']);
+      incomeAbstentionDataList.push(this.socialInformation['income']['null']['A']);
+
+      this.incomeContext = document.getElementById('incomeChart');
+      this.incomeChart = new Chart(this.incomeContext, {
+        type: 'bar',
+        data: {
+          labels: incomeLabelsList,
+          datasets: [
+            {
+              label: approvalText,
+              backgroundColor: 'rgb(68,157,68)',
+              borderColor: 'rgb(255, 255, 255)',
+              data: incomeApproveDataList,
+            },
+            {
+              label: disapprovingText,
+              backgroundColor: 'rgb(201,48,44)',
+              borderColor: 'rgb(255, 255, 255)',
+              data: incomeDisapproveDataList,
+            },
+            {
+              label: abstentionText,
+              backgroundColor: 'rgb(255,255,0)',
+              borderColor: 'rgb(255, 255, 255)',
+              data: incomeAbstentionDataList,
+            }
+          ]
+        },
+        options: {
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem, data) {
+                var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                if (label) {
+                  label += ': ';
+                }
+                label += Math.round(tooltipItem.yLabel * 100) / 100;
+                return label + "%";
+              }
+            }
+          },
+          scales: {
+            xAxes: [
+              {
+                stacked: false,
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  min: 0,
+                  autoSkip: false
+                }
+              }
+            ]
+          }
+        }
+      });
+
+      /* Education chart. */
+      const educationLabelsList: string[] = [
         'Sem escolaridade',
         'Ensino Fundamental',
         'Ensino Médio',
@@ -100,9 +266,89 @@ export class PropositionComponent implements OnInit {
         'Não informada'
       ]
 
-      //race chart
-      let race_labels_list = [];
-      race_labels_list = [
+      /* Education. */
+      let educationApproveDataList: any[] = [];
+      educationApproveDataList.push(this.socialInformation['education']['SE']['Y']);
+      educationApproveDataList.push(this.socialInformation['education']['EF']['Y']);
+      educationApproveDataList.push(this.socialInformation['education']['EM']['Y']);
+      educationApproveDataList.push(this.socialInformation['education']['ES']['Y']);
+      educationApproveDataList.push(this.socialInformation['education']['PG']['Y']);
+      educationApproveDataList.push(this.socialInformation['education']['null']['Y']);
+
+      let educationDisapproveDataList: any[] = [];
+      educationDisapproveDataList.push(this.socialInformation['education']['SE']['N']);
+      educationDisapproveDataList.push(this.socialInformation['education']['EF']['N']);
+      educationDisapproveDataList.push(this.socialInformation['education']['EM']['N']);
+      educationDisapproveDataList.push(this.socialInformation['education']['ES']['N']);
+      educationDisapproveDataList.push(this.socialInformation['education']['PG']['N']);
+      educationDisapproveDataList.push(this.socialInformation['education']['null']['N']);
+
+      let educationAbstentionDataList: any[] = [];
+      educationAbstentionDataList.push(this.socialInformation['education']['SE']['A']);
+      educationAbstentionDataList.push(this.socialInformation['education']['EF']['A']);
+      educationAbstentionDataList.push(this.socialInformation['education']['EM']['A']);
+      educationAbstentionDataList.push(this.socialInformation['education']['ES']['A']);
+      educationAbstentionDataList.push(this.socialInformation['education']['PG']['A']);
+      educationAbstentionDataList.push(this.socialInformation['education']['null']['A']);
+
+      this.educationContext = document.getElementById('educationChart');
+      this.educationChart = new Chart(this.educationContext, {
+        type: 'bar',
+        data: {
+          labels: educationLabelsList,
+          datasets: [
+            {
+              label: approvalText,
+              backgroundColor: 'rgb(68,157,68)',
+              borderColor: 'rgb(255, 255, 255)',
+              data: educationApproveDataList,
+            },
+            {
+              label: disapprovingText,
+              backgroundColor: 'rgb(201,48,44)',
+              borderColor: 'rgb(255, 255, 255)',
+              data: educationDisapproveDataList,
+            },
+            {
+              label: abstentionText,
+              backgroundColor: 'rgb(255,255,0)',
+              borderColor: 'rgb(255, 255, 255)',
+              data: educationAbstentionDataList,
+            }
+          ]
+        },
+        options: {
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem, data) {
+                var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                if (label) {
+                  label += ': ';
+                }
+                label += Math.round(tooltipItem.yLabel * 100) / 100;
+                return label + "%";
+              }
+            }
+          },
+          scales: {
+            xAxes: [
+              {
+                stacked: false,
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  min: 0,
+                  autoSkip: false
+                }
+              }
+            ]
+          }
+        }
+      });
+
+      /* Race chart. */
+      const raceLabelsList: string[] = [
         'Branca',
         'Preta',
         'Amarela',
@@ -111,432 +357,184 @@ export class PropositionComponent implements OnInit {
         'Não informada'
       ]
 
-      //gender chart
-      let gender_labels_list = [];
-      gender_labels_list = [
+      /* Race. */
+      let raceApproveDataList: any[] = [];
+      raceApproveDataList.push(this.socialInformation['race']['B']['Y']);
+      raceApproveDataList.push(this.socialInformation['race']['PR']['Y']);
+      raceApproveDataList.push(this.socialInformation['race']['A']['Y']);
+      raceApproveDataList.push(this.socialInformation['race']['PA']['Y']);
+      raceApproveDataList.push(this.socialInformation['race']['I']['Y']);
+      raceApproveDataList.push(this.socialInformation['race']['null']['Y']);
+
+      let raceDisapproveDataList: any[] = [];
+      raceDisapproveDataList.push(this.socialInformation['race']['B']['N']);
+      raceDisapproveDataList.push(this.socialInformation['race']['PR']['N']);
+      raceDisapproveDataList.push(this.socialInformation['race']['A']['N']);
+      raceDisapproveDataList.push(this.socialInformation['race']['PA']['N']);
+      raceDisapproveDataList.push(this.socialInformation['race']['I']['N']);
+      raceDisapproveDataList.push(this.socialInformation['race']['null']['N']);
+
+      let raceAbstentionDataList: any[] = [];
+      raceAbstentionDataList.push(this.socialInformation['race']['B']['A']);
+      raceAbstentionDataList.push(this.socialInformation['race']['PR']['A']);
+      raceAbstentionDataList.push(this.socialInformation['race']['A']['A']);
+      raceAbstentionDataList.push(this.socialInformation['race']['PA']['A']);
+      raceAbstentionDataList.push(this.socialInformation['race']['I']['A']);
+      raceAbstentionDataList.push(this.socialInformation['race']['null']['A']);
+
+      this.raceContext = document.getElementById('raceChart');
+      this.raceChart = new Chart(this.raceContext, {
+        type: 'bar',
+        data: {
+          labels: raceLabelsList,
+          datasets: [
+            {
+              label: approvalText,
+              backgroundColor: 'rgb(68,157,68)',
+              borderColor: 'rgb(255, 255, 255)',
+              data: raceApproveDataList,
+            },
+            {
+              label: disapprovingText,
+              backgroundColor: 'rgb(201,48,44)',
+              borderColor: 'rgb(255, 255, 255)',
+              data: raceDisapproveDataList,
+            },
+            {
+              label: abstentionText,
+              backgroundColor: 'rgb(255,255,0)',
+              borderColor: 'rgb(255, 255, 255)',
+              data: raceAbstentionDataList,
+            }
+          ]
+        },
+        options: {
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem, data) {
+                var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                if (label) {
+                  label += ': ';
+                }
+                label += Math.round(tooltipItem.yLabel * 100) / 100;
+                return label + "%";
+              }
+            }
+          },
+          scales: {
+            xAxes: [
+              {
+                stacked: false,
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  min: 0,
+                  autoSkip: false
+                }
+              }
+            ]
+          }
+        }
+      });
+
+      /* Gender chart. */
+      const genderLabelsList: string[] = [
         'Masculino',
         'Feminino',
         'Outro',
         'Não informado'
       ]
 
-      //region
+      /* Gender. */
+      let genderApproveDataList: any[] = [];
+      genderApproveDataList.push(this.socialInformation['gender']['M']['Y']);
+      genderApproveDataList.push(this.socialInformation['gender']['F']['Y']);
+      genderApproveDataList.push(this.socialInformation['gender']['O']['Y']);
+      genderApproveDataList.push(this.socialInformation['gender']['null']['Y']);
 
-      let region_approve_data_list = [];
-      region_approve_data_list.push(this.social_information['region']['N']['Y']);
-      region_approve_data_list.push(this.social_information['region']['NE']['Y']);
-      region_approve_data_list.push(this.social_information['region']['CO']['Y']);
-      region_approve_data_list.push(this.social_information['region']['SE']['Y']);
-      region_approve_data_list.push(this.social_information['region']['S']['Y']);
-      region_approve_data_list.push(this.social_information['region']['null']['Y']);
+      let genderDisapproveDataList: any[] = [];
+      genderDisapproveDataList.push(this.socialInformation['gender']['M']['N']);
+      genderDisapproveDataList.push(this.socialInformation['gender']['F']['N']);
+      genderDisapproveDataList.push(this.socialInformation['gender']['O']['N']);
+      genderDisapproveDataList.push(this.socialInformation['gender']['null']['N']);
 
-      let region_disapprove_data_list = [];
-      region_disapprove_data_list.push(this.social_information['region']['N']['N']);
-      region_disapprove_data_list.push(this.social_information['region']['NE']['N']);
-      region_disapprove_data_list.push(this.social_information['region']['CO']['N']);
-      region_disapprove_data_list.push(this.social_information['region']['SE']['N']);
-      region_disapprove_data_list.push(this.social_information['region']['S']['N']);
-      region_disapprove_data_list.push(this.social_information['region']['null']['N']);
+      let genderAbstentionDataList: any[] = [];
+      genderAbstentionDataList.push(this.socialInformation['gender']['M']['A']);
+      genderAbstentionDataList.push(this.socialInformation['gender']['F']['A']);
+      genderAbstentionDataList.push(this.socialInformation['gender']['O']['A']);
+      genderAbstentionDataList.push(this.socialInformation['gender']['null']['A']);
 
-      let region_abstention_data_list = [];
-      region_abstention_data_list.push(this.social_information['region']['N']['A']);
-      region_abstention_data_list.push(this.social_information['region']['NE']['A']);
-      region_abstention_data_list.push(this.social_information['region']['CO']['A']);
-      region_abstention_data_list.push(this.social_information['region']['SE']['A']);
-      region_abstention_data_list.push(this.social_information['region']['S']['A']);
-      region_abstention_data_list.push(this.social_information['region']['null']['A']);
-
-      //income
-
-      let income_approve_data_list = [];
-      income_approve_data_list.push(this.social_information['income']['A']['Y']);
-      income_approve_data_list.push(this.social_information['income']['B']['Y']);
-      income_approve_data_list.push(this.social_information['income']['C']['Y']);
-      income_approve_data_list.push(this.social_information['income']['D']['Y']);
-      income_approve_data_list.push(this.social_information['income']['E']['Y']);
-      income_approve_data_list.push(this.social_information['income']['null']['Y']);
-
-      let income_disapprove_data_list = [];
-      income_disapprove_data_list.push(this.social_information['income']['A']['N']);
-      income_disapprove_data_list.push(this.social_information['income']['B']['N']);
-      income_disapprove_data_list.push(this.social_information['income']['C']['N']);
-      income_disapprove_data_list.push(this.social_information['income']['D']['N']);
-      income_disapprove_data_list.push(this.social_information['income']['E']['N']);
-      income_disapprove_data_list.push(this.social_information['income']['null']['N']);
-
-      let income_abstention_data_list = [];
-      income_abstention_data_list.push(this.social_information['income']['A']['A']);
-      income_abstention_data_list.push(this.social_information['income']['B']['A']);
-      income_abstention_data_list.push(this.social_information['income']['C']['A']);
-      income_abstention_data_list.push(this.social_information['income']['D']['A']);
-      income_abstention_data_list.push(this.social_information['income']['E']['A']);
-      income_abstention_data_list.push(this.social_information['income']['null']['A']);
-
-      //education
-
-      let education_approve_data_list = [];
-      education_approve_data_list.push(this.social_information['education']['SE']['Y']);
-      education_approve_data_list.push(this.social_information['education']['EF']['Y']);
-      education_approve_data_list.push(this.social_information['education']['EM']['Y']);
-      education_approve_data_list.push(this.social_information['education']['ES']['Y']);
-      education_approve_data_list.push(this.social_information['education']['PG']['Y']);
-      education_approve_data_list.push(this.social_information['education']['null']['Y']);
-
-      let education_disapprove_data_list = [];
-      education_disapprove_data_list.push(this.social_information['education']['SE']['N']);
-      education_disapprove_data_list.push(this.social_information['education']['EF']['N']);
-      education_disapprove_data_list.push(this.social_information['education']['EM']['N']);
-      education_disapprove_data_list.push(this.social_information['education']['ES']['N']);
-      education_disapprove_data_list.push(this.social_information['education']['PG']['N']);
-      education_disapprove_data_list.push(this.social_information['education']['null']['N']);
-
-      let education_abstention_data_list = [];
-      education_abstention_data_list.push(this.social_information['education']['SE']['A']);
-      education_abstention_data_list.push(this.social_information['education']['EF']['A']);
-      education_abstention_data_list.push(this.social_information['education']['EM']['A']);
-      education_abstention_data_list.push(this.social_information['education']['ES']['A']);
-      education_abstention_data_list.push(this.social_information['education']['PG']['A']);
-      education_abstention_data_list.push(this.social_information['education']['null']['A']);
-
-      //race
-
-      let race_approve_data_list = [];
-      race_approve_data_list.push(this.social_information['race']['B']['Y']);
-      race_approve_data_list.push(this.social_information['race']['PR']['Y']);
-      race_approve_data_list.push(this.social_information['race']['A']['Y']);
-      race_approve_data_list.push(this.social_information['race']['PA']['Y']);
-      race_approve_data_list.push(this.social_information['race']['I']['Y']);
-      race_approve_data_list.push(this.social_information['race']['null']['Y']);
-
-      let race_disapprove_data_list = [];
-      race_disapprove_data_list.push(this.social_information['race']['B']['N']);
-      race_disapprove_data_list.push(this.social_information['race']['PR']['N']);
-      race_disapprove_data_list.push(this.social_information['race']['A']['N']);
-      race_disapprove_data_list.push(this.social_information['race']['PA']['N']);
-      race_disapprove_data_list.push(this.social_information['race']['I']['N']);
-      race_disapprove_data_list.push(this.social_information['race']['null']['N']);
-
-      let race_abstention_data_list = [];
-      race_abstention_data_list.push(this.social_information['race']['B']['A']);
-      race_abstention_data_list.push(this.social_information['race']['PR']['A']);
-      race_abstention_data_list.push(this.social_information['race']['A']['A']);
-      race_abstention_data_list.push(this.social_information['race']['PA']['A']);
-      race_abstention_data_list.push(this.social_information['race']['I']['A']);
-      race_abstention_data_list.push(this.social_information['race']['null']['A']);
-
-      //gender
-
-      let gender_approve_data_list = [];
-      gender_approve_data_list.push(this.social_information['gender']['M']['Y']);
-      gender_approve_data_list.push(this.social_information['gender']['F']['Y']);
-      gender_approve_data_list.push(this.social_information['gender']['O']['Y']);
-      gender_approve_data_list.push(this.social_information['gender']['null']['Y']);
-
-      let gender_disapprove_data_list = [];
-      gender_disapprove_data_list.push(this.social_information['gender']['M']['N']);
-      gender_disapprove_data_list.push(this.social_information['gender']['F']['N']);
-      gender_disapprove_data_list.push(this.social_information['gender']['O']['N']);
-      gender_disapprove_data_list.push(this.social_information['gender']['null']['N']);
-
-      let gender_abstention_data_list = [];
-      gender_abstention_data_list.push(this.social_information['gender']['M']['A']);
-      gender_abstention_data_list.push(this.social_information['gender']['F']['A']);
-      gender_abstention_data_list.push(this.social_information['gender']['O']['A']);
-      gender_abstention_data_list.push(this.social_information['gender']['null']['A']);
-
-      //parliamentary
-      let parliamentarian_data_list = [];
-      parliamentarian_data_list.push(this.social_information['parliamentarians_total_votes']['Y']);
-      parliamentarian_data_list.push(this.social_information['parliamentarians_total_votes']['N']);
-      parliamentarian_data_list.push(this.social_information['parliamentarians_total_votes']['A']);
-      parliamentarian_data_list.push(this.social_information['parliamentarians_total_votes']['others']);
-
-      //population
-      let population_data_list = [];
-      population_data_list.push(this.social_information['population_total_votes']['Y']);
-      population_data_list.push(this.social_information['population_total_votes']['N']);
-      population_data_list.push(this.social_information['population_total_votes']['A']);
-
-      this.region_ctx = document.getElementById('regionChart');
-      this.region_chart = new Chart(this.region_ctx, {
+      this.genderContext = document.getElementById('genderChart');
+      this.genderChart = new Chart(this.genderContext, {
         type: 'bar',
         data: {
-          labels: region_labels_list,
+          labels: genderLabelsList,
           datasets: [
             {
-              label: 'Porcentagem de aprovação',
+              label: approvalText,
               backgroundColor: 'rgb(68,157,68)',
               borderColor: 'rgb(255, 255, 255)',
-              data: region_approve_data_list,
+              data: genderApproveDataList,
             },
             {
-              label: 'Porcentagem de desaprovação',
+              label: disapprovingText,
               backgroundColor: 'rgb(201,48,44)',
               borderColor: 'rgb(255, 255, 255)',
-              data: region_disapprove_data_list,
+              data: genderDisapproveDataList,
             },
             {
-              label: 'Porcentagem de abstenção',
+              label: abstentionText,
               backgroundColor: 'rgb(255,255,0)',
               borderColor: 'rgb(255, 255, 255)',
-              data: region_abstention_data_list,
+              data: genderAbstentionDataList,
             }
           ]
         },
         options: {
           tooltips: {
             callbacks: {
-                label: function(tooltipItem, data) {
-                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
+              label: function(tooltipItem, data) {
+                var label = data.datasets[tooltipItem.datasetIndex].label || '';
 
-                    if (label) {
-                        label += ': ';
-                    }
-                    label += Math.round(tooltipItem.yLabel * 100) / 100;
-                    return label + "%";
+                if (label) {
+                  label += ': ';
                 }
+                label += Math.round(tooltipItem.yLabel * 100) / 100;
+                return label + "%";
+              }
             }
           },
-          scales:{
-            xAxes:[{
-              stacked: false,
-              beginAtZero: true,
-              ticks:{
-                stepSize: 1,
-                min: 0,
-                autoSkip: false
-              }
-            }]
-          }
-        }
-      });
-      //income
-      this.income_ctx = document.getElementById('incomeChart');
-      this.income_chart = new Chart(this.income_ctx, {
-        type: 'bar',
-        data: {
-          labels: income_labels_list,
-          datasets: [
-            {
-              label: 'Porcentagem de aprovação',
-              backgroundColor: 'rgb(68,157,68)',
-              borderColor: 'rgb(255, 255, 255)',
-              data: income_approve_data_list,
-            },
-            {
-              label: 'Porcentagem de desaprovação',
-              backgroundColor: 'rgb(201,48,44)',
-              borderColor: 'rgb(255, 255, 255)',
-              data: income_disapprove_data_list,
-            },
-            {
-              label: 'Porcentagem de abstenção',
-              backgroundColor: 'rgb(255,255,0)',
-              borderColor: 'rgb(255, 255, 255)',
-              data: income_abstention_data_list,
-            }
-          ]
-        },
-        options: {
-          tooltips: {
-            callbacks: {
-                label: function(tooltipItem, data) {
-                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
-
-                    if (label) {
-                        label += ': ';
-                    }
-                    label += Math.round(tooltipItem.yLabel * 100) / 100;
-                    return label + "%";
+          scales: {
+            xAxes: [
+              {
+                stacked: false,
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  min: 0,
+                  autoSkip: false
                 }
-            }
-          },
-          scales:{
-            xAxes:[{
-              stacked: false,
-              beginAtZero: true,
-              ticks:{
-                stepSize: 1,
-                min: 0,
-                autoSkip: false
               }
-            }]
-          }
-        }
-      });
-      //education
-      this.education_ctx = document.getElementById('educationChart');
-      this.education_chart = new Chart(this.education_ctx, {
-        type: 'bar',
-        data: {
-          labels: education_labels_list,
-          datasets: [
-            {
-              label: 'Porcentagem de aprovação',
-              backgroundColor: 'rgb(68,157,68)',
-              borderColor: 'rgb(255, 255, 255)',
-              data: education_approve_data_list,
-            },
-            {
-              label: 'Porcentagem de desaprovação',
-              backgroundColor: 'rgb(201,48,44)',
-              borderColor: 'rgb(255, 255, 255)',
-              data: education_disapprove_data_list,
-            },
-            {
-              label: 'Porcentagem de abstenção',
-              backgroundColor: 'rgb(255,255,0)',
-              borderColor: 'rgb(255, 255, 255)',
-              data: education_abstention_data_list,
-            }
-          ]
-        },
-        options: {
-          tooltips: {
-            callbacks: {
-                label: function(tooltipItem, data) {
-                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
-
-                    if (label) {
-                        label += ': ';
-                    }
-                    label += Math.round(tooltipItem.yLabel * 100) / 100;
-                    return label + "%";
-                }
-            }
-          },
-          scales:{
-            xAxes:[{
-              stacked: false,
-              beginAtZero: true,
-              ticks:{
-                stepSize: 1,
-                min: 0,
-                autoSkip: false
-              }
-            }]
-          }
-        }
-      });
-      //race
-      this.race_ctx = document.getElementById('raceChart');
-      this.race_chart = new Chart(this.race_ctx, {
-        type: 'bar',
-        data: {
-          labels: race_labels_list,
-          datasets: [
-            {
-              label: 'Porcentagem de aprovação',
-              backgroundColor: 'rgb(68,157,68)',
-              borderColor: 'rgb(255, 255, 255)',
-              data: race_approve_data_list,
-            },
-            {
-              label: 'Porcentagem de desaprovação',
-              backgroundColor: 'rgb(201,48,44)',
-              borderColor: 'rgb(255, 255, 255)',
-              data: race_disapprove_data_list,
-            },
-            {
-              label: 'Porcentagem de abstenção',
-              backgroundColor: 'rgb(255,255,0)',
-              borderColor: 'rgb(255, 255, 255)',
-              data: race_abstention_data_list,
-            }
-          ]
-        },
-        options: {
-          tooltips: {
-            callbacks: {
-                label: function(tooltipItem, data) {
-                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
-
-                    if (label) {
-                        label += ': ';
-                    }
-                    label += Math.round(tooltipItem.yLabel * 100) / 100;
-                    return label + "%";
-                }
-            }
-          },
-          scales:{
-            xAxes:[{
-              stacked: false,
-              beginAtZero: true,
-              ticks:{
-                stepSize: 1,
-                min: 0,
-                autoSkip: false
-              }
-            }]
+            ]
           }
         }
       });
 
-      //gender
+      /* Parliamentarian. */
+      let parliamentarianDataList: any[] = [];
+      parliamentarianDataList.push(this.socialInformation['parliamentarians_total_votes']['Y']);
+      parliamentarianDataList.push(this.socialInformation['parliamentarians_total_votes']['N']);
+      parliamentarianDataList.push(this.socialInformation['parliamentarians_total_votes']['A']);
+      parliamentarianDataList.push(this.socialInformation['parliamentarians_total_votes']['others']);
 
-      this.gender_ctx = document.getElementById('genderChart');
-      this.gender_chart = new Chart(this.gender_ctx, {
-        type: 'bar',
-        data: {
-          labels: gender_labels_list,
-          datasets: [
-            {
-              label: 'Porcentagem de aprovação',
-              backgroundColor: 'rgb(68,157,68)',
-              borderColor: 'rgb(255, 255, 255)',
-              data: gender_approve_data_list,
-            },
-            {
-              label: 'Porcentagem de desaprovação',
-              backgroundColor: 'rgb(201,48,44)',
-              borderColor: 'rgb(255, 255, 255)',
-              data: gender_disapprove_data_list,
-            },
-            {
-              label: 'Porcentagem de abstenção',
-              backgroundColor: 'rgb(255,255,0)',
-              borderColor: 'rgb(255, 255, 255)',
-              data: gender_abstention_data_list,
-            }
-          ]
-        },
-        options: {
-          tooltips: {
-            callbacks: {
-                label: function(tooltipItem, data) {
-                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
-
-                    if (label) {
-                        label += ': ';
-                    }
-                    label += Math.round(tooltipItem.yLabel * 100) / 100;
-                    return label + "%";
-                }
-            }
-          },
-          scales:{
-            xAxes:[{
-              stacked: false,
-              beginAtZero: true,
-              ticks:{
-                stepSize: 1,
-                min: 0,
-                autoSkip: false
-              }
-            }]
-          }
-        }
-      });
-
-      //parliamentarian
-      this.parliamentarian_ctx = document.getElementById('parliamentarianChart');
-      this.parliamentarian_chart = new Chart(this.parliamentarian_ctx, {
+      this.parliamentarianContext = document.getElementById('parliamentarianChart');
+      this.parliamentarianChart = new Chart(this.parliamentarianContext, {
         type: 'doughnut',
         data: {
           datasets: [
             {
-              data: parliamentarian_data_list,
+              data: parliamentarianDataList,
               backgroundColor: [
                 'rgb(68,157,68)',
                 'rgb(201,48,44)',
@@ -546,37 +544,42 @@ export class PropositionComponent implements OnInit {
             }
           ],
           labels: [
-            'Porcentagem de aprovação',
-            'Porcentagem de desaprovação',
-            'Porcentagem de abstenção',
-            'Sem voto'
+            approvalText,
+            disapprovingText,
+            abstentionText,
+            noVoteText
           ]
         },
         options: {
           tooltips: {
             callbacks: {
-                label: function(tooltipItem, data) {
-                    var label = data.labels[tooltipItem.index] || '';
+              label: function(tooltipItem, data) {
+                var label = data.labels[tooltipItem.index] || '';
 
-                    if (label) {
-                        label += ': ';
-                    }
-                    label += Math.round(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] * 100) / 100;
-                    return label + "%";
+                if (label) {
+                  label += ': ';
                 }
+                label += Math.round(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] * 100) / 100;
+                return label + "%";
+              }
             }
           }
         }
       });
 
-      //population
-      this.population_ctx = document.getElementById('populationChart');
-      this.population_chart = new Chart(this.population_ctx, {
+      /* Population */
+      let populationDataList: any[] = [];
+      populationDataList.push(this.socialInformation['population_total_votes']['Y']);
+      populationDataList.push(this.socialInformation['population_total_votes']['N']);
+      populationDataList.push(this.socialInformation['population_total_votes']['A']);
+
+      this.populationContext = document.getElementById('populationChart');
+      this.populationChart = new Chart(this.populationContext, {
         type: 'doughnut',
         data: {
           datasets: [
             {
-              data: population_data_list,
+              data: populationDataList,
               backgroundColor: [
                 'rgb(68,157,68)',
                 'rgb(201,48,44)',
@@ -585,23 +588,23 @@ export class PropositionComponent implements OnInit {
             }
           ],
           labels: [
-            'Porcentagem de aprovação',
-            'Porcentagem de desaprovação',
-            'Porcentagem de abstenção'
+            approvalText,
+            disapprovingText,
+            abstentionText
           ]
         },
         options: {
           tooltips: {
             callbacks: {
-                label: function(tooltipItem, data) {
-                    var label = data.labels[tooltipItem.index] || '';
+              label: function(tooltipItem, data) {
+                var label = data.labels[tooltipItem.index] || '';
 
-                    if (label) {
-                        label += ': ';
-                    }
-                    label += Math.round(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] * 100) / 100;
-                    return label + "%";
+                if (label) {
+                  label += ': ';
                 }
+                label += Math.round(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] * 100) / 100;
+                return label + "%";
+              }
             }
           }
         }
