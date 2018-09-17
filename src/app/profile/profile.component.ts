@@ -9,9 +9,11 @@ import { RequestsService } from '../requests.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent implements OnInit {
 
-  userID: number;
+  userID: number = 0;
+
   user: any = {
     username: '',
     first_name: '',
@@ -26,12 +28,16 @@ export class ProfileComponent implements OnInit {
       birth_date: null
     }
   };
-  tokenValue = '';
 
-  constructor(private router: Router,
-              private cookieService: CookieService,
-              private token: TokenService,
-              private requester: RequestsService) { }
+  tokenValue: string = '';
+
+  // T01 - Identação
+  constructor(
+    private router: Router,
+    private cookieService: CookieService,
+    private token: TokenService,
+    private requester: RequestsService
+  ) { }
 
   ngOnInit() {
     this.tokenValue = this.token.getToken();
