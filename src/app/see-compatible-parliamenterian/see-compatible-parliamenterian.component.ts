@@ -1,3 +1,10 @@
+  /**********************************************************************
+  * File: SeeCompatibleParliamenterianComponent.component.ts
+  * Purpose: SeeCompatibleParliamenterianComponent class implementation
+  * Notice: All rights reserved.
+  * Description File:  Check compatibility between parliamentary and user
+  ***********************************************************************/
+
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { RequestsService } from '../requests.service';
@@ -8,11 +15,17 @@ import { TokenService } from '../token.service';
   templateUrl: './see-compatible-parliamenterian.component.html',
   styleUrls: ['./see-compatible-parliamenterian.component.css']
 })
+
+
+/**
+  *  Responsible class for verify compatibility 
+  *  with the parliamentarian.
+  */
 export class SeeCompatibleParliamenterianComponent  implements OnInit {
 
   tokenValue: string = '';
   loadingStatus: boolean = true;
-  mostCompatible: any[] = [];
+  mostCompatible: any[] = [] // Responsible variable to list of Parlamentarian in descending order;
 
 
   constructor(
@@ -21,15 +34,24 @@ export class SeeCompatibleParliamenterianComponent  implements OnInit {
     private requester: RequestsService,
   ) { }
 
-  /* Método padrão para se inicializar um componente. */
+  /**
+   * Default routine to initialize 
+   * component
+   */
   ngOnInit() {
+    /**
+     * Ensure that the token is validated
+     */
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.token.filterRestrictPage(this.tokenValue);
     this.getMostCompatible();
   }
 
-  /* Recebe o a resposta mais compatível da requisição. */
+  /**
+   * Responsible routine to receive the most 
+   * compatibility with parlametarian
+   */
   getMostCompatible() {
     let request: any = null;
     this.mostCompatible = [];
@@ -38,8 +60,16 @@ export class SeeCompatibleParliamenterianComponent  implements OnInit {
     return request;
   }
 
-  /*  Manipula a resposta obtida. */
+  /**
+  * Responsible routine to assign the result 
+  * of the request to a variable
+  * @param request Responsible request to receive the most compatible parlametarian
+  */
   handleMostCompatibleResponse(request: any) {
+    /**
+     * Assign the result of the request to a variable to 
+     * use in see-compatible-parlamenterian.component.html
+     */
     request.subscribe( response => {
         this.mostCompatible = response['body']['results'];
         this.loadingStatus = false;
