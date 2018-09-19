@@ -1,5 +1,5 @@
   /**********************************************************************
-  * File: SeeCompatibleParliamenterianComponent.component.ts
+  * File: see-compatible-parliamenterian.component.ts
   * Purpose: SeeCompatibleParliamenterianComponent class implementation
   * Notice: All rights reserved.
   * Description File:  Check compatibility between parliamentary and user
