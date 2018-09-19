@@ -1,3 +1,11 @@
+ /**********************************************************************
+  * File: contact-us.component.ts
+  * Purpose: Contact Us class implementation
+  * Notice: All rights reserved.
+  * Description File:  It is responsible to give the user a way to contact
+  * the company.
+  ***********************************************************************/
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestsService } from '../requests.service';
@@ -60,7 +68,10 @@ export class ContactUsComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  /* Method to display if the requisition to send a message goes wrong. */
+/*
+ * Method to display if the requisition to send a message goes wrong.
+ * Depending of the error status, it will be displayed a block.
+*/
   errorHandler(statusRequest: any) {
     if (statusRequest === 401) {
       document.getElementById('contactFail').style.display = 'block';
