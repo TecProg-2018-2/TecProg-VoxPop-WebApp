@@ -289,7 +289,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/contact-us/contact-us.component.ts:81</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/contact-us/contact-us.component.ts:84</a></div>
                             </td>
                         </tr>
 
@@ -329,7 +329,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/contact-us/contact-us.component.ts:89</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/contact-us/contact-us.component.ts:92</a></div>
                             </td>
                         </tr>
 
@@ -730,6 +730,9 @@ export class ContactUsComponent implements OnInit {
   postMsgHandler(request) {
     request.subscribe(response &#x3D;&gt; {
       const statusMsg: any &#x3D; response.status;
+      /*
+      * If contact is successful, the div &#x27;contactSuccess&#x27; is shown
+      */
       if (this.requester.didSucceed(statusMsg)) {
         document.getElementById(&#x27;contactSuccess&#x27;).style.display &#x3D; &#x27;block&#x27;;
       }

@@ -259,7 +259,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/sidebar/sidebar.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/sidebar/sidebar.component.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -305,7 +305,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/sidebar/sidebar.component.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/sidebar/sidebar.component.ts:74</a></div>
                             </td>
                         </tr>
 
@@ -571,6 +571,8 @@ export class SidebarComponent implements OnInit {
  * @param sidebarCookie 
  */
   setSidebar(sidebarCookie: any) {
+    /* If sidebar cookie inexists, the sidebar is deactivate
+    */
     if (sidebarCookie &#x3D;&#x3D;&#x3D; &#x27;false&#x27;) {
       const sidebarStatus: HTMLElement &#x3D; document.getElementById(&#x27;sidebar&#x27;);
       sidebarStatus.classList.toggle(&#x27;active&#x27;);
@@ -584,6 +586,9 @@ export class SidebarComponent implements OnInit {
  */
   getStyle() {
     let styleStatus: string &#x3D; &#x27;&#x27;;
+    /* 
+    * If token is empty, the status of sidebar is &#x27;disabled&#x27;
+    */
     if (this.token.getToken() &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
       styleStatus &#x3D; &#x27;disabled&#x27;;
     }
@@ -594,6 +599,9 @@ export class SidebarComponent implements OnInit {
  * @return the login status 
  */
   isLogged() {
+    /*
+    * If token is empty, user is not logged.
+    */
     if (this.token.getToken() &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
       return false;
     }
