@@ -44,6 +44,8 @@ export class SidebarComponent implements OnInit {
  * @param sidebarCookie 
  */
   setSidebar(sidebarCookie: any) {
+    /* If sidebar cookie inexists, the sidebar is deactivate
+    */
     if (sidebarCookie === 'false') {
       const sidebarStatus: HTMLElement = document.getElementById('sidebar');
       sidebarStatus.classList.toggle('active');
@@ -57,6 +59,9 @@ export class SidebarComponent implements OnInit {
  */
   getStyle() {
     let styleStatus: string = '';
+    /* 
+    * If token is empty, the status of sidebar is 'disabled'
+    */
     if (this.token.getToken() === '') {
       styleStatus = 'disabled';
     }
@@ -67,6 +72,9 @@ export class SidebarComponent implements OnInit {
  * @return the login status 
  */
   isLogged() {
+    /*
+    * If token is empty, user is not logged.
+    */
     if (this.token.getToken() === '') {
       return false;
     }

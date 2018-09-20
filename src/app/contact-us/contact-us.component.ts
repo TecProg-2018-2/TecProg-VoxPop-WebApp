@@ -68,6 +68,9 @@ export class ContactUsComponent implements OnInit {
   postMsgHandler(request) {
     request.subscribe(response => {
       const statusMsg: any = response.status;
+      /*
+      * If contact is successful, the div 'contactSuccess' is shown
+      */
       if (this.requester.didSucceed(statusMsg)) {
         document.getElementById('contactSuccess').style.display = 'block';
       }
