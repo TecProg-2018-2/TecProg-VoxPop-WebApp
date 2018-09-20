@@ -79,6 +79,7 @@ export class SeePlComponent implements OnInit {
   /**
    * Responsible routine load page according
    * to the number entered in the search.
+   * @param offset 
    */
   loadPage(offset: number) {
     let request: any;
@@ -96,6 +97,8 @@ export class SeePlComponent implements OnInit {
    * Method responsible for verifing informations 
    * obtained from a given page and treat the same 
    * data.
+   * @param request Responsible request to receive propositions
+   * @param offset Requested page
    */
   handlePropositionsResponse(request, offset) {
     this.requester.getProposition(this.itemsPerPage, (offset - 1) * this.itemsPerPage).subscribe( response => {
@@ -112,7 +115,12 @@ export class SeePlComponent implements OnInit {
     });
   }
 
-
+  /**
+   * Method responsible for updating appearence 
+   * of buttons.
+   * @param offset Requested page
+   * @param limit  Proposition page limit
+   */
   updateButtonsAppearence(offset, limit) {
     /**
      * According offset value the appearence of
@@ -138,6 +146,7 @@ export class SeePlComponent implements OnInit {
   /**
    * Method responsible for defining the specific 
    * proposition according to the index inserted.
+   * @param index
    */
   setSpecificProposition(index) {
     this.position = index;
