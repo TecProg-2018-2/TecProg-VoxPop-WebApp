@@ -1,0 +1,2670 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>voxpop documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">voxpop documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>RequestsService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/requests.service.ts</code>
+        </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#baseURL">baseURL</a>
+                            </li>
+                            <li>
+                                <a href="#headers">headers</a>
+                            </li>
+                            <li>
+                                <a href="#tokenHeader">tokenHeader</a>
+                            </li>
+                            <li>
+                                <a href="#tokenValue">tokenValue</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#convertToken">convertToken</a>
+                            </li>
+                            <li>
+                                <a href="#deleteFollow">deleteFollow</a>
+                            </li>
+                            <li>
+                                <a href="#didSucceed">didSucceed</a>
+                            </li>
+                            <li>
+                                <a href="#getActualUser">getActualUser</a>
+                            </li>
+                            <li>
+                                <a href="#getFollow">getFollow</a>
+                            </li>
+                            <li>
+                                <a href="#getFollowingParliamentarians">getFollowingParliamentarians</a>
+                            </li>
+                            <li>
+                                <a href="#getMostActive">getMostActive</a>
+                            </li>
+                            <li>
+                                <a href="#getMostCompatible">getMostCompatible</a>
+                            </li>
+                            <li>
+                                <a href="#getMostFollowed">getMostFollowed</a>
+                            </li>
+                            <li>
+                                <a href="#getParliamentarian">getParliamentarian</a>
+                            </li>
+                            <li>
+                                <a href="#getParlimentarianSpecific">getParlimentarianSpecific</a>
+                            </li>
+                            <li>
+                                <a href="#getProjects">getProjects</a>
+                            </li>
+                            <li>
+                                <a href="#getProposition">getProposition</a>
+                            </li>
+                            <li>
+                                <a href="#getPropositionSpecific">getPropositionSpecific</a>
+                            </li>
+                            <li>
+                                <a href="#getPropositionSpecificSocialInfo">getPropositionSpecificSocialInfo</a>
+                            </li>
+                            <li>
+                                <a href="#getSearchedParliamentarian">getSearchedParliamentarian</a>
+                            </li>
+                            <li>
+                                <a href="#getSearchFollowingParliamentarians">getSearchFollowingParliamentarians</a>
+                            </li>
+                            <li>
+                                <a href="#getSearchVotedProposition">getSearchVotedProposition</a>
+                            </li>
+                            <li>
+                                <a href="#getUser">getUser</a>
+                            </li>
+                            <li>
+                                <a href="#getVotedProposition">getVotedProposition</a>
+                            </li>
+                            <li>
+                                <a href="#postAuthentication">postAuthentication</a>
+                            </li>
+                            <li>
+                                <a href="#postFollow">postFollow</a>
+                            </li>
+                            <li>
+                                <a href="#postMessage">postMessage</a>
+                            </li>
+                            <li>
+                                <a href="#postSocialInformation">postSocialInformation</a>
+                            </li>
+                            <li>
+                                <a href="#postUser">postUser</a>
+                            </li>
+                            <li>
+                                <a href="#postVote">postVote</a>
+                            </li>
+                            <li>
+                                <a href="#putUser">putUser</a>
+                            </li>
+                            <li>
+                                <a href="#updateVote">updateVote</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, token: <a href="../injectables/TokenService.html">TokenService</a>, cookieService: CookieService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/requests.service.ts:15</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>token</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/TokenService.html" target="_self" >TokenService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cookieService</td>
+                                                  
+                                                        <td>
+                                                                    <code>CookieService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="convertToken"></a>
+                        <span class="name">
+                            <b>
+                            convertToken
+                            </b>
+                            <a href="#convertToken"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>convertToken(accessToken: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/app/requests.service.ts:226</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>accessToken</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="deleteFollow"></a>
+                        <span class="name">
+                            <b>
+                            deleteFollow
+                            </b>
+                            <a href="#deleteFollow"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>deleteFollow(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank">Number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/app/requests.service.ts:209</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>id</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="didSucceed"></a>
+                        <span class="name">
+                            <b>
+                            didSucceed
+                            </b>
+                            <a href="#didSucceed"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>didSucceed(status: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="248" class="link-to-prism">src/app/requests.service.ts:248</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>status</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getActualUser"></a>
+                        <span class="name">
+                            <b>
+                            getActualUser
+                            </b>
+                            <a href="#getActualUser"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getActualUser(accessToken: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/app/requests.service.ts:240</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>accessToken</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getFollow"></a>
+                        <span class="name">
+                            <b>
+                            getFollow
+                            </b>
+                            <a href="#getFollow"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getFollow(id: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/requests.service.ts:129</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>id</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getFollowingParliamentarians"></a>
+                        <span class="name">
+                            <b>
+                            getFollowingParliamentarians
+                            </b>
+                            <a href="#getFollowingParliamentarians"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getFollowingParliamentarians(limit: , offset: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/app/requests.service.ts:138</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>limit</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>offset</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getMostActive"></a>
+                        <span class="name">
+                            <b>
+                            getMostActive
+                            </b>
+                            <a href="#getMostActive"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getMostActive(limit: , offset: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/requests.service.ts:58</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>limit</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>offset</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getMostCompatible"></a>
+                        <span class="name">
+                            <b>
+                            getMostCompatible
+                            </b>
+                            <a href="#getMostCompatible"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getMostCompatible()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/requests.service.ts:72</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getMostFollowed"></a>
+                        <span class="name">
+                            <b>
+                            getMostFollowed
+                            </b>
+                            <a href="#getMostFollowed"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getMostFollowed()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/requests.service.ts:65</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getParliamentarian"></a>
+                        <span class="name">
+                            <b>
+                            getParliamentarian
+                            </b>
+                            <a href="#getParliamentarian"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getParliamentarian(limit: , offset: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/requests.service.ts:88</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>limit</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>offset</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getParlimentarianSpecific"></a>
+                        <span class="name">
+                            <b>
+                            getParlimentarianSpecific
+                            </b>
+                            <a href="#getParlimentarianSpecific"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getParlimentarianSpecific(parlimentaryId: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/requests.service.ts:105</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>parlimentaryId</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getProjects"></a>
+                        <span class="name">
+                            <b>
+                            getProjects
+                            </b>
+                            <a href="#getProjects"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getProjects()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/requests.service.ts:80</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getProposition"></a>
+                        <span class="name">
+                            <b>
+                            getProposition
+                            </b>
+                            <a href="#getProposition"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getProposition(limit: , offset: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/requests.service.ts:51</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>limit</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>offset</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getPropositionSpecific"></a>
+                        <span class="name">
+                            <b>
+                            getPropositionSpecific
+                            </b>
+                            <a href="#getPropositionSpecific"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getPropositionSpecific(propositionId: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/requests.service.ts:113</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>propositionId</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getPropositionSpecificSocialInfo"></a>
+                        <span class="name">
+                            <b>
+                            getPropositionSpecificSocialInfo
+                            </b>
+                            <a href="#getPropositionSpecificSocialInfo"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getPropositionSpecificSocialInfo(propositionId: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/requests.service.ts:121</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>propositionId</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getSearchedParliamentarian"></a>
+                        <span class="name">
+                            <b>
+                            getSearchedParliamentarian
+                            </b>
+                            <a href="#getSearchedParliamentarian"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getSearchedParliamentarian(limit: , offset: , keyword: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/requests.service.ts:96</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>limit</td>
+                                                        <td>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>offset</td>
+                                                        <td>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>keyword</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getSearchFollowingParliamentarians"></a>
+                        <span class="name">
+                            <b>
+                            getSearchFollowingParliamentarians
+                            </b>
+                            <a href="#getSearchFollowingParliamentarians"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getSearchFollowingParliamentarians(limit: , offset: , keyword: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/app/requests.service.ts:148</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>limit</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>offset</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>keyword</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getSearchVotedProposition"></a>
+                        <span class="name">
+                            <b>
+                            getSearchVotedProposition
+                            </b>
+                            <a href="#getSearchVotedProposition"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getSearchVotedProposition(offset: , keyword: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/requests.service.ts:43</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>offset</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>keyword</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getUser"></a>
+                        <span class="name">
+                            <b>
+                            getUser
+                            </b>
+                            <a href="#getUser"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getUser(userId: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/requests.service.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>userId</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getVotedProposition"></a>
+                        <span class="name">
+                            <b>
+                            getVotedProposition
+                            </b>
+                            <a href="#getVotedProposition"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getVotedProposition(offset: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/requests.service.ts:35</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>offset</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="postAuthentication"></a>
+                        <span class="name">
+                            <b>
+                            postAuthentication
+                            </b>
+                            <a href="#postAuthentication"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>postAuthentication(login: <a href="../interfaces/LoginModel.html">LoginModel</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/app/requests.service.ts:178</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>login</td>
+                                                        <td>
+                                                                    <code><a href="../interfaces/LoginModel.html" target="_self" >LoginModel</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="postFollow"></a>
+                        <span class="name">
+                            <b>
+                            postFollow
+                            </b>
+                            <a href="#postFollow"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>postFollow(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank">Number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/app/requests.service.ts:193</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>id</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" >Number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="postMessage"></a>
+                        <span class="name">
+                            <b>
+                            postMessage
+                            </b>
+                            <a href="#postMessage"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>postMessage(msg: <a href="../interfaces/MessageModel.html">MessageModel</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/app/requests.service.ts:203</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>msg</td>
+                                                        <td>
+                                                                    <code><a href="../interfaces/MessageModel.html" target="_self" >MessageModel</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="postSocialInformation"></a>
+                        <span class="name">
+                            <b>
+                            postSocialInformation
+                            </b>
+                            <a href="#postSocialInformation"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>postSocialInformation(socialInformation: <a href="../interfaces/SocialInformationModel.html">SocialInformationModel</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/app/requests.service.ts:164</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>socialInformation</td>
+                                                        <td>
+                                                                    <code><a href="../interfaces/SocialInformationModel.html" target="_self" >SocialInformationModel</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="postUser"></a>
+                        <span class="name">
+                            <b>
+                            postUser
+                            </b>
+                            <a href="#postUser"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>postUser(user: <a href="../interfaces/UserModel.html">UserModel</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/app/requests.service.ts:158</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>user</td>
+                                                        <td>
+                                                                    <code><a href="../interfaces/UserModel.html" target="_self" >UserModel</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="postVote"></a>
+                        <span class="name">
+                            <b>
+                            postVote
+                            </b>
+                            <a href="#postVote"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>postVote(vote: <a href="../interfaces/VoteModel.html">VoteModel</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/app/requests.service.ts:184</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>vote</td>
+                                                        <td>
+                                                                    <code><a href="../interfaces/VoteModel.html" target="_self" >VoteModel</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="putUser"></a>
+                        <span class="name">
+                            <b>
+                            putUser
+                            </b>
+                            <a href="#putUser"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>putUser(user: <a href="../interfaces/UserModel.html">UserModel</a>, userId: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/app/requests.service.ts:170</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>user</td>
+                                                        <td>
+                                                                    <code><a href="../interfaces/UserModel.html" target="_self" >UserModel</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>userId</td>
+                                                        <td>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateVote"></a>
+                        <span class="name">
+                            <b>
+                            updateVote
+                            </b>
+                            <a href="#updateVote"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>updateVote(vote: <a href="../interfaces/VoteModel.html">VoteModel</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/app/requests.service.ts:217</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>vote</td>
+                                                        <td>
+                                                                    <code><a href="../interfaces/VoteModel.html" target="_self" >VoteModel</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                                <tr>
+                                                        <td>id</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="baseURL"></a>
+                        <span class="name">
+                            <b>
+                            baseURL
+                            </b>
+                            <a href="#baseURL"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>baseURL:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>environment.baseURL</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/requests.service.ts:23</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="headers"></a>
+                        <span class="name">
+                            <b>
+                            headers
+                            </b>
+                            <a href="#headers"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>headers:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{&#x27;Content-Type&#x27;: &#x27;application/json&#x27;}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/requests.service.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tokenHeader"></a>
+                        <span class="name">
+                            <b>
+                            tokenHeader
+                            </b>
+                            <a href="#tokenHeader"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>tokenHeader:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/requests.service.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tokenValue"></a>
+                        <span class="name">
+                            <b>
+                            tokenValue
+                            </b>
+                            <a href="#tokenValue"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>tokenValue:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/requests.service.ts:22</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { environment } from &#x27;../environments/environment&#x27;;
+import { map } from &#x27;rxjs/operators&#x27;;
+import { CookieService } from &#x27;ngx-cookie-service&#x27;;
+import { TokenService } from &#x27;./token.service&#x27;;
+
+import { UserModel } from &#x27;../models/user&#x27;;
+import { SocialInformationModel } from &#x27;../models/socialInformation&#x27;;
+import { LoginModel } from &#x27;../models/login&#x27;;
+import { VoteModel } from &#x27;../models/vote&#x27;;
+import { MessageModel } from &#x27;../models/message&#x27;;
+
+@Injectable()
+export class RequestsService {
+
+  constructor(
+            private http: HttpClient,
+            private token: TokenService,
+            private cookieService: CookieService
+  ) { }
+  tokenValue &#x3D; &#x27;&#x27;;
+  baseURL: string &#x3D; environment.baseURL;
+  headers &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;};
+  tokenHeader: any;
+
+  getUser(userId) {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;users/&#x27; + userId.toString() + &#x27;/&#x27;);
+    console.log(&#x27;Making GET REQUEST USER ON URL: &#x27; + endpoint);
+    return this.http.get(endpoint,  {headers: this.tokenHeader, observe: &#x27;response&#x27;});
+  }
+
+  getVotedProposition(offset) {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;user_votes/?limit&#x3D;10&amp;offset&#x3D;&#x27; + offset);
+    console.log(&#x27;Making GET REQUEST VOTED PROPOITION ON URL: &#x27; + endpoint);
+    return this.http.get(endpoint, {headers: this.tokenHeader, observe: &#x27;response&#x27;});
+  }
+
+  getSearchVotedProposition(offset, keyword) {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;user_votes/?limit&#x3D;10&amp;offset&#x3D;&#x27; + offset + &#x27;&amp;query&#x3D;&#x27; + keyword);
+    console.log(&#x27;Making GET REQUEST SEARCH VOTED PROPOITION ON URL: &#x27; + endpoint);
+    return this.http.get(endpoint, {headers: this.tokenHeader, observe: &#x27;response&#x27;});
+  }
+
+  getProposition(limit, offset) {
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;propositions/voted_by_parliamentary/?limit&#x3D;&#x27; + limit + &#x27;&amp;offset&#x3D;&#x27; + offset);
+    console.log(&#x27;Making GET REQUEST PREPOSITIONS ON URL: &#x27; + endpoint);
+    return this.http.get(endpoint, {headers: this.tokenHeader, observe: &#x27;response&#x27;});
+  }
+
+  getMostActive(limit, offset) {
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;statistics/most_active/?limit&#x3D;&#x27; + limit + &#x27;&amp;offset&#x3D;&#x27; + offset);
+    console.log(&#x27;Making GET MOST ACTIVE REQUEST ON URL: &#x27; + endpoint);
+    return this.http.get(endpoint, {headers: this.tokenHeader, observe: &#x27;response&#x27;});
+  }
+
+  getMostFollowed() {
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;statistics/most_followed/&#x27;);
+    console.log(&#x27;Making GET MOST FOLLOWED REQUEST ON URL: &#x27; + endpoint);
+    return this.http.get(endpoint, {headers: this.tokenHeader, observe: &#x27;response&#x27;});
+  }
+
+  getMostCompatible() {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;statistics/most_compatible/&#x27;);
+    console.log(&#x27;Making GET MOST COMPATIBLE REQUEST ON URL: &#x27; + endpoint);
+    return this.http.get(endpoint, {headers: this.tokenHeader, observe: &#x27;response&#x27;});
+  }
+
+  getProjects() {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;propositions/non_voted_by_user/&#x27;);
+    console.log(&#x27;Making GET PROJECTS REQUEST ON URL: &#x27; + endpoint);
+    return this.http.get(endpoint, {headers: this.tokenHeader, observe: &#x27;response&#x27;});
+  }
+
+  getParliamentarian (limit, offset) {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;parliamentarians/?limit&#x3D;&#x27; + limit + &#x27;&amp;offset&#x3D;&#x27; + offset);
+    console.log(&#x27;Making GET PARLIAMENTERIAN REQUEST ON URL: &#x27; + endpoint);
+    return this.http.get(endpoint, {headers: this.tokenHeader, observe: &#x27;response&#x27;});
+  }
+
+  getSearchedParliamentarian (limit, offset, keyword: string) {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;parliamentarians/?limit&#x3D;&#x27; + limit + &#x27;&amp;offset&#x3D;&#x27; + offset + &#x27;&amp;query&#x3D;&#x27; + keyword);
+    console.log(&#x27;Making QUERY REQUEST USER ON URL: &#x27; + endpoint);
+    this.headers &#x3D; (this.tokenValue &#x3D;&#x3D;&#x3D; &#x27;&#x27;) ? this.headers : this.tokenHeader;
+    return this.http.get(endpoint, {headers: this.headers, observe: &#x27;response&#x27;});
+  }
+
+  getParlimentarianSpecific(parlimentaryId) {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;parliamentarians/&#x27; + parlimentaryId + &#x27;/&#x27;);
+    this.headers &#x3D; (this.tokenValue &#x3D;&#x3D;&#x3D; &#x27;&#x27;) ? this.headers : this.tokenHeader;
+    return this.http.get(endpoint, {headers: this.headers, observe: &#x27;response&#x27;});
+  }
+
+  getPropositionSpecific(propositionId) {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;propositions/&#x27; + propositionId + &#x27;/&#x27;);
+    this.headers &#x3D; (this.tokenValue &#x3D;&#x3D;&#x3D; &#x27;&#x27;) ? this.headers : this.tokenHeader;
+    return this.http.get(endpoint, {headers: this.headers, observe: &#x27;response&#x27;});
+  }
+
+  getPropositionSpecificSocialInfo(propositionId) {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;propositions/&#x27; + propositionId + &#x27;/social_information_data/&#x27;);
+    this.headers &#x3D; (this.tokenValue &#x3D;&#x3D;&#x3D; &#x27;&#x27;) ? this.headers : this.tokenHeader;
+    return this.http.get(endpoint, {headers: this.headers, observe: &#x27;response&#x27;});
+  }
+
+  getFollow(id) {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;user_following/&#x27; + id + &#x27;/&#x27;);
+    this.headers &#x3D; (this.tokenValue &#x3D;&#x3D;&#x3D; &#x27;&#x27;) ? this.headers : this.tokenHeader;
+    console.log(&#x27;Making GET FOLLOW REQUEST ON URL: &#x27; + endpoint);
+    return this.http.get(endpoint, {headers: this.headers, observe: &#x27;response&#x27;});
+  }
+
+  getFollowingParliamentarians(limit, offset) {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;user_following/?limit&#x3D;&#x27; + limit + &#x27;&amp;offset&#x3D;&#x27; + offset);
+    console.log(&#x27;Making POST REQUEST USER ON URL: &#x27; + endpoint);
+    this.headers &#x3D; (this.tokenValue &#x3D;&#x3D;&#x3D; &#x27;&#x27;) ? this.headers : this.tokenHeader;
+    console.log(&#x27;Making GET FOLLOWING PARLIAMENTERIANS REQUEST ON URL: &#x27; + endpoint);
+    return this.http.get(endpoint, {headers: this.headers, observe: &#x27;response&#x27;});
+  }
+
+  getSearchFollowingParliamentarians(limit, offset, keyword) {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;user_following/?limit&#x3D;&#x27; + limit + &#x27;&amp;offset&#x3D;&#x27; + offset + &#x27;&amp;query&#x3D;&#x27; + keyword);
+    console.log(&#x27;Making POST REQUEST USER ON URL: &#x27; + endpoint);
+    this.headers &#x3D; (this.tokenValue &#x3D;&#x3D;&#x3D; &#x27;&#x27;) ? this.headers : this.tokenHeader;
+    console.log(&#x27;Making GET SEARCH FOLLOWING PARLIAMENTARIAN REQUEST ON URL: &#x27; + endpoint);
+    return this.http.get(endpoint, {headers: this.headers, observe: &#x27;response&#x27;});
+  }
+
+  postUser(user: UserModel) {
+    const endpoint &#x3D; this.baseURL.concat(&#x27;users/&#x27;);
+    console.log(&#x27;Making POST REQUEST USER ON URL: &#x27; + endpoint);
+    return this.http.post(endpoint, JSON.stringify(user), {headers: this.headers, observe: &#x27;response&#x27;});
+  }
+
+  postSocialInformation(socialInformation: SocialInformationModel) {
+    const endpoint &#x3D; this.baseURL.concat(&#x27;social_informations/&#x27;);
+    console.log(&#x27;Making POST REQUEST SOCIAL_INFORMATION ON URL: &#x27; + endpoint);
+    return this.http.post(endpoint, JSON.stringify(socialInformation), {headers: this.headers, observe: &#x27;response&#x27;});
+  }
+
+  putUser(user: UserModel, userId) {
+    const endpoint &#x3D; this.baseURL.concat(&#x27;users/&#x27; + userId.toString() + &#x27;/&#x27;);
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    console.log(&#x27;Making PUT REQUEST USER ON URL: &#x27; + endpoint);
+    return this.http.patch(endpoint, JSON.stringify(user),  {headers: this.tokenHeader, observe: &#x27;response&#x27;});
+  }
+
+  postAuthentication(login: LoginModel) {
+    const endpoint &#x3D; this.baseURL.concat(&#x27;token_auth/&#x27;);
+    console.log(&#x27;Making POST AUTHENTICATION REQUEST ON URL: &#x27; + endpoint);
+    return this.http.post(endpoint, JSON.stringify(login), {headers: this.headers, observe: &#x27;response&#x27;});
+  }
+
+  postVote(vote: VoteModel) {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;user_votes/&#x27;);
+    console.log(&#x27;Making POST REQUEST VOTE ON URL: &#x27; + endpoint);
+    console.log(vote);
+    return this.http.post(endpoint, JSON.stringify(vote), {headers: this.tokenHeader, observe: &#x27;response&#x27;});
+  }
+
+  postFollow(id: Number) {
+    const jsonString &#x3D; &#x27;{&quot;parliamentary&quot;: &#x27; + id + &#x27;}&#x27;;
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;user_following/&#x27;);
+    console.log(&#x27;Making POST REQUEST FOLLOW ON URL: &#x27; + endpoint);
+    console.log(jsonString);
+    return this.http.post(endpoint, jsonString, {headers: this.tokenHeader, observe: &#x27;response&#x27;});
+  }
+
+  postMessage(msg: MessageModel){
+    const endpoint &#x3D; this.baseURL.concat(&#x27;contact_us/&#x27;);
+    console.log(&#x27;Making POST REQUEST MESSAGE ON URL: &#x27; + endpoint);
+    return this.http.post(endpoint, JSON.stringify(msg), {headers: this.headers, observe: &#x27;response&#x27;});
+  }
+
+  deleteFollow(id: Number) {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;user_following/&#x27; + id + &#x27;/&#x27;);
+    console.log(&#x27;Making DELETE FOLLOW REQUEST ON URL: &#x27; + endpoint);
+    return this.http.delete(endpoint, {headers: this.tokenHeader, observe: &#x27;response&#x27;});
+  }
+
+  updateVote(vote: VoteModel, id: number) {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: this.tokenValue};
+    const endpoint &#x3D; this.baseURL.concat(&#x27;user_votes/&#x27; + id + &#x27;/&#x27;);
+    console.log(&#x27;Making PUT REQUEST VOTE ON URL: &#x27; + endpoint);
+    console.log(vote);
+    return this.http.put(endpoint, JSON.stringify(vote), {headers: this.tokenHeader, observe: &#x27;response&#x27;});
+  }
+
+  convertToken(accessToken: string) {
+    const endpoint &#x3D; this.baseURL.concat(&#x27;oauth/convert-token/&#x27;);
+    console.log(&#x27;Making POST REQUEST ON URL: &#x27; + endpoint);
+    var data &#x3D; {
+      &#x27;grant_type&#x27;: &#x27;convert_token&#x27;,
+      &#x27;client_id&#x27;: &#x27;Ykp0QxJhZoe8WZ4G32V06Mr2o8VaMFNfipNcdgSu&#x27;,
+      &#x27;client_secret&#x27;: &#x27;Gvqi0s5pklY7fqemR9EiW2pUgTzUmK032IaTgJawHp9CPjM4pZOa8AyMTPckyuHOOBIrunxATFaxAy444HdnRomhdozHR2gKeAcjGRRw5QhuHOy9j0KiWstsO2wwP4YZ&#x27;,
+      &#x27;backend&#x27;: &#x27;facebook&#x27;,
+      &#x27;token&#x27;: accessToken
+    }
+    console.log(data);
+    return this.http.post(endpoint, data, {observe: &#x27;response&#x27;});
+  }
+
+  getActualUser(accessToken: string) {
+    const endpoint &#x3D; this.baseURL.concat(&#x27;users/actual_user/&#x27;);
+    this.tokenHeader &#x3D; {&#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Authorization&#x27;: &#x27; Bearer &#x27; + accessToken};
+    console.log(this.tokenHeader);
+    console.log(&#x27;Making GET REQUEST ON URL: &#x27; + endpoint);
+    return this.http.get(endpoint, {headers: this.tokenHeader, observe: &#x27;response&#x27;});
+  }
+
+  didSucceed(status) {
+    switch (status) {
+      case 0:
+        // CHECK RESPONSE BEFORE CHANGING SCREENS
+        console.log(&#x27;Request failed with status code: &#x27; + status + &#x27;. Please check the request and try again.&#x27;);
+        return false;
+      case 200:
+        // redirect token on the login request
+        return true;
+      case 201:
+        // redirect user to main or authentication page..
+        return true;
+      case 301:
+        // Redirect user to error page
+        console.log(&#x27;Failed with status code 301: Resourced moved permanently. This may be a CORS problem.&#x27;);
+        return false;
+      case 400:
+        // Badrequest, some input send was wrong
+        return false;
+      default:
+        // Redirect user to error page
+        console.log(&#x27;Unspecified error. Please inspect network traffic to investigate this issue further&#x27;);
+        return false;
+    }
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'RequestsService.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <script src="../js/menu-wc.js"></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
