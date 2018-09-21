@@ -1,0 +1,735 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>voxpop documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">voxpop documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>SeeCompatibleParliamenterianComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/see-compatible-parliamenterian/see-compatible-parliamenterian.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-see-compatible-parliamenterian</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>see-compatible-parliamenterian.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./see-compatible-parliamenterian.component.html</code></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#loadingStatus">loadingStatus</a>
+                            </li>
+                            <li>
+                                <a href="#mostCompatible">mostCompatible</a>
+                            </li>
+                            <li>
+                                <a href="#tokenValue">tokenValue</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getMostCompatible">getMostCompatible</a>
+                            </li>
+                            <li>
+                                <a href="#handleMostCompatibleResponse">handleMostCompatibleResponse</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(cookieService: CookieService, token: <a href="../injectables/TokenService.html">TokenService</a>, requester: <a href="../injectables/RequestsService.html">RequestsService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/see-compatible-parliamenterian/see-compatible-parliamenterian.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>cookieService</td>
+                                                  
+                                                        <td>
+                                                                    <code>CookieService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>token</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/TokenService.html" target="_self" >TokenService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>requester</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/RequestsService.html" target="_self" >RequestsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getMostCompatible"></a>
+                        <span class="name">
+                            <b>
+                            getMostCompatible
+                            </b>
+                            <a href="#getMostCompatible"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getMostCompatible()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/see-compatible-parliamenterian/see-compatible-parliamenterian.component.ts:55</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Responsible routine to receive the most 
+compatibility with parlametarian</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="handleMostCompatibleResponse"></a>
+                        <span class="name">
+                            <b>
+                            handleMostCompatibleResponse
+                            </b>
+                            <a href="#handleMostCompatibleResponse"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>handleMostCompatibleResponse(request: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/see-compatible-parliamenterian/see-compatible-parliamenterian.component.ts:68</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Responsible routine to assign the result 
+of the request to a variable</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>request</td>
+                                                        <td>
+                                                                    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Responsible request to receive the most compatible parlametarian</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/see-compatible-parliamenterian/see-compatible-parliamenterian.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Default routine to initialize 
+component</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loadingStatus"></a>
+                        <span class="name">
+                            <b>
+                            loadingStatus
+                            </b>
+                            <a href="#loadingStatus"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>loadingStatus:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/see-compatible-parliamenterian/see-compatible-parliamenterian.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mostCompatible"></a>
+                        <span class="name">
+                            <b>
+                            mostCompatible
+                            </b>
+                            <a href="#mostCompatible"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>mostCompatible:     <code>any[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>any[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/see-compatible-parliamenterian/see-compatible-parliamenterian.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tokenValue"></a>
+                        <span class="name">
+                            <b>
+                            tokenValue
+                            </b>
+                            <a href="#tokenValue"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>tokenValue:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/see-compatible-parliamenterian/see-compatible-parliamenterian.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { CookieService } from &#x27;ngx-cookie-service&#x27;;
+import { RequestsService } from &#x27;../requests.service&#x27;;
+import { TokenService } from &#x27;../token.service&#x27;;
+
+@Component({
+  selector: &#x27;app-see-compatible-parliamenterian&#x27;,
+  templateUrl: &#x27;./see-compatible-parliamenterian.component.html&#x27;,
+  styleUrls: [&#x27;./see-compatible-parliamenterian.component.css&#x27;]
+})
+
+
+/**
+  *  Responsible class for verify compatibility 
+  *  with the parliamentarian.
+  */
+export class SeeCompatibleParliamenterianComponent  implements OnInit {
+
+  tokenValue: string &#x3D; &#x27;&#x27;;
+  loadingStatus: boolean &#x3D; true;
+  mostCompatible: any[] &#x3D; [] // Responsible variable to list of Parlamentarian in descending order;
+
+
+  constructor(
+    private cookieService: CookieService,
+    private token: TokenService,
+    private requester: RequestsService,
+  ) { }
+
+  /**
+   * Default routine to initialize 
+   * component
+   */
+  ngOnInit() {
+    /**
+     * Ensure that the token is validated
+     */
+    this.tokenValue &#x3D; this.token.getToken();
+    this.token.checkToken(this.tokenValue);
+    this.token.filterRestrictPage(this.tokenValue);
+    this.getMostCompatible();
+  }
+
+  /**
+   * Responsible routine to receive the most 
+   * compatibility with parlametarian
+   */
+  getMostCompatible() {
+    let request: any &#x3D; null;
+    this.mostCompatible &#x3D; [];
+    request &#x3D;  this.requester.getMostCompatible();
+    this.handleMostCompatibleResponse(request);
+    return request;
+  }
+
+  /**
+  * Responsible routine to assign the result 
+  * of the request to a variable
+  * @param request Responsible request to receive the most compatible parlametarian
+  */
+  handleMostCompatibleResponse(request: any) {
+    /**
+     * Assign the result of the request to a variable to 
+     * use in see-compatible-parlamenterian.component.html
+     */
+    request.subscribe( response &#x3D;&gt; {
+        this.mostCompatible &#x3D; response[&#x27;body&#x27;][&#x27;results&#x27;];
+        this.loadingStatus &#x3D; false;
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;h3&gt;Ranking de Compatibilidade&lt;/h3&gt;&lt;br/&gt;
+&lt;div *ngIf&#x3D;&quot;loadingStatus&quot;&gt;
+  &lt;p&gt;Calculando Compatibilidade...&lt;/p&gt;
+  &lt;div class&#x3D;&quot;loader&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div *ngFor&#x3D;&quot;let parliamentarian of mostCompatible; let i &#x3D; index&quot; class&#x3D;&quot;col-sm-6 text-center&quot;&gt;
+  &lt;div class&#x3D;&quot;panel panel-primary&quot;&gt;
+    &lt;div class&#x3D;&quot;panel-heading&quot;&gt;
+      &lt;h3 class&#x3D;&quot;panel-title&quot;&gt;
+        &lt;span&gt;Deputado {{parliamentarian[&#x27;parliamentary&#x27;][&#x27;name&#x27;]}} &lt;/span&gt;
+      &lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;panel-body&quot;&gt;
+      &lt;div class&#x3D;&quot;col-sm-6&quot;&gt;
+        &lt;img src&#x3D;&quot;{{parliamentarian[&#x27;parliamentary&#x27;][&#x27;photo&#x27;]}}&quot; width&#x3D;&quot;114&quot; height&#x3D;&quot;152&quot; alt&#x3D;&quot;woops, someting went wrong&quot;&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;col-sm-6&quot;&gt;
+        &lt;h5&gt;{{i + 1}}º lugar&lt;/h5&gt;
+        &lt;p&gt;{{parliamentarian[&#x27;parliamentary&#x27;][&#x27;political_party&#x27;]}}/{{parliamentarian[&#x27;parliamentary&#x27;][&#x27;federal_unit&#x27;]}}&lt;/p&gt;
+        &lt;a routerLink&#x3D;&quot;/parlamentares/{{parliamentarian[&#x27;parliamentary&#x27;][&#x27;id&#x27;]}}&quot; routerLinkActivate&#x3D;&quot;active&quot; class&#x3D;&quot;btn btn-primary&quot;&gt;Ver
+          parlamentar
+        &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div *ngIf&#x3D;&quot;tokenValue !&#x3D;&#x3D; &#x27;&#x27;&quot; class&#x3D;&quot;panel-footer text-muted alternative&quot;&gt;{{parliamentarian[&#x27;compatibility&#x27;]}}% de compatibilidade&lt;/div&gt;
+    &lt;!-- &lt;div class&#x3D;&quot;panel-footer text-muted&quot;&gt;Compatibilidade: {{parliamentarian[&#x27;compatibility&#x27;]}}&lt;/div&gt; --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><h3>Ranking de Compatibilidade</h3><br/><div *ngIf="loadingStatus">  <p>Calculando Compatibilidade...</p>  <div class="loader"></div></div><div *ngFor="let parliamentarian of mostCompatible; let i = index" class="col-sm-6 text-center">  <div class="panel panel-primary">    <div class="panel-heading">      <h3 class="panel-title">        <span>Deputado {{parliamentarian[\'parliamentary\'][\'name\']}} </span>      </h3>    </div>    <div class="panel-body">      <div class="col-sm-6">        <img src="{{parliamentarian[\'parliamentary\'][\'photo\']}}" width="114" height="152" alt="woops, someting went wrong">      </div>      <div class="col-sm-6">        <h5>{{i + 1}}º lugar</h5>        <p>{{parliamentarian[\'parliamentary\'][\'political_party\']}}/{{parliamentarian[\'parliamentary\'][\'federal_unit\']}}</p>        <a routerLink="/parlamentares/{{parliamentarian[\'parliamentary\'][\'id\']}}" routerLinkActivate="active" class="btn btn-primary">Ver          parlamentar        </a>      </div>    </div>    <div *ngIf="tokenValue !== \'\'" class="panel-footer text-muted alternative">{{parliamentarian[\'compatibility\']}}% de compatibilidade</div>    <!-- <div class="panel-footer text-muted">Compatibilidade: {{parliamentarian[\'compatibility\']}}</div> -->  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HowToUseComponent', 'selector': 'app-how-to-use'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainPageComponent', 'selector': 'app-main-page'},{'name': 'MostFollowedComponent', 'selector': 'app-most-followed'},{'name': 'MyPlsComponent', 'selector': 'app-my-pls'},{'name': 'ParliamentarianComponent', 'selector': 'app-parliamentarian'},{'name': 'PoliticaDePrivacidadeComponent', 'selector': 'app-politica-de-privacidade'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'PropositionComponent', 'selector': 'app-proposition'},{'name': 'PropositionsComponent', 'selector': 'app-propositions'},{'name': 'RegisterFormComponent', 'selector': 'app-register-form'},{'name': 'SeeCompatibleParliamenterianComponent', 'selector': 'app-see-compatible-parliamenterian'},{'name': 'SeePlComponent', 'selector': 'app-see-pl'},{'name': 'SeePoliticianDetailedComponent', 'selector': 'app-see-politician'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'TermosDeServicoComponent', 'selector': 'app-termos-de-servico'},{'name': 'UserFollowingComponent', 'selector': 'app-user-following'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'SeeCompatibleParliamenterianComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SeeCompatibleParliamenterianComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <script src="../js/menu-wc.js"></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

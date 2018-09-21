@@ -1,0 +1,302 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>voxpop documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">voxpop documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Interfaces</li>
+  <li>Window</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/app.component.ts</code>
+        </p>
+
+
+
+        <section>
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#fbAsyncInit">fbAsyncInit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section>
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="fbAsyncInit"></a>
+                                        <span class="name"><b>fbAsyncInit</b><a href="#fbAsyncInit"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>fbAsyncInit:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { RequestsService } from &#x27;./requests.service&#x27;;
+import { CookieService } from &#x27;ngx-cookie-service&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import * as $ from &#x27;jquery&#x27;;
+
+declare var FB: any;
+declare var logout: any;
+declare global {
+    interface Window { fbAsyncInit: any; }
+}
+
+@Component({
+  selector: &#x27;app-root&#x27;,
+  templateUrl: &#x27;./app.component.html&#x27;,
+  styleUrls: [&#x27;./app.component.css&#x27;]
+})
+export class AppComponent implements OnInit {
+  title &#x3D; &#x27;VoxPop&#x27;;
+
+  constructor(
+    private cookieService: CookieService,
+    private requester: RequestsService,
+    private router: Router,
+  ) { }
+
+  ngOnInit() {
+    window.fbAsyncInit &#x3D; function() {
+      FB.init({
+        appId      : &#x27;650913118581699&#x27;,
+        xfbml      : true,
+        version    : &#x27;v3.0&#x27;
+      });
+      FB.AppEvents.logPageView();
+      FB.Event.subscribe(&#x27;auth.statusChange&#x27;, auth_status_change_callback);
+      $(document).trigger(&#x27;FBLoaded&#x27;);
+      // $(document).trigger(&#x27;fbload&#x27;);
+    };
+
+    (function(d, s, id){
+       var js, fjs &#x3D; d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js &#x3D; d.createElement(s); js.id &#x3D; id;
+       js.src &#x3D; &quot;https://connect.facebook.net/pt_BR/sdk.js&quot;;
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, &#x27;script&#x27;, &#x27;facebook-jssdk&#x27;));
+
+    var auth_status_change_callback &#x3D; function(response) {
+      // console.log(&#x27;auth_status_change_callback&#x27;);
+      FB.getLoginStatus(function(response) {
+        This.loginFacebook(This, response);
+      });
+    }
+
+    var This &#x3D; this;
+    $(document).on(
+      &#x27;FBLoaded&#x27;,
+      function(event) {
+        FB.getLoginStatus(function(response) {
+          This.loginFacebook(This, response);
+        });
+      }
+    );
+  }
+
+  getActualUserHandler(this_context, accessToken: string) {
+    this_context.requester.getActualUser(accessToken).subscribe( response &#x3D;&gt; {
+      var res &#x3D; response[&#x27;body&#x27;];
+      console.log(res);
+      this_context.cookieService.set(&#x27;userID&#x27;, res[&#x27;id&#x27;]);
+      this_context.cookieService.set(&#x27;userUsername&#x27;, res[&#x27;username&#x27;]);
+      this_context.cookieService.set(&#x27;userFirstName&#x27;, res[&#x27;first_name&#x27;]);
+      this_context.cookieService.set(&#x27;userLastName&#x27;, res[&#x27;last_name&#x27;]);
+    });
+  }
+
+  convertTokenHandler(this_context, request, accessToken) {
+    this_context.requester.convertToken(accessToken).subscribe(response &#x3D;&gt; {
+      this_context.results &#x3D; response[&#x27;body&#x27;];
+      this_context.cookieService.set(&#x27;bearer_token&#x27;, this_context.results[&#x27;access_token&#x27;]);
+      this_context.getActualUserHandler(this_context, this_context.results[&#x27;access_token&#x27;]);
+      setTimeout(function(){window.location.replace(&#x27;/&#x27;)}, 500);
+      // this.router.navigate([&#x27;&#x27;]);
+    });
+  }
+
+  loginFacebook(This, response) {
+    let req: any;
+
+    if(response.status &#x3D;&#x3D; &quot;connected&quot;) {
+      var bearer_token &#x3D; This.cookieService.get(&#x27;bearer_token&#x27;);
+      if(bearer_token &#x3D;&#x3D; &#x27;&#x27;) {
+        var accessToken &#x3D; response.authResponse.accessToken;
+        req &#x3D; This.requester.convertToken(accessToken);
+        This.convertTokenHandler(This, req, accessToken);
+      }
+    }
+  }
+
+  logout(cookieService) {
+    cookieService.set(&#x27;bearer_token&#x27;, &#x27;&#x27;);
+    cookieService.set(&#x27;basic_token&#x27;, &#x27;&#x27;);
+    cookieService.set(&#x27;userID&#x27;, &#x27;&#x27;);
+    cookieService.set(&#x27;userUsername&#x27;, &#x27;&#x27;);
+    cookieService.set(&#x27;userFirstName&#x27;, &#x27;&#x27;);
+    cookieService.set(&#x27;userLastName&#x27;, &#x27;&#x27;);
+    FB.getLoginStatus(function(response) {
+      if(response.status &#x3D;&#x3D; &quot;connected&quot;) {
+        console.log(&#x27;logout&#x27;);
+        FB.logout();
+      }
+    });
+  }
+
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'Window.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <script src="../js/menu-wc.js"></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PropositionComponent } from './proposition.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RequestsService } from '../requests.service';
@@ -9,13 +8,13 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PropositionComponent', () => {
+  
   let component: PropositionComponent;
-  let fixture: ComponentFixture<PropositionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule.withRoutes([{ path: 'proposition/:id', component: PropositionComponent}]),
+        RouterTestingModule.withRoutes([{path: 'proposition/:id', component:  PropositionComponent}]),
         HttpClientModule
       ],
       declarations: [ PropositionComponent ],
@@ -28,6 +27,8 @@ describe('PropositionComponent', () => {
     })
     .compileComponents();
   }));
+
+  let fixture: ComponentFixture<PropositionComponent>;
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PropositionComponent);

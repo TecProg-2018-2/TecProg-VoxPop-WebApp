@@ -8,16 +8,17 @@ import { TokenService } from '../token.service';
   templateUrl: './termos-de-servico.component.html',
   styleUrls: ['./termos-de-servico.component.css']
 })
-export class TermosDeServicoComponent implements OnInit {
 
+export class TermosDeServicoComponent implements OnInit {
   tokenValue = '';
-  constructor(private requester: RequestsService,
-              private cookieService: CookieService,
-              private token: TokenService) { }
+  constructor(
+    private requester: RequestsService,
+    private cookieService: CookieService,
+    private token: TokenService
+    ) { }
 
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
   }
-
 }

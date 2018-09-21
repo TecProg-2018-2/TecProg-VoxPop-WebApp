@@ -1,10 +1,9 @@
- /***********************************************************************
-  * File: contact-us.component.ts
-  * Purpose: Contact Us class implementation
-  * Notice: All rights reserved.
-  * Description File:  It is responsible to give the user a way to contact
-  * the company.
-  ***********************************************************************/
+/**********************************************************************
+* File: contact-us.component.ts
+* Purpose: ContactUsComponent class implementation
+* Notice: All rights reserved.
+* Description File: Creates the 'contact us' component to make contact with the voxpop team. 
+***********************************************************************/
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -19,7 +18,11 @@ import { TokenService } from '../token.service';
   styleUrls: ['./contact-us.component.css']
 })
 
-/* Responsible class for form to contact. */
+/**
+ * Class to get all the information of user (token, id, information of contact)
+ *  and use on the form that will be envoyed.
+ * @class
+ */
 export class ContactUsComponent implements OnInit {
 
   tokenValue: string = '';
@@ -31,19 +34,32 @@ export class ContactUsComponent implements OnInit {
     text: ''
   };
 
+/**
+ * Default constructor
+ * @param router 
+ * @param requester 
+ * @param cookieService 
+ * @param token 
+ */
   constructor(private router: Router,
     private requester: RequestsService,
     private cookieService: CookieService,
     private token: TokenService) { }
 
-  /* Default routine to initialize component. */
-  ngOnInit() {
+
+/**
+ * Default routine to initialize component.
+ */
+    ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.idValue = +this.cookieService.get('userID');
   }
   
-  /* Method to post a message from the input in another iframe. */
+/**
+ * Makes post request to post messages.
+ * @return input form
+ */
   postMsg() {
     const request = this.input;
     const response = this.requester.postMessage(this.input);
@@ -51,10 +67,16 @@ export class ContactUsComponent implements OnInit {
     return request;
   }
 
-  /* Method to verify if the message was sucessfully posted. */
+/**
+ * Informs whether the comment was posted successfully or not.
+ * @param request 
+ */
   postMsgHandler(request) {
     request.subscribe(response => {
       const statusMsg: any = response.status;
+      /*
+      * If contact is successful, the div 'contactSuccess' is shown
+      */
       if (this.requester.didSucceed(statusMsg)) {
         document.getElementById('contactSuccess').style.display = 'block';
       }
@@ -63,15 +85,17 @@ export class ContactUsComponent implements OnInit {
     });
   }
 
-  /* Method to back to Homepage. */
+/**
+ * Creates route to homepage for back button
+ */
   backToHomepage() {
     this.router.navigate(['']);
   }
-
-/*
- * Method to display if the sending requisition of the message goes wrong.
- * Depending of the error status, it will be displayed a block.
-*/
+/**
+ * Gives error messages linked to error status
+ * @param statusRequest 
+ * @return the requisition status
+ */
   errorHandler(statusRequest: any) {
     if (statusRequest === 401) {
       document.getElementById('contactFail').style.display = 'block';
