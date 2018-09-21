@@ -1,4 +1,4 @@
-  /**********************************************************************
+ /**********************************************************************
   * File: how-to-use.component.ts
   * Purpose: HowToUseComponent class implementation
   * Notice: All rights reserved.
@@ -39,4 +39,3 @@
      this.token.checkToken(this.tokenValue);
    }
  }
- 

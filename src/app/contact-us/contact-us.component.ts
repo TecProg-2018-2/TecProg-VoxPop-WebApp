@@ -11,11 +11,13 @@ import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 
+/* Component classes and its metadata. */
 @Component({
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
   styleUrls: ['./contact-us.component.css']
 })
+
 /**
  * Class to get all the information of user (token, id, information of contact)
  *  and use on the form that will be envoyed.
@@ -31,6 +33,7 @@ export class ContactUsComponent implements OnInit {
     contactReason: '',
     text: ''
   };
+
 /**
  * Default constructor
  * @param router 
@@ -43,6 +46,7 @@ export class ContactUsComponent implements OnInit {
     private cookieService: CookieService,
     private token: TokenService) { }
 
+
 /**
  * Default routine to initialize component.
  */
@@ -51,6 +55,7 @@ export class ContactUsComponent implements OnInit {
     this.token.checkToken(this.tokenValue);
     this.idValue = +this.cookieService.get('userID');
   }
+  
 /**
  * Makes post request to post messages.
  * @return input form
@@ -61,6 +66,7 @@ export class ContactUsComponent implements OnInit {
     this.postMsgHandler(response);
     return request;
   }
+
 /**
  * Informs whether the comment was posted successfully or not.
  * @param request 
@@ -78,6 +84,7 @@ export class ContactUsComponent implements OnInit {
       this.errorHandler(error.status);
     });
   }
+
 /**
  * Creates route to homepage for back button
  */

@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 
+/* Component classes and its metadata. */
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -19,6 +20,10 @@ import { TokenService } from '../token.service';
  * @class 
  */
 export class SidebarComponent implements OnInit {
+
+  sidebar: string = '';
+  tokenValue: string = '';
+
 /**
  * Default constructor
  * @param cookieService 
@@ -29,15 +34,11 @@ export class SidebarComponent implements OnInit {
     private token: TokenService,
   ) { }
 
-  sidebar: string = '';
-  tokenValue: string = '';
-/**
- * Default routine to initialize component.
- */
   ngOnInit() {
     this.sidebar = this.cookieService.get('sidebar');
     this.setSidebar(this.sidebar);
   }
+
 /**
  * Method responsible for set the menu sidebar, 
  * activating and deactivating it according to the user's permission
@@ -53,6 +54,7 @@ export class SidebarComponent implements OnInit {
       contentStatus.classList.toggle('active');
     }
   }
+
 /**
  * Method responsible for disabling sidebar.
  * @return the sidebar status (disabled or enabled)
