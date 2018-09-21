@@ -179,12 +179,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/propositions/propositions.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/propositions/propositions.component.ts:25</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Default constructor</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -284,13 +286,15 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/propositions/propositions.component.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/propositions/propositions.component.ts:94</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Answer a proposition, request sucessfully or not to vote.</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -353,7 +357,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/propositions/propositions.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/propositions/propositions.component.ts:46</a></div>
                             </td>
                         </tr>
 
@@ -391,18 +395,26 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/propositions/propositions.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/propositions/propositions.component.ts:58</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Makes post request to post messages.</p>
+</div>
 
+                            <div>
+                            </div>
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                             </div>
+                                <div class="io-description">
+                                    <p>projects</p>
+
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -429,13 +441,15 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/propositions/propositions.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/propositions/propositions.component.ts:82</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Informs whether the projects request was successfully or not.</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -511,10 +525,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/propositions/propositions.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/propositions/propositions.component.ts:44</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Default routine to initialize component.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -562,7 +582,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/propositions/propositions.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/propositions/propositions.component.ts:64</a></div>
                             </td>
                         </tr>
 
@@ -601,7 +621,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/propositions/propositions.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/propositions/propositions.component.ts:45</a></div>
                             </td>
                         </tr>
 
@@ -627,8 +647,19 @@ import { TokenService } from &#x27;../token.service&#x27;;
   templateUrl: &#x27;./propositions.component.html&#x27;,
   styleUrls: [&#x27;./propositions.component.css&#x27;]
 })
+/**
+ * Class to request all propositions with filter.
+ * @class
+ */
 export class PropositionsComponent implements OnInit {
 
+  /**
+   * Default constructor
+   * @param router
+   * @param requester
+   * @param cookieService
+   * @param token
+   */
   constructor(
     private router: Router,
     private requester: RequestsService,
@@ -636,8 +667,11 @@ export class PropositionsComponent implements OnInit {
     private token: TokenService
   ) { }
 
+  /**
+   * Default routine to initialize component.
+   */
   idValue: number &#x3D; 0;
-  tokenValue: string &#x3D; &#x27;&#x27;; 
+  tokenValue: string &#x3D; &#x27;&#x27;;
   ngOnInit() {
     this.tokenValue &#x3D; this.token.getToken();
     this.token.checkToken(this.tokenValue);
@@ -646,6 +680,10 @@ export class PropositionsComponent implements OnInit {
     this.projects();
   }
 
+  /**
+   * Makes post request to post messages.
+   * @return projects
+   */
   projects() {
     const requisition &#x3D; this.requester.getProjects();
     this.projectsHandler(requisition);
@@ -666,6 +704,10 @@ export class PropositionsComponent implements OnInit {
     populationApproval: &#x27;&#x27;,
   }
 
+  /**
+   * Informs whether the projects request was successfully or not.
+   * @param request
+   */
   projectsHandler(request) {
     request.subscribe(response &#x3D;&gt; {
       response[&#x27;parliamentariansApproval&#x27;] &#x3D; parseFloat(response[&#x27;parliamentariansApproval&#x27;]);
@@ -674,6 +716,10 @@ export class PropositionsComponent implements OnInit {
     });
   }
 
+  /**
+   * Answer a proposition, request sucessfully or not to vote.
+   * @param opinion
+   */
   answerPL(opinion: string) {
     var vote: VoteModel &#x3D; {
       proposition: this.proposition.id,
@@ -682,6 +728,9 @@ export class PropositionsComponent implements OnInit {
     this.requester.postVote(vote).subscribe(response &#x3D;&gt; {
       var status;
       status &#x3D; response.status;
+      /*
+      * If vote is successful, the div &#x27;votes&#x27; is shown
+      */
       if (!this.requester.didSucceed(status)) {
         alert(&quot;Voto não registrado, favor tentar de novo mais tarde&quot;);
       } else {
