@@ -170,12 +170,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/register-form/register-form.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/register-form/register-form.component.ts:25</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Default constructor</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -275,13 +277,15 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/register-form/register-form.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/register-form/register-form.component.ts:43</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Default routine to initialize component.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -313,18 +317,26 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/register-form/register-form.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/register-form/register-form.component.ts:65</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Makes post request to post user.</p>
+</div>
 
+                            <div>
+                            </div>
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                             </div>
+                                <div class="io-description">
+                                    <p>post user</p>
+
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -351,13 +363,15 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/register-form/register-form.component.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/register-form/register-form.component.ts:94</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Informs whether the user was posted successfully or not.</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -447,7 +461,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/register-form/register-form.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/register-form/register-form.component.ts:45</a></div>
                             </td>
                         </tr>
 
@@ -474,15 +488,29 @@ import { CookieService } from &#x27;ngx-cookie-service&#x27;;
   templateUrl: &#x27;./register-form.component.html&#x27;,
   styleUrls: [&#x27;./register-form.component.css&#x27;]
 })
+/**
+ * Class to register a user.
+ * @class
+ */
 export class RegisterFormComponent implements OnInit {
 
+  /**
+   * Default constructor
+   * @param router
+   * @param requester
+   * @param cookieService
+   * @param validator
+   */
   constructor(private router: Router,
     private requester: RequestsService,
     private validator: InputValidatorService,
     private cookieService: CookieService
   ) { }
 
-  ngOnInit() { } 
+  /**
+   * Default routine to initialize component.
+   */
+  ngOnInit() { }
 
   user: any &#x3D; {
     username: &#x27;&#x27;,
@@ -500,7 +528,14 @@ export class RegisterFormComponent implements OnInit {
     }
   };
 
+  /**
+   * Makes post request to post user.
+   * @return post user
+   */
   registerUser() {
+    /*
+     * Init all informations of user with null value.
+     */
     if(this.user.socialInformation.region &#x3D;&#x3D; &#x27;null&#x27;) {
       this.user.socialInformation.region &#x3D; null;
     }
@@ -516,15 +551,22 @@ export class RegisterFormComponent implements OnInit {
     if(this.user.socialInformation.gender &#x3D;&#x3D; &#x27;null&#x27;) {
       this.user.socialInformation.gender &#x3D; null;
     }
-    let requisition; 
+    let requisition;
     requisition &#x3D; this.requester.postUser(this.user);
     this.registerUserHandler(requisition);
     return requisition;
   }
 
+  /**
+   * Informs whether the user was posted successfully or not.
+   * @param request
+   */
   registerUserHandler(request) {
     request.subscribe(response &#x3D;&gt; {
       const statusUser &#x3D; response.status;
+      /*
+      * If request is successful, the route navigate to login and cookie set true login
+      */
       if (this.requester.didSucceed(statusUser)) {
         this.router.navigate([&#x27;login&#x27;]);
         this.cookieService.set(&#x27;success&#x27;, &#x27;true&#x27;);
