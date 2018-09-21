@@ -1,4 +1,4 @@
- /**********************************************************************
+ /***********************************************************************
   * File: contact-us.component.ts
   * Purpose: Contact Us class implementation
   * Notice: All rights reserved.
@@ -69,7 +69,7 @@ export class ContactUsComponent implements OnInit {
   }
 
 /*
- * Method to display if the requisition to send a message goes wrong.
+ * Method to display if the sending requisition of the message goes wrong.
  * Depending of the error status, it will be displayed a block.
 */
   errorHandler(statusRequest: any) {
