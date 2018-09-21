@@ -1,3 +1,9 @@
+/**********************************************************************
+* File: user-following.component.ts
+* Purpose: UserFollowingComponent class implementation
+* Notice: All rights reserved.
+* Description File: Creates the 'user following' component to make following user on platform.
+***********************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -8,14 +14,27 @@ import { TokenService } from '../token.service';
   templateUrl: './user-following.component.html',
   styleUrls: ['./user-following.component.css']
 })
+/**
+ * Class to request follow to a user.
+ * @class
+ */
 export class UserFollowingComponent implements OnInit {
 
+  /**
+   * Default constructor
+   * @param requester
+   * @param cookieService
+   * @param token
+   */
   constructor(
     private requester: RequestsService,
     private cookieService: CookieService,
     private token: TokenService
   ) { }
 
+  /**
+   * Default routine to initialize component.
+   */
   tokenValue: string = '';
   ngOnInit() {
     this.tokenValue = this.token.getToken();
@@ -24,6 +43,11 @@ export class UserFollowingComponent implements OnInit {
     this.loadPage(1, '');
   }
 
+  /**
+   * Load the page with following parliamentarians.
+   * @param offset
+   * @param termOnSearch
+   */
   offset: number = 1;
   itemsPerPage: number = 36;
   termOnSearch: string = '';
@@ -31,6 +55,9 @@ export class UserFollowingComponent implements OnInit {
     this.termOnSearch = termOnSearch;
     let requisition: any; // T5 - NOME DE VARIÁVEIS MAIS SIGNIFICATIVOS
     termOnSearch = termOnSearch.toUpperCase();
+    /*
+     * If number of page is invalid this alert.
+     */
     if (offset < 1 || isNaN(Number(offset))) {
       alert('Número de páginas inválido, favor digitar um número positivo');
       return;
@@ -65,6 +92,11 @@ export class UserFollowingComponent implements OnInit {
     }
   ];
 
+  /**
+   * Request all parlamentarians following.
+   * @param offset
+   * @param request
+   */
   loading: boolean = true;
   pages: number = 1;
   handleFollowingParliamentariansResponse(request, offset) {

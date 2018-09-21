@@ -1,3 +1,9 @@
+/**********************************************************************
+* File: register-form.component.ts
+* Purpose: RegisterFormComponent class implementation
+* Notice: All rights reserved.
+* Description File: Creates the 'register form' component to make form to register user.
+***********************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestsService } from '../requests.service';
@@ -12,15 +18,29 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css']
 })
+/**
+ * Class to register a user.
+ * @class
+ */
 export class RegisterFormComponent implements OnInit {
 
+  /**
+   * Default constructor
+   * @param router
+   * @param requester
+   * @param cookieService
+   * @param validator
+   */
   constructor(private router: Router,
     private requester: RequestsService,
     private validator: InputValidatorService,
     private cookieService: CookieService
   ) { }
 
-  ngOnInit() { } 
+  /**
+   * Default routine to initialize component.
+   */
+  ngOnInit() { }
 
   user: any = {
     username: '',
@@ -38,7 +58,14 @@ export class RegisterFormComponent implements OnInit {
     }
   };
 
+  /**
+   * Makes post request to post user.
+   * @return post user
+   */
   registerUser() {
+    /*
+     * Init all informations of user with null value.
+     */
     if(this.user.socialInformation.region == 'null') {
       this.user.socialInformation.region = null;
     }
@@ -54,15 +81,22 @@ export class RegisterFormComponent implements OnInit {
     if(this.user.socialInformation.gender == 'null') {
       this.user.socialInformation.gender = null;
     }
-    let requisition; 
+    let requisition;
     requisition = this.requester.postUser(this.user);
     this.registerUserHandler(requisition);
     return requisition;
   }
 
+  /**
+   * Informs whether the user was posted successfully or not.
+   * @param request
+   */
   registerUserHandler(request) {
     request.subscribe(response => {
       const statusUser = response.status;
+      /*
+      * If request is successful, the route navigate to login and cookie set true login
+      */
       if (this.requester.didSucceed(statusUser)) {
         this.router.navigate(['login']);
         this.cookieService.set('success', 'true');
