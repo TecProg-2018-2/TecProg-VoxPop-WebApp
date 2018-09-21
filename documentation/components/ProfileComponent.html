@@ -173,7 +173,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/profile/profile.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/profile/profile.component.ts:42</a></div>
                             </td>
                         </tr>
 
@@ -278,13 +278,15 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/profile/profile.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/profile/profile.component.ts:71</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Directs the user to the page to edit their profile data. </p>
+</div>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -316,13 +318,15 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/profile/profile.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/profile/profile.component.ts:54</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Called when the component is initialized.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -371,7 +375,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/profile/profile.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/profile/profile.component.ts:42</a></div>
                             </td>
                         </tr>
 
@@ -423,7 +427,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/profile/profile.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/profile/profile.component.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -462,7 +466,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/profile/profile.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/profile/profile.component.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -487,9 +491,12 @@ import { RequestsService } from &#x27;../requests.service&#x27;;
   styleUrls: [&#x27;./profile.component.css&#x27;]
 })
 
+/**
+ * Loads the data of the logged in user.
+ */
 export class ProfileComponent implements OnInit {
 
-  userID: number &#x3D; 0;
+  userID: number &#x3D; 0; /* logged in user id */
 
   user: any &#x3D; {
     username: &#x27;&#x27;,
@@ -506,9 +513,8 @@ export class ProfileComponent implements OnInit {
     }
   };
 
-  tokenValue: string &#x3D; &#x27;&#x27;;
+  tokenValue: string &#x3D; &#x27;&#x27;; /* user session token */
 
-  // T01 - Identação
   constructor(
     private router: Router,
     private cookieService: CookieService,
@@ -516,20 +522,26 @@ export class ProfileComponent implements OnInit {
     private requester: RequestsService
   ) { }
 
+  /**
+   * Called when the component is initialized.
+   */
   ngOnInit() {
     this.tokenValue &#x3D; this.token.getToken();
     this.token.checkToken(this.tokenValue);
+    /* Filter the features that the user has access to */
     this.token.filterRestrictPage(this.tokenValue);
     this.userID &#x3D; +this.cookieService.get(&#x27;userID&#x27;);
+    /* Loads user data by id in session cookie */
     this.requester.getUser(this.userID).subscribe( response &#x3D;&gt; {
-      // console.log(response);
       this.user &#x3D; response[&#x27;body&#x27;];
-      // console.log(this.user);
     }, error &#x3D;&gt; {
       console.log(&#x27;something wrong&#x27;);
     });
   }
 
+  /**
+   * Directs the user to the page to edit their profile data. 
+   */
   edit() {
     this.router.navigate([&#x27;perfil/editar&#x27;]);
   }

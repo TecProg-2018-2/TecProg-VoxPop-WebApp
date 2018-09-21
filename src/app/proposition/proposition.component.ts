@@ -1,3 +1,10 @@
+  /**********************************************************************
+  * File: proposition.component.ts
+  * Purpose: PropositionComponent class implementation
+  * Notice: All rights reserved.
+  * Description File:  Details a proposal in the Chamber of Deputies
+  ***********************************************************************/
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RequestsService } from '../requests.service';
@@ -12,6 +19,9 @@ declare var Chart: any;
   styleUrls: ['./proposition.component.css']
 })
 
+/**
+ * Details a proposal in the Chamber of Deputies
+ */
 export class PropositionComponent implements OnInit {
 
   tokenValue: string = '';
@@ -51,19 +61,24 @@ export class PropositionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private requester: RequestsService,
-    private token: TokenService,
-    private cookieService: CookieService
+    private token: TokenService
   ) { }
 
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
+    /* Get the proposal id passed in the route on the page before it. */
     this.sub = this.route.params.subscribe(params => {
       this.idProposition = +params['id'];
     });
+    /* Get the details of a proposal according to the id. */
     this.requester.getPropositionSpecific(this.idProposition).subscribe(response => {
       this.proposition = response['body'];
     });
+    /**
+     * It takes the social data of the proposal and modifies the html and css of the page according 
+     * to the votes of the deputies present social categories.
+     */
     this.requester.getPropositionSpecificSocialInfo(this.idProposition).subscribe(response => {
 
       const approvalText: string = 'Porcentagem de aprovação';
@@ -612,6 +627,10 @@ export class PropositionComponent implements OnInit {
     });
   }
 
+  /**
+   * Responsible for detailing a proposition.
+   * @param proposition_url URL of the proposal selected by the user
+   */
   openProposition(proposition_url) {
     window.open(
       proposition_url,

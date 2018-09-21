@@ -293,7 +293,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/see-pl/see-pl.component.ts:100</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/see-pl/see-pl.component.ts:103</a></div>
                             </td>
                         </tr>
 
@@ -312,6 +312,7 @@ data.</p>
                                             <tr>
                                                 <td>Name</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -323,6 +324,10 @@ data.</p>
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>Responsible request to receive propositions</p>
+</code>
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>offset</td>
@@ -332,6 +337,10 @@ data.</p>
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>Requested page</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -371,7 +380,7 @@ data.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/see-pl/see-pl.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/see-pl/see-pl.component.ts:84</a></div>
                             </td>
                         </tr>
 
@@ -484,7 +493,7 @@ component</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/app/see-pl/see-pl.component.ts:142</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/app/see-pl/see-pl.component.ts:151</a></div>
                             </td>
                         </tr>
 
@@ -552,13 +561,16 @@ proposition according to the index inserted.</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/see-pl/see-pl.component.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/see-pl/see-pl.component.ts:124</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Method responsible for updating appearence 
+of buttons.</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -567,6 +579,7 @@ proposition according to the index inserted.</p>
                                             <tr>
                                                 <td>Name</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -578,6 +591,10 @@ proposition according to the index inserted.</p>
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>Requested page</p>
+</code>
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>limit</td>
@@ -587,6 +604,10 @@ proposition according to the index inserted.</p>
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>Proposition page limit</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -1061,6 +1082,7 @@ export class SeePlComponent implements OnInit {
   /**
    * Responsible routine load page according
    * to the number entered in the search.
+   * @param offset 
    */
   loadPage(offset: number) {
     let request: any;
@@ -1078,6 +1100,8 @@ export class SeePlComponent implements OnInit {
    * Method responsible for verifing informations 
    * obtained from a given page and treat the same 
    * data.
+   * @param request Responsible request to receive propositions
+   * @param offset Requested page
    */
   handlePropositionsResponse(request, offset) {
     this.requester.getProposition(this.itemsPerPage, (offset - 1) * this.itemsPerPage).subscribe( response &#x3D;&gt; {
@@ -1094,7 +1118,12 @@ export class SeePlComponent implements OnInit {
     });
   }
 
-
+  /**
+   * Method responsible for updating appearence 
+   * of buttons.
+   * @param offset Requested page
+   * @param limit  Proposition page limit
+   */
   updateButtonsAppearence(offset, limit) {
     /**
      * According offset value the appearence of
@@ -1120,6 +1149,7 @@ export class SeePlComponent implements OnInit {
   /**
    * Method responsible for defining the specific 
    * proposition according to the index inserted.
+   * @param index
    */
   setSpecificProposition(index) {
     this.position &#x3D; index;
