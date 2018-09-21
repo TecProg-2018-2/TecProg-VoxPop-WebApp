@@ -41,6 +41,13 @@ export class ProfileComponent implements OnInit {
 
   tokenValue: string = ''; /* user session token */
 
+  /**
+   * 
+   * @param router Angular class that navigates other pages
+   * @param cookieService Service that operates on session cookies 
+   * @param token Service that operates on session tokens
+   * @param requester Service responsible for making API requests
+   */
   constructor(
     private router: Router,
     private cookieService: CookieService,
@@ -52,12 +59,13 @@ export class ProfileComponent implements OnInit {
    * Called when the component is initialized.
    */
   ngOnInit() {
+    /* Filter user accesses logged in with session token */
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
-    /* Filter the features that the user has access to */
     this.token.filterRestrictPage(this.tokenValue);
-    this.userID = +this.cookieService.get('userID');
+
     /* Loads user data by id in session cookie */
+    this.userID = +this.cookieService.get('userID');
     this.requester.getUser(this.userID).subscribe( response => {
       this.user = response['body'];
     }, error => {

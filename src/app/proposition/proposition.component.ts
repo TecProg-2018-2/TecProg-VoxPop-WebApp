@@ -25,24 +25,27 @@ declare var Chart: any;
 export class PropositionComponent implements OnInit {
 
   tokenValue: string = '';
-  sub: any = 0;
   idProposition: number = 0;
-  loadingStatus: boolean = true;
-  socialInformation: any = 0;
-  regionContext: HTMLElement;
-  regionChart: any = 0;
-  incomeContext: HTMLElement;
-  incomeChart: any = 0;
-  educationContext: HTMLElement;
-  educationChart: any = 0;
+  loadingStatus: boolean = true; /* Sets the loading status on the html page. */
+  socialInformation: any = null;
+
+  /* Objects that will receive template changes. */
+  regionChart: any = null;
+  incomeChart: any = null;
+  educationChart: any = null;
+  raceChart: any = null;
+  genderChart: any = null;
+  parliamentarianChart: any = null;
+  populationChart: any = null;
+
+  /* Html items to change the screen design. */
   raceContext: HTMLElement;
-  raceChart: any = 0;
   genderContext: HTMLElement;
-  genderChart: any = 0;
-  parliamentarianContext: HTMLElement;
-  parliamentarianChart: any = 0 ;
+  regionContext: HTMLElement;
+  incomeContext: HTMLElement;
+  educationContext: HTMLElement;
   populationContext: HTMLElement;
-  populationChart: any = 0 ;
+  parliamentarianContext: HTMLElement;
 
   proposition: any = {
     proposition_id: 0,
@@ -58,23 +61,35 @@ export class PropositionComponent implements OnInit {
     population_approval: '',
   }
 
+  /**
+   * 
+   * @param router Angular class that navigates other pages
+   * @param token Service that operates on session tokens
+   * @param requester Service responsible for making API requests
+   */
   constructor(
     private route: ActivatedRoute,
     private requester: RequestsService,
     private token: TokenService
   ) { }
 
+ /**
+  * Called when the component is initialized.
+  */
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
+
     /* Get the proposal id passed in the route on the page before it. */
-    this.sub = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.idProposition = +params['id'];
     });
+
     /* Get the details of a proposal according to the id. */
     this.requester.getPropositionSpecific(this.idProposition).subscribe(response => {
       this.proposition = response['body'];
     });
+    
     /**
      * It takes the social data of the proposal and modifies the html and css of the page according 
      * to the votes of the deputies present social categories.

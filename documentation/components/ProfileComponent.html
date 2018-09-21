@@ -187,6 +187,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -201,6 +202,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <code><p>Rota</p>
+</code>
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>cookieService</td>
@@ -213,6 +218,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <code><p>Service </p>
+</code>
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>token</td>
@@ -225,6 +234,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <code><p>Servicw</p>
+</code>
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>requester</td>
@@ -237,6 +250,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <code><p>Services</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -278,7 +295,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/profile/profile.component.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/profile/profile.component.ts:78</a></div>
                             </td>
                         </tr>
 
@@ -318,7 +335,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/profile/profile.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/profile/profile.component.ts:61</a></div>
                             </td>
                         </tr>
 
@@ -515,6 +532,13 @@ export class ProfileComponent implements OnInit {
 
   tokenValue: string &#x3D; &#x27;&#x27;; /* user session token */
 
+  /**
+   * 
+   * @param router Rota
+   * @param cookieService Service 
+   * @param token  Servicw
+   * @param requester Services
+   */
   constructor(
     private router: Router,
     private cookieService: CookieService,
