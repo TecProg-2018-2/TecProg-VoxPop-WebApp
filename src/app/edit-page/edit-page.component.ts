@@ -1,3 +1,10 @@
+/**********************************************************************
+* File: editpage.component.ts
+* Purpose: EditPageComponent class implementation
+* Notice: All rights reserved.
+* Description File:  Edit all current user informations
+***********************************************************************/
+
 import { Component, OnInit } from '@angular/core';
 import { RegisterFormComponent } from '../register-form/register-form.component';
 import { Router } from '@angular/router';
@@ -13,9 +20,13 @@ import { InputValidatorService } from '../input-validator.service';
   styleUrls: ['./edit-page.component.css']
 })
 
+/**
+  *  class responsible for editing user informations
+  */
 export class EditPageComponent implements OnInit {
 
-  tokenValue: string = '';
+  tokenValue: string = ''; /* Variable that storage the token of logged user*/
+
   userID: number = 0;
 
   user: any = {
@@ -44,22 +55,30 @@ export class EditPageComponent implements OnInit {
     public validator: InputValidatorService
   ) { }
 
+  /**
+   * Standart method for initializing the
+   * Angular component
+   */
   ngOnInit() {
     this.tokenValue = this.token.getToken();
-    
+
     this.token.checkToken(this.tokenValue);
-    
+
     this.token.filterRestrictPage(this.tokenValue);
-    
+
     this.userID = +this.cookieService.get('userID');
 
     this.requester.getUser(this.userID)
-    .subscribe( 
+    .subscribe(
       response => {
         this.user = response['body'];
     });
   }
 
+  /**
+  *  Method responsible for update the data about user
+  *  according the user social information.
+  */
   updateUser() {
     const userSocialInformation = this.user.social_information;
     const user = this.user;
@@ -86,7 +105,10 @@ export class EditPageComponent implements OnInit {
     }
   }
 
-
+  /**
+  *  Method responsible for redirect the page according
+  *  the status response of user update.
+  */
   updateUserHandler(request) {
     request.subscribe(response => {
       const statusUser = response.status;
@@ -99,6 +121,11 @@ export class EditPageComponent implements OnInit {
     });
   }
 
+  /**
+  *  Method responsible for showing to the user
+  *  the error in editing, when the response status 401,
+  *  500 or 400.
+  */
   errorHandler(status: number) {
     if (status === 401) {
       document.getElementById('alert-invalid').style.display = 'block';

@@ -1,3 +1,9 @@
+/**********************************************************************
+* File: input-validator.service.ts
+* Purpose: InputValidatorService class implementation
+* Notice: All rights reserved.
+* Description File:  Verify the value of user fields
+***********************************************************************/
 import { Injectable, NgModule } from '@angular/core';
 
 @Injectable()
@@ -7,7 +13,9 @@ import { Injectable, NgModule } from '@angular/core';
   declarations: [],
   exports: []
 })
-
+/**
+  *  class responsible for set up the user fields validations.
+  */
 export class InputValidatorService {
 
   valueErrorHandler: string = '';
@@ -23,9 +31,14 @@ export class InputValidatorService {
   statusValidPassword: boolean = false;
   statusUsername: boolean = false;
   statusEmail: boolean = false;
-  colorDanger: string = '#d9534f';
-  colorSucess: string = '#5cb85c';
+  colorDanger: string = '#d9534f'; /* Stores the color to be shown if the field is invalid*/
+  colorSucess: string = '#5cb85c'; /* Stores the color to be shown if the field is valid*/
 
+  /**
+  *  Method responsible for showing to the user
+  *  the error in the field, when the response status
+  *  500 or 400.
+  */
   errorHandler(status: number) {
     if (status === 500) {
       document.getElementById('alert-invalid').style.display = 'block';
@@ -36,9 +49,14 @@ export class InputValidatorService {
     }
   }
 
+  /**
+  *  Method responsible for show the success message
+  *  or danger message according with password validation
+  *
+  */
   onKeyPassword(eventPassword: any) {
     this.password = eventPassword.target.value;
-    
+
     const validPassword = this.isPasswordValid(this.password);
 
     if (!validPassword) {
@@ -52,11 +70,20 @@ export class InputValidatorService {
       this.borderColor('password', this.colorSucess);
     }
   }
-  
+
+  /**
+  *  Method responsible for verify if passwords
+  *  are equals.
+  */
   onKeyConfirmPassword(eventPassword: any) {
     this.confirmPassword = eventPassword.target.value;
   }
-  
+
+  /**
+  *  Method responsible for show the success message
+  *  or danger message according with user name validation
+  *
+  */
   onKeyUsername(eventUsername: any) {
     let username = eventUsername.target.value;
 
@@ -81,6 +108,11 @@ export class InputValidatorService {
 
   }
 
+  /**
+  *  Method responsible for show the success message
+  *  or danger message according with user email validation
+  *
+  */
   onKeyEmail(eventEmail: any) {
     let email = eventEmail.target.value;
     if (this.isEmailValid(email)){
@@ -101,6 +133,10 @@ export class InputValidatorService {
     }
   }
 
+  /**
+  *  Method responsible for show success or danger message
+  *  if passwords matchs.
+  */
   onKeyValidatorPassword() {
     if (this.isConfirmedPassword(this.confirmPassword, this.password)) {
       document.getElementById('alert-password').style.display = 'none';
@@ -115,6 +151,10 @@ export class InputValidatorService {
     }
   }
 
+  /**
+  *  Method responsible for verify if the user name
+  *  is in  accordance with standart format.
+  */
   isUsernameValid(username) {
     const format = /^[a-zA-Z0-9]+$/;
     if (format.test(username)) {
@@ -123,6 +163,10 @@ export class InputValidatorService {
     return false;
   }
 
+   /**
+  *  Method responsible for verify if the user name
+  *  is in  accordance with standart length.
+  */
   isUsernameSizeValid(username) {
     if (username.length > 3 && username.length < 21) {
       return true;
@@ -130,6 +174,10 @@ export class InputValidatorService {
     return false;
   }
 
+   /**
+  *  Method responsible for verify if the user email
+  *  is in  accordance with standart format regex for emails.
+  */
   isEmailValid(email) {
     const EMAILRGX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (EMAILRGX.test(email)) {
@@ -139,6 +187,10 @@ export class InputValidatorService {
     }
   }
 
+   /**
+  *  Method responsible for verify if the password and
+  *  password confirmation match.
+  */
   isConfirmedPassword(password, confPassword) {
     if (password === confPassword) {
       return true;
@@ -146,6 +198,10 @@ export class InputValidatorService {
     return false;
   }
 
+  /**
+  *  Method responsible for verify if the user password
+  *  is in  accordance with standart length.
+  */
   isPasswordValid(password) {
     if (password.length > 5 && password.length < 50) {
       return true;
@@ -153,6 +209,10 @@ export class InputValidatorService {
     return false;
   }
 
+   /**
+  *  Method responsible for verify if all fields are filled,
+  *  when editing.
+  */
   validatorEditUser() {
     if (!this.statusUsername && !this.statusEmail) {
       document.getElementById('alert-invalid-inputs').style.display = 'block';
@@ -171,6 +231,11 @@ export class InputValidatorService {
       }
     }
   }
+
+  /**
+  *  Method responsible for verify if all fields are filled,
+  *  when registering.
+  */
   validatorRegisterUser() {
     if (this.statusPassword && this.statusUsername && this.statusEmail && this.statusValidPassword) {
       document.getElementById('firstPart').style.display = 'none';
@@ -201,14 +266,22 @@ export class InputValidatorService {
     }
  }
 
- borderColor(id, color) {
-  document.getElementById(id).style.borderColor = color;
- }
 
- clickReturnButton () {
-  document.getElementById('firstPart').style.display = 'block';
-  document.getElementById('secondPart').style.display = 'none';
-  document.querySelector('#registerBtn').setAttribute('disabled', 'disabled');
+  /**
+  *  Method responsible for set border color according id
+  */
+  borderColor(id, color) {
+    document.getElementById(id).style.borderColor = color;
+  }
+
+  /**
+  *  Method responsible for active the register button
+  * according status
+  */
+  clickReturnButton () {
+    document.getElementById('firstPart').style.display = 'block';
+    document.getElementById('secondPart').style.display = 'none';
+    document.querySelector('#registerBtn').setAttribute('disabled', 'disabled');
 }
 
 
