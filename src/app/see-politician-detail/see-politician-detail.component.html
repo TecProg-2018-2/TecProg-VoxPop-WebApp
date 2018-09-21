@@ -12,7 +12,7 @@
         <p>Caregando dados...</p>
         <div class="loader"></div>
       </div>
-    </div>
+  </div>
   <!-- <ng-container *ngIf="!loader" > -->
   <div class="row">
     <ng-container *ngIf="tokenValue === ''">
@@ -36,11 +36,11 @@
               <ng-container *ngIf="tokenValue !== ''">
                 <div id="follow" style="display: none">
                   <div class ="right">
-                      <button class="btn btn-primary" (click)="followParliamentarian()" data-toggle="tooltip" title="Ao seguir um parlamentar, você aumentar a popularidade dele no ranking de mais seguidos.">
-                          <span class="glyphicon glyphicon-eye-open">
-                          </span>
-                           Seguir parlamentar
-                      </button>
+                    <button class="btn btn-primary" (click)="followParliamentarian()" data-toggle="tooltip" title="Ao seguir um parlamentar, você aumentar a popularidade dele no ranking de mais seguidos.">
+                      <span class="glyphicon glyphicon-eye-open">
+                      </span>
+                    Seguir parlamentar
+                    </button>
                   </div>
                 </div>
                 <div id="unfollow" style="display: none">
@@ -57,7 +57,7 @@
           </div>
         <div class="panel-footer text-muted">{{parlimentarian['email']}}</div>
         <div *ngIf="tokenValue !== ''" class="panel-footer text-muted alternative">{{parlimentarian['compatibility']}}% de compatibilidade</div>
-      </div>
+        </div>
     </div>
     <div *ngIf="tokenValue !== ''" class="col-sm-3 col-sm-offset-1 progress-wrapper">
       <br>

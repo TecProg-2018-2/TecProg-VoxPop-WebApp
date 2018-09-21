@@ -9,6 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './see-politician-detail.component.html',
   styleUrls: ['./see-politician-detail.component.css']
 })
+
 export class SeePoliticianDetailedComponent implements OnInit {
   tokenValue = '';
   sub: any;
@@ -85,7 +86,6 @@ export class SeePoliticianDetailedComponent implements OnInit {
       this.renderFollowButton();
     });
     return true;
-
   }
 
   renderUnfollowButton() {

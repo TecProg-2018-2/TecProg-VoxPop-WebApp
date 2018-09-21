@@ -1,3 +1,10 @@
+  /**********************************************************************
+  * File: see-pl.component.ts
+  * Purpose: SeePlComponent class implementation
+  * Notice: All rights reserved.
+  * Description File:  Check compatibility between parliamentary and user
+  ***********************************************************************/
+
 import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../requests.service';
 import { PropositionModel } from '../../models/proposition';
@@ -9,15 +16,19 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './see-pl.component.html',
   styleUrls: ['./see-pl.component.css']
 })
+
+/**
+  *  Responsible class for show law projects.
+  */
 export class SeePlComponent implements OnInit {
 
-  tokenValue = '';
-  numberPLs: number;
-  pages = 1;
-  itemsPerPage = 20;
-  offset = 1;
-  loading = true;
-  position = 0;
+  tokenValue: string = '';
+  numberPLs: number; // Number of Law Projects 
+  pages: number = 1;
+  itemsPerPage: number = 20;
+  offset: number = 1;
+  loading: boolean = true; 
+  position: number = 0;
 
   proposition: any = [
     {
@@ -53,7 +64,10 @@ export class SeePlComponent implements OnInit {
     private token: TokenService,
   ) { }
 
-
+  /**
+   * Default routine to initialize 
+   * component
+   */
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
@@ -62,18 +76,30 @@ export class SeePlComponent implements OnInit {
     this.token.checkToken(this.tokenValue);
   }
 
+  /**
+   * Responsible routine load page according
+   * to the number entered in the search.
+   * @param offset 
+   */
   loadPage(offset: number) {
-    let req: any;
+    let request: any;
     if (offset < 1 || isNaN(Number(offset))) {
       alert('Número de páginas inválido, favor digitar um número positivo');
       return false;
     }
     this.offset = Number(offset);
-    req =  this.requester.getProposition(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage);
-    this.handlePropositionsResponse(req, this.offset);
-    return req;
+    request =  this.requester.getProposition(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage);
+    this.handlePropositionsResponse(request, this.offset);
+    return request;
   }
 
+  /**
+   * Method responsible for verifing informations 
+   * obtained from a given page and treat the same 
+   * data.
+   * @param request Responsible request to receive propositions
+   * @param offset Requested page
+   */
   handlePropositionsResponse(request, offset) {
     this.requester.getProposition(this.itemsPerPage, (offset - 1) * this.itemsPerPage).subscribe( response => {
       this.auxProposition = response.body['results'];
@@ -85,12 +111,21 @@ export class SeePlComponent implements OnInit {
       }
       this.updateButtonsAppearence(this.offset, this.pages);
       this.proposition = this.auxProposition;
-      console.log(this.proposition);
       this.loading = false;
     });
   }
 
+  /**
+   * Method responsible for updating appearence 
+   * of buttons.
+   * @param offset Requested page
+   * @param limit  Proposition page limit
+   */
   updateButtonsAppearence(offset, limit) {
+    /**
+     * According offset value the appearence of
+     * buttons change. 
+     */
     if (offset === 1) {
       document.getElementById('beforeBtn1').style.display = 'none';
       document.getElementById('beforeBtn2').style.display = 'none';
@@ -108,6 +143,11 @@ export class SeePlComponent implements OnInit {
     return true;
   }
 
+  /**
+   * Method responsible for defining the specific 
+   * proposition according to the index inserted.
+   * @param index
+   */
   setSpecificProposition(index) {
     this.position = index;
   }

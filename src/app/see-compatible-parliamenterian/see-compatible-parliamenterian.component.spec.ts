@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SeeCompatibleParliamenterianComponent } from './see-compatible-parliamenterian.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,7 +14,14 @@ describe('SeeCompatibleParliamenterianComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule.withRoutes([{ path: 'parliamentarians/:id', component: SeeCompatibleParliamenterianComponent}]),
+        RouterTestingModule.withRoutes(
+            [
+              {
+                  path: 'parliamentarians/:id',
+                  component: SeeCompatibleParliamenterianComponent
+              }
+            ]
+        ),
         HttpClientModule,
         HttpClientTestingModule,
       ],
@@ -30,19 +36,19 @@ describe('SeeCompatibleParliamenterianComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SeeCompatibleParliamenterianComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      fixture = TestBed.createComponent(SeeCompatibleParliamenterianComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+      expect(component).toBeTruthy();
   });
 
   it('should initialize the page', () => {
-    component.tokenValue = 'teste';
-    component.ngOnInit();
-    expect(component).toBeTruthy();
+      component.tokenValue = 'teste';
+      component.ngOnInit();
+      expect(component).toBeTruthy();
   });
 
 });

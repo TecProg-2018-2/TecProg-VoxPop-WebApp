@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 import { RequestsService } from '../requests.service';
 
@@ -10,32 +9,34 @@ import { RequestsService } from '../requests.service';
 })
 export class MostFollowedComponent implements OnInit {
 
-  tokenValue = '';
-  loading = true;
-  most_followed: any = [];
+  loading: boolean = true;
 
   constructor(
-    private cookieService: CookieService,
-    private token: TokenService,
-    private requester: RequestsService,
+    private tokenService: TokenService, 
+    private requestService: RequestsService,
   ) { }
 
   ngOnInit() {
-    this.tokenValue = this.token.getToken();
-    this.token.checkToken(this.tokenValue);
-    this.mostFollowed();
+    const tokenValue: string = this.tokenService.getToken();
+    this.tokenService.checkToken(tokenValue);
+    this.parliamentariansMoreOften();
   }
 
-  mostFollowed() {
-    let req: any;
-    req =  this.requester.getMostFollowed();
-    this.handleMostFollowedResponse(req);
-    return req;
+  /**
+   * Requisita a API para pegar as estatísticas dos parlamentares.
+   */
+  parliamentariansMoreOften() { 
+    const request: any =  this.requestService.getMostFollowed();
+    this.handleParliamentariansMoreOften(request);
   }
 
-  handleMostFollowedResponse(req) {
-    req.subscribe( response => {
-      this.most_followed = response['body']['results'];
+  /**
+   * Carrega o objeto da página HTML com o valor recebido da requisição.
+   * @param request objeto que guarda o resultado de uma requisição
+   */
+  handleParliamentariansMoreOften(request) {
+    request.subscribe( response => {
+      const parliamentariansMoreOftenValue: any[] = response['body']['results']; 
       this.loading = false;
     });
   }
