@@ -676,7 +676,7 @@ export class PropositionsComponent implements OnInit {
     this.tokenValue &#x3D; this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.token.filterRestrictPage(this.tokenValue);
-    this.idValue &#x3D; +this.cookieService.get(&#x27;userID&#x27;);
+    this.idUser &#x3D; +this.cookieService.get(&#x27;userID&#x27;);
     this.projects();
   }
 

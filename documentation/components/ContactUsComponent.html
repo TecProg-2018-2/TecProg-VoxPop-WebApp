@@ -182,7 +182,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/contact-us/contact-us.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/contact-us/contact-us.component.ts:35</a></div>
                             </td>
                         </tr>
 
@@ -289,7 +289,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/contact-us/contact-us.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/contact-us/contact-us.component.ts:91</a></div>
                             </td>
                         </tr>
 
@@ -329,7 +329,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/contact-us/contact-us.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/contact-us/contact-us.component.ts:99</a></div>
                             </td>
                         </tr>
 
@@ -401,7 +401,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/contact-us/contact-us.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/contact-us/contact-us.component.ts:53</a></div>
                             </td>
                         </tr>
 
@@ -441,7 +441,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/contact-us/contact-us.component.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/contact-us/contact-us.component.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -487,7 +487,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/contact-us/contact-us.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/contact-us/contact-us.component.ts:74</a></div>
                             </td>
                         </tr>
 
@@ -571,7 +571,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/contact-us/contact-us.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/contact-us/contact-us.component.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -615,7 +615,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/contact-us/contact-us.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/contact-us/contact-us.component.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -654,7 +654,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/contact-us/contact-us.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/contact-us/contact-us.component.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -673,11 +673,13 @@ import { RequestsService } from &#x27;../requests.service&#x27;;
 import { CookieService } from &#x27;ngx-cookie-service&#x27;;
 import { TokenService } from &#x27;../token.service&#x27;;
 
+/* Component classes and its metadata. */
 @Component({
   selector: &#x27;app-contact-us&#x27;,
   templateUrl: &#x27;./contact-us.component.html&#x27;,
   styleUrls: [&#x27;./contact-us.component.css&#x27;]
 })
+
 /**
  * Class to get all the information of user (token, id, information of contact)
  *  and use on the form that will be envoyed.
@@ -693,6 +695,7 @@ export class ContactUsComponent implements OnInit {
     contactReason: &#x27;&#x27;,
     text: &#x27;&#x27;
   };
+
 /**
  * Default constructor
  * @param router 
@@ -705,6 +708,7 @@ export class ContactUsComponent implements OnInit {
     private cookieService: CookieService,
     private token: TokenService) { }
 
+
 /**
  * Default routine to initialize component.
  */
@@ -713,6 +717,7 @@ export class ContactUsComponent implements OnInit {
     this.token.checkToken(this.tokenValue);
     this.idValue &#x3D; +this.cookieService.get(&#x27;userID&#x27;);
   }
+  
 /**
  * Makes post request to post messages.
  * @return input form
@@ -723,6 +728,7 @@ export class ContactUsComponent implements OnInit {
     this.postMsgHandler(response);
     return request;
   }
+
 /**
  * Informs whether the comment was posted successfully or not.
  * @param request 
@@ -740,6 +746,7 @@ export class ContactUsComponent implements OnInit {
       this.errorHandler(error.status);
     });
   }
+
 /**
  * Creates route to homepage for back button
  */
@@ -767,12 +774,12 @@ export class ContactUsComponent implements OnInit {
     return false;
   }
 
-}
-</code></pre>
+}</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;row&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;!-- --&gt;
+&lt;div class&#x3D;&quot;row&quot;&gt;
   &lt;div class&#x3D;&quot;col-sm-8 col-sm-offset-2&quot;&gt;
     &lt;div class&#x3D;&quot;panel panel-primary text-left&quot;&gt;
       &lt;div class&#x3D;&quot;panel-heading&quot;&gt;
@@ -843,7 +850,7 @@ export class ContactUsComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="row">  <div class="col-sm-8 col-sm-offset-2">    <div class="panel panel-primary text-left">      <div class="panel-heading">        Fale Conosco      </div>      <div class="alert alert-success" role="alert" id="contactSuccess" style="display:none">        <p>Mensagem enviada com sucesso!</p>      </div>      <div class="alert alert-success" role="alert" id="contactFail" style="display:none">        <p>Mensagem não enviada. Tente novamente mais tarde.</p>      </div>      <div class="panel-body">        <p class="text-center">Alguma dúvida, sugestão ou reclamação em relação ao site?          <br> Escreva para nós aqui para melhorarmos o projeto!        </p>        <div class="form-group">          <label>Assunto</label>          <input name="topic" type="text" class="form-control" placeholder="Digite o assunto do e-mail" [(ngModel)]="input.topic">        </div>        <div class="form-group">          <label>E-mail</label>          <input name="email" type="text" class="form-control" placeholder="Digite o seu e-mail para contato" [(ngModel)]="input.email">        </div>        <div class="form-group">          <label data-toggle="tooltip" title="Escolha o motivo de contato">Motivo do Contato</label>          <select name="contactReason" class="form-control" [(ngModel)]="input.contactReason">            <option value="A" selected>Dúvida</option>            <option value="B">Sugestão</option>            <option value="C">Reclamação</option>            <option value="D">Outro</option>          </select>        </div>        <textarea rows="10" class="form-control" [(ngModel)]="input.text">        </textarea>        <br>        <div class="text-center">          <button class="btn btn-danger" type="submit" id="cancelBtn" (click)="backToHomepage()">Voltar</button>          <button class="btn btn-primary" type="submit" id="submitBtn" [disabled]="input.text == \'\' || input.topic == \'\'" (click)="postMsg()">Enviar</button>        </div>      </div>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- --><div class="row">  <div class="col-sm-8 col-sm-offset-2">    <div class="panel panel-primary text-left">      <div class="panel-heading">        Fale Conosco      </div>      <div class="alert alert-success" role="alert" id="contactSuccess" style="display:none">        <p>Mensagem enviada com sucesso!</p>      </div>      <div class="alert alert-success" role="alert" id="contactFail" style="display:none">        <p>Mensagem não enviada. Tente novamente mais tarde.</p>      </div>      <div class="panel-body">        <p class="text-center">Alguma dúvida, sugestão ou reclamação em relação ao site?          <br> Escreva para nós aqui para melhorarmos o projeto!        </p>        <div class="form-group">          <label>Assunto</label>          <input name="topic" type="text" class="form-control" placeholder="Digite o assunto do e-mail" [(ngModel)]="input.topic">        </div>        <div class="form-group">          <label>E-mail</label>          <input name="email" type="text" class="form-control" placeholder="Digite o seu e-mail para contato" [(ngModel)]="input.email">        </div>        <div class="form-group">          <label data-toggle="tooltip" title="Escolha o motivo de contato">Motivo do Contato</label>          <select name="contactReason" class="form-control" [(ngModel)]="input.contactReason">            <option value="A" selected>Dúvida</option>            <option value="B">Sugestão</option>            <option value="C">Reclamação</option>            <option value="D">Outro</option>          </select>        </div>        <textarea rows="10" class="form-control" [(ngModel)]="input.text">        </textarea>        <br>        <div class="text-center">          <button class="btn btn-danger" type="submit" id="cancelBtn" (click)="backToHomepage()">Voltar</button>          <button class="btn btn-primary" type="submit" id="submitBtn" [disabled]="input.text == \'\' || input.topic == \'\'" (click)="postMsg()">Enviar</button>        </div>      </div>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HowToUseComponent', 'selector': 'app-how-to-use'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainPageComponent', 'selector': 'app-main-page'},{'name': 'MostFollowedComponent', 'selector': 'app-most-followed'},{'name': 'MyPlsComponent', 'selector': 'app-my-pls'},{'name': 'ParliamentarianComponent', 'selector': 'app-parliamentarian'},{'name': 'PoliticaDePrivacidadeComponent', 'selector': 'app-politica-de-privacidade'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'PropositionComponent', 'selector': 'app-proposition'},{'name': 'PropositionsComponent', 'selector': 'app-propositions'},{'name': 'RegisterFormComponent', 'selector': 'app-register-form'},{'name': 'SeeCompatibleParliamenterianComponent', 'selector': 'app-see-compatible-parliamenterian'},{'name': 'SeePlComponent', 'selector': 'app-see-pl'},{'name': 'SeePoliticianDetailedComponent', 'selector': 'app-see-politician'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'TermosDeServicoComponent', 'selector': 'app-termos-de-servico'},{'name': 'UserFollowingComponent', 'selector': 'app-user-following'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ContactUsComponent'};
