@@ -6,6 +6,7 @@ import { HttpResponseBase } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 import { AppComponent } from '../app.component';
+import { AssertComponent } from '../../assert';
 
 @Component({
     selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
     tokenValue: string = '';
     registerSuccess: string = '';
     logging: boolean = false;
+    assert: AssertComponent;
 
     constructor(private router: Router,
         private requester: RequestsService,
@@ -44,7 +46,7 @@ export class LoginComponent implements OnInit {
             username: username,
             password: password
         };
-
+        this.assert.assert(user.username!=null, 'Usuário vazio'); //TESTE
         req = this.requester.postAuthentication(user);
         this.handleLoginResponse(req);
         return req;
