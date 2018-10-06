@@ -22,7 +22,6 @@
  export class HowToUseComponent implements OnInit {
  
    tokenValue: string = '';
-   assert: AssertComponent;
  /**
   * Default constructor
   * @param token 
@@ -39,6 +38,5 @@
       */
      this.tokenValue = this.token.getToken();
      this.token.checkToken(this.tokenValue);
-     this.assert.assert(this.tokenValue == null, 'Token vazio');
    }
  }
