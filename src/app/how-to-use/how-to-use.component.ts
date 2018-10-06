@@ -7,7 +7,8 @@
 
  import { Component, OnInit } from '@angular/core';
  import { TokenService } from '../token.service';
- 
+ import { AssertComponent } from '../../assert';
+
  @Component({
    selector: 'app-how-to-use',
    templateUrl: './how-to-use.component.html',
@@ -21,6 +22,7 @@
  export class HowToUseComponent implements OnInit {
  
    tokenValue: string = '';
+   assert: AssertComponent;
  /**
   * Default constructor
   * @param token 
@@ -37,5 +39,6 @@
       */
      this.tokenValue = this.token.getToken();
      this.token.checkToken(this.tokenValue);
+     this.assert.assert(this.tokenValue == null, 'Token vazio');
    }
  }
