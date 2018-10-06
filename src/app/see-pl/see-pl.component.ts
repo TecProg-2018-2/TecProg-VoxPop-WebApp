@@ -8,6 +8,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../requests.service';
 import { TokenService } from '../token.service';
+import { AssertComponent } from '../../assert';
 
 @Component({
   selector: 'app-see-pl',
@@ -27,6 +28,7 @@ export class SeePlComponent implements OnInit {
   offset = 1;
   loading = true;
   position = 0;
+  assertComponent: AssertComponent;
 
   proposition: any = [
     {
@@ -78,23 +80,21 @@ export class SeePlComponent implements OnInit {
    * to the number entered in the search.
    * @param offset
    */
-  loadPage(offset: number) {
+  loadPage(offset) {
     let request: any;
-    // T18
+
     if (offset < 1 || isNaN(Number(offset))) {
       alert('Número de páginas inválido, favor digitar um número positivo');
     } else {
       this.offset = Number(offset);
       request =  this.requester.getProposition(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage);
 
-      // T18
       if ( isNaN(Number(this.offset)) && isNaN(Number(this.pages)) ) {
         this.handlePropositionsResponse(this.offset);
       } else {
-        // assertiva
+        this.assertComponent.assert(!isNaN(Number(this.offset)) || !isNaN(Number(this.pages)), 'Página não encontrada');
       }
 
-      // T19 e T18
       if (request !== []) {
         return request;
       } else {
@@ -111,7 +111,6 @@ export class SeePlComponent implements OnInit {
    * @param offset Requested page
    */
   handlePropositionsResponse(offset) {
-    // T18
     if (isNaN(Number(offset))) {
       this.requester.getProposition(this.itemsPerPage, (offset - 1) * this.itemsPerPage).subscribe( response => {
       this.auxProposition = response.body['results'];
@@ -122,11 +121,10 @@ export class SeePlComponent implements OnInit {
         alert('Número da página inválido, favor digitar entre 1 e ' + this.pages);
       }
 
-      // T18
       if ( isNaN(Number(this.offset)) && isNaN(Number(this.pages)) ) {
         this.updateButtonsAppearence(this.offset, this.pages);
       } else {
-        // assertiva
+        this.assertComponent.assert(!isNaN(Number(this.offset)) || !isNaN(Number(this.pages)), 'Página não encontrada');
       }
 
       this.proposition = this.auxProposition;
@@ -144,7 +142,6 @@ export class SeePlComponent implements OnInit {
    * @param limit  Proposition page limit
    */
   updateButtonsAppearence(offset, limit) {
-    // T18
     if ( isNaN(Number(offset)) && isNaN(Number(limit)) ) {
       /**
        * According offset value the appearence of
@@ -165,7 +162,7 @@ export class SeePlComponent implements OnInit {
         document.getElementById('afterBtn2').style.display = 'block';
       }
     } else {
-      // assertiva
+      this.assertComponent.assert(!isNaN(Number(offset)) || !isNaN(Number(limit)), 'Página não encontrada');
     }
   }
 
@@ -175,11 +172,10 @@ export class SeePlComponent implements OnInit {
    * @param index
    */
   setSpecificProposition(index) {
-    // T18
     if (isNaN(Number(index))) {
       this.position = index;
     } else {
-      // assertiva
+      this.assertComponent.assert(!isNaN(Number(index)), 'Proposição não encontrada');
     }
   }
 }

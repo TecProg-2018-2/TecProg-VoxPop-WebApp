@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
             username: username,
             password: password
         };
-        this.assert.assert(user.username!=null, 'Usuário vazio'); //TESTE
         req = this.requester.postAuthentication(user);
         this.handleLoginResponse(req);
         return req;

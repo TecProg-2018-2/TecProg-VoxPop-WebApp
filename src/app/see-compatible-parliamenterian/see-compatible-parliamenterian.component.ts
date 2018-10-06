@@ -55,7 +55,7 @@ export class SeeCompatibleParliamenterianComponent  implements OnInit {
   getMostCompatible() {
     let request: any = null;
     request =  this.requester.getMostCompatible();
-    // T19 e T18
+
     if (request !== null) {
       this.handleMostCompatibleResponse(request);
       return request;
@@ -70,7 +70,6 @@ export class SeeCompatibleParliamenterianComponent  implements OnInit {
   * @param request Responsible request to receive the most compatible parlametarian
   */
   handleMostCompatibleResponse(request: any) {
-    // T18
     if (request !== null) {
       /**
        * Assign the result of the request to a variable to
