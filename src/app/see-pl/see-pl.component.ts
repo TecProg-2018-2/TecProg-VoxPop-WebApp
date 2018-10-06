@@ -7,9 +7,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../requests.service';
-import { PropositionModel } from '../../models/proposition';
 import { TokenService } from '../token.service';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-see-pl',
@@ -22,13 +20,13 @@ import { CookieService } from 'ngx-cookie-service';
   */
 export class SeePlComponent implements OnInit {
 
-  tokenValue: string = '';
-  numberPLs: number; // Number of Law Projects 
-  pages: number = 1;
-  itemsPerPage: number = 20;
-  offset: number = 1;
-  loading: boolean = true; 
-  position: number = 0;
+  tokenValue = '';
+  numberPLs: number; // Number of Law Projects
+  pages = 1;
+  itemsPerPage = 20;
+  offset = 1;
+  loading = true;
+  position = 0;
 
   proposition: any = [
     {
@@ -60,12 +58,11 @@ export class SeePlComponent implements OnInit {
 
   constructor(
     private requester: RequestsService,
-    private cookieService: CookieService,
     private token: TokenService,
   ) { }
 
   /**
-   * Default routine to initialize 
+   * Default routine to initialize
    * component
    */
   ngOnInit() {
@@ -79,76 +76,110 @@ export class SeePlComponent implements OnInit {
   /**
    * Responsible routine load page according
    * to the number entered in the search.
-   * @param offset 
+   * @param offset
    */
   loadPage(offset: number) {
     let request: any;
+    // T18
     if (offset < 1 || isNaN(Number(offset))) {
       alert('Número de páginas inválido, favor digitar um número positivo');
-      return false;
+    } else {
+      this.offset = Number(offset);
+      request =  this.requester.getProposition(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage);
+
+      // T18
+      if ( isNaN(Number(this.offset)) && isNaN(Number(this.pages)) ) {
+        this.handlePropositionsResponse(this.offset);
+      } else {
+        // assertiva
+      }
+
+      // T19 e T18
+      if (request !== []) {
+        return request;
+      } else {
+        this.proposition = [];
+      }
     }
-    this.offset = Number(offset);
-    request =  this.requester.getProposition(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage);
-    this.handlePropositionsResponse(request, this.offset);
-    return request;
   }
 
   /**
-   * Method responsible for verifing informations 
-   * obtained from a given page and treat the same 
+   * Method responsible for verifing informations
+   * obtained from a given page and treat the same
    * data.
    * @param request Responsible request to receive propositions
    * @param offset Requested page
    */
-  handlePropositionsResponse(request, offset) {
-    this.requester.getProposition(this.itemsPerPage, (offset - 1) * this.itemsPerPage).subscribe( response => {
+  handlePropositionsResponse(offset) {
+    // T18
+    if (isNaN(Number(offset))) {
+      this.requester.getProposition(this.itemsPerPage, (offset - 1) * this.itemsPerPage).subscribe( response => {
       this.auxProposition = response.body['results'];
       this.numberPLs = response.body['count'];
       this.pages = Math.ceil(this.numberPLs / this.itemsPerPage);
+
       if (this.auxProposition.length <= 0) {
         alert('Número da página inválido, favor digitar entre 1 e ' + this.pages);
-        return false;
       }
-      this.updateButtonsAppearence(this.offset, this.pages);
+
+      // T18
+      if ( isNaN(Number(this.offset)) && isNaN(Number(this.pages)) ) {
+        this.updateButtonsAppearence(this.offset, this.pages);
+      } else {
+        // assertiva
+      }
+
       this.proposition = this.auxProposition;
       this.loading = false;
-    });
+      });
+    } else {
+      this.proposition = [];
+    }
   }
 
   /**
-   * Method responsible for updating appearence 
+   * Method responsible for updating appearence
    * of buttons.
    * @param offset Requested page
    * @param limit  Proposition page limit
    */
   updateButtonsAppearence(offset, limit) {
-    /**
-     * According offset value the appearence of
-     * buttons change. 
-     */
-    if (offset === 1) {
-      document.getElementById('beforeBtn1').style.display = 'none';
-      document.getElementById('beforeBtn2').style.display = 'none';
+    // T18
+    if ( isNaN(Number(offset)) && isNaN(Number(limit)) ) {
+      /**
+       * According offset value the appearence of
+       * buttons change.
+       */
+      if (offset === 1) {
+        document.getElementById('beforeBtn1').style.display = 'none';
+        document.getElementById('beforeBtn2').style.display = 'none';
+      } else {
+        document.getElementById('beforeBtn1').style.display = 'block';
+        document.getElementById('beforeBtn2').style.display = 'block';
+      }
+      if (offset === limit) {
+        document.getElementById('afterBtn1').style.display = 'none';
+        document.getElementById('afterBtn2').style.display = 'none';
+      } else {
+        document.getElementById('afterBtn1').style.display = 'block';
+        document.getElementById('afterBtn2').style.display = 'block';
+      }
     } else {
-      document.getElementById('beforeBtn1').style.display = 'block';
-      document.getElementById('beforeBtn2').style.display = 'block';
+      // assertiva
     }
-    if (offset === limit) {
-      document.getElementById('afterBtn1').style.display = 'none';
-      document.getElementById('afterBtn2').style.display = 'none';
-    } else {
-      document.getElementById('afterBtn1').style.display = 'block';
-      document.getElementById('afterBtn2').style.display = 'block';
-    }
-    return true;
   }
 
   /**
-   * Method responsible for defining the specific 
+   * Method responsible for defining the specific
    * proposition according to the index inserted.
    * @param index
    */
   setSpecificProposition(index) {
-    this.position = index;
+    // T18
+    if (isNaN(Number(index))) {
+      this.position = index;
+    } else {
+      // assertiva
+    }
   }
 }

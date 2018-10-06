@@ -24,6 +24,8 @@ import { TokenService } from '../token.service';
  */
 export class PropositionsComponent implements OnInit {
 
+  idUser = 0;
+
   /**
    * Default constructor
    * @param router

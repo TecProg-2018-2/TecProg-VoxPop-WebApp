@@ -18,14 +18,14 @@ import { TokenService } from '../token.service';
 
 
 /**
-  *  Responsible class for verify compatibility 
+  *  Responsible class for verify compatibility
   *  with the parliamentarian.
   */
 export class SeeCompatibleParliamenterianComponent  implements OnInit {
 
-  tokenValue: string = '';
-  loadingStatus: boolean = true;
-  mostCompatible: any[] = [] // Responsible variable to list of Parlamentarian in descending order;
+  tokenValue = '';
+  loadingStatus = true;
+  mostCompatible: any[] = []; // Responsible variable to list of Parlamentarian in descending order;
 
 
   constructor(
@@ -35,7 +35,7 @@ export class SeeCompatibleParliamenterianComponent  implements OnInit {
   ) { }
 
   /**
-   * Default routine to initialize 
+   * Default routine to initialize
    * component
    */
   ngOnInit() {
@@ -49,30 +49,39 @@ export class SeeCompatibleParliamenterianComponent  implements OnInit {
   }
 
   /**
-   * Responsible routine to receive the most 
+   * Responsible routine to receive the most
    * compatibility with parlametarian
    */
   getMostCompatible() {
     let request: any = null;
-    this.mostCompatible = [];
     request =  this.requester.getMostCompatible();
-    this.handleMostCompatibleResponse(request);
-    return request;
+    // T19 e T18
+    if (request !== null) {
+      this.handleMostCompatibleResponse(request);
+      return request;
+    } else {
+      this.mostCompatible = [];
+    }
   }
 
   /**
-  * Responsible routine to assign the result 
+  * Responsible routine to assign the result
   * of the request to a variable
   * @param request Responsible request to receive the most compatible parlametarian
   */
   handleMostCompatibleResponse(request: any) {
-    /**
-     * Assign the result of the request to a variable to 
-     * use in see-compatible-parlamenterian.component.html
-     */
-    request.subscribe( response => {
+    // T18
+    if (request !== null) {
+      /**
+       * Assign the result of the request to a variable to
+       * use in see-compatible-parlamenterian.component.html
+       */
+      request.subscribe( response => {
         this.mostCompatible = response['body']['results'];
         this.loadingStatus = false;
-    });
+      });
+    } else {
+      this.mostCompatible = [];
+    }
   }
 }
