@@ -23,6 +23,7 @@ export class SidebarComponent implements OnInit {
 
   sidebar: string = '';
   tokenValue: string = '';
+  assert = require('assert');
 
 /**
  * Default constructor
@@ -49,6 +50,7 @@ export class SidebarComponent implements OnInit {
     */
     if (sidebarCookie === 'false') {
       const sidebarStatus: HTMLElement = document.getElementById('sidebar');
+      this.assert.ifError(sidebarStatus == null);
       sidebarStatus.classList.toggle('active');
       const contentStatus: HTMLElement = document.getElementById('content');
       contentStatus.classList.toggle('active');
