@@ -33,11 +33,13 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         this.tokenValue = this.token.getToken();
         this.token.checkToken(this.tokenValue);
+        this.assert.assert(this.tokenValue == null, 'Token vazio');
         this.token.filterLoginPage(this.tokenValue);
         this.registerSuccess = this.cookieService.get('success');
+        this.assert.ok(this.registerSuccess != null);
         this.checkRegister(this.registerSuccess);
     }
-    
+
     login(username: string, password: string) {
         this.logging = true;
         this.cookieService.set('success', 'false');
@@ -57,11 +59,13 @@ export class LoginComponent implements OnInit {
         if (success === 'true') {
             const registerAlert: string = document.getElementById('registerAlert').style.display = 'block';
         }
+        this.assert.ok(success=='true');
     }
 
     handleLoginResponse(request) {
         request.subscribe(response => {
             if (this.requester.didSucceed(response.status)) {
+                this.assert.ok(this.requester.didSucceed(response.status)!=null);
                 this.cookieService.set('basic_token', response.body['token']);
                 this.cookieService.set('userID', response.body['id']);
                 this.cookieService.set('userUsername', response.body['username']);
