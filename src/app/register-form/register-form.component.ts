@@ -12,6 +12,7 @@ import { SocialInformationModel } from '../../models/socialInformation'
 import { and } from '@angular/router/src/utils/collection';
 import { InputValidatorService } from '../input-validator.service';
 import { CookieService } from 'ngx-cookie-service';
+import { AssertComponent } from '../../assert';
 
 @Component({
   selector: 'app-register-form',
@@ -23,6 +24,8 @@ import { CookieService } from 'ngx-cookie-service';
  * @class
  */
 export class RegisterFormComponent implements OnInit {
+
+  assert = require('assert');
 
   /**
    * Default constructor
@@ -66,22 +69,23 @@ export class RegisterFormComponent implements OnInit {
     /*
      * Init all informations of user with null value.
      */
-    if(this.user.socialInformation.region == 'null') {
+    if (this.user.socialInformation.region == 'null') {
       this.user.socialInformation.region = null;
     }
-    if(this.user.socialInformation.income == 'null') {
+    if (this.user.socialInformation.income == 'null') {
       this.user.socialInformation.income = null;
     }
-    if(this.user.socialInformation.education == 'null') {
+    if (this.user.socialInformation.education == 'null') {
       this.user.socialInformation.education = null;
     }
-    if(this.user.socialInformation.race == 'null') {
+    if (this.user.socialInformation.race == 'null') {
       this.user.socialInformation.race = null;
     }
-    if(this.user.socialInformation.gender == 'null') {
+    if (this.user.socialInformation.gender == 'null') {
       this.user.socialInformation.gender = null;
     }
     let requisition;
+    this.assert.notEqual(this.user, 'null' || 'undefined');
     requisition = this.requester.postUser(this.user);
     this.registerUserHandler(requisition);
     return requisition;
@@ -92,6 +96,7 @@ export class RegisterFormComponent implements OnInit {
    * @param request
    */
   registerUserHandler(request) {
+    this.assert.notEqual(request, 'null' || 'undefined');
     request.subscribe(response => {
       const statusUser = response.status;
       /*
@@ -102,9 +107,9 @@ export class RegisterFormComponent implements OnInit {
         this.cookieService.set('success', 'true');
       }
     },
-    error => {
-      const statusAuth = error.status;
-      this.validator.errorHandler(statusAuth);
-    });
+      error => {
+        const statusAuth = error.status;
+        this.validator.errorHandler(statusAuth);
+      });
   }
 }
