@@ -28,7 +28,7 @@ export class SeePlComponent implements OnInit {
   offset = 1;
   loading = true;
   position = 0;
-  assertComponent: AssertComponent;
+  assert = require('assert');
 
   proposition: any = [
     {
@@ -92,7 +92,7 @@ export class SeePlComponent implements OnInit {
       if ( isNaN(Number(this.offset)) && isNaN(Number(this.pages)) ) {
         this.handlePropositionsResponse(this.offset);
       } else {
-        this.assertComponent.assert(!isNaN(Number(this.offset)) || !isNaN(Number(this.pages)), 'Página não encontrada');
+        this.assert(!isNaN(Number(this.offset)) || !isNaN(Number(this.pages)), 'Página não encontrada');
       }
 
       if (request !== []) {
@@ -124,7 +124,7 @@ export class SeePlComponent implements OnInit {
       if ( isNaN(Number(this.offset)) && isNaN(Number(this.pages)) ) {
         this.updateButtonsAppearence(this.offset, this.pages);
       } else {
-        this.assertComponent.assert(!isNaN(Number(this.offset)) || !isNaN(Number(this.pages)), 'Página não encontrada');
+        this.assert(!isNaN(Number(this.offset)) || !isNaN(Number(this.pages)), 'Página não encontrada');
       }
 
       this.proposition = this.auxProposition;
@@ -162,7 +162,7 @@ export class SeePlComponent implements OnInit {
         document.getElementById('afterBtn2').style.display = 'block';
       }
     } else {
-      this.assertComponent.assert(!isNaN(Number(offset)) || !isNaN(Number(limit)), 'Página não encontrada');
+      this.assert(!isNaN(Number(offset)) || !isNaN(Number(limit)), 'Página não encontrada');
     }
   }
 
@@ -175,7 +175,7 @@ export class SeePlComponent implements OnInit {
     if (isNaN(Number(index))) {
       this.position = index;
     } else {
-      this.assertComponent.assert(!isNaN(Number(index)), 'Proposição não encontrada');
+      this.assert(!isNaN(Number(index)), 'Proposição não encontrada');
     }
   }
 }
