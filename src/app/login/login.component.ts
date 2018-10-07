@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 import { AppComponent } from '../app.component';
 import { AssertComponent } from '../../assert';
+import { error } from 'protractor';
 
 @Component({
     selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
     tokenValue: string = '';
     registerSuccess: string = '';
     logging: boolean = false;
-    assert: AssertComponent;
+    assert = require('assert');
 
     constructor(private router: Router,
         private requester: RequestsService,
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
         this.registerSuccess = this.cookieService.get('success');
         this.checkRegister(this.registerSuccess);
     }
-
+    
     login(username: string, password: string) {
         this.logging = true;
         this.cookieService.set('success', 'false');
@@ -46,7 +47,6 @@ export class LoginComponent implements OnInit {
             username: username,
             password: password
         };
-        this.assert.assert(user.username!=null, 'Usuário vazio'); //TESTE
         req = this.requester.postAuthentication(user);
         this.handleLoginResponse(req);
         return req;

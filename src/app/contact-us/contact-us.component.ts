@@ -33,7 +33,7 @@ export class ContactUsComponent implements OnInit {
     contactReason: '',
     text: ''
   };
-
+  assert = require('assert');
 /**
  * Default constructor
  * @param router 
@@ -62,6 +62,8 @@ export class ContactUsComponent implements OnInit {
  */
   postMsg() {
     const request = this.input;
+    this.assert.ok(request.contactReason != '' && request.email != '' &&
+                  request.text != '' && request.topic != '');
     const response = this.requester.postMessage(this.input);
     this.postMsgHandler(response);
     return request;
