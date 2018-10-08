@@ -45,7 +45,7 @@ describe('SeePlComponent', () => {
 
   it('should handlePropositionsReponse return error code', () => {
     component.auxProposition = [];
-    expect(component.handlePropositionsResponse(0, '')).toBeUndefined();
+    expect(component.handlePropositionsResponse('')).toBeUndefined();
   });
 
   it('should updateButton return true', () => {
