@@ -5,6 +5,9 @@
 * Description File:  Verify the value of user fields
 ***********************************************************************/
 import { Injectable, NgModule } from '@angular/core';
+import { isString } from 'util';
+import { AssertComponent } from '../assert';
+
 
 @Injectable()
 
@@ -33,6 +36,8 @@ export class InputValidatorService {
   statusEmail: boolean = false;
   colorDanger: string = '#d9534f'; /* Stores the color to be shown if the field is invalid*/
   colorSucess: string = '#5cb85c'; /* Stores the color to be shown if the field is valid*/
+  assert = require('assert');
+
 
   /**
   *  Method responsible for showing to the user
@@ -40,6 +45,7 @@ export class InputValidatorService {
   *  500 or 400.
   */
   errorHandler(status: number) {
+    this.assert.ok(status !== 500 && status !== 400, 'Resposta não utilizável.');
     if (status === 500) {
       document.getElementById('alert-invalid').style.display = 'block';
       this.valueErrorHandler = 'Error interno, tente novamente mais tarde';
@@ -57,18 +63,21 @@ export class InputValidatorService {
   onKeyPassword(eventPassword: any) {
     this.password = eventPassword.target.value;
 
+    this.assert.ok(this.password === null || undefined, 'O dado obtido é nulo.');
+
     const validPassword = this.isPasswordValid(this.password);
 
-    if (!validPassword) {
-      this.valueInvalidPassword = 'Sua senha deve ter no mínimo 6 caracteres';
-      document.getElementById('alert-invalid-password').style.display = 'block';
-      this.statusValidPassword = false;
-      this.borderColor('password', this.colorDanger);
-    } else {
-      document.getElementById('alert-invalid-password').style.display = 'none';
-      this.statusValidPassword = true;
-      this.borderColor('password', this.colorSucess);
-    }
+      if (!validPassword) {
+        this.valueInvalidPassword = 'Sua senha deve ter no mínimo 6 caracteres';
+        document.getElementById('alert-invalid-password').style.display = 'block';
+        this.statusValidPassword = false;
+        this.borderColor('password', this.colorDanger);
+      } else {
+        document.getElementById('alert-invalid-password').style.display = 'none';
+        this.statusValidPassword = true;
+        this.borderColor('password', this.colorSucess);
+      }
+
   }
 
   /**
@@ -76,6 +85,7 @@ export class InputValidatorService {
   *  are equals.
   */
   onKeyConfirmPassword(eventPassword: any) {
+    this.assert.ok(eventPassword === null || eventPassword === undefined, 'O dado obtido é nulo.');
     this.confirmPassword = eventPassword.target.value;
   }
 
@@ -85,26 +95,27 @@ export class InputValidatorService {
   *
   */
   onKeyUsername(eventUsername: any) {
+    this.assert.ok(eventUsername === null || eventUsername === undefined, 'O dado obtido é nulo.');
     let username = eventUsername.target.value;
 
     const validUsername = this.isUsernameValid(username);
 
-    if (validUsername) {
-      document.getElementById('alert-username').style.display = 'none';
-      this.valueUsername = '';
-      this.statusUsername = true;
-      this.borderColor('username', this.colorSucess);
-    } else {
-      this.valueUsername = 'Nome de usuário inválido';
-      document.getElementById('alert-username').style.display = 'block';
-      this.statusUsername = false;
-      this.borderColor('username', this.colorDanger);
-    } if (!this.isUsernameSizeValid(username)) {
-      this.valueUsername = 'Nome de usuário deve ter entre 4 e 20 caracteres';
-      document.getElementById('alert-username').style.display = 'block';
-      this.statusUsername = false;
-      this.borderColor('username', this.colorDanger);
-    }
+      if (validUsername) {
+        document.getElementById('alert-username').style.display = 'none';
+        this.valueUsername = '';
+        this.statusUsername = true;
+        this.borderColor('username', this.colorSucess);
+      } else {
+        this.valueUsername = 'Nome de usuário inválido';
+        document.getElementById('alert-username').style.display = 'block';
+        this.statusUsername = false;
+        this.borderColor('username', this.colorDanger);
+      } if (!this.isUsernameSizeValid(username)) {
+        this.valueUsername = 'Nome de usuário deve ter entre 4 e 20 caracteres';
+        document.getElementById('alert-username').style.display = 'block';
+        this.statusUsername = false;
+        this.borderColor('username', this.colorDanger);
+      }
 
   }
 
@@ -114,7 +125,9 @@ export class InputValidatorService {
   *
   */
   onKeyEmail(eventEmail: any) {
-    let email = eventEmail.target.value;
+
+    this.assert.ok(eventEmail === null || eventEmail === undefined, 'Dado inválido inserido' );
+    const email = eventEmail.target.value;
     if (this.isEmailValid(email)){
       document.getElementById('alert-email').style.display = 'none';
       this.valueEmail = '';
@@ -156,6 +169,8 @@ export class InputValidatorService {
   *  is in  accordance with standart format.
   */
   isUsernameValid(username) {
+
+    this.assert.ok(username === '' || username === undefined, 'Nome de usuário vazio ou indefinido');
     const format = /^[a-zA-Z0-9]+$/;
     if (format.test(username)) {
       return true;
@@ -168,6 +183,8 @@ export class InputValidatorService {
   *  is in  accordance with standart length.
   */
   isUsernameSizeValid(username) {
+
+    this.assert.ok(username === '' || username === undefined, 'O nome de usuário inserido é inválido');
     if (username.length > 3 && username.length < 21) {
       return true;
     }
@@ -179,6 +196,9 @@ export class InputValidatorService {
   *  is in  accordance with standart format regex for emails.
   */
   isEmailValid(email) {
+
+    this.assert.ok(email === '', 'O e-mail inserido está vazio');
+    // tslint:disable-next-line:max-line-length
     const EMAILRGX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (EMAILRGX.test(email)) {
       return true;
@@ -192,6 +212,9 @@ export class InputValidatorService {
   *  password confirmation match.
   */
   isConfirmedPassword(password, confPassword) {
+    this.assert(password === '', 'A senha inserida está vazia');
+    this.assert(confPassword === '', 'A senha inserida está vazia');
+
     if (password === confPassword) {
       return true;
     }
@@ -203,6 +226,7 @@ export class InputValidatorService {
   *  is in  accordance with standart length.
   */
   isPasswordValid(password) {
+    this.assert(password === '', 'A senha inserida está vazia');
     if (password.length > 5 && password.length < 50) {
       return true;
     }
@@ -214,9 +238,10 @@ export class InputValidatorService {
   *  when editing.
   */
   validatorEditUser() {
-    if (!this.statusUsername && !this.statusEmail) {
-      document.getElementById('alert-invalid-inputs').style.display = 'block';
-      this.valueInvalidInput = 'Por favor, preencha os campos obrigatórios';
+
+    document.getElementById('alert-invalid-inputs').style.display = 'block';
+    this.valueInvalidInput = 'Por favor, preencha os campos obrigatórios';
+
 
       if (!this.statusUsername) {
         this.borderColor('username', this.colorDanger);
@@ -229,7 +254,7 @@ export class InputValidatorService {
       } else {
         this.borderColor('email', this.colorSucess);
       }
-    }
+
   }
 
   /**

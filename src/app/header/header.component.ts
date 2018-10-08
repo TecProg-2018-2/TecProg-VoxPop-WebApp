@@ -8,6 +8,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppComponent } from '../app.component';
+import { AssertComponent } from '../../assert';
+
 
 @Component({
   selector: 'app-header',
@@ -19,6 +21,9 @@ import { AppComponent } from '../app.component';
   *  class responsible for set up the header component dynamically.
   */
 export class HeaderComponent {
+
+  assert = require('assert');
+
 
   constructor(
     private cookieService: CookieService,
