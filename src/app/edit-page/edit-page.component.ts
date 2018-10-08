@@ -13,6 +13,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 import { UserModel } from '../../models/user';
 import { InputValidatorService } from '../input-validator.service';
+import { AssertComponent } from '../../assert';
+
 
 @Component({
   selector: 'app-edit-page',
@@ -28,6 +30,9 @@ export class EditPageComponent implements OnInit {
   tokenValue: string = ''; /* Variable that storage the token of logged user*/
 
   userID: number = 0;
+  assert = require('assert');
+
+
 
   user: any = {
     username: '',
@@ -115,6 +120,8 @@ export class EditPageComponent implements OnInit {
 
       if (this.requester.didSucceed(statusUser)) {
         this.router.navigate(['']);
+      } else {
+        this.assert(this.requester.didSucceed(statusUser) === false, 'Não foi possível concluir a operação')
       }
     }, error => {
       this.errorHandler(error.status);
