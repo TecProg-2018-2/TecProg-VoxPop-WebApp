@@ -12,6 +12,7 @@ import { PropositionModel } from '../../models/proposition'
 import { VoteModel } from '../../models/vote'
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
+import { AssertComponent } from '../../assert';
 
 @Component({
   selector: 'app-propositions',
@@ -45,11 +46,13 @@ export class PropositionsComponent implements OnInit {
    */
   idValue: number = 0;
   tokenValue: string = '';
+  assert = require('assert');
+
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.token.filterRestrictPage(this.tokenValue);
-    this.idUser = +this.cookieService.get('userID');
+    this.idValue = +this.cookieService.get('userID');
     this.projects();
   }
 
@@ -59,6 +62,7 @@ export class PropositionsComponent implements OnInit {
    */
   projects() {
     const requisition = this.requester.getProjects();
+    this.assert.notEqual(requisition, 'null' || 'undefined');
     this.projectsHandler(requisition);
     return requisition;
   }
@@ -82,6 +86,7 @@ export class PropositionsComponent implements OnInit {
    * @param request
    */
   projectsHandler(request) {
+    this.assert.notEqual(request, null);
     request.subscribe(response => {
       response['parliamentariansApproval'] = parseFloat(response['parliamentariansApproval']);
       response['populationApproval'] = parseFloat(response['populationApproval']);
@@ -98,6 +103,7 @@ export class PropositionsComponent implements OnInit {
       proposition: this.proposition.id,
       option: opinion
     }
+    this.assert.notEqual(vote, 'null' || 'undefined');
     this.requester.postVote(vote).subscribe(response => {
       var status;
       status = response.status;

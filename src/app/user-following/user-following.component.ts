@@ -20,6 +20,8 @@ import { TokenService } from '../token.service';
  */
 export class UserFollowingComponent implements OnInit {
 
+  assert = require('assert');
+
   /**
    * Default constructor
    * @param requester
@@ -63,7 +65,8 @@ export class UserFollowingComponent implements OnInit {
       return;
     }
     this.offset = Number(offset);
-    requisition =  this.requester.getSearchFollowingParliamentarians(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage, termOnSearch);
+    requisition = this.requester.getSearchFollowingParliamentarians(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage, termOnSearch);
+    this.assert.notEqual(requisition, 'null' || 'undefined');
     this.handleFollowingParliamentariansResponse(requisition, this.offset);
   }
 
@@ -100,7 +103,9 @@ export class UserFollowingComponent implements OnInit {
   loading: boolean = true;
   pages: number = 1;
   handleFollowingParliamentariansResponse(request, offset) {
-    request.subscribe( response => {
+
+    this.assert.notEqual(request, 'null' || 'undefined');
+    request.subscribe(response => {
       this.auxParliamentarian = response['body']['results'];
       const auxPages = Math.ceil(response['body']['count'] / this.itemsPerPage);
       this.pages = auxPages;
