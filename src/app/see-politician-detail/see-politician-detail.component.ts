@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RequestsService } from '../requests.service';
 import { TokenService } from '../token.service';
 import { CookieService } from 'ngx-cookie-service';
+import { AssertComponent } from '../../assert';
 
 @Component({
   selector: 'app-see-politician',
@@ -31,6 +32,8 @@ export class SeePoliticianDetailedComponent implements OnInit {
   };
   gender = '';
 
+  assert = require('assert');
+
   constructor(
     private route: ActivatedRoute,
     private requester: RequestsService,
@@ -41,6 +44,8 @@ export class SeePoliticianDetailedComponent implements OnInit {
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
+
+    this.assert.assert(this.tokenValue == null, 'Token vazio');
 
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
@@ -70,7 +75,10 @@ export class SeePoliticianDetailedComponent implements OnInit {
   followParliamentarian() {
     this.loading = true;
     let status;
-    this.requester.postFollow(this.parlimentarian.id).subscribe(response => {
+      this.requester.postFollow(this.parlimentarian.id).subscribe(response => {
+
+      this.assert.ok(response != null || undefined, 'O dado obtido é nulo ou indefinido.');
+
       status = response.status;
       this.renderUnfollowButton();
     });
@@ -82,6 +90,9 @@ export class SeePoliticianDetailedComponent implements OnInit {
     this.loading = true;
     let status;
     this.requester.deleteFollow(this.parlimentarian.id).subscribe(response => {
+
+    this.assert.ok(response != null || undefined, 'O dado obtido é nulo ou indefinido.');
+
       status = response.status;
       this.renderFollowButton();
     });
@@ -89,6 +100,7 @@ export class SeePoliticianDetailedComponent implements OnInit {
   }
 
   renderUnfollowButton() {
+
     this.unfollow = document.getElementById('unfollow').style.display = 'block';
     this.follow = document.getElementById('follow').style.display = 'none';
     this.loading = false;
@@ -110,6 +122,9 @@ export class SeePoliticianDetailedComponent implements OnInit {
 
   checkParliamentarianFollowed() {
     this.requester.getFollow(this.id).subscribe( response => {
+
+      this.assert.ok(response != null || undefined, 'O dado obtido é nulo ou indefinido.');
+
       if (response['status'] === 200) {
         this.renderUnfollowButton();
       } else {

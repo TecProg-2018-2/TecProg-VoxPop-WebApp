@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
+import { AssertComponent } from '../../assert';
 
 @Component({
   selector: 'app-termos-de-servico',
@@ -20,5 +21,7 @@ export class TermosDeServicoComponent implements OnInit {
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
+
+    this.assert.assert(this.tokenValue == null, 'Token vazio');
   }
 }
