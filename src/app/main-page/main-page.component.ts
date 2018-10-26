@@ -51,7 +51,7 @@ export class MainPageComponent implements OnInit {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
 
-    this.assert.assert(this.tokenValue == null, 'Token vazio');
+    this.assert.ok(this.tokenValue == null, 'Token vazio');
 
     this.idValue = +this.cookieService.get('userID');
     this.propositions(3, 0);

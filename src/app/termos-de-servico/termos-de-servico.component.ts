@@ -12,6 +12,8 @@ import { AssertComponent } from '../../assert';
 
 export class TermosDeServicoComponent implements OnInit {
   tokenValue = '';
+  assert = require('assert');
+
   constructor(
     private requester: RequestsService,
     private cookieService: CookieService,
