@@ -9,10 +9,10 @@ import { RequestsService } from '../requests.service';
 })
 export class MostFollowedComponent implements OnInit {
 
-  loading: boolean = true;
+  public loading: boolean = true;
 
   constructor(
-    private tokenService: TokenService, 
+    private tokenService: TokenService,
     private requestService: RequestsService,
   ) { }
 
@@ -25,8 +25,8 @@ export class MostFollowedComponent implements OnInit {
   /**
    * Requisita a API para pegar as estatísticas dos parlamentares.
    */
-  parliamentariansMoreOften() { 
-    const request: any =  this.requestService.getMostFollowed();
+  parliamentariansMoreOften() {
+    const request: any = this.requestService.getMostFollowed();
     this.handleParliamentariansMoreOften(request);
   }
 
@@ -35,8 +35,8 @@ export class MostFollowedComponent implements OnInit {
    * @param request objeto que guarda o resultado de uma requisição
    */
   handleParliamentariansMoreOften(request) {
-    request.subscribe( response => {
-      const parliamentariansMoreOftenValue: any[] = response['body']['results']; 
+    request.subscribe(response => {
+      const parliamentariansMoreOftenValue: any[] = response['body']['results'];
       this.loading = false;
     });
   }

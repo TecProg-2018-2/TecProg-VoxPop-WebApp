@@ -15,7 +15,8 @@ export class TermosDeServicoComponent implements OnInit {
   constructor(
     private requester: RequestsService,
     private cookieService: CookieService,
-    private token: TokenService
+    private token: TokenService,
+    private assert: AssertComponent
     ) { }
 
   ngOnInit() {
