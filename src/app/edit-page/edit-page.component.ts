@@ -88,22 +88,22 @@ export class EditPageComponent implements OnInit {
     const userSocialInformation = this.user.social_information;
     const user = this.user;
 
-    if(userSocialInformation.region == 'null') {
+    if (userSocialInformation.region === 'null') {
       userSocialInformation.region = null;
     }
-    if(userSocialInformation.income == 'null') {
+    if (userSocialInformation.income === 'null') {
       userSocialInformation.income = null;
     }
-    if(userSocialInformation.education == 'null') {
+    if (userSocialInformation.education === 'null') {
       userSocialInformation.education = null;
     }
-    if(userSocialInformation.race == 'null') {
+    if (userSocialInformation.race === 'null') {
       userSocialInformation.race = null;
     }
-    if(userSocialInformation.gender == 'null') {
+    if (userSocialInformation.gender === 'null') {
       userSocialInformation.gender = null;
     }
-    if(user.email != '') {
+    if (user.email !== '') {
       const request = this.requester.putUser(user, this.userID);
       this.updateUserHandler(request);
       return request;
@@ -121,7 +121,7 @@ export class EditPageComponent implements OnInit {
       if (this.requester.didSucceed(statusUser)) {
         this.router.navigate(['']);
       } else {
-        this.assert(this.requester.didSucceed(statusUser) === false, 'Não foi possível concluir a operação')
+        this.assert(this.requester.didSucceed(statusUser) === false, 'Não foi possível concluir a operação');
       }
     }, error => {
       this.errorHandler(error.status);
