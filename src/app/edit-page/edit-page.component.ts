@@ -6,14 +6,11 @@
 ***********************************************************************/
 
 import { Component, OnInit } from '@angular/core';
-import { RegisterFormComponent } from '../register-form/register-form.component';
 import { Router } from '@angular/router';
 import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
-import { UserModel } from '../../models/user';
 import { InputValidatorService } from '../input-validator.service';
-import { AssertComponent } from '../../assert';
 
 
 @Component({
@@ -27,10 +24,10 @@ import { AssertComponent } from '../../assert';
   */
 export class EditPageComponent implements OnInit {
 
-  tokenValue: string = ''; /* Variable that storage the token of logged user*/
+  private tokenValue: string = ''; /* Variable that storage the token of logged user*/
 
-  userID: number = 0;
-  assert = require('assert');
+  private userID: number = 0;
+  private assert = require('assert');
 
 
 
@@ -51,7 +48,7 @@ export class EditPageComponent implements OnInit {
         birth_date: null
     },
   };
-
+  
   constructor(
     private router: Router,
     private requester: RequestsService,
@@ -108,6 +105,9 @@ export class EditPageComponent implements OnInit {
       this.updateUserHandler(request);
       return request;
     }
+    else{
+      user.email = null;
+    }
   }
 
   /**
@@ -117,7 +117,6 @@ export class EditPageComponent implements OnInit {
   updateUserHandler(request) {
     request.subscribe(response => {
       const statusUser = response.status;
-
       if (this.requester.didSucceed(statusUser)) {
         this.router.navigate(['']);
       } else {
@@ -134,18 +133,11 @@ export class EditPageComponent implements OnInit {
   *  500 or 400.
   */
   errorHandler(status: number) {
-    if (status === 401) {
+    if (status === 401 || status === 500 || status === 400) {
       document.getElementById('alert-invalid').style.display = 'block';
       return true;
+    }else {
+      return false;    
     }
-    if (status === 500) {
-      document.getElementById('alert-invalid').style.display = 'block';
-      return true;
-    }
-    if (status === 400) {
-      document.getElementById('alert-invalid').style.display = 'block';
-      return true;
-    }
-    return false;
   }
 }
