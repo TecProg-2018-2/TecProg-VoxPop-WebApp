@@ -23,28 +23,28 @@ declare var Chart: any;
  * Details a proposal in the Chamber of Deputies
  */
 export class PropositionComponent implements OnInit {
+  
+  private tokenValue: string = '';
+  public sub: any = 0;
+  private idProposition: number = 0;
+  public loadingStatus: boolean = true;
+  private socialInformation: any = 0;
+  private regionContext: HTMLElement;
+  public regionChart: any = 0;
+  private incomeContext: HTMLElement;
+  public incomeChart: any = 0;
+  private educationContext: HTMLElement;
+  public educationChart: any = 0;
+  private raceContext: HTMLElement;
+  public raceChart: any = 0;
+  private genderContext: HTMLElement;
+  public genderChart: any = 0;
+  private parliamentarianContext: HTMLElement;
+  public parliamentarianChart: any = 0 ;
+  private populationContext: HTMLElement;
+  public populationChart: any = 0 ;
 
-  tokenValue: string = '';
-  sub: any = 0;
-  idProposition: number = 0;
-  loadingStatus: boolean = true;
-  socialInformation: any = 0;
-  regionContext: HTMLElement;
-  regionChart: any = 0;
-  incomeContext: HTMLElement;
-  incomeChart: any = 0;
-  educationContext: HTMLElement;
-  educationChart: any = 0;
-  raceContext: HTMLElement;
-  raceChart: any = 0;
-  genderContext: HTMLElement;
-  genderChart: any = 0;
-  parliamentarianContext: HTMLElement;
-  parliamentarianChart: any = 0 ;
-  populationContext: HTMLElement;
-  populationChart: any = 0 ;
-
-  proposition: any = {
+  public proposition: any = {
     proposition_id: 0,
     proposition_type: '',
     proposition_type_initials: '',
