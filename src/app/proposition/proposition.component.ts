@@ -13,27 +13,27 @@ declare var Chart: any;
 })
 export class PropositionComponent implements OnInit {
 
-  tokenValue = '';
-  sub: any;
-  id = 0;
-  loading = true;
-  social_information: any;
-  region_ctx: HTMLElement;
-  region_chart: any;
-  income_ctx: HTMLElement;
-  income_chart: any;
-  education_ctx: HTMLElement;
-  education_chart: any;
-  race_ctx: HTMLElement;
-  race_chart: any;
-  gender_ctx: HTMLElement;
-  gender_chart: any;
-  parliamentarian_ctx: HTMLElement;
-  parliamentarian_chart: any;
-  population_ctx: HTMLElement;
-  population_chart: any;
+  private tokenValue = '';
+  public sub: any;
+  private id = 0;
+  public loading = true;
+  private social_information: any;
+  private region_ctx: HTMLElement;
+  public region_chart: any;
+  private income_ctx: HTMLElement;
+  public income_chart: any;
+  private education_ctx: HTMLElement;
+  public education_chart: any;
+  private race_ctx: HTMLElement;
+  public race_chart: any;
+  private gender_ctx: HTMLElement;
+  public gender_chart: any;
+  private parliamentarian_ctx: HTMLElement;
+  public parliamentarian_chart: any;
+  private population_ctx: HTMLElement;
+  public population_chart: any;
 
-  proposition: any = {
+  public proposition: any = {
     proposition_id: 0,
     proposition_type: '',
     proposition_type_initials: '',

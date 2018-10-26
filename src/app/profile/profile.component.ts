@@ -11,8 +11,8 @@ import { RequestsService } from '../requests.service';
 })
 export class ProfileComponent implements OnInit {
 
-  userID: number;
-  user: any = {
+  private userID: number;
+  public user: any = {
     username: '',
     first_name: '',
     last_name: '',
@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
       birth_date: null
     }
   };
-  tokenValue = '';
+  private tokenValue = '';
 
   constructor(private router: Router,
               private cookieService: CookieService,
@@ -39,11 +39,9 @@ export class ProfileComponent implements OnInit {
     this.token.filterRestrictPage(this.tokenValue);
     this.userID = +this.cookieService.get('userID');
     this.requester.getUser(this.userID).subscribe( response => {
-      // console.log(response);
       this.user = response['body'];
-      // console.log(this.user);
     }, error => {
-      console.log('something wrong');
+      console.log('something wrong', error);
     });
   }
 
