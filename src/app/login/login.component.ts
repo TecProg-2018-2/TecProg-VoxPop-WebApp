@@ -6,6 +6,8 @@ import { HttpResponseBase } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 import { AppComponent } from '../app.component';
+import { AssertComponent } from '../../assert';
+import { error } from 'protractor';
 
 @Component({
     selector: 'app-login',
@@ -20,6 +22,7 @@ export class LoginComponent implements OnInit {
     tokenValue: string = '';
     registerSuccess: string = '';
     logging: boolean = false;
+    assert = require('assert');
 
     constructor(private router: Router,
         private requester: RequestsService,
@@ -30,8 +33,14 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         this.tokenValue = this.token.getToken();
         this.token.checkToken(this.tokenValue);
+
+        this.assert.assert(this.tokenValue == null, 'Token vazio');
+
         this.token.filterLoginPage(this.tokenValue);
         this.registerSuccess = this.cookieService.get('success');
+
+        this.assert.ok(this.registerSuccess != null);
+
         this.checkRegister(this.registerSuccess);
     }
 
@@ -44,7 +53,6 @@ export class LoginComponent implements OnInit {
             username: username,
             password: password
         };
-
         req = this.requester.postAuthentication(user);
         this.handleLoginResponse(req);
         return req;
@@ -55,11 +63,16 @@ export class LoginComponent implements OnInit {
         if (success === 'true') {
             const registerAlert: string = document.getElementById('registerAlert').style.display = 'block';
         }
+
+        this.assert.ok(success=='true');
     }
 
     handleLoginResponse(request) {
         request.subscribe(response => {
             if (this.requester.didSucceed(response.status)) {
+
+                this.assert.ok(this.requester.didSucceed(response.status)!=null);
+
                 this.cookieService.set('basic_token', response.body['token']);
                 this.cookieService.set('userID', response.body['id']);
                 this.cookieService.set('userUsername', response.body['username']);

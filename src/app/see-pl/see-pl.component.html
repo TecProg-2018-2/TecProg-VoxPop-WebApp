@@ -10,40 +10,40 @@
 
 <br>
 <ng-container *ngIf="!loading">
-<div class="row">
-  <div class="col-md-6 text-center vote" *ngFor="let p of proposition; let i = index">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">{{p['proposition_type_initials']}} {{p['number']}}/{{p['year']}}</h3>
-      </div>
-      <div class="panel-body">
-        <h5>{{p['proposition_type']}}</h5>
-        <div class="text-justify">
-          <div *ngIf="p['abstract'].length <= 250">
-            <p>{{p['abstract']}}</p>
-          </div>
-          <div *ngIf="p['abstract'].length > 250">
-            <p>{{p['abstract'].substr(0, 250)}}...
-              <button (click)="setSpecificProposition(i)" class="see-more" data-toggle="modal" data-target="#exampleModal">
-                Ver mais
-              </button>
-            </p>
-          </div>
+  <div class="row">
+    <div class="col-md-6 text-center vote" *ngFor="let p of proposition; let i = index">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{p['proposition_type_initials']}} {{p['number']}}/{{p['year']}}</h3>
         </div>
-        <a href="/proposicoes/{{p['id']}}" class="btn btn-primary">Ver detalhes da proposição</a>
+        <div class="panel-body">
+          <h5>{{p['proposition_type']}}</h5>
+          <div class="text-justify">
+            <div *ngIf="p['abstract'].length <= 250">
+              <p>{{p['abstract']}}</p>
+            </div>
+            <div *ngIf="p['abstract'].length > 250">
+              <p>{{p['abstract'].substr(0, 250)}}...
+                <button (click)="setSpecificProposition(i)" class="see-more" data-toggle="modal" data-target="#exampleModal">
+                  Ver mais
+                </button>
+              </p>
+            </div>
+          </div>
+          <a href="/proposicoes/{{p['id']}}" class="btn btn-primary">Ver detalhes da proposição</a>
+        </div>
+        <div class="panel-footer text-muted">atualizada {{p['days_ago']}} dia(s) atrás</div>
       </div>
-      <div class="panel-footer text-muted">atualizada {{p['days_ago']}} dia(s) atrás</div>
     </div>
   </div>
-</div>
 </ng-container>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body" *ngIf="proposition?.length > 0">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
         <h5 class="card-title">
           {{proposition[position]['proposition_type']}} - Número: {{proposition[position]['number']}}
         </h5>
@@ -60,34 +60,34 @@
 </div>
 
 <table style="width:100%" *ngIf="pages > 0">
-    <tr>
-      <div class="row">
-        <div class="col-sm-12">
-          <ul class="nav nav-pills center">
-            <td>
-              <button id="beforeBtn1" class="btn" (click)="loadPage(1)">Inicio</button>
-            </td>
-            <td>
-              <button id="beforeBtn2" class="btn" (click)="loadPage(offset-1)">Ant.</button>
-            </td>
-            <td>
-              <input id="pageBtn1" type="text" size="3" class="form-control" #page>
-            </td>
-            <td>
-              <button id="pageBtn2" class="btn" (click)="loadPage(page.value)">Ir</button>
-            </td>
-            <td>
-              <button id="afterBtn1" class="btn" (click)="loadPage(offset+1)">Prox.</button>
-            </td>
-            <td>
-              <button id="afterBtn2" class="btn" (click)="loadPage(pages)">Fim</button>
-            </td>
-          </ul>
-          <br>
-          <br>
-          <p class="p-center">Página: {{offset}}/{{pages}}</p>
-          <br>
-        </div>
+  <tr>
+    <div class="row">
+      <div class="col-sm-12">
+        <ul class="nav nav-pills center">
+          <td>
+            <button id="beforeBtn1" class="btn" (click)="loadPage(1)">Inicio</button>
+          </td>
+          <td>
+            <button id="beforeBtn2" class="btn" (click)="loadPage(offset-1)">Ant.</button>
+          </td>
+          <td>
+            <input id="pageBtn1" type="text" size="3" class="form-control" #page>
+          </td>
+          <td>
+            <button id="pageBtn2" class="btn" (click)="loadPage(page.value)">Ir</button>
+          </td>
+          <td>
+            <button id="afterBtn1" class="btn" (click)="loadPage(offset+1)">Prox.</button>
+          </td>
+          <td>
+            <button id="afterBtn2" class="btn" (click)="loadPage(pages)">Fim</button>
+          </td>
+        </ul>
+        <br>
+        <br>
+        <p class="p-center">Página: {{offset}}/{{pages}}</p>
+        <br>
       </div>
-    </tr>
-  </table>
+    </div>
+  </tr>
+</table>

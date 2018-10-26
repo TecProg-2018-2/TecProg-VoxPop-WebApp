@@ -20,6 +20,7 @@ export class MainPageComponent implements OnInit {
   parliamentaryCtx: HTMLElement;
   propositionChart: any;
   parliamentaryChart: any;
+  assert = require('assert');
 
   proposition: any = [{
     proposition_id: 0,
@@ -49,6 +50,9 @@ export class MainPageComponent implements OnInit {
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
+
+    this.assert.ok(this.tokenValue == null, 'Token vazio');
+
     this.idValue = +this.cookieService.get('userID');
     this.propositions(3, 0);
     this.mostActives(3, 0);
@@ -61,6 +65,7 @@ export class MainPageComponent implements OnInit {
     this.proposition = [];
     requisition = this.requester.getProposition(limit, offset);
     this.handlePropositionsResponse(requisition, limit, offset);
+
     return requisition;
   }
 
@@ -69,6 +74,9 @@ export class MainPageComponent implements OnInit {
     this.mostActivesParliamentaries = [];
     requisition = this.requester.getMostActive(limit, offset);
     this.handleMostActivesResponse(requisition, limit, offset);
+
+    this.assert.ok(this.mostActivesParliamentaries != null);
+
     return requisition;
   }
 

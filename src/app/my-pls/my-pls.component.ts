@@ -23,6 +23,7 @@ export class MyPlsComponent implements OnInit {
   numberPLsVoted: number;
   propositionVote: any;
   loading = true;
+  assert = require('assert');
 
   proposition: any = [
     {
@@ -49,6 +50,9 @@ export class MyPlsComponent implements OnInit {
     this.tokenValue = this.token.getToken();
     this.userId = Number(this.cookieService.get('userID'));
     this.token.checkToken(this.tokenValue);
+
+    this.assert.assert(this.tokenValue == null, 'Token vazio');
+
     this.token.filterRestrictPage(this.tokenValue);
     this.votePosition = 0;
     this.propositions(1, '');
@@ -64,6 +68,10 @@ export class MyPlsComponent implements OnInit {
     this.pages = 1;
     this.numberPLsVoted = 1;
     this.proposition = [];
+
+    this.assert.ok(this.pages != null);
+    this.assert.ok(this.numberPLsVoted != null);
+
     requisition = this.requester.getSearchVotedProposition((offset - 1) * this.itemsPerPage, this.term);
     this.handlePropositionsSearchResponse(requisition, offset);
     return requisition;
@@ -95,6 +103,8 @@ export class MyPlsComponent implements OnInit {
 
     this.requester.updateVote(vote, this.propositionVote[this.votePosition]['id']).subscribe(response => {
       status = response.status;
+
+      this.assert.ok(status != null);
 
       if (!this.requester.didSucceed(status)) {
         alert('Voto não editado, favor tentar de novo mais tarde');

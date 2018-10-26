@@ -3,12 +3,15 @@ import { ActivatedRoute } from '@angular/router';
 import { RequestsService } from '../requests.service';
 import { TokenService } from '../token.service';
 import { CookieService } from 'ngx-cookie-service';
+import { AssertComponent } from '../../assert';
+import { ParlimentarianCompModel } from '../../models/parlimentarian';
 
 @Component({
   selector: 'app-see-politician',
   templateUrl: './see-politician-detail.component.html',
   styleUrls: ['./see-politician-detail.component.css']
 })
+
 export class SeePoliticianDetailedComponent implements OnInit {
   tokenValue = '';
   sub: any;
@@ -17,18 +20,10 @@ export class SeePoliticianDetailedComponent implements OnInit {
   follow;
   loading = false;
   loader = true;
-  parlimentarian: any = {
-    name: '',
-    gender: '',
-    partido: '',
-    federal_unit: '',
-    photo: '',
-    birth_date: '',
-    education: '',
-    email: '',
-    compatibility: '',
-  };
+  parlimentarian: ParlimentarianCompModel;
   gender = '';
+
+  assert = require('assert');
 
   constructor(
     private route: ActivatedRoute,
@@ -41,13 +36,15 @@ export class SeePoliticianDetailedComponent implements OnInit {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
 
+    this.assert.assert(this.tokenValue == null, 'Token vazio');
+
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
 
     this.checkParliamentarianFollowed();
     this.requester.getParlimentarianSpecific(this.id).subscribe( response => {
-      this.parlimentarian = response['body'];
+      this.parlimentarian = response['body'] as ParlimentarianCompModel;
       if (this.parlimentarian['gender'] === 'M') {
         this.gender = 'Masculino';
       } else if (this.parlimentarian['gender'] === 'F') {
@@ -58,10 +55,16 @@ export class SeePoliticianDetailedComponent implements OnInit {
       this.loader = false;
     }, error => {
       this.parlimentarian = {
+        id: null,
         name : 'DEPUTADO NÃO ENCONTRADO',
         gender : 'N/A',
+        political_party: 'N/A',
         federal_unit: 'N/A',
-        photo: 'N/A'
+        photo: 'N/A',
+        birth_date: 'N/A',
+        education: 'N/A',
+        email: 'N/A',
+        compatibility: 'N/A',
       };
     });
   }
@@ -69,7 +72,10 @@ export class SeePoliticianDetailedComponent implements OnInit {
   followParliamentarian() {
     this.loading = true;
     let status;
-    this.requester.postFollow(this.parlimentarian.id).subscribe(response => {
+      this.requester.postFollow(this.parlimentarian.id).subscribe(response => {
+
+      this.assert.ok(response != null || undefined, 'O dado obtido é nulo ou indefinido.');
+
       status = response.status;
       this.renderUnfollowButton();
     });
@@ -81,14 +87,17 @@ export class SeePoliticianDetailedComponent implements OnInit {
     this.loading = true;
     let status;
     this.requester.deleteFollow(this.parlimentarian.id).subscribe(response => {
+
+    this.assert.ok(response != null || undefined, 'O dado obtido é nulo ou indefinido.');
+
       status = response.status;
       this.renderFollowButton();
     });
     return true;
-
   }
 
   renderUnfollowButton() {
+
     this.unfollow = document.getElementById('unfollow').style.display = 'block';
     this.follow = document.getElementById('follow').style.display = 'none';
     this.loading = false;
@@ -110,6 +119,9 @@ export class SeePoliticianDetailedComponent implements OnInit {
 
   checkParliamentarianFollowed() {
     this.requester.getFollow(this.id).subscribe( response => {
+
+      this.assert.ok(response != null || undefined, 'O dado obtido é nulo ou indefinido.');
+
       if (response['status'] === 200) {
         this.renderUnfollowButton();
       } else {
