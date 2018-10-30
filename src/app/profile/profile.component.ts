@@ -22,9 +22,8 @@ import { RequestsService } from '../requests.service';
  */
 export class ProfileComponent implements OnInit {
 
-  userID: number = 0; /* logged in user id */
-
-  user: any = {
+  private userID: number = 0; /* logged in user id */
+  public user: any = {
     username: '',
     first_name: '',
     last_name: '',
@@ -38,8 +37,8 @@ export class ProfileComponent implements OnInit {
       birth_date: null
     }
   };
-
-  tokenValue: string = ''; /* user session token */
+  
+  private tokenValue: string = ''; /* user session token */
 
   constructor(
     private router: Router,
@@ -61,7 +60,7 @@ export class ProfileComponent implements OnInit {
     this.requester.getUser(this.userID).subscribe( response => {
       this.user = response['body'];
     }, error => {
-      console.log('something wrong');
+      console.log('something wrong', error);
     });
   }
 

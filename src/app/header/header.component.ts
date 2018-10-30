@@ -8,7 +8,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppComponent } from '../app.component';
-import { AssertComponent } from '../../assert';
 
 
 @Component({
@@ -22,7 +21,7 @@ import { AssertComponent } from '../../assert';
   */
 export class HeaderComponent {
 
-  assert = require('assert');
+  public assert = require('assert');
 
 
   constructor(
@@ -42,7 +41,7 @@ export class HeaderComponent {
   *  according to the click on the sidebar.
   */
   toggleMenu() {
-     const sidebar = document.getElementById('sidebar');
+    const sidebar = document.getElementById('sidebar');
      sidebar.classList.toggle('active');
 
      const content = document.getElementById('content');

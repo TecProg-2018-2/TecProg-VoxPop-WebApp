@@ -5,8 +5,6 @@
 * Description File:  Verify the value of user fields
 ***********************************************************************/
 import { Injectable, NgModule } from '@angular/core';
-import { isString } from 'util';
-import { AssertComponent } from '../assert';
 
 
 @Injectable()
@@ -16,27 +14,28 @@ import { AssertComponent } from '../assert';
   declarations: [],
   exports: []
 })
+
 /**
   *  class responsible for set up the user fields validations.
   */
 export class InputValidatorService {
 
-  valueErrorHandler: string = '';
-  valuePassword: string = '';
-  valueInvalidPassword: string = '';
-  valueUsername: string = '';
-  valueEmail: string = '';
-  valueInvalidInput: string = '';
-  password: string = '';
-  confirmPassword: string = '';
-  username: string = '';
-  statusPassword: boolean = false;
-  statusValidPassword: boolean = false;
-  statusUsername: boolean = false;
-  statusEmail: boolean = false;
-  colorDanger: string = '#d9534f'; /* Stores the color to be shown if the field is invalid*/
-  colorSucess: string = '#5cb85c'; /* Stores the color to be shown if the field is valid*/
-  assert = require('assert');
+  public valueErrorHandler: string = '';
+  public valuePassword: string = '';
+  public valueInvalidPassword: string = '';
+  public valueUsername: string = '';
+  public valueEmail: string = '';
+  public valueInvalidInput: string = '';
+  private password: string = '';
+  private confirmPassword: string = '';
+  public username: string = '';
+  private statusPassword: boolean = false;
+  private statusValidPassword: boolean = false;
+  private statusUsername: boolean = false;
+  private statusEmail: boolean = false;
+  private colorDanger: string = '#d9534f'; /* Stores the color to be shown if the field is invalid*/
+  private colorSucess: string = '#5cb85c'; /* Stores the color to be shown if the field is valid*/
+  private assert = require('assert');
 
 
   /**
@@ -49,7 +48,8 @@ export class InputValidatorService {
     if (status === 500) {
       document.getElementById('alert-invalid').style.display = 'block';
       this.valueErrorHandler = 'Error interno, tente novamente mais tarde';
-    } else if (status === 400) {
+    }
+    if (status === 400) {
       document.getElementById('alert-invalid').style.display = 'block';
       this.valueErrorHandler = 'Nome de usuário já existente';
     }
@@ -67,16 +67,16 @@ export class InputValidatorService {
 
     const validPassword = this.isPasswordValid(this.password);
 
-      if (!validPassword) {
-        this.valueInvalidPassword = 'Sua senha deve ter no mínimo 6 caracteres';
-        document.getElementById('alert-invalid-password').style.display = 'block';
-        this.statusValidPassword = false;
-        this.borderColor('password', this.colorDanger);
-      } else {
-        document.getElementById('alert-invalid-password').style.display = 'none';
-        this.statusValidPassword = true;
-        this.borderColor('password', this.colorSucess);
-      }
+    if(validPassword) {
+      document.getElementById('alert-invalid-password').style.display = 'none';
+      this.statusValidPassword = true;
+      this.borderColor('password', this.colorSucess);
+    } else {
+      this.valueInvalidPassword = 'Sua senha deve ter no mínimo 6 caracteres';
+      document.getElementById('alert-invalid-password').style.display = 'block';
+      this.statusValidPassword = false;
+      this.borderColor('password', this.colorDanger);
+    }
 
   }
 
@@ -174,8 +174,9 @@ export class InputValidatorService {
     const format = /^[a-zA-Z0-9]+$/;
     if (format.test(username)) {
       return true;
+    }else{
+      return false;
     }
-    return false;
   }
 
    /**
@@ -187,8 +188,9 @@ export class InputValidatorService {
     this.assert.ok(username === '' || username === undefined, 'O nome de usuário inserido é inválido');
     if (username.length > 3 && username.length < 21) {
       return true;
+    }else {
+      return false;
     }
-    return false;
   }
 
    /**
@@ -217,8 +219,9 @@ export class InputValidatorService {
 
     if (password === confPassword) {
       return true;
+    }else {
+      return false;
     }
-    return false;
   }
 
   /**
@@ -229,8 +232,9 @@ export class InputValidatorService {
     this.assert(password === '', 'A senha inserida está vazia');
     if (password.length > 5 && password.length < 50) {
       return true;
+    }else {
+      return false;
     }
-    return false;
   }
 
    /**
@@ -269,24 +273,24 @@ export class InputValidatorService {
     } else {
       document.getElementById('alert-invalid-inputs').style.display = 'block';
       this.valueInvalidInput = 'Por favor, preencha os campos obrigatórios';
-      if (!this.statusPassword) {
-      this.borderColor('password', this.colorDanger);
-      this.borderColor('confirm-password', this.colorDanger);
-      } else {
+      if (this.statusPassword) {
         this.borderColor('password', this.colorSucess);
         this.borderColor('confirm-password', this.colorSucess);
+      }else {
+        this.borderColor('password', this.colorDanger);
+        this.borderColor('confirm-password', this.colorDanger);
       }
 
-      if (!this.statusUsername) {
-        this.borderColor('username', this.colorDanger);
-      } else {
+      if (this.statusUsername) {
         this.borderColor('username', this.colorSucess);
+      } else {
+        this.borderColor('username', this.colorDanger);
       }
 
-      if (!this.statusEmail) {
-        this.borderColor('email', this.colorDanger);
-      } else {
+      if (this.statusEmail) {
         this.borderColor('email', this.colorSucess);
+      } else {
+        this.borderColor('email', this.colorDanger);
       }
     }
  }

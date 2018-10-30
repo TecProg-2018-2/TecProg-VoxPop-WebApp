@@ -2,12 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginModel } from '../../models/login';
 import { RequestsService } from '../requests.service';
-import { HttpResponseBase } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
-import { AppComponent } from '../app.component';
-import { AssertComponent } from '../../assert';
-import { error } from 'protractor';
+//Técnica: Código simples.
 
 @Component({
     selector: 'app-login',
@@ -15,33 +12,30 @@ import { error } from 'protractor';
     styleUrls: ['./login.component.css']
 })
 
-
 export class LoginComponent implements OnInit {
 
-    valueInvalidMsg: string = 'Usuário ou senha inválida';
-    tokenValue: string = '';
-    registerSuccess: string = '';
-    logging: boolean = false;
-    assert = require('assert');
+    //Técinica: Código simples e boa apresentação
+    private logging: boolean = false; //Técnica: Não deixe que os outros mexam onde não devem. Private
+    private assert = require('assert'); //Técnica: Não deixe que os outros mexam onde não devem. Private
 
     constructor(private router: Router,
         private requester: RequestsService,
         private token: TokenService,
-        private cookieService: CookieService,
-        private appComponent: AppComponent, ) { }
+        private cookieService: CookieService) { }
 
     ngOnInit() {
-        this.tokenValue = this.token.getToken();
-        this.token.checkToken(this.tokenValue);
+        var tokenValue: string = this.token.getToken(); //Técnica: Não deixe que os outros mexam onde não devem.     
+        this.assert.assert(tokenValue == null, 'Token vazio');
 
-        this.assert.assert(this.tokenValue == null, 'Token vazio');
+        this.token.checkToken(tokenValue);
+        this.token.filterLoginPage(tokenValue);
 
-        this.token.filterLoginPage(this.tokenValue);
-        this.registerSuccess = this.cookieService.get('success');
+        var registerSuccess: string = ''; //Técnica: Não deixe que os outros mexam onde não devem.
+        registerSuccess = this.cookieService.get('success');
 
-        this.assert.ok(this.registerSuccess != null);
+        this.assert.ok(registerSuccess != null);
 
-        this.checkRegister(this.registerSuccess);
+        this.checkRegister(registerSuccess);
     }
 
     login(username: string, password: string) {
@@ -60,11 +54,11 @@ export class LoginComponent implements OnInit {
     }
 
     checkRegister(success) {
+         //Técinica: Código simples e boa apresentação
         if (success === 'true') {
-            const registerAlert: string = document.getElementById('registerAlert').style.display = 'block';
+            document.getElementById('registerAlert').style.display = 'block';
+            this.assert.ok(success=='true');
         }
-
-        this.assert.ok(success=='true');
     }
 
     handleLoginResponse(request) {
@@ -93,7 +87,8 @@ export class LoginComponent implements OnInit {
     errorHandler(status) {
         if (status === 400) {
             document.getElementById('alert-invalid').style.display = 'block';
-            return false;
+            //Técnica: Código simples.
         }
+        return; //Técnica: Equilibrar com return;
     }
 }
