@@ -5,7 +5,8 @@
 * Description File:  Edit all current user informations
 ***********************************************************************/
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { RegisterFormComponent } from '../register-form/register-form.component';
 import { Router } from '@angular/router';
 import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -22,7 +23,7 @@ import { InputValidatorService } from '../input-validator.service';
 /**
   *  class responsible for editing user informations
   */
-export class EditPageComponent implements OnInit {
+export class EditPageComponent implements OnInit, OnDestroy {
 
   private tokenValue: string = ''; /* Variable that storage the token of logged user*/
 
@@ -75,6 +76,10 @@ export class EditPageComponent implements OnInit {
       response => {
         this.user = response['body'];
     });
+  }
+
+  ngOnDestroy() {
+    this.user.destroy();
   }
 
   /**

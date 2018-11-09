@@ -5,7 +5,7 @@
 * Description File: Creates the 'contact us' component to make contact with the voxpop team.
 ***********************************************************************/
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -26,10 +26,10 @@ import { MessageModel } from '../../models/message';
  */
 export class ContactUsComponent implements OnInit {
 
-  tokenValue = '';
-  idValue = 0;
-  input: MessageModel;
-  assert = require('assert');
+  private tokenValue = '';
+  private idValue = 0;
+  public input: MessageModel;
+  private assert = require('assert');
 
 /**
  * Default constructor
