@@ -1,0 +1,2043 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>voxpop documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">voxpop documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>PropositionComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/proposition/proposition.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-proposition</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>proposition.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./proposition.component.html</code></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#educationChart">educationChart</a>
+                            </li>
+                            <li>
+                                <a href="#educationContext">educationContext</a>
+                            </li>
+                            <li>
+                                <a href="#genderChart">genderChart</a>
+                            </li>
+                            <li>
+                                <a href="#genderContext">genderContext</a>
+                            </li>
+                            <li>
+                                <a href="#idProposition">idProposition</a>
+                            </li>
+                            <li>
+                                <a href="#incomeChart">incomeChart</a>
+                            </li>
+                            <li>
+                                <a href="#incomeContext">incomeContext</a>
+                            </li>
+                            <li>
+                                <a href="#loadingStatus">loadingStatus</a>
+                            </li>
+                            <li>
+                                <a href="#parliamentarianChart">parliamentarianChart</a>
+                            </li>
+                            <li>
+                                <a href="#parliamentarianContext">parliamentarianContext</a>
+                            </li>
+                            <li>
+                                <a href="#populationChart">populationChart</a>
+                            </li>
+                            <li>
+                                <a href="#populationContext">populationContext</a>
+                            </li>
+                            <li>
+                                <a href="#proposition">proposition</a>
+                            </li>
+                            <li>
+                                <a href="#raceChart">raceChart</a>
+                            </li>
+                            <li>
+                                <a href="#raceContext">raceContext</a>
+                            </li>
+                            <li>
+                                <a href="#regionChart">regionChart</a>
+                            </li>
+                            <li>
+                                <a href="#regionContext">regionContext</a>
+                            </li>
+                            <li>
+                                <a href="#socialInformation">socialInformation</a>
+                            </li>
+                            <li>
+                                <a href="#sub">sub</a>
+                            </li>
+                            <li>
+                                <a href="#tokenValue">tokenValue</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#openProposition">openProposition</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, requester: <a href="../injectables/RequestsService.html">RequestsService</a>, token: <a href="../injectables/TokenService.html">TokenService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/proposition/proposition.component.ts:59</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>requester</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/RequestsService.html" target="_self" >RequestsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>token</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/TokenService.html" target="_self" >TokenService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/proposition/proposition.component.ts:67</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="openProposition"></a>
+                        <span class="name">
+                            <b>
+                            openProposition
+                            </b>
+                            <a href="#openProposition"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>openProposition(proposition_url: )</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="634" class="link-to-prism">src/app/proposition/proposition.component.ts:634</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Responsible for detailing a proposition.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>proposition_url</td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>URL of the proposal selected by the user</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="educationChart"></a>
+                        <span class="name">
+                            <b>
+                            educationChart
+                            </b>
+                            <a href="#educationChart"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>educationChart:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/proposition/proposition.component.ts:37</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="educationContext"></a>
+                        <span class="name">
+                            <b>
+                            educationContext
+                            </b>
+                            <a href="#educationContext"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>educationContext:     <code>HTMLElement</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>HTMLElement</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/proposition/proposition.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="genderChart"></a>
+                        <span class="name">
+                            <b>
+                            genderChart
+                            </b>
+                            <a href="#genderChart"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>genderChart:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/proposition/proposition.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="genderContext"></a>
+                        <span class="name">
+                            <b>
+                            genderContext
+                            </b>
+                            <a href="#genderContext"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>genderContext:     <code>HTMLElement</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>HTMLElement</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/proposition/proposition.component.ts:40</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="idProposition"></a>
+                        <span class="name">
+                            <b>
+                            idProposition
+                            </b>
+                            <a href="#idProposition"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>idProposition:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/proposition/proposition.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="incomeChart"></a>
+                        <span class="name">
+                            <b>
+                            incomeChart
+                            </b>
+                            <a href="#incomeChart"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>incomeChart:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/proposition/proposition.component.ts:35</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="incomeContext"></a>
+                        <span class="name">
+                            <b>
+                            incomeContext
+                            </b>
+                            <a href="#incomeContext"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>incomeContext:     <code>HTMLElement</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>HTMLElement</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/proposition/proposition.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loadingStatus"></a>
+                        <span class="name">
+                            <b>
+                            loadingStatus
+                            </b>
+                            <a href="#loadingStatus"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>loadingStatus:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/proposition/proposition.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="parliamentarianChart"></a>
+                        <span class="name">
+                            <b>
+                            parliamentarianChart
+                            </b>
+                            <a href="#parliamentarianChart"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>parliamentarianChart:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/proposition/proposition.component.ts:43</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="parliamentarianContext"></a>
+                        <span class="name">
+                            <b>
+                            parliamentarianContext
+                            </b>
+                            <a href="#parliamentarianContext"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>parliamentarianContext:     <code>HTMLElement</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>HTMLElement</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/proposition/proposition.component.ts:42</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="populationChart"></a>
+                        <span class="name">
+                            <b>
+                            populationChart
+                            </b>
+                            <a href="#populationChart"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>populationChart:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/proposition/proposition.component.ts:45</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="populationContext"></a>
+                        <span class="name">
+                            <b>
+                            populationContext
+                            </b>
+                            <a href="#populationContext"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>populationContext:     <code>HTMLElement</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>HTMLElement</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/proposition/proposition.component.ts:44</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="proposition"></a>
+                        <span class="name">
+                            <b>
+                            proposition
+                            </b>
+                            <a href="#proposition"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>proposition:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    proposition_id: 0,
+    proposition_type: &#x27;&#x27;,
+    proposition_type_initials: &#x27;&#x27;,
+    number: 0,
+    year: 0,
+    abstract: &#x27;&#x27;,
+    processing: &#x27;&#x27;,
+    situation: &#x27;&#x27;,
+    url_full: &#x27;&#x27;,
+    parliamentarians_approval: &#x27;&#x27;,
+    population_approval: &#x27;&#x27;,
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/proposition/proposition.component.ts:47</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="raceChart"></a>
+                        <span class="name">
+                            <b>
+                            raceChart
+                            </b>
+                            <a href="#raceChart"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>raceChart:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/proposition/proposition.component.ts:39</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="raceContext"></a>
+                        <span class="name">
+                            <b>
+                            raceContext
+                            </b>
+                            <a href="#raceContext"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>raceContext:     <code>HTMLElement</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>HTMLElement</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/proposition/proposition.component.ts:38</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="regionChart"></a>
+                        <span class="name">
+                            <b>
+                            regionChart
+                            </b>
+                            <a href="#regionChart"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>regionChart:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/proposition/proposition.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="regionContext"></a>
+                        <span class="name">
+                            <b>
+                            regionContext
+                            </b>
+                            <a href="#regionContext"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>regionContext:     <code>HTMLElement</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>HTMLElement</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/proposition/proposition.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="socialInformation"></a>
+                        <span class="name">
+                            <b>
+                            socialInformation
+                            </b>
+                            <a href="#socialInformation"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>socialInformation:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/proposition/proposition.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sub"></a>
+                        <span class="name">
+                            <b>
+                            sub
+                            </b>
+                            <a href="#sub"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>sub:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/proposition/proposition.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tokenValue"></a>
+                        <span class="name">
+                            <b>
+                            tokenValue
+                            </b>
+                            <a href="#tokenValue"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>tokenValue:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/proposition/proposition.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { RequestsService } from &#x27;../requests.service&#x27;;
+import { TokenService } from &#x27;../token.service&#x27;;
+import { CookieService } from &#x27;ngx-cookie-service&#x27;;
+
+declare var Chart: any;
+
+@Component({
+  selector: &#x27;app-proposition&#x27;,
+  templateUrl: &#x27;./proposition.component.html&#x27;,
+  styleUrls: [&#x27;./proposition.component.css&#x27;]
+})
+
+/**
+ * Details a proposal in the Chamber of Deputies
+ */
+export class PropositionComponent implements OnInit {
+
+  tokenValue: string &#x3D; &#x27;&#x27;;
+  sub: any &#x3D; 0;
+  idProposition: number &#x3D; 0;
+  loadingStatus: boolean &#x3D; true;
+  socialInformation: any &#x3D; 0;
+  regionContext: HTMLElement;
+  regionChart: any &#x3D; 0;
+  incomeContext: HTMLElement;
+  incomeChart: any &#x3D; 0;
+  educationContext: HTMLElement;
+  educationChart: any &#x3D; 0;
+  raceContext: HTMLElement;
+  raceChart: any &#x3D; 0;
+  genderContext: HTMLElement;
+  genderChart: any &#x3D; 0;
+  parliamentarianContext: HTMLElement;
+  parliamentarianChart: any &#x3D; 0 ;
+  populationContext: HTMLElement;
+  populationChart: any &#x3D; 0 ;
+
+  proposition: any &#x3D; {
+    proposition_id: 0,
+    proposition_type: &#x27;&#x27;,
+    proposition_type_initials: &#x27;&#x27;,
+    number: 0,
+    year: 0,
+    abstract: &#x27;&#x27;,
+    processing: &#x27;&#x27;,
+    situation: &#x27;&#x27;,
+    url_full: &#x27;&#x27;,
+    parliamentarians_approval: &#x27;&#x27;,
+    population_approval: &#x27;&#x27;,
+  }
+
+  constructor(
+    private route: ActivatedRoute,
+    private requester: RequestsService,
+    private token: TokenService
+  ) { }
+
+  ngOnInit() {
+    this.tokenValue &#x3D; this.token.getToken();
+    this.token.checkToken(this.tokenValue);
+    /* Get the proposal id passed in the route on the page before it. */
+    this.sub &#x3D; this.route.params.subscribe(params &#x3D;&gt; {
+      this.idProposition &#x3D; +params[&#x27;id&#x27;];
+    });
+    /* Get the details of a proposal according to the id. */
+    this.requester.getPropositionSpecific(this.idProposition).subscribe(response &#x3D;&gt; {
+      this.proposition &#x3D; response[&#x27;body&#x27;];
+    });
+    /**
+     * It takes the social data of the proposal and modifies the html and css of the page according 
+     * to the votes of the deputies present social categories.
+     */
+    this.requester.getPropositionSpecificSocialInfo(this.idProposition).subscribe(response &#x3D;&gt; {
+
+      const approvalText: string &#x3D; &#x27;Porcentagem de aprovação&#x27;;
+      const disapprovingText: string &#x3D; &#x27;Porcentagem de desaprovação&#x27;;
+      const abstentionText: string &#x3D; &#x27;Porcentagem de abstenção&#x27;;
+      const noVoteText: string &#x3D; &#x27;Sem voto&#x27;;
+
+      this.socialInformation &#x3D; response[&#x27;body&#x27;];
+      this.loadingStatus &#x3D; false;
+
+      /* Region chart */
+      const regionLabelsList: string[] &#x3D; [
+        &#x27;Norte&#x27;,
+        &#x27;Nordeste&#x27;,
+        &#x27;Centro-Oeste&#x27;,
+        &#x27;Sudeste&#x27;,
+        &#x27;Sul&#x27;,
+        &#x27;Não informada&#x27;
+      ]
+
+      /* Region. */
+      let regionAproveDataList: any[] &#x3D; [];
+      regionAproveDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;N&#x27;][&#x27;Y&#x27;]);
+      regionAproveDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;NE&#x27;][&#x27;Y&#x27;]);
+      regionAproveDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;CO&#x27;][&#x27;Y&#x27;]);
+      regionAproveDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;SE&#x27;][&#x27;Y&#x27;]);
+      regionAproveDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;S&#x27;][&#x27;Y&#x27;]);
+      regionAproveDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;null&#x27;][&#x27;Y&#x27;]);
+
+      let regionDisapproveDataList: any[] &#x3D; [];
+      regionDisapproveDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;N&#x27;][&#x27;N&#x27;]);
+      regionDisapproveDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;NE&#x27;][&#x27;N&#x27;]);
+      regionDisapproveDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;CO&#x27;][&#x27;N&#x27;]);
+      regionDisapproveDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;SE&#x27;][&#x27;N&#x27;]);
+      regionDisapproveDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;S&#x27;][&#x27;N&#x27;]);
+      regionDisapproveDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;null&#x27;][&#x27;N&#x27;]);
+
+      let regionAbstentionDataList: any[] &#x3D; [];
+      regionAbstentionDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;N&#x27;][&#x27;A&#x27;]);
+      regionAbstentionDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;NE&#x27;][&#x27;A&#x27;]);
+      regionAbstentionDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;CO&#x27;][&#x27;A&#x27;]);
+      regionAbstentionDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;SE&#x27;][&#x27;A&#x27;]);
+      regionAbstentionDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;S&#x27;][&#x27;A&#x27;]);
+      regionAbstentionDataList.push(this.socialInformation[&#x27;region&#x27;][&#x27;null&#x27;][&#x27;A&#x27;]);
+
+      this.regionContext &#x3D; document.getElementById(&#x27;regionChart&#x27;);
+      this.regionChart &#x3D; new Chart(this.regionContext, {
+        type: &#x27;bar&#x27;,
+        data: {
+          labels: regionLabelsList,
+          datasets: [
+            {
+              label: approvalText,
+              backgroundColor: &#x27;rgb(68,157,68)&#x27;,
+              borderColor: &#x27;rgb(255, 255, 255)&#x27;,
+              data: regionAproveDataList,
+            },
+            {
+              label: disapprovingText,
+              backgroundColor: &#x27;rgb(201,48,44)&#x27;,
+              borderColor: &#x27;rgb(255, 255, 255)&#x27;,
+              data: regionDisapproveDataList,
+            },
+            {
+              label: abstentionText,
+              backgroundColor: &#x27;rgb(255,255,0)&#x27;,
+              borderColor: &#x27;rgb(255, 255, 255)&#x27;,
+              data: regionAbstentionDataList,
+            }
+          ]
+        },
+        options: {
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem, data) {
+                var label &#x3D; data.datasets[tooltipItem.datasetIndex].label || &#x27;&#x27;;
+
+                if (label) {
+                  label +&#x3D; &#x27;: &#x27;;
+                }
+                label +&#x3D; Math.round(tooltipItem.yLabel * 100) / 100;
+                return label + &quot;%&quot;;
+              }
+            }
+          },
+          scales: {
+            xAxes: [
+              {
+                stacked: false,
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  min: 0,
+                  autoSkip: false
+                }
+              }
+            ]
+          }
+        }
+      });
+
+      /* Income chart. */
+      const incomeLabelsList: string[] &#x3D; [
+        &#x27;Classe A&#x27;,
+        &#x27;Classe B&#x27;,
+        &#x27;Classe C&#x27;,
+        &#x27;Classe D&#x27;,
+        &#x27;Classe E&#x27;,
+        &#x27;Não informada&#x27;
+      ]
+
+      /* Income */
+      let incomeApproveDataList: any[] &#x3D; [];
+      incomeApproveDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;A&#x27;][&#x27;Y&#x27;]);
+      incomeApproveDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;B&#x27;][&#x27;Y&#x27;]);
+      incomeApproveDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;C&#x27;][&#x27;Y&#x27;]);
+      incomeApproveDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;D&#x27;][&#x27;Y&#x27;]);
+      incomeApproveDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;E&#x27;][&#x27;Y&#x27;]);
+      incomeApproveDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;null&#x27;][&#x27;Y&#x27;]);
+
+      let incomeDisapproveDataList: any[] &#x3D; [];
+      incomeDisapproveDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;A&#x27;][&#x27;N&#x27;]);
+      incomeDisapproveDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;B&#x27;][&#x27;N&#x27;]);
+      incomeDisapproveDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;C&#x27;][&#x27;N&#x27;]);
+      incomeDisapproveDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;D&#x27;][&#x27;N&#x27;]);
+      incomeDisapproveDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;E&#x27;][&#x27;N&#x27;]);
+      incomeDisapproveDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;null&#x27;][&#x27;N&#x27;]);
+
+      let incomeAbstentionDataList: any[] &#x3D; [];
+      incomeAbstentionDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;A&#x27;][&#x27;A&#x27;]);
+      incomeAbstentionDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;B&#x27;][&#x27;A&#x27;]);
+      incomeAbstentionDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;C&#x27;][&#x27;A&#x27;]);
+      incomeAbstentionDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;D&#x27;][&#x27;A&#x27;]);
+      incomeAbstentionDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;E&#x27;][&#x27;A&#x27;]);
+      incomeAbstentionDataList.push(this.socialInformation[&#x27;income&#x27;][&#x27;null&#x27;][&#x27;A&#x27;]);
+
+      this.incomeContext &#x3D; document.getElementById(&#x27;incomeChart&#x27;);
+      this.incomeChart &#x3D; new Chart(this.incomeContext, {
+        type: &#x27;bar&#x27;,
+        data: {
+          labels: incomeLabelsList,
+          datasets: [
+            {
+              label: approvalText,
+              backgroundColor: &#x27;rgb(68,157,68)&#x27;,
+              borderColor: &#x27;rgb(255, 255, 255)&#x27;,
+              data: incomeApproveDataList,
+            },
+            {
+              label: disapprovingText,
+              backgroundColor: &#x27;rgb(201,48,44)&#x27;,
+              borderColor: &#x27;rgb(255, 255, 255)&#x27;,
+              data: incomeDisapproveDataList,
+            },
+            {
+              label: abstentionText,
+              backgroundColor: &#x27;rgb(255,255,0)&#x27;,
+              borderColor: &#x27;rgb(255, 255, 255)&#x27;,
+              data: incomeAbstentionDataList,
+            }
+          ]
+        },
+        options: {
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem, data) {
+                var label &#x3D; data.datasets[tooltipItem.datasetIndex].label || &#x27;&#x27;;
+
+                if (label) {
+                  label +&#x3D; &#x27;: &#x27;;
+                }
+                label +&#x3D; Math.round(tooltipItem.yLabel * 100) / 100;
+                return label + &quot;%&quot;;
+              }
+            }
+          },
+          scales: {
+            xAxes: [
+              {
+                stacked: false,
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  min: 0,
+                  autoSkip: false
+                }
+              }
+            ]
+          }
+        }
+      });
+
+      /* Education chart. */
+      const educationLabelsList: string[] &#x3D; [
+        &#x27;Sem escolaridade&#x27;,
+        &#x27;Ensino Fundamental&#x27;,
+        &#x27;Ensino Médio&#x27;,
+        &#x27;Ensino Superior&#x27;,
+        &#x27;Pós Graduação&#x27;,
+        &#x27;Não informada&#x27;
+      ]
+
+      /* Education. */
+      let educationApproveDataList: any[] &#x3D; [];
+      educationApproveDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;SE&#x27;][&#x27;Y&#x27;]);
+      educationApproveDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;EF&#x27;][&#x27;Y&#x27;]);
+      educationApproveDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;EM&#x27;][&#x27;Y&#x27;]);
+      educationApproveDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;ES&#x27;][&#x27;Y&#x27;]);
+      educationApproveDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;PG&#x27;][&#x27;Y&#x27;]);
+      educationApproveDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;null&#x27;][&#x27;Y&#x27;]);
+
+      let educationDisapproveDataList: any[] &#x3D; [];
+      educationDisapproveDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;SE&#x27;][&#x27;N&#x27;]);
+      educationDisapproveDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;EF&#x27;][&#x27;N&#x27;]);
+      educationDisapproveDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;EM&#x27;][&#x27;N&#x27;]);
+      educationDisapproveDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;ES&#x27;][&#x27;N&#x27;]);
+      educationDisapproveDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;PG&#x27;][&#x27;N&#x27;]);
+      educationDisapproveDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;null&#x27;][&#x27;N&#x27;]);
+
+      let educationAbstentionDataList: any[] &#x3D; [];
+      educationAbstentionDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;SE&#x27;][&#x27;A&#x27;]);
+      educationAbstentionDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;EF&#x27;][&#x27;A&#x27;]);
+      educationAbstentionDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;EM&#x27;][&#x27;A&#x27;]);
+      educationAbstentionDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;ES&#x27;][&#x27;A&#x27;]);
+      educationAbstentionDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;PG&#x27;][&#x27;A&#x27;]);
+      educationAbstentionDataList.push(this.socialInformation[&#x27;education&#x27;][&#x27;null&#x27;][&#x27;A&#x27;]);
+
+      this.educationContext &#x3D; document.getElementById(&#x27;educationChart&#x27;);
+      this.educationChart &#x3D; new Chart(this.educationContext, {
+        type: &#x27;bar&#x27;,
+        data: {
+          labels: educationLabelsList,
+          datasets: [
+            {
+              label: approvalText,
+              backgroundColor: &#x27;rgb(68,157,68)&#x27;,
+              borderColor: &#x27;rgb(255, 255, 255)&#x27;,
+              data: educationApproveDataList,
+            },
+            {
+              label: disapprovingText,
+              backgroundColor: &#x27;rgb(201,48,44)&#x27;,
+              borderColor: &#x27;rgb(255, 255, 255)&#x27;,
+              data: educationDisapproveDataList,
+            },
+            {
+              label: abstentionText,
+              backgroundColor: &#x27;rgb(255,255,0)&#x27;,
+              borderColor: &#x27;rgb(255, 255, 255)&#x27;,
+              data: educationAbstentionDataList,
+            }
+          ]
+        },
+        options: {
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem, data) {
+                var label &#x3D; data.datasets[tooltipItem.datasetIndex].label || &#x27;&#x27;;
+
+                if (label) {
+                  label +&#x3D; &#x27;: &#x27;;
+                }
+                label +&#x3D; Math.round(tooltipItem.yLabel * 100) / 100;
+                return label + &quot;%&quot;;
+              }
+            }
+          },
+          scales: {
+            xAxes: [
+              {
+                stacked: false,
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  min: 0,
+                  autoSkip: false
+                }
+              }
+            ]
+          }
+        }
+      });
+
+      /* Race chart. */
+      const raceLabelsList: string[] &#x3D; [
+        &#x27;Branca&#x27;,
+        &#x27;Preta&#x27;,
+        &#x27;Amarela&#x27;,
+        &#x27;Parda&#x27;,
+        &#x27;Indígena&#x27;,
+        &#x27;Não informada&#x27;
+      ]
+
+      /* Race. */
+      let raceApproveDataList: any[] &#x3D; [];
+      raceApproveDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;B&#x27;][&#x27;Y&#x27;]);
+      raceApproveDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;PR&#x27;][&#x27;Y&#x27;]);
+      raceApproveDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;A&#x27;][&#x27;Y&#x27;]);
+      raceApproveDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;PA&#x27;][&#x27;Y&#x27;]);
+      raceApproveDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;I&#x27;][&#x27;Y&#x27;]);
+      raceApproveDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;null&#x27;][&#x27;Y&#x27;]);
+
+      let raceDisapproveDataList: any[] &#x3D; [];
+      raceDisapproveDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;B&#x27;][&#x27;N&#x27;]);
+      raceDisapproveDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;PR&#x27;][&#x27;N&#x27;]);
+      raceDisapproveDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;A&#x27;][&#x27;N&#x27;]);
+      raceDisapproveDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;PA&#x27;][&#x27;N&#x27;]);
+      raceDisapproveDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;I&#x27;][&#x27;N&#x27;]);
+      raceDisapproveDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;null&#x27;][&#x27;N&#x27;]);
+
+      let raceAbstentionDataList: any[] &#x3D; [];
+      raceAbstentionDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;B&#x27;][&#x27;A&#x27;]);
+      raceAbstentionDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;PR&#x27;][&#x27;A&#x27;]);
+      raceAbstentionDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;A&#x27;][&#x27;A&#x27;]);
+      raceAbstentionDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;PA&#x27;][&#x27;A&#x27;]);
+      raceAbstentionDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;I&#x27;][&#x27;A&#x27;]);
+      raceAbstentionDataList.push(this.socialInformation[&#x27;race&#x27;][&#x27;null&#x27;][&#x27;A&#x27;]);
+
+      this.raceContext &#x3D; document.getElementById(&#x27;raceChart&#x27;);
+      this.raceChart &#x3D; new Chart(this.raceContext, {
+        type: &#x27;bar&#x27;,
+        data: {
+          labels: raceLabelsList,
+          datasets: [
+            {
+              label: approvalText,
+              backgroundColor: &#x27;rgb(68,157,68)&#x27;,
+              borderColor: &#x27;rgb(255, 255, 255)&#x27;,
+              data: raceApproveDataList,
+            },
+            {
+              label: disapprovingText,
+              backgroundColor: &#x27;rgb(201,48,44)&#x27;,
+              borderColor: &#x27;rgb(255, 255, 255)&#x27;,
+              data: raceDisapproveDataList,
+            },
+            {
+              label: abstentionText,
+              backgroundColor: &#x27;rgb(255,255,0)&#x27;,
+              borderColor: &#x27;rgb(255, 255, 255)&#x27;,
+              data: raceAbstentionDataList,
+            }
+          ]
+        },
+        options: {
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem, data) {
+                var label &#x3D; data.datasets[tooltipItem.datasetIndex].label || &#x27;&#x27;;
+
+                if (label) {
+                  label +&#x3D; &#x27;: &#x27;;
+                }
+                label +&#x3D; Math.round(tooltipItem.yLabel * 100) / 100;
+                return label + &quot;%&quot;;
+              }
+            }
+          },
+          scales: {
+            xAxes: [
+              {
+                stacked: false,
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  min: 0,
+                  autoSkip: false
+                }
+              }
+            ]
+          }
+        }
+      });
+
+      /* Gender chart. */
+      const genderLabelsList: string[] &#x3D; [
+        &#x27;Masculino&#x27;,
+        &#x27;Feminino&#x27;,
+        &#x27;Outro&#x27;,
+        &#x27;Não informado&#x27;
+      ]
+
+      /* Gender. */
+      let genderApproveDataList: any[] &#x3D; [];
+      genderApproveDataList.push(this.socialInformation[&#x27;gender&#x27;][&#x27;M&#x27;][&#x27;Y&#x27;]);
+      genderApproveDataList.push(this.socialInformation[&#x27;gender&#x27;][&#x27;F&#x27;][&#x27;Y&#x27;]);
+      genderApproveDataList.push(this.socialInformation[&#x27;gender&#x27;][&#x27;O&#x27;][&#x27;Y&#x27;]);
+      genderApproveDataList.push(this.socialInformation[&#x27;gender&#x27;][&#x27;null&#x27;][&#x27;Y&#x27;]);
+
+      let genderDisapproveDataList: any[] &#x3D; [];
+      genderDisapproveDataList.push(this.socialInformation[&#x27;gender&#x27;][&#x27;M&#x27;][&#x27;N&#x27;]);
+      genderDisapproveDataList.push(this.socialInformation[&#x27;gender&#x27;][&#x27;F&#x27;][&#x27;N&#x27;]);
+      genderDisapproveDataList.push(this.socialInformation[&#x27;gender&#x27;][&#x27;O&#x27;][&#x27;N&#x27;]);
+      genderDisapproveDataList.push(this.socialInformation[&#x27;gender&#x27;][&#x27;null&#x27;][&#x27;N&#x27;]);
+
+      let genderAbstentionDataList: any[] &#x3D; [];
+      genderAbstentionDataList.push(this.socialInformation[&#x27;gender&#x27;][&#x27;M&#x27;][&#x27;A&#x27;]);
+      genderAbstentionDataList.push(this.socialInformation[&#x27;gender&#x27;][&#x27;F&#x27;][&#x27;A&#x27;]);
+      genderAbstentionDataList.push(this.socialInformation[&#x27;gender&#x27;][&#x27;O&#x27;][&#x27;A&#x27;]);
+      genderAbstentionDataList.push(this.socialInformation[&#x27;gender&#x27;][&#x27;null&#x27;][&#x27;A&#x27;]);
+
+      this.genderContext &#x3D; document.getElementById(&#x27;genderChart&#x27;);
+      this.genderChart &#x3D; new Chart(this.genderContext, {
+        type: &#x27;bar&#x27;,
+        data: {
+          labels: genderLabelsList,
+          datasets: [
+            {
+              label: approvalText,
+              backgroundColor: &#x27;rgb(68,157,68)&#x27;,
+              borderColor: &#x27;rgb(255, 255, 255)&#x27;,
+              data: genderApproveDataList,
+            },
+            {
+              label: disapprovingText,
+              backgroundColor: &#x27;rgb(201,48,44)&#x27;,
+              borderColor: &#x27;rgb(255, 255, 255)&#x27;,
+              data: genderDisapproveDataList,
+            },
+            {
+              label: abstentionText,
+              backgroundColor: &#x27;rgb(255,255,0)&#x27;,
+              borderColor: &#x27;rgb(255, 255, 255)&#x27;,
+              data: genderAbstentionDataList,
+            }
+          ]
+        },
+        options: {
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem, data) {
+                var label &#x3D; data.datasets[tooltipItem.datasetIndex].label || &#x27;&#x27;;
+
+                if (label) {
+                  label +&#x3D; &#x27;: &#x27;;
+                }
+                label +&#x3D; Math.round(tooltipItem.yLabel * 100) / 100;
+                return label + &quot;%&quot;;
+              }
+            }
+          },
+          scales: {
+            xAxes: [
+              {
+                stacked: false,
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  min: 0,
+                  autoSkip: false
+                }
+              }
+            ]
+          }
+        }
+      });
+
+      /* Parliamentarian. */
+      let parliamentarianDataList: any[] &#x3D; [];
+      parliamentarianDataList.push(this.socialInformation[&#x27;parliamentarians_total_votes&#x27;][&#x27;Y&#x27;]);
+      parliamentarianDataList.push(this.socialInformation[&#x27;parliamentarians_total_votes&#x27;][&#x27;N&#x27;]);
+      parliamentarianDataList.push(this.socialInformation[&#x27;parliamentarians_total_votes&#x27;][&#x27;A&#x27;]);
+      parliamentarianDataList.push(this.socialInformation[&#x27;parliamentarians_total_votes&#x27;][&#x27;others&#x27;]);
+
+      this.parliamentarianContext &#x3D; document.getElementById(&#x27;parliamentarianChart&#x27;);
+      this.parliamentarianChart &#x3D; new Chart(this.parliamentarianContext, {
+        type: &#x27;doughnut&#x27;,
+        data: {
+          datasets: [
+            {
+              data: parliamentarianDataList,
+              backgroundColor: [
+                &#x27;rgb(68,157,68)&#x27;,
+                &#x27;rgb(201,48,44)&#x27;,
+                &#x27;rgb(255,255,0)&#x27;,
+                &#x27;rgb(115,134,213)&#x27;
+              ]
+            }
+          ],
+          labels: [
+            approvalText,
+            disapprovingText,
+            abstentionText,
+            noVoteText
+          ]
+        },
+        options: {
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem, data) {
+                var label &#x3D; data.labels[tooltipItem.index] || &#x27;&#x27;;
+
+                if (label) {
+                  label +&#x3D; &#x27;: &#x27;;
+                }
+                label +&#x3D; Math.round(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] * 100) / 100;
+                return label + &quot;%&quot;;
+              }
+            }
+          }
+        }
+      });
+
+      /* Population */
+      let populationDataList: any[] &#x3D; [];
+      populationDataList.push(this.socialInformation[&#x27;population_total_votes&#x27;][&#x27;Y&#x27;]);
+      populationDataList.push(this.socialInformation[&#x27;population_total_votes&#x27;][&#x27;N&#x27;]);
+      populationDataList.push(this.socialInformation[&#x27;population_total_votes&#x27;][&#x27;A&#x27;]);
+
+      this.populationContext &#x3D; document.getElementById(&#x27;populationChart&#x27;);
+      this.populationChart &#x3D; new Chart(this.populationContext, {
+        type: &#x27;doughnut&#x27;,
+        data: {
+          datasets: [
+            {
+              data: populationDataList,
+              backgroundColor: [
+                &#x27;rgb(68,157,68)&#x27;,
+                &#x27;rgb(201,48,44)&#x27;,
+                &#x27;rgb(255,255,0)&#x27;
+              ]
+            }
+          ],
+          labels: [
+            approvalText,
+            disapprovingText,
+            abstentionText
+          ]
+        },
+        options: {
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem, data) {
+                var label &#x3D; data.labels[tooltipItem.index] || &#x27;&#x27;;
+
+                if (label) {
+                  label +&#x3D; &#x27;: &#x27;;
+                }
+                label +&#x3D; Math.round(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] * 100) / 100;
+                return label + &quot;%&quot;;
+              }
+            }
+          }
+        }
+      });
+    });
+  }
+
+  /**
+   * Responsible for detailing a proposition.
+   * @param proposition_url URL of the proposal selected by the user
+   */
+  openProposition(proposition_url) {
+    window.open(
+      proposition_url,
+      &#x27;_blank&#x27;,
+      &#x27;height&#x3D;700, width&#x3D;820, scrollbars&#x3D;yes, status&#x3D;yes&#x27;
+    );
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;text-center&quot;&gt;
+  &lt;div *ngIf&#x3D;&quot;loading&quot; class&#x3D;&quot;overlay&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;loading&quot; align&#x3D;&quot;center&quot; class&#x3D;&quot;loading&quot;&gt;
+      &lt;p&gt;Computando opção...&lt;/p&gt;
+      &lt;div class&#x3D;&quot;loader&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div *ngIf&#x3D;&quot;loader&quot; class&#x3D;&quot;overlay&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;loader&quot; align&#x3D;&quot;center&quot; class&#x3D;&quot;loading&quot;&gt;
+      &lt;p&gt;Caregando dados...&lt;/p&gt;
+      &lt;div class&#x3D;&quot;loader&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- &lt;ng-container *ngIf&#x3D;&quot;!loader&quot; &gt; --&gt;
+  &lt;div class&#x3D;&quot;row&quot;&gt;
+    &lt;div class&#x3D;&quot;col-sm-6 col-sm-offset-3 text-center&quot;&gt;
+      &lt;h3&gt;{{proposition[&#x27;proposition_type&#x27;]}} {{proposition[&#x27;number&#x27;]}}/{{proposition[&#x27;year&#x27;]}}&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;col-sm-10 col-sm-offset-1 text-center&quot;&gt;
+
+      &lt;div class&#x3D;&quot;panel panel-primary text-center&quot;&gt;
+        &lt;div class&#x3D;&quot;panel-heading&quot;&gt;
+          &lt;h3 class&#x3D;&quot;panel-title&quot;&gt;{{proposition[&#x27;proposition_type_initials&#x27;]}} {{proposition[&#x27;number&#x27;]}}/{{proposition[&#x27;year&#x27;]}}&lt;/h3&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;panel-body&quot;&gt;
+          &lt;p&gt;{{proposition[&#x27;abstract&#x27;]}}&lt;/p&gt;
+          &lt;button class&#x3D;&quot;btn btn-primary&quot; (click)&#x3D;&quot;openProposition(proposition[&#x27;url_full&#x27;])&quot;&gt;Veja na íntegra&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;!-- &lt;div class&#x3D;&quot;panel-footer text-muted&quot;&gt;atualizada {{proposition[&#x27;days_ago&#x27;]}} dia(s) atrás&lt;/div&gt; --&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;col-sm-10 col-sm-offset-1&quot;&gt;
+      &lt;br&gt;
+      &lt;hr&gt;
+      &lt;h3&gt;Estatísticas gerais da proposição&lt;/h3&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;col-sm-6 text-center&quot;&gt;
+      &lt;h4&gt;Parlamentares ({{social_information[&#x27;parliamentarians_total_votes&#x27;][&#x27;count&#x27;]}} votos)&lt;/h4&gt;
+      &lt;canvas id&#x3D;&quot;parliamentarianChart&quot;&gt;&lt;/canvas&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;col-sm-6 text-center&quot;&gt;
+      &lt;h4&gt;Usuários ({{social_information[&#x27;population_total_votes&#x27;][&#x27;count&#x27;]}} votos)&lt;/h4&gt;
+      &lt;canvas id&#x3D;&quot;populationChart&quot;&gt;&lt;/canvas&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;col-sm-10 col-sm-offset-1&quot;&gt;
+      &lt;br&gt;
+      &lt;hr&gt;
+      &lt;h3&gt;Estatísticas dos usuários que votaram na proposição&lt;/h3&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;col-sm-10 col-sm-offset-1&quot;&gt;
+      &lt;div id&#x3D;&quot;carousel-example-generic&quot; class&#x3D;&quot;carousel slide&quot; data-interval&#x3D;&quot;false&quot; data-ride&#x3D;&quot;carousel&quot;&gt;
+        &lt;!-- Indicators --&gt;
+        &lt;ol class&#x3D;&quot;carousel-indicators&quot;&gt;
+          &lt;li data-target&#x3D;&quot;#carousel-example-generic&quot; data-slide-to&#x3D;&quot;0&quot;&gt;&lt;/li&gt;
+          &lt;li data-target&#x3D;&quot;#carousel-example-generic&quot; data-slide-to&#x3D;&quot;1&quot;&gt;&lt;/li&gt;
+          &lt;li data-target&#x3D;&quot;#carousel-example-generic&quot; data-slide-to&#x3D;&quot;2&quot;&gt;&lt;/li&gt;
+          &lt;li data-target&#x3D;&quot;#carousel-example-generic&quot; data-slide-to&#x3D;&quot;3&quot;&gt;&lt;/li&gt;
+          &lt;li data-target&#x3D;&quot;#carousel-example-generic&quot; data-slide-to&#x3D;&quot;4&quot;&gt;&lt;/li&gt;
+          &lt;!-- &lt;li data-target&#x3D;&quot;#carousel-example-generic&quot; data-slide-to&#x3D;&quot;5&quot;&gt;&lt;/li&gt; --&gt;
+        &lt;/ol&gt;
+
+        &lt;!-- Wrapper for slides --&gt;
+        &lt;div class&#x3D;&quot;carousel-inner&quot;&gt;
+          &lt;div class&#x3D;&quot;item active&quot;&gt;
+            &lt;h4&gt;Por região do Brasil&lt;/h4&gt;
+            &lt;canvas id&#x3D;&quot;regionChart&quot;&gt;&lt;/canvas&gt;
+            &lt;div class&#x3D;&quot;carousel-caption&quot;&gt;
+              &lt;!-- &lt;h3&gt;Caption Text&lt;/h3&gt; --&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;item&quot;&gt;
+            &lt;h4&gt;Por gênero&lt;/h4&gt;
+            &lt;canvas id&#x3D;&quot;genderChart&quot;&gt;&lt;/canvas&gt;
+            &lt;div class&#x3D;&quot;carousel-caption&quot;&gt;
+              &lt;!-- &lt;h3&gt;Caption Text&lt;/h3&gt; --&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;item&quot;&gt;
+            &lt;h4&gt;Por raça&lt;/h4&gt;
+            &lt;canvas id&#x3D;&quot;raceChart&quot;&gt;&lt;/canvas&gt;
+            &lt;div class&#x3D;&quot;carousel-caption&quot;&gt;
+              &lt;!-- &lt;h3&gt;Caption Text&lt;/h3&gt; --&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;item&quot;&gt;
+            &lt;h4&gt;Por nível de escolaridade&lt;/h4&gt;
+            &lt;canvas id&#x3D;&quot;educationChart&quot;&gt;&lt;/canvas&gt;
+            &lt;div class&#x3D;&quot;carousel-caption&quot;&gt;
+              &lt;!-- &lt;h3&gt;Caption Text&lt;/h3&gt; --&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;item&quot;&gt;
+            &lt;h4&gt;Por nível de renda&lt;/h4&gt;
+            &lt;canvas id&#x3D;&quot;incomeChart&quot;&gt;&lt;/canvas&gt;
+            &lt;div class&#x3D;&quot;carousel-caption&quot;&gt;
+              &lt;!-- &lt;h3&gt;Caption Text&lt;/h3&gt; --&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;!-- Controls --&gt;
+        &lt;a class&#x3D;&quot;left carousel-control&quot; href&#x3D;&quot;#carousel-example-generic&quot; role&#x3D;&quot;button&quot; data-slide&#x3D;&quot;prev&quot;&gt;
+          &lt;span class&#x3D;&quot;glyphicon glyphicon-chevron-left&quot;&gt;&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;a class&#x3D;&quot;right carousel-control&quot; href&#x3D;&quot;#carousel-example-generic&quot; role&#x3D;&quot;button&quot; data-slide&#x3D;&quot;next&quot;&gt;
+          &lt;span class&#x3D;&quot;glyphicon glyphicon-chevron-right&quot;&gt;&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+      &lt;!-- Carousel --&gt;
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;!--
+&lt;h4&gt;Aprovação por região do Brasil&lt;/h4&gt;
+&lt;canvas id&#x3D;&quot;regionChart&quot;&gt;&lt;/canvas&gt;
+&lt;h4&gt;Aprovação por Nível de Renda&lt;/h4&gt;
+&lt;canvas id&#x3D;&quot;incomeChart&quot;&gt;&lt;/canvas&gt;
+&lt;h4&gt;Aprovação por Nível de Escolaridade&lt;/h4&gt;
+&lt;canvas id&#x3D;&quot;educationChart&quot;&gt;&lt;/canvas&gt;
+&lt;h4&gt;Aprovação por Raça&lt;/h4&gt;
+&lt;canvas id&#x3D;&quot;raceChart&quot;&gt;&lt;/canvas&gt;
+&lt;h4&gt;Aprovação por Gênero&lt;/h4&gt;
+&lt;canvas id&#x3D;&quot;genderChart&quot;&gt;&lt;/canvas&gt;
+--&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="text-center">  <div *ngIf="loading" class="overlay">    <div *ngIf="loading" align="center" class="loading">      <p>Computando opção...</p>      <div class="loader"></div>    </div>  </div>  <div *ngIf="loader" class="overlay">    <div *ngIf="loader" align="center" class="loading">      <p>Caregando dados...</p>      <div class="loader"></div>    </div>  </div>  <!-- <ng-container *ngIf="!loader" > -->  <div class="row">    <div class="col-sm-6 col-sm-offset-3 text-center">      <h3>{{proposition[\'proposition_type\']}} {{proposition[\'number\']}}/{{proposition[\'year\']}}</h3>    </div>    <div class="col-sm-10 col-sm-offset-1 text-center">      <div class="panel panel-primary text-center">        <div class="panel-heading">          <h3 class="panel-title">{{proposition[\'proposition_type_initials\']}} {{proposition[\'number\']}}/{{proposition[\'year\']}}</h3>        </div>        <div class="panel-body">          <p>{{proposition[\'abstract\']}}</p>          <button class="btn btn-primary" (click)="openProposition(proposition[\'url_full\'])">Veja na íntegra</button>        </div>        <!-- <div class="panel-footer text-muted">atualizada {{proposition[\'days_ago\']}} dia(s) atrás</div> -->      </div>    </div>    <div class="col-sm-10 col-sm-offset-1">      <br>      <hr>      <h3>Estatísticas gerais da proposição</h3>    </div>    <div class="col-sm-6 text-center">      <h4>Parlamentares ({{social_information[\'parliamentarians_total_votes\'][\'count\']}} votos)</h4>      <canvas id="parliamentarianChart"></canvas>    </div>    <div class="col-sm-6 text-center">      <h4>Usuários ({{social_information[\'population_total_votes\'][\'count\']}} votos)</h4>      <canvas id="populationChart"></canvas>    </div>    <div class="col-sm-10 col-sm-offset-1">      <br>      <hr>      <h3>Estatísticas dos usuários que votaram na proposição</h3>    </div>    <div class="col-sm-10 col-sm-offset-1">      <div id="carousel-example-generic" class="carousel slide" data-interval="false" data-ride="carousel">        <!-- Indicators -->        <ol class="carousel-indicators">          <li data-target="#carousel-example-generic" data-slide-to="0"></li>          <li data-target="#carousel-example-generic" data-slide-to="1"></li>          <li data-target="#carousel-example-generic" data-slide-to="2"></li>          <li data-target="#carousel-example-generic" data-slide-to="3"></li>          <li data-target="#carousel-example-generic" data-slide-to="4"></li>          <!-- <li data-target="#carousel-example-generic" data-slide-to="5"></li> -->        </ol>        <!-- Wrapper for slides -->        <div class="carousel-inner">          <div class="item active">            <h4>Por região do Brasil</h4>            <canvas id="regionChart"></canvas>            <div class="carousel-caption">              <!-- <h3>Caption Text</h3> -->            </div>          </div>          <div class="item">            <h4>Por gênero</h4>            <canvas id="genderChart"></canvas>            <div class="carousel-caption">              <!-- <h3>Caption Text</h3> -->            </div>          </div>          <div class="item">            <h4>Por raça</h4>            <canvas id="raceChart"></canvas>            <div class="carousel-caption">              <!-- <h3>Caption Text</h3> -->            </div>          </div>          <div class="item">            <h4>Por nível de escolaridade</h4>            <canvas id="educationChart"></canvas>            <div class="carousel-caption">              <!-- <h3>Caption Text</h3> -->            </div>          </div>          <div class="item">            <h4>Por nível de renda</h4>            <canvas id="incomeChart"></canvas>            <div class="carousel-caption">              <!-- <h3>Caption Text</h3> -->            </div>          </div>        </div>        <br><br>        <!-- Controls -->        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">          <span class="glyphicon glyphicon-chevron-left"></span>        </a>        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">          <span class="glyphicon glyphicon-chevron-right"></span>        </a>      </div>      <!-- Carousel -->    </div>  </div></div><!--<h4>Aprovação por região do Brasil</h4><canvas id="regionChart"></canvas><h4>Aprovação por Nível de Renda</h4><canvas id="incomeChart"></canvas><h4>Aprovação por Nível de Escolaridade</h4><canvas id="educationChart"></canvas><h4>Aprovação por Raça</h4><canvas id="raceChart"></canvas><h4>Aprovação por Gênero</h4><canvas id="genderChart"></canvas>--></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ContactUsComponent', 'selector': 'app-contact-us'},{'name': 'EditPageComponent', 'selector': 'app-edit-page'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HowToUseComponent', 'selector': 'app-how-to-use'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainPageComponent', 'selector': 'app-main-page'},{'name': 'MostFollowedComponent', 'selector': 'app-most-followed'},{'name': 'MyPlsComponent', 'selector': 'app-my-pls'},{'name': 'ParliamentarianComponent', 'selector': 'app-parliamentarian'},{'name': 'PoliticaDePrivacidadeComponent', 'selector': 'app-politica-de-privacidade'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'PropositionComponent', 'selector': 'app-proposition'},{'name': 'PropositionsComponent', 'selector': 'app-propositions'},{'name': 'RegisterFormComponent', 'selector': 'app-register-form'},{'name': 'SeeCompatibleParliamenterianComponent', 'selector': 'app-see-compatible-parliamenterian'},{'name': 'SeePlComponent', 'selector': 'app-see-pl'},{'name': 'SeePoliticianDetailedComponent', 'selector': 'app-see-politician'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'TermosDeServicoComponent', 'selector': 'app-termos-de-servico'},{'name': 'UserFollowingComponent', 'selector': 'app-user-following'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'PropositionComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'PropositionComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <script src="../js/menu-wc.js"></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

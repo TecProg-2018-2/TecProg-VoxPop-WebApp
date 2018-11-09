@@ -1,0 +1,426 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>voxpop documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">voxpop documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content module">
+                   <div class="content-data">
+
+
+
+<ol class="breadcrumb">
+  <li>Modules</li>
+  <li>InputValidatorService</li>
+</ol>
+
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/input-validator.service.ts</code>
+        </p>
+
+
+        
+
+        <div class="container-fluid module">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/**********************************************************************
+* File: input-validator.service.ts
+* Purpose: InputValidatorService class implementation
+* Notice: All rights reserved.
+* Description File:  Verify the value of user fields
+***********************************************************************/
+import { Injectable, NgModule } from &#x27;@angular/core&#x27;;
+
+@Injectable()
+
+@NgModule({
+  imports: [],
+  declarations: [],
+  exports: []
+})
+/**
+  *  class responsible for set up the user fields validations.
+  */
+export class InputValidatorService {
+
+  valueErrorHandler: string &#x3D; &#x27;&#x27;;
+  valuePassword: string &#x3D; &#x27;&#x27;;
+  valueInvalidPassword: string &#x3D; &#x27;&#x27;;
+  valueUsername: string &#x3D; &#x27;&#x27;;
+  valueEmail: string &#x3D; &#x27;&#x27;;
+  valueInvalidInput: string &#x3D; &#x27;&#x27;;
+  password: string &#x3D; &#x27;&#x27;;
+  confirmPassword: string &#x3D; &#x27;&#x27;;
+  username: string &#x3D; &#x27;&#x27;;
+  statusPassword: boolean &#x3D; false;
+  statusValidPassword: boolean &#x3D; false;
+  statusUsername: boolean &#x3D; false;
+  statusEmail: boolean &#x3D; false;
+  colorDanger: string &#x3D; &#x27;#d9534f&#x27;; /* Stores the color to be shown if the field is invalid*/
+  colorSucess: string &#x3D; &#x27;#5cb85c&#x27;; /* Stores the color to be shown if the field is valid*/
+
+  /**
+  *  Method responsible for showing to the user
+  *  the error in the field, when the response status
+  *  500 or 400.
+  */
+  errorHandler(status: number) {
+    if (status &#x3D;&#x3D;&#x3D; 500) {
+      document.getElementById(&#x27;alert-invalid&#x27;).style.display &#x3D; &#x27;block&#x27;;
+      this.valueErrorHandler &#x3D; &#x27;Error interno, tente novamente mais tarde&#x27;;
+    } else if (status &#x3D;&#x3D;&#x3D; 400) {
+      document.getElementById(&#x27;alert-invalid&#x27;).style.display &#x3D; &#x27;block&#x27;;
+      this.valueErrorHandler &#x3D; &#x27;Nome de usuário já existente&#x27;;
+    }
+  }
+
+  /**
+  *  Method responsible for show the success message
+  *  or danger message according with password validation
+  *
+  */
+  onKeyPassword(eventPassword: any) {
+    this.password &#x3D; eventPassword.target.value;
+
+    const validPassword &#x3D; this.isPasswordValid(this.password);
+
+    if (!validPassword) {
+      this.valueInvalidPassword &#x3D; &#x27;Sua senha deve ter no mínimo 6 caracteres&#x27;;
+      document.getElementById(&#x27;alert-invalid-password&#x27;).style.display &#x3D; &#x27;block&#x27;;
+      this.statusValidPassword &#x3D; false;
+      this.borderColor(&#x27;password&#x27;, this.colorDanger);
+    } else {
+      document.getElementById(&#x27;alert-invalid-password&#x27;).style.display &#x3D; &#x27;none&#x27;;
+      this.statusValidPassword &#x3D; true;
+      this.borderColor(&#x27;password&#x27;, this.colorSucess);
+    }
+  }
+
+  /**
+  *  Method responsible for verify if passwords
+  *  are equals.
+  */
+  onKeyConfirmPassword(eventPassword: any) {
+    this.confirmPassword &#x3D; eventPassword.target.value;
+  }
+
+  /**
+  *  Method responsible for show the success message
+  *  or danger message according with user name validation
+  *
+  */
+  onKeyUsername(eventUsername: any) {
+    let username &#x3D; eventUsername.target.value;
+
+    const validUsername &#x3D; this.isUsernameValid(username);
+
+    if (validUsername) {
+      document.getElementById(&#x27;alert-username&#x27;).style.display &#x3D; &#x27;none&#x27;;
+      this.valueUsername &#x3D; &#x27;&#x27;;
+      this.statusUsername &#x3D; true;
+      this.borderColor(&#x27;username&#x27;, this.colorSucess);
+    } else {
+      this.valueUsername &#x3D; &#x27;Nome de usuário inválido&#x27;;
+      document.getElementById(&#x27;alert-username&#x27;).style.display &#x3D; &#x27;block&#x27;;
+      this.statusUsername &#x3D; false;
+      this.borderColor(&#x27;username&#x27;, this.colorDanger);
+    } if (!this.isUsernameSizeValid(username)) {
+      this.valueUsername &#x3D; &#x27;Nome de usuário deve ter entre 4 e 20 caracteres&#x27;;
+      document.getElementById(&#x27;alert-username&#x27;).style.display &#x3D; &#x27;block&#x27;;
+      this.statusUsername &#x3D; false;
+      this.borderColor(&#x27;username&#x27;, this.colorDanger);
+    }
+
+  }
+
+  /**
+  *  Method responsible for show the success message
+  *  or danger message according with user email validation
+  *
+  */
+  onKeyEmail(eventEmail: any) {
+    let email &#x3D; eventEmail.target.value;
+    if (this.isEmailValid(email)){
+      document.getElementById(&#x27;alert-email&#x27;).style.display &#x3D; &#x27;none&#x27;;
+      this.valueEmail &#x3D; &#x27;&#x27;;
+      this.statusEmail &#x3D; true;
+      this.borderColor(&#x27;email&#x27;, this.colorSucess);
+    } else {
+      document.getElementById(&#x27;alert-email&#x27;).style.display &#x3D; &#x27;block&#x27;;
+      this.valueEmail &#x3D; &#x27;Formato do E-mail está incorreto&#x27;;
+      this.statusEmail &#x3D; false;
+      this.borderColor(&#x27;email&#x27;, this.colorDanger);
+    } if (email.length &lt; 4) {
+      document.getElementById(&#x27;alert-email&#x27;).style.display &#x3D; &#x27;block&#x27;;
+      this.valueEmail &#x3D; &#x27;Formato do E-mail está incorreto&#x27;;
+      this.statusEmail &#x3D; false;
+      this.borderColor(&#x27;email&#x27;, this.colorDanger);
+    }
+  }
+
+  /**
+  *  Method responsible for show success or danger message
+  *  if passwords matchs.
+  */
+  onKeyValidatorPassword() {
+    if (this.isConfirmedPassword(this.confirmPassword, this.password)) {
+      document.getElementById(&#x27;alert-password&#x27;).style.display &#x3D; &#x27;none&#x27;;
+      this.valuePassword &#x3D; &#x27;&#x27;;
+      this.statusPassword &#x3D; true;
+      this.borderColor(&#x27;confirm-password&#x27;, this.colorSucess);
+    } else {
+      this.valuePassword &#x3D; &#x27;A confirmação de senha não corresponde&#x27;;
+      document.getElementById(&#x27;alert-password&#x27;).style.display &#x3D; &#x27;block&#x27;;
+      this.statusPassword &#x3D; false;
+      this.borderColor(&#x27;confirm-password&#x27;, this.colorDanger);
+    }
+  }
+
+  /**
+  *  Method responsible for verify if the user name
+  *  is in  accordance with standart format.
+  */
+  isUsernameValid(username) {
+    const format &#x3D; /^[a-zA-Z0-9]+$/;
+    if (format.test(username)) {
+      return true;
+    }
+    return false;
+  }
+
+   /**
+  *  Method responsible for verify if the user name
+  *  is in  accordance with standart length.
+  */
+  isUsernameSizeValid(username) {
+    if (username.length &gt; 3 &amp;&amp; username.length &lt; 21) {
+      return true;
+    }
+    return false;
+  }
+
+   /**
+  *  Method responsible for verify if the user email
+  *  is in  accordance with standart format regex for emails.
+  */
+  isEmailValid(email) {
+    const EMAILRGX &#x3D; /^(([^&lt;&gt;()\[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()\[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (EMAILRGX.test(email)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+   /**
+  *  Method responsible for verify if the password and
+  *  password confirmation match.
+  */
+  isConfirmedPassword(password, confPassword) {
+    if (password &#x3D;&#x3D;&#x3D; confPassword) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
+  *  Method responsible for verify if the user password
+  *  is in  accordance with standart length.
+  */
+  isPasswordValid(password) {
+    if (password.length &gt; 5 &amp;&amp; password.length &lt; 50) {
+      return true;
+    }
+    return false;
+  }
+
+   /**
+  *  Method responsible for verify if all fields are filled,
+  *  when editing.
+  */
+  validatorEditUser() {
+    if (!this.statusUsername &amp;&amp; !this.statusEmail) {
+      document.getElementById(&#x27;alert-invalid-inputs&#x27;).style.display &#x3D; &#x27;block&#x27;;
+      this.valueInvalidInput &#x3D; &#x27;Por favor, preencha os campos obrigatórios&#x27;;
+
+      if (!this.statusUsername) {
+        this.borderColor(&#x27;username&#x27;, this.colorDanger);
+      } else {
+        this.borderColor(&#x27;username&#x27;, this.colorSucess);
+      }
+
+      if (!this.statusEmail) {
+        this.borderColor(&#x27;email&#x27;, this.colorDanger);
+      } else {
+        this.borderColor(&#x27;email&#x27;, this.colorSucess);
+      }
+    }
+  }
+
+  /**
+  *  Method responsible for verify if all fields are filled,
+  *  when registering.
+  */
+  validatorRegisterUser() {
+    if (this.statusPassword &amp;&amp; this.statusUsername &amp;&amp; this.statusEmail &amp;&amp; this.statusValidPassword) {
+      document.getElementById(&#x27;firstPart&#x27;).style.display &#x3D; &#x27;none&#x27;;
+      document.getElementById(&#x27;secondPart&#x27;).style.display &#x3D; &#x27;block&#x27;;
+      document.querySelector(&#x27;#registerBtn&#x27;).removeAttribute(&#x27;disabled&#x27;);
+    } else {
+      document.getElementById(&#x27;alert-invalid-inputs&#x27;).style.display &#x3D; &#x27;block&#x27;;
+      this.valueInvalidInput &#x3D; &#x27;Por favor, preencha os campos obrigatórios&#x27;;
+      if (!this.statusPassword) {
+      this.borderColor(&#x27;password&#x27;, this.colorDanger);
+      this.borderColor(&#x27;confirm-password&#x27;, this.colorDanger);
+      } else {
+        this.borderColor(&#x27;password&#x27;, this.colorSucess);
+        this.borderColor(&#x27;confirm-password&#x27;, this.colorSucess);
+      }
+
+      if (!this.statusUsername) {
+        this.borderColor(&#x27;username&#x27;, this.colorDanger);
+      } else {
+        this.borderColor(&#x27;username&#x27;, this.colorSucess);
+      }
+
+      if (!this.statusEmail) {
+        this.borderColor(&#x27;email&#x27;, this.colorDanger);
+      } else {
+        this.borderColor(&#x27;email&#x27;, this.colorSucess);
+      }
+    }
+ }
+
+
+  /**
+  *  Method responsible for set border color according id
+  */
+  borderColor(id, color) {
+    document.getElementById(id).style.borderColor &#x3D; color;
+  }
+
+  /**
+  *  Method responsible for active the register button
+  * according status
+  */
+  clickReturnButton () {
+    document.getElementById(&#x27;firstPart&#x27;).style.display &#x3D; &#x27;block&#x27;;
+    document.getElementById(&#x27;secondPart&#x27;).style.display &#x3D; &#x27;none&#x27;;
+    document.querySelector(&#x27;#registerBtn&#x27;).setAttribute(&#x27;disabled&#x27;, &#x27;disabled&#x27;);
+}
+
+
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
+            var COMPODOC_CURRENT_PAGE_URL = 'InputValidatorService.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <script src="../js/menu-wc.js"></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

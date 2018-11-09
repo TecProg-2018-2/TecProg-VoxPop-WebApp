@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ProfileComponent } from './profile.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RequestsService } from '../requests.service';
@@ -8,8 +7,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('ProfileComponent', () => {
-  let component: ProfileComponent;
-  let fixture: ComponentFixture<ProfileComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,6 +23,9 @@ describe('ProfileComponent', () => {
     })
     .compileComponents();
   }));
+
+  let component: ProfileComponent;
+  let fixture: ComponentFixture<ProfileComponent>;
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProfileComponent);

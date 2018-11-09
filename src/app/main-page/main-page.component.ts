@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
-import { Token } from '@angular/compiler';
 import { RequestsService } from '../requests.service';
 
+//Código simples: removendo imports denecessários
 declare var Chart: any;
 
 @Component({
@@ -13,15 +12,15 @@ declare var Chart: any;
 })
 export class MainPageComponent implements OnInit {
 
-  tokenValue: string = '';
   loadingStatus: boolean = true;
-  idValue: number;
-  propositionCtx: HTMLElement;
-  parliamentaryCtx: HTMLElement;
-  propositionChart: any;
-  parliamentaryChart: any;
+  //Não deixe que os outros mexam onde não devem
+  private propositionCtx: HTMLElement;
+  private parliamentaryCtx: HTMLElement;
+  private propositionChart: any;
+  private parliamentaryChart: any;
+  private assert = require('assert');
 
-  proposition: any = [{
+  private proposition: any = [{
     proposition_id: 0,
     proposition_type: '',
     proposition_type_initials: '',
@@ -33,7 +32,7 @@ export class MainPageComponent implements OnInit {
     url_full: ''
   }];
 
-  mostActivesParliamentaries: any = [
+  private mostActivesParliamentaries: any = [
     {
       parliamentary: null,
       votes: '',
@@ -41,15 +40,16 @@ export class MainPageComponent implements OnInit {
   ];
 
   constructor(
-    private cookieService: CookieService,
     private token: TokenService,
     private requester: RequestsService
   ) { }
 
   ngOnInit() {
-    this.tokenValue = this.token.getToken();
-    this.token.checkToken(this.tokenValue);
-    this.idValue = +this.cookieService.get('userID');
+    var tokenValue: string = this.token.getToken(); //Técnica: Não deixe que os outros mexam onde não devem.     
+    
+    this.assert.ok(tokenValue == null, 'Token vazio');
+    this.token.checkToken(tokenValue);
+
     this.propositions(3, 0);
     this.mostActives(3, 0);
     this.propositionCtx = document.getElementById('propositionChart');
@@ -61,6 +61,7 @@ export class MainPageComponent implements OnInit {
     this.proposition = [];
     requisition = this.requester.getProposition(limit, offset);
     this.handlePropositionsResponse(requisition, limit, offset);
+
     return requisition;
   }
 
@@ -69,6 +70,9 @@ export class MainPageComponent implements OnInit {
     this.mostActivesParliamentaries = [];
     requisition = this.requester.getMostActive(limit, offset);
     this.handleMostActivesResponse(requisition, limit, offset);
+
+    this.assert.ok(this.mostActivesParliamentaries != null);
+
     return requisition;
   }
 

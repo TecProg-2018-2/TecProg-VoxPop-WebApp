@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../requests.service';
-import { PropositionModel } from '../../models/proposition';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 import { UpdateVoteModel } from '../../models/vote';
@@ -12,19 +11,20 @@ import { UpdateVoteModel } from '../../models/vote';
 })
 export class MyPlsComponent implements OnInit {
 
-  term: string = '';
-  tokenValue: string = '';
-  showEditButtons: boolean = false;
-  pages: number = 1;
-  offset: number = 0;
-  itemsPerPage: number = 10;
-  votePosition: number;
-  userId: number;
-  numberPLsVoted: number;
-  propositionVote: any;
-  loading = true;
+  //Técnica: Código organizado.    
+  public showEditButtons: boolean = false;
+  public pages: number = 1;
+  public offset: number = 0;
+  public votePosition: number;
+  public propositionVote: any;
+  public loading = true;
 
-  proposition: any = [
+  //Técnica: Não deixe que os outros mexam onde não devem.     
+  private itemsPerPage: number = 10;
+  private userId: number;
+  private assert = require('assert'); 
+
+  public proposition: any = [
     {
       option: null,
       proposition_id: null,
@@ -46,10 +46,13 @@ export class MyPlsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.tokenValue = this.token.getToken();
+    var tokenValue: string = this.token.getToken();
     this.userId = Number(this.cookieService.get('userID'));
-    this.token.checkToken(this.tokenValue);
-    this.token.filterRestrictPage(this.tokenValue);
+    this.token.checkToken(tokenValue);
+
+    this.assert.assert(tokenValue == null, 'Token vazio');
+
+    this.token.filterRestrictPage(tokenValue);
     this.votePosition = 0;
     this.propositions(1, '');
   }
@@ -59,12 +62,16 @@ export class MyPlsComponent implements OnInit {
       alert('Número de páginas inválido, favor digitar um número positivo');
       return;
     }
-    this.term = term.toUpperCase();
+    var term: any = term.toUpperCase();
+    var numberPLsVoted: number = 1;
     let requisition: any;
     this.pages = 1;
-    this.numberPLsVoted = 1;
     this.proposition = [];
-    requisition = this.requester.getSearchVotedProposition((offset - 1) * this.itemsPerPage, this.term);
+
+    this.assert.ok(this.pages != null);
+    this.assert.ok(numberPLsVoted != null);
+
+    requisition = this.requester.getSearchVotedProposition((offset - 1) * this.itemsPerPage, term);
     this.handlePropositionsSearchResponse(requisition, offset);
     return requisition;
   }
@@ -95,6 +102,8 @@ export class MyPlsComponent implements OnInit {
 
     this.requester.updateVote(vote, this.propositionVote[this.votePosition]['id']).subscribe(response => {
       status = response.status;
+
+      this.assert.ok(status != null);
 
       if (!this.requester.didSucceed(status)) {
         alert('Voto não editado, favor tentar de novo mais tarde');

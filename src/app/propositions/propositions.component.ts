@@ -1,3 +1,10 @@
+/**********************************************************************
+* File: propositions.component.ts
+* Purpose: PropositionsComponent class implementation
+* Notice: All rights reserved.
+* Description File: Creates the 'propositions' component to request all propositions.
+***********************************************************************/
+
 import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../requests.service'
 import { Router } from '@angular/router';
@@ -5,14 +12,28 @@ import { PropositionModel } from '../../models/proposition'
 import { VoteModel } from '../../models/vote'
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
+import { AssertComponent } from '../../assert';
 
 @Component({
   selector: 'app-propositions',
   templateUrl: './propositions.component.html',
   styleUrls: ['./propositions.component.css']
 })
+/**
+ * Class to request all propositions with filter.
+ * @class
+ */
 export class PropositionsComponent implements OnInit {
 
+  idUser = 0;
+
+  /**
+   * Default constructor
+   * @param router
+   * @param requester
+   * @param cookieService
+   * @param token
+   */
   constructor(
     private router: Router,
     private requester: RequestsService,
@@ -20,18 +41,28 @@ export class PropositionsComponent implements OnInit {
     private token: TokenService
   ) { }
 
+  /**
+   * Default routine to initialize component.
+   */
   idValue: number = 0;
-  tokenValue: string = ''; 
+  tokenValue: string = '';
+  assert = require('assert');
+
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.token.filterRestrictPage(this.tokenValue);
-    this.idUser = +this.cookieService.get('userID');
+    this.idValue = +this.cookieService.get('userID');
     this.projects();
   }
 
+  /**
+   * Makes post request to post messages.
+   * @return projects
+   */
   projects() {
     const requisition = this.requester.getProjects();
+    this.assert.notEqual(requisition, 'null' || 'undefined');
     this.projectsHandler(requisition);
     return requisition;
   }
@@ -50,7 +81,12 @@ export class PropositionsComponent implements OnInit {
     populationApproval: '',
   }
 
+  /**
+   * Informs whether the projects request was successfully or not.
+   * @param request
+   */
   projectsHandler(request) {
+    this.assert.notEqual(request, null);
     request.subscribe(response => {
       response['parliamentariansApproval'] = parseFloat(response['parliamentariansApproval']);
       response['populationApproval'] = parseFloat(response['populationApproval']);
@@ -58,14 +94,22 @@ export class PropositionsComponent implements OnInit {
     });
   }
 
+  /**
+   * Answer a proposition, request sucessfully or not to vote.
+   * @param opinion
+   */
   answerPL(opinion: string) {
     var vote: VoteModel = {
       proposition: this.proposition.id,
       option: opinion
     }
+    this.assert.notEqual(vote, 'null' || 'undefined');
     this.requester.postVote(vote).subscribe(response => {
       var status;
       status = response.status;
+      /*
+      * If vote is successful, the div 'votes' is shown
+      */
       if (!this.requester.didSucceed(status)) {
         alert("Voto não registrado, favor tentar de novo mais tarde");
       } else {
