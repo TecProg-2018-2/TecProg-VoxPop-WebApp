@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RequestsService } from '../requests.service';
 import { TokenService } from '../token.service';
 import { CookieService } from 'ngx-cookie-service';
 import { AssertComponent } from '../../assert';
 import { ParlimentarianCompModel } from '../../models/parlimentarian';
+import { Log } from '../logger/logger';
 
 @Component({
   selector: 'app-see-politician',
@@ -13,17 +14,19 @@ import { ParlimentarianCompModel } from '../../models/parlimentarian';
 })
 
 export class SeePoliticianDetailedComponent implements OnInit {
-  tokenValue = '';
-  sub: any;
-  id = 0;
-  unfollow;
-  follow;
-  loading = false;
-  loader = true;
-  parlimentarian: ParlimentarianCompModel;
-  gender = '';
+  private tokenValue = '';
+  public sub: any;
+  public id = 0;
+  public unfollow;
+  public follow;
+  private loading = false;
+  private loader = true;
+  private parlimentarian: ParlimentarianCompModel;
+  public gender = '';
 
-  assert = require('assert');
+  private  assert = require('assert');
+
+  private log: Log = new Log();
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +37,7 @@ export class SeePoliticianDetailedComponent implements OnInit {
 
   ngOnInit() {
     this.tokenValue = this.token.getToken();
+    this.log.debug('Teste', {teste: 'olá'});
     this.token.checkToken(this.tokenValue);
 
     this.assert.assert(this.tokenValue == null, 'Token vazio');
@@ -79,8 +83,7 @@ export class SeePoliticianDetailedComponent implements OnInit {
       status = response.status;
       this.renderUnfollowButton();
     });
-    return true;
-
+    //Return removed
   }
 
   unfollowParliamentarian() {
@@ -93,7 +96,8 @@ export class SeePoliticianDetailedComponent implements OnInit {
       status = response.status;
       this.renderFollowButton();
     });
-    return true;
+    //Return removed
+
   }
 
   renderUnfollowButton() {
@@ -101,20 +105,23 @@ export class SeePoliticianDetailedComponent implements OnInit {
     this.unfollow = document.getElementById('unfollow').style.display = 'block';
     this.follow = document.getElementById('follow').style.display = 'none';
     this.loading = false;
-    return true;
+    //Return removed
+
   }
 
   renderFollowButton() {
     const unfollow = document.getElementById('unfollow').style.display = 'none';
     const follow = document.getElementById('follow').style.display = 'block';
     this.loading = false;
-    return true;
+    //Return removed
+
   }
 
   derrenderBothButtons() {
     const unfollow = document.getElementById('follow').style.display = 'none';
     const follow = document.getElementById('unfollow').style.display = 'none';
-    return true;
+    //Return removed
+
   }
 
   checkParliamentarianFollowed() {
@@ -136,6 +143,8 @@ export class SeePoliticianDetailedComponent implements OnInit {
         // alert('Erro inesperado, favor recarregar a página novamente em alguns minutos');
       }
     });
-    return true;
+    //Return removed
+
   }
+
 }
