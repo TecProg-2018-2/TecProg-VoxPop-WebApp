@@ -11,6 +11,7 @@ import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 import { MessageModel } from '../../models/message';
+import { LoggerService } from '@ngx-toolkit/logger';
 
 /* Component classes and its metadata. */
 @Component({
@@ -41,7 +42,8 @@ export class ContactUsComponent implements OnInit {
   constructor(private router: Router,
     private requester: RequestsService,
     private cookieService: CookieService,
-    private token: TokenService) { }
+    private token: TokenService,
+    private logger: LoggerService) { }
 
 
 /**
@@ -51,6 +53,7 @@ export class ContactUsComponent implements OnInit {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.idValue = +this.cookieService.get('userID');
+    this.logger.info('PELO AMOR DE DEUS FUNCIONA ISSO');
   }
 
 /**

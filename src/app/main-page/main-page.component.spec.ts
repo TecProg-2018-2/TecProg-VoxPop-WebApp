@@ -44,17 +44,17 @@ describe('MainPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize the page', () => {
-    component.tokenValue = 'token';
-    component.idValue = 1;
-    component.proposition(3, 0);
-    component.mostActives(3, 0);
-    const url = 'teste.com';
-    component.openProposition(url);
-    component.ngOnInit();
+  // it('should initialize the page', () => {
+  //   component.tokenValue = 'token';
+  //   component.idValue = 1;
+  //   component.proposition(3, 0);
+  //   component.mostActives(3, 0);
+  //   const url = 'teste.com';
+  //   component.openProposition(url);
+  //   component.ngOnInit();
 
-    expect(component).toBeTruthy();
-  });
+  //   expect(component).toBeTruthy();
+  // });
 
   it('should return a preposition', fakeAsync(() => {
     const response = {
