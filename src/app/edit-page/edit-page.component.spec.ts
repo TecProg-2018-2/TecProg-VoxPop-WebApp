@@ -9,6 +9,7 @@ import { TokenService } from '../token.service';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
 import { InputValidatorService } from '../input-validator.service';
+import { LoggerService } from '@ngx-toolkit/logger';
 
 describe('EditPageComponent', () => {
   let component: EditPageComponent;
@@ -20,7 +21,7 @@ describe('EditPageComponent', () => {
         RouterTestingModule,
         HttpClientModule,
         FormsModule,
-        InputValidatorService
+        InputValidatorService,
       ],
       declarations: [ EditPageComponent ],
       providers: [
@@ -28,6 +29,7 @@ describe('EditPageComponent', () => {
         TokenService,
         CookieService,
         InputValidatorService,
+        LoggerService,
       ]
     })
     .compileComponents();
