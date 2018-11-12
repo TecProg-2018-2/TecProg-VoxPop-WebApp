@@ -29,6 +29,7 @@
     "core-js": "^2.4.1",
     "ink-docstrap": "^1.3.2",
     "jquery": "^3.3.1",
+    "ng2-toastr": "^4.1.2",
     "ngx-cookie": "^3.0.1",
     "ngx-cookie-service": "^1.0.10",
     "nx-logger": "^2.0.0",
