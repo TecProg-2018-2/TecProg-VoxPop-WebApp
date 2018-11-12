@@ -28,6 +28,7 @@ import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
  *  and use on the form that will be envoyed.
  * @class
  */
+//  T31
 export class ContactUsComponent implements OnInit, ErrorHandler {
 
   static readonly REFRESH_PAGE_ON_TOAST_CLICK_MESSAGE: string = 'An error occurred: Please click this message to refresh';
@@ -106,16 +107,11 @@ export class ContactUsComponent implements OnInit, ErrorHandler {
   }
 
 /**
- * Creates route to homepage for back button
- */
-  backToHomepage() {
-    this.router.navigate(['']);
-  }
-/**
  * Gives error messages linked to error status
  * @param statusRequest
  * @return the requisition status
  */
+// T32
   handleError(error: any) {
     const httpErrorCode = error.status;
 
@@ -127,10 +123,11 @@ export class ContactUsComponent implements OnInit, ErrorHandler {
 
       case 400:
         document.getElementById('contactFail').style.display = 'block';
-        this.showError(error.message);
+        this.showError(ContactUsComponent.REFRESH_PAGE_ON_TOAST_CLICK_MESSAGE);
         break;
 
       case 500:
+        document.getElementById('contactFail').style.display = 'block';
         this.showError('Internal Server error');
         break;
 
@@ -149,5 +146,12 @@ export class ContactUsComponent implements OnInit, ErrorHandler {
                 }
             });
         });
+  }
+
+  /**
+   * Creates route to homepage for back button
+   */
+  backToHomepage() {
+    this.router.navigate(['']);
   }
 }
