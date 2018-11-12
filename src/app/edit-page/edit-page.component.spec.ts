@@ -41,21 +41,42 @@ describe('EditPageComponent', () => {
     fixture.detectChanges();
   });
 
-  // beforeEach(fakeAsync( () => {
-  //   // fixture = TestBed.createComponent(EditPageComponent);
-  //   component.ngOnInit();
-  //   // fixture.detectChanges();
-  // }));
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
+    
   it('should check status error', () => {
     expect(component.errorHandler(401)).toBeTruthy();
     expect(component.errorHandler(500)).toBeTruthy();
     expect(component.errorHandler(400)).toBeTruthy();
     expect(component.errorHandler(404)).toBeFalsy();
+  });
+
+  it('should not update the user', () => {
+    component.user = {
+      username: '',
+      first_name: '',
+      last_name: '',
+      email: '',
+      password: '',
+      social_information: {
+        region: null,
+        income: null,
+        education: null,
+        race: null,
+        gender: null,
+        birth_date: null
+      },
+    };
+    let statusCode = 1;
+    let token = 'token';
+    // expect(component.user.email).toEqual('');
+
+    // component.updateUser().subscribe( (resp) => {
+    //   statusCode = resp.status;
+    //   token = resp.body['token'];
+    //   expect(statusCode).toEqual('1');
+    // });
   });
 
   it('should update the user', () => {
@@ -83,4 +104,9 @@ describe('EditPageComponent', () => {
       expect(token).not.toBe('token');
     });
   });
+
+  // it('should destroy', () => {
+  //   component.ngOnDestroy();
+  //   expect(component.user).toBeNull();
+  // });
 });
