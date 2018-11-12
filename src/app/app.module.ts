@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA,isDevMode } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, isDevMode } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -33,6 +33,7 @@ import { MostFollowedComponent } from './most-followed/most-followed.component';
 import { PropositionComponent } from './proposition/proposition.component';
 import { HowToUseComponent } from './how-to-use/how-to-use.component';
 import { LoggerModule, Level } from '@ngx-toolkit/logger';
+import { ToastModule } from 'ng2-toastr';
 
 
 const appRoutes: Routes = [
@@ -143,7 +144,8 @@ const LOG_LEVEL: Level = isDevMode() ? Level.INFO : Level.ERROR;
     HttpClientModule,
     FormsModule,
     RoundProgressModule,
-    LoggerModule.forRoot(LOG_LEVEL)
+    LoggerModule.forRoot(LOG_LEVEL),
+    ToastModule.forRoot()
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   providers: [

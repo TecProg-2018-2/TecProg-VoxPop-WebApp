@@ -12,12 +12,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 import { MessageModel } from '../../models/message';
 import { LoggerService } from '@ngx-toolkit/logger';
-<<<<<<< HEAD
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
-import {ToastsManager, Toast} from 'ng2-toastr';
-=======
->>>>>>> development
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 
 /* Component classes and its metadata. */
 @Component({
@@ -70,7 +67,6 @@ export class ContactUsComponent implements OnInit, ErrorHandler {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.idValue = +this.cookieService.get('userID');
-    this.logger.info('PELO AMOR DE DEUS FUNCIONA ISSO');
   }
 
 /**
@@ -104,8 +100,8 @@ export class ContactUsComponent implements OnInit, ErrorHandler {
     }, error => {
       this.handleError(error);
       // T29
-      // this.logger.info('Error posting a Contact us message');
-      // this.logger.error(error);
+      this.logger.info('Error posting a Contact us message');
+      this.logger.error(error);
     });
   }
 
