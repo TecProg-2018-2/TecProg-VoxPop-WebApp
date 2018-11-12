@@ -105,17 +105,17 @@ describe('RequestsService', () => {
   it('postUser should return a promise', inject([RequestsService], (service: RequestsService) => {
     const user: UserModel = {
       username: 'adalberto',
-      first_name: 'adalberto',
-      last_name: 'almeida',
+      firstName: 'adalberto', 
+      lastName: 'almeida',
       email: 'samuel@borges.com',
       password: 'amo0S4muel,MasÉSegredo!',
-      social_information: {
+      socialInformation: {
         region: null,
         income: null,
         education: null,
         race: null,
         gender: null,
-        birth_date: null
+        birthDate: null
       },
     };
     const promise = service.postUser(user);
@@ -129,7 +129,7 @@ describe('RequestsService', () => {
       education: null,
       race: null,
       gender: null,
-      birth_date: null
+      birthDate: null
     };
     const promise = service.postSocialInformation(social_information);
     expect(promise).toBeDefined();

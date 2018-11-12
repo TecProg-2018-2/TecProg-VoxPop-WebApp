@@ -12,9 +12,12 @@ import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 import { MessageModel } from '../../models/message';
 import { LoggerService } from '@ngx-toolkit/logger';
+<<<<<<< HEAD
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import {ToastsManager, Toast} from 'ng2-toastr';
+=======
+>>>>>>> development
 
 /* Component classes and its metadata. */
 @Component({
@@ -55,8 +58,8 @@ export class ContactUsComponent implements OnInit, ErrorHandler {
     private requester: RequestsService,
     private cookieService: CookieService,
     private token: TokenService,
-    // private logger: LoggerService,
-    // private toastManager: ToastsManager
+    private logger: LoggerService,
+    private toastManager: ToastsManager
   ) { }
 
 
@@ -67,6 +70,7 @@ export class ContactUsComponent implements OnInit, ErrorHandler {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
     this.idValue = +this.cookieService.get('userID');
+    this.logger.info('PELO AMOR DE DEUS FUNCIONA ISSO');
   }
 
 /**
@@ -137,27 +141,17 @@ export class ContactUsComponent implements OnInit, ErrorHandler {
       default:
         this.showError(ContactUsComponent.REFRESH_PAGE_ON_TOAST_CLICK_MESSAGE);
     }
-
-
-
-
-  //   if (statusRequest === 401 || statusRequest === 500 || statusRequest === 400) {
-  //     document.getElementById('contactFail').style.display = 'block';
-  //     return true;
-  //   }
-  //     return false;
-  // }
-
 }
-private showError(message: string) {
-  // this.toastManager.error(message, ContactUsComponent.DEFAULT_ERROR_TITLE, { dismiss: 'controlled'}).then((toast: Toast) => {
-  //         const currentToastId: number = toast.id;
-  //         this.toastManager.onClickToast().subscribe(clickedToast => {
-  //             if (clickedToast.id === currentToastId) {
-  //                 this.toastManager.dismissToast(toast);
-  //                 window.location.reload();
-  //             }
-  //         });
-  //     });
-}
+
+  private showError(message: string) {
+    this.toastManager.error(message, ContactUsComponent.DEFAULT_ERROR_TITLE, { dismiss: 'controlled'}).then((toast: Toast) => {
+            const currentToastId: number = toast.id;
+            this.toastManager.onClickToast().subscribe(clickedToast => {
+                if (clickedToast.id === currentToastId) {
+                    this.toastManager.dismissToast(toast);
+                    window.location.reload();
+                }
+            });
+        });
+  }
 }

@@ -6,12 +6,12 @@
 ***********************************************************************/
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { RegisterFormComponent } from '../register-form/register-form.component';
 import { Router } from '@angular/router';
 import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 import { InputValidatorService } from '../input-validator.service';
+import { LoggerService } from '@ngx-toolkit/logger';
 
 
 @Component({
@@ -55,7 +55,8 @@ export class EditPageComponent implements OnInit, OnDestroy {
     private requester: RequestsService,
     private cookieService: CookieService,
     private token: TokenService,
-    public validator: InputValidatorService
+    public validator: InputValidatorService,
+    private logger: LoggerService
   ) { }
 
   /**
@@ -113,6 +114,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
     else{
       user.email = null;
     }
+    this.logger.error('[ERROR] Impossible to update user. Wrong or missing statements: email ', user, user.email);
   }
 
   /**

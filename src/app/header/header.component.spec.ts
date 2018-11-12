@@ -1,7 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AppComponent } from '../app.component';
 import { HeaderComponent } from './header.component';
 import { CookieService } from 'ngx-cookie-service';
+import { RequestsService } from '../requests.service';
+import { HttpClientModule } from '@angular/common/http';
+import { TokenService } from '../token.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { LoggerService } from '@ngx-toolkit/logger';
 
 class MockCookieService {
   token = '1234';
@@ -21,8 +26,17 @@ describe('HeaderComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
+      imports: [
+        HttpClientModule,
+        RouterTestingModule,
+        HttpClientModule,
+      ],
       providers: [
         CookieService,
+        AppComponent,
+        RequestsService,
+        TokenService,
+        LoggerService
       ]
     })
     .compileComponents();
@@ -51,7 +65,7 @@ describe('HeaderComponent', () => {
     component.callLogout();
     service.token = '';
     const token = service.get();
-    expect(token).toBe('');
+    expect(token).toBeUndefined();
   });
 
 });
