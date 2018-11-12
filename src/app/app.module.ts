@@ -147,7 +147,7 @@ const appRoutes: Routes = [
     RequestsService,
     CookieService,
     TokenService,
-    InputValidatorService
+    InputValidatorService,
   ],
   bootstrap: [AppComponent]
 })

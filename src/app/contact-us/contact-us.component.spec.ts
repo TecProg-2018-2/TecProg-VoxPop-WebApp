@@ -7,6 +7,7 @@ import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule } from '@angular/common/http';
 import { TokenService } from '../token.service';
+import { By } from 'selenium-webdriver';
 
 describe('ContactUsComponent', () => {
   let component: ContactUsComponent;
@@ -54,4 +55,24 @@ describe('ContactUsComponent', () => {
     expect(component.backToHomepage()).toBeUndefined();
   });
 
+  it('should be ok', async(() => {
+    fixture.whenStable().then(() => {
+      const input = fixture.debugElement.query(By.css('input[type=topic]'));
+      const el = input.nativeElement;
+
+      expect(el.value).toBe('peeskillet');
+
+      el.value = 'someValue';
+      el.dispatchEvent(new Event('input'));
+
+      expect(fixture.componentInstance.input.topic).toBe('someValue');
+    });
+  }));
+
+  it('method should be called', () => {
+  spyOn(component, 'postMsg').and.returnValue(true);
+
+  expect(component.postMsgHandler).toBeTruthy();
+  expect(component.postMsg).toHaveBeenCalled();
+});
 });
