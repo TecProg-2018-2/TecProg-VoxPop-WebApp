@@ -5,18 +5,19 @@ import { TokenService } from '../token.service';
 import { AssertComponent } from '../../assert';
 
 @Component({
-  selector: 'app-termos-de-servico',
-  templateUrl: './termos-de-servico.component.html',
-  styleUrls: ['./termos-de-servico.component.css']
+  selector: 'app-terms-of-service',
+  templateUrl: './terms-of-service.component.html',
+  styleUrls: ['./terms-of-service.component.css']
 })
 
-export class TermosDeServicoComponent implements OnInit {
-  tokenValue = '';
+export class TermsOfServiceComponent implements OnInit {
+  private tokenValue = '';
+  public assert = require('assert');
+
   constructor(
     private requester: RequestsService,
     private cookieService: CookieService,
-    private token: TokenService,
-    private assert: AssertComponent
+    private token: TokenService
     ) { }
 
   ngOnInit() {

@@ -27,26 +27,25 @@ export class ParliamentarianComponent implements OnInit {
     const tokenValue: string = this.tokenService.getToken();
     this.tokenService.checkToken(tokenValue);
     this.loadPage(1, '');
-    if (tokenValue !== '') {
+
+    if (tokenValue) {
+      document.getElementById('userFollowing').style.display = 'none';
+    } else {
       document.getElementById('userFollowing').style.display = 'block';
     }
   }
 
   /**
-   * Busca por parlamentares de acordo com o número de páginas
-   * para ser carregado na página HTML
-   * @param offset valor do deslocamento de páginas.
-   * @param termValue query para ser utilizada na pesquisa por parlamentares.
+   * Search by parliaments according to the number of pages to load on the HTML page
+   * @param offset page offset value
+   * @param termValue query to be used in the search for parliamentarians.
    */
   loadPage(offset: number, termValue) {
     const term: string = termValue.toUpperCase();
-    if (offset < 1) {
+    if (offset < 1 || isNaN(Number(offset))) {
       alert('Número de páginas inválido, favor digitar um número positivo');
       return;
-    } else if (isNaN(Number(offset))) {
-      alert('Número de páginas inválido, favor digitar um número válido!');
-      return;
-    } else {
+    } else { // Tecninca: Priorizar Clareza
       this.offset = Number(offset);
       const request: any = this.requestService.getSearchedParliamentarian(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage, term);
       this.handleParliamentariansSearchResponse(request, this.offset, term);
@@ -54,50 +53,55 @@ export class ParliamentarianComponent implements OnInit {
   }
 
   /**
-   * Método que carrega a página HTML com o resultado da requisição.
-   * @param request resultado da pesquisa a API
-   * @param offset valor do deslocamento de páginas
-   * @param term query para ser utilizada na pesquisa por parlamentares. 
+   * Method that loads the HTML page with the result of the request.
+   * @param request API search result
+   * @param offset page offset value
+   * @param term query to be used in the research by parliamentarians.
    */
   handleParliamentariansSearchResponse(request, offset, termValue) {
     this.requestService.getSearchedParliamentarian(this.itemsPerPage, (offset - 1) * this.itemsPerPage, termValue).subscribe(response => {
       const parliamentarians: any[] = response['body']['results'];
       const auxPages: number = Math.ceil(response['body']['count'] / this.itemsPerPage);
-      if (auxPages === 0) {
+      if (auxPages == 0) {
         alert('A pesquisa não retornou resultados');
         return;
       } else if (parliamentarians.length <= 0) {
         alert('Número da página inválido, favor digitar entre 1 e ' + this.pages);
         return;
-      } else {
-        this.pages = auxPages;
-        this.updateButtonsAppearence(this.offset, this.pages);
-        this.loading = false;
       }
+      this.pages = auxPages;
+      this.updateButtonsAppearence(this.offset, this.pages);
+      this.loading = false;
     });
   }
 
   /**
-   * Método responsável por atualizar o estilo dos botões
-   * @param offset  valor do deslocamento de páginas
-   * @param limit valor do limite de páginas
+   * Method responsible for updating button style
+   * @param offset  page offset value
+   * @param limit page limit value
    */
   updateButtonsAppearence(offset, limit) {
     if (offset === 1) {
       document.getElementById('beforeBtn1').style.display = 'none';
       document.getElementById('beforeBtn2').style.display = 'none';
-    } else if (offset === limit) {
+    } else {
+      document.getElementById('beforeBtn1').style.display = 'block';
+      document.getElementById('beforeBtn2').style.display = 'block';
+    }
+    if (offset === limit) {
       document.getElementById('afterBtn1').style.display = 'none';
       document.getElementById('afterBtn2').style.display = 'none';
-    } else if (this.pages < 2) {
+    } else {
+      document.getElementById('afterBtn1').style.display = 'block';
+      document.getElementById('afterBtn2').style.display = 'block';
+    }
+    if (this.pages < 2) {
       document.getElementById('pageBtn1').style.display = 'none';
       document.getElementById('pageBtn2').style.display = 'none';
     } else {
       document.getElementById('pageBtn1').style.display = 'block';
       document.getElementById('pageBtn2').style.display = 'block';
     }
-    return true;
-
   }
 
 }

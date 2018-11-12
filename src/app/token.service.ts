@@ -5,7 +5,8 @@ import { CookieService } from 'ngx-cookie-service';
 @Injectable()
 export class TokenService {
 
-  tokenValue: string = ''
+
+  private tokenValue: string = '';
 
   constructor(
     private router: Router,
@@ -14,16 +15,17 @@ export class TokenService {
 
   getToken() {
     this.tokenValue = this.cookieService.get('basic_token');
-    if(this.tokenValue != '') {
-      return 'Token ' + this.tokenValue;
-    }
-    else {
+    if (this.tokenValue) {
       this.tokenValue = this.cookieService.get('bearer_token');
-      if(this.tokenValue != '') {
+      if (this.tokenValue) {
+        // Do nothing
+      } else {
         return 'Bearer ' + this.tokenValue;
       }
+
+    } else {
+      return 'Token ' + this.tokenValue;
     }
-    return '';
   }
 
   checkToken(token: any) {
@@ -43,6 +45,8 @@ export class TokenService {
     if (token === '') {
       this.router.navigate(['login']);
       return true;
+    } else {
+      // do nothing
     }
   }
 
@@ -50,6 +54,8 @@ export class TokenService {
     if (token !== '') {
       this.router.navigate(['']);
       return true;
+    } else {
+      // Do nothing
     }
   }
 }

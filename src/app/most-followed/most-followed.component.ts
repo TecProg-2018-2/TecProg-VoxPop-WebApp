@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TokenService } from '../token.service';
 import { RequestsService } from '../requests.service';
 
@@ -21,9 +21,8 @@ export class MostFollowedComponent implements OnInit {
     this.tokenService.checkToken(tokenValue);
     this.parliamentariansMoreOften();
   }
-
   /**
-   * Requisita a API para pegar as estatísticas dos parlamentares.
+   * Request the API to get the statistics of the parliamentarians.
    */
   parliamentariansMoreOften() {
     const request: any = this.requestService.getMostFollowed();
@@ -31,8 +30,8 @@ export class MostFollowedComponent implements OnInit {
   }
 
   /**
-   * Carrega o objeto da página HTML com o valor recebido da requisição.
-   * @param request objeto que guarda o resultado de uma requisição
+   * Loads the HTML page object with the value received from the request.
+   * @param request object that stores the result of a request
    */
   handleParliamentariansMoreOften(request) {
     request.subscribe(response => {
