@@ -1,3 +1,9 @@
+/**********************************************************************
+* File: parliamentarian.component.ts
+* Purpose: ParliamentarianComponent class implementation
+* Description File: Separetes parliamentarians in pages.
+***********************************************************************/
+
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
@@ -12,34 +18,39 @@ import { PropositionModel } from '../../models/proposition';
 })
 export class ParliamentarianComponent implements OnInit {
 
-  pages: number = 1;
-  itemsPerPage: number = 36;
+  pages: number = 1; // Number of pages
+  const itemsPerPage: number = 36; // Number of parliamentarians per page
   offset: number = 1;
   loading: boolean = true;
 
   constructor(
     private cookieService: CookieService,
     private tokenService: TokenService,
-    private requestService: RequestsService,  
+    private requestService: RequestsService,
   ) { }
 
+  /**
+   * Default routine to initialize component
+  */
   ngOnInit() {
-    const tokenValue: string = this.tokenService.getToken(); 
+    /**
+     * Ensure that the token is validated
+    */
+    const tokenValue: string = this.tokenService.getToken();
     this.tokenService.checkToken(tokenValue);
     this.loadPage(1, '');
-    if (tokenValue !== '') { 
+    if (tokenValue !== '') {
       document.getElementById('userFollowing').style.display = 'block';
     }
   }
 
   /**
-   * Busca por parlamentares de acordo com o número de páginas
-   * para ser carregado na página HTML
-   * @param offset valor do deslocamento de páginas.
-   * @param termValue query para ser utilizada na pesquisa por parlamentares.
+   * Search the parliamentarians according to the number of pages
+   * @param offset page offset value.
+   * @param termValue query to be used in search for parliamentarians.
    */
   loadPage(offset: number, termValue) {
-    const term: string = termValue.toUpperCase(); 
+    const term: string = termValue.toUpperCase();
     if (offset < 1 || isNaN(Number(offset))) {
       alert('Número de páginas inválido, favor digitar um número positivo');
       return;
@@ -50,16 +61,16 @@ export class ParliamentarianComponent implements OnInit {
   }
 
   /**
-   * Método que carrega a página HTML com o resultado da requisição.
-   * @param request resultado da pesquisa a API
-   * @param offset valor do deslocamento de páginas
-   * @param term query para ser utilizada na pesquisa por parlamentares. 
-   */
+   * Reload the page with the requisition result.
+   * @param request result of the search in API.
+   * @param offset page offset value.
+   * @param term query to be used in search for parliamentarians.
+  */
   handleParliamentariansSearchResponse(request, offset, termValue) {
     this.requestService.getSearchedParliamentarian(this.itemsPerPage, (offset - 1) * this.itemsPerPage, termValue).subscribe( response => {
       const parliamentarians: any[] = response['body']['results'];
       const auxPages: number = Math.ceil(response['body']['count'] / this.itemsPerPage);
-      if (auxPages == 0) { 
+      if (auxPages == 0) {
         alert('A pesquisa não retornou resultados');
         return;
       } else if (parliamentarians.length <= 0) {
@@ -73,11 +84,14 @@ export class ParliamentarianComponent implements OnInit {
   }
 
   /**
-   * Método responsável por atualizar o estilo dos botões
-   * @param offset  valor do deslocamento de páginas
-   * @param limit valor do limite de páginas
-   */
+   * Updates the buttons style.
+   * @param offset page offset value.
+   * @param limit page limit value.
+  */
   updateButtonsAppearence(offset, limit) {
+    /**
+     * According offset value the appearence of buttons change.
+    */
     if (offset === 1) {
       document.getElementById('beforeBtn1').style.display = 'none';
       document.getElementById('beforeBtn2').style.display = 'none';
