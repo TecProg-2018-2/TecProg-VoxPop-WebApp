@@ -1,4 +1,4 @@
-/**********************************************************************
+  /**********************************************************************
 * File: propositions.component.ts
 * Purpose: PropositionsComponent class implementation
 * Notice: All rights reserved.
@@ -25,8 +25,6 @@ import { AssertComponent } from '../../assert';
  */
 export class PropositionsComponent implements OnInit {
 
-  idUser = 0;
-
   /**
    * Default constructor
    * @param router
@@ -44,9 +42,9 @@ export class PropositionsComponent implements OnInit {
   /**
    * Default routine to initialize component.
    */
-  idValue: number = 0;
-  tokenValue: string = '';
-  assert = require('assert');
+  private idValue: number = 0;
+  private tokenValue: string = '';
+  public assert = require('assert');
 
   ngOnInit() {
     this.tokenValue = this.token.getToken();
@@ -54,6 +52,10 @@ export class PropositionsComponent implements OnInit {
     this.token.filterRestrictPage(this.tokenValue);
     this.idValue = +this.cookieService.get('userID');
     this.projects();
+  }
+
+  ngOnDestroy() {
+    this.proposition.destroy();
   }
 
   /**
@@ -67,18 +69,23 @@ export class PropositionsComponent implements OnInit {
     return requisition;
   }
 
-  proposition: any = {
-    propositionId: 0,
-    propositionType: '',
-    propositionTypeInitials: '',
-    codeProposition: 0,
-    year: 0,
-    abstract: '',
-    processing: '',
-    situation: '',
-    urlFull: '',
-    parliamentariansApproval: '',
-    populationApproval: '',
+  proposition: propositionModel;
+
+  export class propositionModel {
+    constructor(
+      public propositionId: number = 0,
+      public propositionType: string = '',
+      public propositionTypeInitials: string = '',
+      public codeProposition: number = 0,
+      public year: number = 0,
+      public abstract: string = '',
+      public processing: string = '',
+      public situation: string = '',
+      public urlFull: string = '',
+      public parliamentariansApproval: string = '',
+      public populationApproval: string = '',
+    )
+
   }
 
   /**
@@ -110,12 +117,12 @@ export class PropositionsComponent implements OnInit {
       /*
       * If vote is successful, the div 'votes' is shown
       */
-      if (!this.requester.didSucceed(status)) {
-        alert("Voto não registrado, favor tentar de novo mais tarde");
-      } else {
+      if (this.requester.didSucceed(status)) {
         this.requester.getProjects().subscribe(response => {
           this.proposition = response['body'];
         });
+      } else {
+        alert("Voto não registrado, favor tentar de novo mais tarde");
       }
     });
   }

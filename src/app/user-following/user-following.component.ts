@@ -34,10 +34,10 @@ export class UserFollowingComponent implements OnInit {
     private token: TokenService
   ) { }
 
+  private tokenValue: string = '';
   /**
    * Default routine to initialize component.
    */
-  tokenValue: string = '';
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
@@ -50,24 +50,24 @@ export class UserFollowingComponent implements OnInit {
    * @param offset
    * @param termOnSearch
    */
-  offset: number = 1;
-  itemsPerPage: number = 36;
-  termOnSearch: string = '';
+  private offset: number = 1;
+  private itemsPerPage: number = 36;
+  private termOnSearch: string = '';
   loadPage(offset: number, termOnSearch) {
     this.termOnSearch = termOnSearch;
-    let requisition: any; // T5 - NOME DE VARIÁVEIS MAIS SIGNIFICATIVOS
+    let requisition: any;
     termOnSearch = termOnSearch.toUpperCase();
     /*
      * If number of page is invalid this alert.
      */
-    if (offset < 1 || isNaN(Number(offset))) {
-      alert('Número de páginas inválido, favor digitar um número positivo');
-      return;
-    }
+    if (offset >= 0 && Number.isInteger(Number(offset))) {
     this.offset = Number(offset);
     requisition = this.requester.getSearchFollowingParliamentarians(this.itemsPerPage, (this.offset - 1) * this.itemsPerPage, termOnSearch);
     this.assert.notEqual(requisition, 'null' || 'undefined');
     this.handleFollowingParliamentariansResponse(requisition, this.offset);
+    } else {
+      alert('Número de páginas inválido, favor digitar um número positivo');
+    }
   }
 
   parliamentarians: any = [
@@ -100,8 +100,8 @@ export class UserFollowingComponent implements OnInit {
    * @param offset
    * @param request
    */
-  loading: boolean = true;
-  pages: number = 1;
+  private loading: boolean = true;
+  private pages: number = 1;
   handleFollowingParliamentariansResponse(request, offset) {
 
     this.assert.notEqual(request, 'null' || 'undefined');

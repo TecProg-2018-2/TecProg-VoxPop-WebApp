@@ -45,20 +45,27 @@ export class RegisterFormComponent implements OnInit {
    */
   ngOnInit() { }
 
-  user: any = {
-    username: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    socialInformation: {
-      region: null,
-      income: null,
-      education: null,
-      race: null,
-      gender: null,
-      birthDate: null
-    }
+  ngOnDestroy() {
+    this.user.destroy();
+  }
+
+  user: UserModel
+  export class UserModel {
+    constructor (
+      public username: string = '',
+      public firstName: string = '',
+      public lastName: string = '',
+      private email: string = '',
+      private password: string = '',
+      private socialInformation: {
+        region: null,
+        income: null,
+        education: null,
+        race: null,
+        gender: null,
+        birthDate: null
+      }
+    )
   };
 
   /**
@@ -66,25 +73,36 @@ export class RegisterFormComponent implements OnInit {
    * @return post user
    */
   registerUser() {
+    let requisition;
     /*
      * Init all informations of user with null value.
      */
     if (this.user.socialInformation.region == 'null') {
       this.user.socialInformation.region = null;
+    } else {
+      // Nothing to do
     }
     if (this.user.socialInformation.income == 'null') {
       this.user.socialInformation.income = null;
+    } else {
+      // Nothing to do
     }
     if (this.user.socialInformation.education == 'null') {
       this.user.socialInformation.education = null;
+    } else {
+      // Nothing to do
     }
     if (this.user.socialInformation.race == 'null') {
       this.user.socialInformation.race = null;
+    } else {
+      // Nothing to do
     }
     if (this.user.socialInformation.gender == 'null') {
       this.user.socialInformation.gender = null;
+    } else {
+      // Nothing to do
     }
-    let requisition;
+
     this.assert.notEqual(this.user, 'null' || 'undefined');
     requisition = this.requester.postUser(this.user);
     this.registerUserHandler(requisition);
@@ -105,6 +123,8 @@ export class RegisterFormComponent implements OnInit {
       if (this.requester.didSucceed(statusUser)) {
         this.router.navigate(['login']);
         this.cookieService.set('success', 'true');
+      } else {
+        // Nothing to do
       }
     },
       error => {
