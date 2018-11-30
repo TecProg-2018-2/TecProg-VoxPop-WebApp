@@ -28,7 +28,6 @@ import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
  *  and use on the form that will be envoyed.
  * @class
  */
-//  T31
 export class ContactUsComponent implements OnInit, ErrorHandler {
 
   static readonly REFRESH_PAGE_ON_TOAST_CLICK_MESSAGE: string = 'An error occurred: Please click this message to refresh';
@@ -70,6 +69,7 @@ export class ContactUsComponent implements OnInit, ErrorHandler {
     this.idValue = +this.cookieService.get('userID');
   }
 
+  // Paragraph for post mensage
 /**
  * Makes post request to post messages.
  * @return input form
@@ -90,28 +90,41 @@ export class ContactUsComponent implements OnInit, ErrorHandler {
   postMsgHandler(request) {
     request.subscribe(response => {
       const statusMsg: any = response.status;
-      /*
-      * If contact is successful, the div 'contactSuccess' is shown
-      */
-      if (this.requester.didSucceed(statusMsg)) {
-        document.getElementById('contactSuccess').style.display = 'block';
-      } else {
-        document.getElementById('contactSuccess').style.display = 'none';
-      }
+      // T36
+      this.showStyleSuccess(statusMsg);
     }, error => {
       this.handleError(error);
-      // T29
       this.logger.info('Error posting a Contact us message');
       this.logger.error(error);
     });
   }
 
-/**
- * Gives error messages linked to error status
- * @param statusRequest
- * @return the requisition status
- */
-// T32
+  // T36
+  showStyleSuccess(statusMsg: string) {
+    /*
+     * If contact is successful, the div 'contactSuccess' is shown
+     */
+     if (this.requester.didSucceed(statusMsg)) {
+      document.getElementById('contactSuccess').style.display = 'block';
+    } else {
+      document.getElementById('contactSuccess').style.display = 'none';
+    }
+  }
+
+  /**
+   * Creates route to homepage for back button
+   */
+  backToHomepage() {
+    this.router.navigate(['']);
+  }
+
+  // T34 e T35
+  // Paragraph for handle error
+  /**
+   * Gives error messages linked to error status
+   * @param statusRequest
+   * @return the requisition status
+   */
   handleError(error: any) {
     const httpErrorCode = error.status;
 
@@ -134,7 +147,7 @@ export class ContactUsComponent implements OnInit, ErrorHandler {
       default:
         this.showError(ContactUsComponent.REFRESH_PAGE_ON_TOAST_CLICK_MESSAGE);
     }
-}
+  }
 
   private showError(message: string) {
     this.toastManager.error(message, ContactUsComponent.DEFAULT_ERROR_TITLE, { dismiss: 'controlled'}).then((toast: Toast) => {
@@ -146,12 +159,5 @@ export class ContactUsComponent implements OnInit, ErrorHandler {
                 }
             });
         });
-  }
-
-  /**
-   * Creates route to homepage for back button
-   */
-  backToHomepage() {
-    this.router.navigate(['']);
   }
 }

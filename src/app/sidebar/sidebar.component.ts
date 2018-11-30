@@ -41,6 +41,8 @@ export class SidebarComponent implements OnInit {
     this.setSidebar(this.sidebar);
   }
 
+  // T34 e T35
+  // Paragraph for set sidebar
 /**
  * Method responsible for set the menu sidebar,
  * activating and deactivating it according to the user's permission
@@ -49,38 +51,16 @@ export class SidebarComponent implements OnInit {
   setSidebar(sidebarCookie: any) {
     // If sidebar cookie inexists, the sidebar is deactivate
     if (sidebarCookie === 'true') {
-      const sidebarStatus: HTMLElement = document.getElementById('sidebar');
-      this.assert.ifError(sidebarStatus == null);
-      sidebarStatus.classList.toggle('active');
-      const contentStatus: HTMLElement = document.getElementById('content');
-      contentStatus.classList.toggle('active');
+      // T36
+      this.showStyleSuccess();
     } else {
-      const sidebarStatus: HTMLElement = document.getElementById('sidebar');
-      this.assert.ifError(sidebarStatus == null);
-      sidebarStatus.classList.toggle('deactive');
-      const contentStatus: HTMLElement = document.getElementById('content');
-      contentStatus.classList.toggle('deactive');
+      // T36
+      this.showStyleFailed();
     }
   }
 
-/**
- * Method responsible for disabling sidebar.
- * @return the sidebar status (disabled or enabled)
- */
-  getStyle() {
-    let styleStatus;
-    /*
-    * If token is empty, the status of sidebar is 'disabled'
-    * Else sidebar is active
-    */
-    if (this.token.getToken() === '') {
-      styleStatus = 'disabled';
-    } else {
-      styleStatus = '';
-    }
-      return styleStatus;
-  }
-
+  // T34 e T35
+  // Paragraph for logged
 /**
  * Method that checks if the user is logged in.
  * @return the login status
@@ -93,4 +73,43 @@ export class SidebarComponent implements OnInit {
       return true;
     }
   }
+
+  // T34 e T35
+  // Paragraph for styles of sidebar
+  // T36
+  showStyleSuccess() {
+    const sidebarStatus: HTMLElement = document.getElementById('sidebar');
+      this.assert.ifError(sidebarStatus == null);
+      sidebarStatus.classList.toggle('active');
+    const contentStatus: HTMLElement = document.getElementById('content');
+      contentStatus.classList.toggle('active');
+  }
+
+  // T36
+  showStyleFailed() {
+    const sidebarStatus: HTMLElement = document.getElementById('sidebar');
+      this.assert.ifError(sidebarStatus == null);
+      sidebarStatus.classList.toggle('deactive');
+    const contentStatus: HTMLElement = document.getElementById('content');
+      contentStatus.classList.toggle('deactive');
+  }
+
+  /**
+   * Method responsible for disabling sidebar.
+   * @return the sidebar status (disabled or enabled)
+   */
+    getStyle() {
+      let styleStatus;
+      /*
+      * If token is empty, the status of sidebar is 'disabled'
+      * Else sidebar is active
+      */
+      if (this.token.getToken() === '') {
+        styleStatus = 'disabled';
+      } else {
+        styleStatus = '';
+      }
+        return styleStatus;
+    }
 }
+
