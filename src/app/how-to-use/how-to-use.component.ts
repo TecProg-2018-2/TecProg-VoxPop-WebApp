@@ -2,7 +2,7 @@
   * File: how-to-use.component.ts
   * Purpose: HowToUseComponent class implementation
   * Notice: All rights reserved.
-  * Description File: Creates the 'how to use'component to use on the help page. 
+  * Description File: Creates the 'how to use'component to use on the help page.
   ***********************************************************************/
 
  import { Component, OnInit } from '@angular/core';
@@ -15,21 +15,20 @@
    styleUrls: ['./how-to-use.component.css']
  })
    /**
-   *  Class to get token of user to use 
+   *  Class to get token of user to use
    * the help page.
    * @class
    */
  export class HowToUseComponent implements OnInit {
- 
-   tokenValue: string = '';
+
+   tokenValue = '';
  /**
   * Default constructor
-  * @param token 
+  * @param token
   */
    constructor(private token: TokenService) { }
-   
     /**
-    * Default routine to initialize 
+    * Default routine to initialize
     * component
     */
    ngOnInit() {

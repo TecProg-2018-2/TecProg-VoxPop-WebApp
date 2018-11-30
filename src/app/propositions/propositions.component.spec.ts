@@ -45,7 +45,4 @@ describe('PropositionsComponent', () => {
     expect(component.answerPL('Y')).toBeUndefined();
   });
 
-  it('should open proposition', () => {
-    expect(component.openProposition('http://www.camara.gov.br')).toBeUndefined();
-  });
 });

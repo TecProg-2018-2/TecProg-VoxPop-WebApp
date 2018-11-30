@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+/**********************************************************************
+* File: most-followed.component.ts
+* Purpose: MostFollowedComponent class implementation
+* Description File:  Get the most followed parliamentary's informations
+***********************************************************************/
+
+import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../token.service';
 import { RequestsService } from '../requests.service';
 
@@ -17,7 +23,13 @@ export class MostFollowedComponent implements OnInit {
     private requestService: RequestsService,
   ) { }
 
+  /**
+   * Default routine to initialize component
+   */
   ngOnInit() {
+    /**
+     * Ensure that the token is validated
+    */
     const tokenValue: string = this.tokenService.getToken();
     this.tokenService.checkToken(tokenValue);
     this.parliamentariansMoreOften();

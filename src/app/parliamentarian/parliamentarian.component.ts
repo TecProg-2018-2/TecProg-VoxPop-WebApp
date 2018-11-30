@@ -1,3 +1,9 @@
+/**********************************************************************
+* File: parliamentarian.component.ts
+* Purpose: ParliamentarianComponent class implementation
+* Description File: Separetes parliamentarians in pages.
+***********************************************************************/
+
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
@@ -13,8 +19,8 @@ import { LoggerService } from '@ngx-toolkit/logger';
 })
 export class ParliamentarianComponent implements OnInit {
 
-  public pages: number = 1;
-  public itemsPerPage: number = 36;
+  public pages: number = 1; //number of pages
+  public itemsPerPage: number = 36; //numberof itens per page
   public offset: number = 1;
   public loading: boolean = true;
   private logger: LoggerService;
@@ -25,6 +31,9 @@ export class ParliamentarianComponent implements OnInit {
     private requestService: RequestsService,
   ) { }
 
+  /**
+   * Default routine to initialize component
+  */
   ngOnInit() {
     const tokenValue: string = this.tokenService.getToken();
     this.tokenService.checkToken(tokenValue);
@@ -93,6 +102,9 @@ export class ParliamentarianComponent implements OnInit {
    * @param limit page limit value
    */
   updateButtonsAppearence(offset, limit) {
+    /**
+     * According offset value the appearence of buttons change.
+    */
     if (offset === 1) {
       document.getElementById('beforeBtn1').style.display = 'none';
       document.getElementById('beforeBtn2').style.display = 'none';

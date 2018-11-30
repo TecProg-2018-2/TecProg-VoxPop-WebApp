@@ -29,13 +29,13 @@ describe('InputValidatorService', () => {
   }));
 
   it('should check password lenght', inject([InputValidatorService], (service: InputValidatorService) => {
-    expect(service.isValidPassword('1aA*')).toBeFalsy('short password');
-    expect(service.isValidPassword('')).toBeFalsy('empty password');
-    expect(service.isValidPassword('All Letters without a Number!')).toBeFalsy('no number password');
-    expect(service.isValidPassword('GfBirthdate0616')).toBeFalsy('No special characters');
-    expect(service.isValidPassword('superpassword123!@#')).toBeFalsy('no uppercase letters');
-    expect(service.isValidPassword('MINIPASSWORD123!@#')).toBeFalsy('no lowercase letters');
-    expect(service.isValidPassword('GfBirthdate:06/16')).toBeTruthy('Good password');
+    expect(service.isPasswordValid('1aA*')).toBeFalsy('short password');
+    expect(service.isPasswordValid('')).toBeFalsy('empty password');
+    expect(service.isPasswordValid('All Letters without a Number!')).toBeFalsy('no number password');
+    expect(service.isPasswordValid('GfBirthdate0616')).toBeFalsy('No special characters');
+    expect(service.isPasswordValid('superpassword123!@#')).toBeFalsy('no uppercase letters');
+    expect(service.isPasswordValid('MINIPASSWORD123!@#')).toBeFalsy('no lowercase letters');
+    expect(service.isPasswordValid('GfBirthdate:06/16')).toBeTruthy('Good password');
   }));
 
   it('should check if password is confirmed', inject([InputValidatorService], (service: InputValidatorService) => {

@@ -175,7 +175,7 @@ export class SeePlComponent implements OnInit {
     if (isNaN(Number(index))) {
       this.position = index;
     } else {
-      this.assert(!isNaN(Number(index)), 'Proposição não encontrada');
+      this.assert.ok(!isNaN(Number(index)), 'Proposição não encontrada');
     }
   }
 }

@@ -5,15 +5,13 @@
 * Description File:  Edit all current user informations
 ***********************************************************************/
 
-import { Component, OnInit } from '@angular/core';
-import { RegisterFormComponent } from '../register-form/register-form.component';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
-import { UserModel } from '../../models/user';
 import { InputValidatorService } from '../input-validator.service';
-import { AssertComponent } from '../../assert';
+import { LoggerService } from '@ngx-toolkit/logger';
 
 
 @Component({
@@ -25,12 +23,12 @@ import { AssertComponent } from '../../assert';
 /**
   *  class responsible for editing user informations
   */
-export class EditPageComponent implements OnInit {
+export class EditPageComponent implements OnInit, OnDestroy {
 
-  tokenValue: string = ''; /* Variable that storage the token of logged user*/
+  private tokenValue: string = ''; /* Variable that storage the token of logged user*/
 
-  userID: number = 0;
-  assert = require('assert');
+  private userID: number = 0;
+  private assert = require('assert');
 
 
 
@@ -51,13 +49,14 @@ export class EditPageComponent implements OnInit {
         birth_date: null
     },
   };
-
+  
   constructor(
     private router: Router,
     private requester: RequestsService,
     private cookieService: CookieService,
     private token: TokenService,
-    public validator: InputValidatorService
+    public validator: InputValidatorService,
+    private logger: LoggerService
   ) { }
 
   /**
@@ -80,6 +79,10 @@ export class EditPageComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.user.destroy();
+  }
+
   /**
   *  Method responsible for update the data about user
   *  according the user social information.
@@ -88,26 +91,30 @@ export class EditPageComponent implements OnInit {
     const userSocialInformation = this.user.social_information;
     const user = this.user;
 
-    if(userSocialInformation.region == 'null') {
+    if (userSocialInformation.region === 'null') {
       userSocialInformation.region = null;
     }
-    if(userSocialInformation.income == 'null') {
+    if (userSocialInformation.income === 'null') {
       userSocialInformation.income = null;
     }
-    if(userSocialInformation.education == 'null') {
+    if (userSocialInformation.education === 'null') {
       userSocialInformation.education = null;
     }
-    if(userSocialInformation.race == 'null') {
+    if (userSocialInformation.race === 'null') {
       userSocialInformation.race = null;
     }
-    if(userSocialInformation.gender == 'null') {
+    if (userSocialInformation.gender === 'null') {
       userSocialInformation.gender = null;
     }
-    if(user.email != '') {
+    if (user.email !== '') {
       const request = this.requester.putUser(user, this.userID);
       this.updateUserHandler(request);
       return request;
     }
+    else{
+      user.email = null;
+    }
+    this.logger.error('[ERROR] Impossible to update user. Wrong or missing statements: email ', user, user.email);
   }
 
   /**
@@ -117,11 +124,10 @@ export class EditPageComponent implements OnInit {
   updateUserHandler(request) {
     request.subscribe(response => {
       const statusUser = response.status;
-
       if (this.requester.didSucceed(statusUser)) {
         this.router.navigate(['']);
       } else {
-        this.assert(this.requester.didSucceed(statusUser) === false, 'Não foi possível concluir a operação')
+        this.assert(this.requester.didSucceed(statusUser) === false, 'Não foi possível concluir a operação');
       }
     }, error => {
       this.errorHandler(error.status);
@@ -134,18 +140,11 @@ export class EditPageComponent implements OnInit {
   *  500 or 400.
   */
   errorHandler(status: number) {
-    if (status === 401) {
+    if (status === 401 || status === 500 || status === 400) {
       document.getElementById('alert-invalid').style.display = 'block';
       return true;
+    }else {
+      return false;    
     }
-    if (status === 500) {
-      document.getElementById('alert-invalid').style.display = 'block';
-      return true;
-    }
-    if (status === 400) {
-      document.getElementById('alert-invalid').style.display = 'block';
-      return true;
-    }
-    return false;
   }
 }

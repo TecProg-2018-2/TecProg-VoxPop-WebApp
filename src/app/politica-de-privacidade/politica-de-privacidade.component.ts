@@ -1,3 +1,9 @@
+/**********************************************************************
+* File: politica-de-privacidade.component.ts
+* Purpose: PoliticaDePrivacidadeComponent class implementation
+* Description File: Defines privacy policies.
+***********************************************************************/
+
 import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -12,9 +18,15 @@ export class PoliticaDePrivacidadeComponent implements OnInit {
 
   tokenValue: string = '';
 
-  constructor(private token: TokenService) { } /*Técnica: nomes significativos */
+  constructor(private token: TokenService) { }
 
+  /**
+   * Default routine to initialize component
+  */
   ngOnInit() {
+    /**
+     * Ensure that the token is validated
+    */
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
   }

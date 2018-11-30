@@ -8,7 +8,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppComponent } from '../app.component';
-import { AssertComponent } from '../../assert';
+import { LoggerService } from '@ngx-toolkit/logger';
 
 
 @Component({
@@ -21,13 +21,14 @@ import { AssertComponent } from '../../assert';
   *  class responsible for set up the header component dynamically.
   */
 export class HeaderComponent {
-
-  assert = require('assert');
+ 
+  public assert = require('assert');
 
 
   constructor(
     private cookieService: CookieService,
     private appComponent: AppComponent,
+    private logger: LoggerService
   ) { }
 
 /**
@@ -35,6 +36,7 @@ export class HeaderComponent {
  */
   callLogout() {
     this.appComponent.logout(this.cookieService);
+    this.logger.error('[ERROR] Impossible to logout user. Wrong or missing statements: cookie ', this.cookieService );
   }
 
   /**
@@ -42,7 +44,7 @@ export class HeaderComponent {
   *  according to the click on the sidebar.
   */
   toggleMenu() {
-     const sidebar = document.getElementById('sidebar');
+    const sidebar = document.getElementById('sidebar');
      sidebar.classList.toggle('active');
 
      const content = document.getElementById('content');
@@ -52,8 +54,10 @@ export class HeaderComponent {
 
      if (elementsSidebar) {
        this.cookieService.set('sidebar', 'false');
+       this.logger.info('Sidebar off  ');
        return false;
      } else {
+      this.logger.info('Sidebar on  ');
        this.cookieService.set('sidebar', 'true');
        return true;
      }
