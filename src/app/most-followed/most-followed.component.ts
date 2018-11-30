@@ -13,6 +13,9 @@ import { RequestsService } from '../requests.service';
   templateUrl: './most-followed.component.html',
   styleUrls: ['./most-followed.component.css']
 })
+/**
+ * Most followed parliamentarians
+ */
 export class MostFollowedComponent implements OnInit {
 
   loading: boolean = true;

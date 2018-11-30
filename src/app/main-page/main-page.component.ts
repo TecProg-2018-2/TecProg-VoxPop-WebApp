@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../token.service';
 import { RequestsService } from '../requests.service';
 
-//Código simples: removendo imports denecessários
 declare var Chart: any;
 
 @Component({
@@ -13,7 +12,6 @@ declare var Chart: any;
 export class MainPageComponent implements OnInit {
 
   loadingStatus: boolean = true;
-  //Não deixe que os outros mexam onde não devem
   private propositionCtx: HTMLElement;
   private parliamentaryCtx: HTMLElement;
   private propositionChart: any;
@@ -44,8 +42,11 @@ export class MainPageComponent implements OnInit {
     private requester: RequestsService
   ) { }
 
+  /**
+   * Checks if the user is logged in before the page loads
+   */
   ngOnInit() {
-    var tokenValue: string = this.token.getToken(); //Técnica: Não deixe que os outros mexam onde não devem.     
+    var tokenValue: string = this.token.getToken(); 
     
     this.assert.ok(tokenValue == null, 'Token vazio');
     this.token.checkToken(tokenValue);
@@ -56,15 +57,24 @@ export class MainPageComponent implements OnInit {
     this.parliamentaryCtx = document.getElementById('parliamentaryChart');
   }
 
+  /**
+   * Checks if the user is logged in before the page loads
+   * @param limit 
+   * @param offset 
+   */
   propositions(limit: number, offset: number) {
     let requisition: any;
     this.proposition = [];
     requisition = this.requester.getProposition(limit, offset);
     this.handlePropositionsResponse(requisition, limit, offset);
-
     return requisition;
   }
 
+  /**
+   * 
+   * @param limit 
+   * @param offset 
+   */
   mostActives(limit: number, offset: number) {
     let requisition: any;
     this.mostActivesParliamentaries = [];
@@ -82,10 +92,8 @@ export class MainPageComponent implements OnInit {
       this.proposition = body['results'];
 
       this.propositionChart = new Chart(this.propositionCtx, {
-        // The type of chart we want to create
         type: 'horizontalBar',
 
-        // The data for our dataset
         data: {
           labels: [2015, 2016, 2017, 2018],
           datasets: [{
@@ -96,7 +104,6 @@ export class MainPageComponent implements OnInit {
           }]
         },
 
-        // Configuration options go here
         options: {}
       });
     });
@@ -115,10 +122,8 @@ export class MainPageComponent implements OnInit {
       }
       data_list.push(200);
       this.parliamentaryChart = new Chart(this.parliamentaryCtx, {
-        // The type of chart we want to create
         type: 'horizontalBar',
 
-        // The data for our dataset
         data: {
           labels: labels_list,
           datasets: [{
@@ -129,7 +134,6 @@ export class MainPageComponent implements OnInit {
           }]
         },
 
-        // Configuration options go here
         options: {}
       });
       this.loadingStatus = false;

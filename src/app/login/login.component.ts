@@ -4,7 +4,6 @@ import { LoginModel } from '../../models/login';
 import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
-//Técnica: Código simples.
 
 @Component({
     selector: 'app-login',
@@ -12,25 +11,30 @@ import { TokenService } from '../token.service';
     styleUrls: ['./login.component.css']
 })
 
+/**
+ * Log in to the system.
+ */
 export class LoginComponent implements OnInit {
 
-    //Técinica: Código simples e boa apresentação
-    private logging: boolean = false; //Técnica: Não deixe que os outros mexam onde não devem. Private
-    private assert = require('assert'); //Técnica: Não deixe que os outros mexam onde não devem. Private
+    private logging: boolean = false; 
+    private assert = require('assert'); 
 
     constructor(private router: Router,
         private requester: RequestsService,
         private token: TokenService,
         private cookieService: CookieService) { }
 
+    /**
+    * Verifies that the user is already logged in if they already have a session token.
+    */
     ngOnInit() {
-        var tokenValue: string = this.token.getToken(); //Técnica: Não deixe que os outros mexam onde não devem.     
+        var tokenValue: string = this.token.getToken(); 
         this.assert.assert(tokenValue == null, 'Token vazio');
 
         this.token.checkToken(tokenValue);
         this.token.filterLoginPage(tokenValue);
 
-        var registerSuccess: string = ''; //Técnica: Não deixe que os outros mexam onde não devem.
+        var registerSuccess: string = ''; 
         registerSuccess = this.cookieService.get('success');
 
         this.assert.ok(registerSuccess != null);
@@ -38,6 +42,11 @@ export class LoginComponent implements OnInit {
         this.checkRegister(registerSuccess);
     }
 
+    /**
+     * Log in to the user
+     * @param username 
+     * @param password 
+     */
     login(username: string, password: string) {
         this.logging = true;
         this.cookieService.set('success', 'false');
@@ -50,45 +59,70 @@ export class LoginComponent implements OnInit {
         req = this.requester.postAuthentication(user);
         this.handleLoginResponse(req);
         return req;
-
     }
 
+    /**
+     * Checks if the person already has a record on the site, if yes the option to register is blocked.
+     * @param success 
+     */
     checkRegister(success) {
-         //Técinica: Código simples e boa apresentação
         if (success === 'true') {
             document.getElementById('registerAlert').style.display = 'block';
             this.assert.ok(success=='true');
         }
     }
 
+    /**
+     * Gives the appropriate treatment to the result of the request.
+     * @param request 
+     */
     handleLoginResponse(request) {
         request.subscribe(response => {
-            if (this.requester.didSucceed(response.status)) {
-
-                this.assert.ok(this.requester.didSucceed(response.status)!=null);
-
-                this.cookieService.set('basic_token', response.body['token']);
-                this.cookieService.set('userID', response.body['id']);
-                this.cookieService.set('userUsername', response.body['username']);
-                this.cookieService.set('userFirstName', response.body['first_name']);
-                this.cookieService.set('userLastName', response.body['last_name']);
-                this.router.navigate(['']);
-                this.logging = false;
-            }
+            this.loginSuccess(response)
         },
-            error => {
-                console.log(error);
-                const statusAuth = error.status;
-                this.errorHandler(statusAuth);
-                this.logging = false;
-            });
+        error => {
+            this.loginError(error)
+        });
     }
 
+    /**
+     * Arrow parameter in session cookie when login is correct.
+     * @param response 
+     */
+    loginSuccess(response: any){
+        if (this.requester.didSucceed(response.status)) {
+
+            this.assert.ok(this.requester.didSucceed(response.status)!=null);
+
+            this.cookieService.set('basic_token', response.body['token']);
+            this.cookieService.set('userID', response.body['id']);
+            this.cookieService.set('userUsername', response.body['username']);
+            this.cookieService.set('userFirstName', response.body['first_name']);
+            this.cookieService.set('userLastName', response.body['last_name']);
+            this.router.navigate(['']);
+            this.logging = false;
+        }
+    }
+
+    /**
+     * Arrow parameter in session cookie when login is correct.
+     * @param error 
+     */
+    loginError(error: any){
+        console.log(error);
+        const statusAuth = error.status;
+        this.errorHandler(statusAuth);
+        this.logging = false;
+    }
+
+    /**
+     * Checks the status of the request.
+     * @param status 
+     */
     errorHandler(status) {
         if (status === 400) {
             document.getElementById('alert-invalid').style.display = 'block';
-            //Técnica: Código simples.
         }
-        return; //Técnica: Equilibrar com return;
+        return; 
     }
 }
