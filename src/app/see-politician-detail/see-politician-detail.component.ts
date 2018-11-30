@@ -1,3 +1,9 @@
+/**********************************************************************
+  * File: see-politician-detail.component.ts
+  * Purpose: SeePoliticianDetailedComponent class implementation
+  * Notice: All rights reserved.
+  * Description File:  Show Politician detail.
+  ***********************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RequestsService } from '../requests.service';
@@ -5,6 +11,7 @@ import { TokenService } from '../token.service';
 import { CookieService } from 'ngx-cookie-service';
 import { AssertComponent } from '../../assert';
 import { ParlimentarianCompModel } from '../../models/parlimentarian';
+import { LoggerService } from '@ngx-toolkit/logger';
 
 @Component({
   selector: 'app-see-politician',
@@ -12,6 +19,10 @@ import { ParlimentarianCompModel } from '../../models/parlimentarian';
   styleUrls: ['./see-politician-detail.component.css']
 })
 
+
+/**
+  *  Responsible class for show law projects.
+  */
 export class SeePoliticianDetailedComponent implements OnInit {
   tokenValue = '';
   sub: any;
@@ -23,20 +34,19 @@ export class SeePoliticianDetailedComponent implements OnInit {
   parlimentarian: ParlimentarianCompModel;
   gender = '';
 
-  assert = require('assert');
-
   constructor(
     private route: ActivatedRoute,
     private requester: RequestsService,
     private token: TokenService,
-    private cookieService: CookieService
+    private logger: LoggerService,
   ) { }
 
   ngOnInit() {
+    const genderParlamentarian = this.parlimentarian['gender'];
+
+    this.logger.info('Iniciando ngOnInit');
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
-
-    this.assert.assert(this.tokenValue == null, 'Token vazio');
 
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
@@ -45,42 +55,22 @@ export class SeePoliticianDetailedComponent implements OnInit {
     this.checkParliamentarianFollowed();
     this.requester.getParlimentarianSpecific(this.id).subscribe( response => {
       this.parlimentarian = response['body'] as ParlimentarianCompModel;
-      if (this.parlimentarian['gender'] === 'M') {
-        this.gender = 'Masculino';
-      } else if (this.parlimentarian['gender'] === 'F') {
-        this.gender = 'Feminino';
-      } else {
-        this.gender = 'N/A';
-      }
-      this.loader = false;
-    }, error => {
-      this.parlimentarian = {
-        id: null,
-        name : 'DEPUTADO NÃO ENCONTRADO',
-        gender : 'N/A',
-        political_party: 'N/A',
-        federal_unit: 'N/A',
-        photo: 'N/A',
-        birth_date: 'N/A',
-        education: 'N/A',
-        email: 'N/A',
-        compatibility: 'N/A',
-      };
-    });
+      this.verifyParlimentarian(genderParlamentarian); //T36
+    }, this.errorParlamentarian );
   }
 
+  /**
+   * Paragraph of requests of parlimentarian
+   * T34  and T35
+   */
   followParliamentarian() {
     this.loading = true;
     let status;
       this.requester.postFollow(this.parlimentarian.id).subscribe(response => {
 
-      this.assert.ok(response != null || undefined, 'O dado obtido é nulo ou indefinido.');
-
       status = response.status;
       this.renderUnfollowButton();
     });
-    return true;
-
   }
 
   unfollowParliamentarian() {
@@ -88,14 +78,15 @@ export class SeePoliticianDetailedComponent implements OnInit {
     let status;
     this.requester.deleteFollow(this.parlimentarian.id).subscribe(response => {
 
-    this.assert.ok(response != null || undefined, 'O dado obtido é nulo ou indefinido.');
-
       status = response.status;
       this.renderFollowButton();
     });
-    return true;
   }
 
+   /**
+   * Paragraph of operations for set style of HTML elements
+   * T34  and T35
+   */
   renderUnfollowButton() {
 
     this.unfollow = document.getElementById('unfollow').style.display = 'block';
@@ -117,13 +108,36 @@ export class SeePoliticianDetailedComponent implements OnInit {
     return true;
   }
 
+
+  /**
+   * Paragraph of parlimentarian operations
+   * T34, T35 and T36
+   */
+  setGender(gender: string){
+    this.gender = gender;
+  }
+
+  verifyParlimentarian(data: string) {
+    if (data === 'M') {
+      this.setGender('Masculino');  //T36
+    } else if (data === 'F') {
+      this.setGender('Feminino'); //T36
+    } else {
+      this.setGender('N/A');  //T36
+    }
+    this.loader = false;
+  }
+
   checkParliamentarianFollowed() {
     this.requester.getFollow(this.id).subscribe( response => {
 
-      this.assert.ok(response != null || undefined, 'O dado obtido é nulo ou indefinido.');
+      if (response === null || response === undefined) {
+        this.logger.error('Resposta nula ou indefinida');
+      }
 
       if (response['status'] === 200) {
         this.renderUnfollowButton();
+        this.logger.info('Status 200');
       } else {
         this.derrenderBothButtons();
         alert('Político não encontrado');
@@ -131,11 +145,28 @@ export class SeePoliticianDetailedComponent implements OnInit {
     }, error => {
       if (error['status'] === 404) {
         this.renderFollowButton();
+        this.logger.info('Status 404');
       } else {
         this.derrenderBothButtons();
-        // alert('Erro inesperado, favor recarregar a página novamente em alguns minutos');
+        this.logger.error('Erro inesperado, recarregar a página');
       }
     });
     return true;
+  }
+
+  //T36
+  errorParlamentarian() {
+    this.parlimentarian = {
+      id: null,
+      name : 'DEPUTADO NÃO ENCONTRADO',
+      gender : 'N/A',
+      political_party: 'N/A',
+      federal_unit: 'N/A',
+      photo: 'N/A',
+      birth_date: 'N/A',
+      education: 'N/A',
+      email: 'N/A',
+      compatibility: 'N/A',
+    };
   }
 }

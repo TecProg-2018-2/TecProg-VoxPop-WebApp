@@ -1,4 +1,9 @@
-import { Component, OnInit, ErrorHandler } from '@angular/core';
+/**********************************************************************
+  * File: terms-of-service.component.ts
+  * Purpose: TermsOfServiceComponent class implementation
+  * Notice: All rights reserved.
+  ***********************************************************************/
+import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
