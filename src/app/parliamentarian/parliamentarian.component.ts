@@ -19,8 +19,8 @@ import { LoggerService } from '@ngx-toolkit/logger';
 })
 export class ParliamentarianComponent implements OnInit {
 
-  public pages: number = 1; //number of pages
-  public itemsPerPage: number = 36; //numberof itens per page
+  public pages: number = 1; // number of pages
+  public itemsPerPage: number = 36; // numbero of itens per page
   public offset: number = 1;
   public loading: boolean = true;
   private logger: LoggerService;
@@ -119,27 +119,24 @@ export class ParliamentarianComponent implements OnInit {
 
     }
     if (offset === limit) {
-      document.getElementById('afterBtn1').style.display = 'none';
-      document.getElementById('afterBtn2').style.display = 'none';
-
+      this.updatePageElements('afterBtn1', 'afterBtn2', 'none');
       this.logger.log('Setting "none" to afterBtn1 and 2. Offset: ' + offset);
     } else {
-      document.getElementById('afterBtn1').style.display = 'block';
-      document.getElementById('afterBtn2').style.display = 'block';
-
+      this.updatePageElements('afterBtn1', 'afterBtn2', 'block');
       this.logger.log('Blocking afterBtn1 and 2. Offset: ' + offset);
     }
     if (this.pages < 2) {
-      document.getElementById('pageBtn1').style.display = 'none';
-      document.getElementById('pageBtn2').style.display = 'none';
-
+      this.updatePageElements('pageBtn1', 'pageBtn2', 'none');
       this.logger.log('Setting "none" to pageBtn1 and 2. Page number: ' + this.pages);
     } else {
-      document.getElementById('pageBtn1').style.display = 'block';
-      document.getElementById('pageBtn2').style.display = 'block';
-
+      this.updatePageElements('pageBtn1', 'pageBtn2', 'block');
       this.logger.log('Blocking pageBtn1 and 2. Page number: ' + this.pages);
     }
+  }
+
+  updatePageElements(firstElement: string, secondElement: string, style: string) {
+    document.getElementById(firstElement).style.display = style;
+    document.getElementById(secondElement).style.display = style;
   }
 
 }
