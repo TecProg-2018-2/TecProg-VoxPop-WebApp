@@ -5,12 +5,16 @@
 * Description File: Creates the 'contact us' component to make contact with the voxpop team.
 ***********************************************************************/
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ErrorHandler, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 import { MessageModel } from '../../models/message';
+import { LoggerService } from '@ngx-toolkit/logger';
+import 'rxjs/add/observable/throw';
+import { Observable } from 'rxjs/Observable';
+import {ToastsManager, Toast} from 'ng2-toastr/ng2-toastr';
 
 /* Component classes and its metadata. */
 @Component({
@@ -24,11 +28,20 @@ import { MessageModel } from '../../models/message';
  *  and use on the form that will be envoyed.
  * @class
  */
-export class ContactUsComponent implements OnInit {
+//  T31
+export class ContactUsComponent implements OnInit, ErrorHandler {
+
+  static readonly REFRESH_PAGE_ON_TOAST_CLICK_MESSAGE: string = 'An error occurred: Please click this message to refresh';
+  static readonly DEFAULT_ERROR_TITLE: string = 'Something went wrong';
 
   private tokenValue = '';
   private idValue = 0;
-  public input: MessageModel;
+  public input = {
+    topic: '',
+    email: '',
+    contactReason: '',
+    text: ''
+  };
   private assert = require('assert');
 
 /**
@@ -38,10 +51,14 @@ export class ContactUsComponent implements OnInit {
  * @param cookieService
  * @param token
  */
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private requester: RequestsService,
     private cookieService: CookieService,
-    private token: TokenService) { }
+    private token: TokenService,
+    private logger: LoggerService,
+    private toastManager: ToastsManager
+  ) { }
 
 
 /**
@@ -82,28 +99,59 @@ export class ContactUsComponent implements OnInit {
         document.getElementById('contactSuccess').style.display = 'none';
       }
     }, error => {
-      this.errorHandler(error.status);
+      this.handleError(error);
+      // T29
+      this.logger.info('Error posting a Contact us message');
+      this.logger.error(error);
     });
   }
 
-/**
- * Creates route to homepage for back button
- */
-  backToHomepage() {
-    this.router.navigate(['']);
-  }
 /**
  * Gives error messages linked to error status
  * @param statusRequest
  * @return the requisition status
  */
-  errorHandler(statusRequest: any) {
-    if (statusRequest === 401 || statusRequest === 500 || statusRequest === 400) {
-      document.getElementById('contactFail').style.display = 'block';
-      return true;
-    } else {
-      return false;
+// T32
+  handleError(error: any) {
+    const httpErrorCode = error.status;
+
+    switch (httpErrorCode) {
+      case 401:
+        document.getElementById('contactFail').style.display = 'block';
+        this.router.navigateByUrl('/login');
+        break;
+
+      case 400:
+        document.getElementById('contactFail').style.display = 'block';
+        this.showError(ContactUsComponent.REFRESH_PAGE_ON_TOAST_CLICK_MESSAGE);
+        break;
+
+      case 500:
+        document.getElementById('contactFail').style.display = 'block';
+        this.showError('Internal Server error');
+        break;
+
+      default:
+        this.showError(ContactUsComponent.REFRESH_PAGE_ON_TOAST_CLICK_MESSAGE);
     }
+}
+
+  private showError(message: string) {
+    this.toastManager.error(message, ContactUsComponent.DEFAULT_ERROR_TITLE, { dismiss: 'controlled'}).then((toast: Toast) => {
+            const currentToastId: number = toast.id;
+            this.toastManager.onClickToast().subscribe(clickedToast => {
+                if (clickedToast.id === currentToastId) {
+                    this.toastManager.dismissToast(toast);
+                    window.location.reload();
+                }
+            });
+        });
   }
 
+  /**
+   * Creates route to homepage for back button
+   */
+  backToHomepage() {
+    this.router.navigate(['']);
+  }
 }
