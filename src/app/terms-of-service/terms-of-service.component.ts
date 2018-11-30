@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ErrorHandler } from '@angular/core';
 import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 import { AssertComponent } from '../../assert';
+import { LoggerService } from '@ngx-toolkit/logger';
+
 
 @Component({
   selector: 'app-terms-of-service',
@@ -13,17 +15,21 @@ import { AssertComponent } from '../../assert';
 export class TermsOfServiceComponent implements OnInit {
   private tokenValue = '';
   public assert = require('assert');
+  private logger: LoggerService;
 
   constructor(
     private requester: RequestsService,
     private cookieService: CookieService,
     private token: TokenService
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
 
     this.assert.assert(this.tokenValue == null, 'Token vazio');
+    if (this.token == null) {
+      this.logger.warn('Token Vazio!');
+    }
   }
 }

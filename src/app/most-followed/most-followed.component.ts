@@ -10,6 +10,7 @@ import { RequestsService } from '../requests.service';
 export class MostFollowedComponent implements OnInit {
 
   public loading: boolean = true;
+  logger: any;
 
   constructor(
     private tokenService: TokenService,
@@ -25,8 +26,14 @@ export class MostFollowedComponent implements OnInit {
    * Request the API to get the statistics of the parliamentarians.
    */
   parliamentariansMoreOften() {
-    const request: any = this.requestService.getMostFollowed();
-    this.handleParliamentariansMoreOften(request);
+
+    try {
+      const request: any = this.requestService.getMostFollowed();
+      this.handleParliamentariansMoreOften(request);
+    } catch (Error) {
+      alert(Error.message);
+    }
+
   }
 
   /**
@@ -34,10 +41,15 @@ export class MostFollowedComponent implements OnInit {
    * @param request object that stores the result of a request
    */
   handleParliamentariansMoreOften(request) {
-    request.subscribe(response => {
-      const parliamentariansMoreOftenValue: any[] = response['body']['results'];
-      this.loading = false;
-    });
+    try {
+      request.subscribe(response => {
+        const parliamentariansMoreOftenValue: any[] = response['body']['results'];
+        this.loading = false;
+      });
+    } catch (Error) {
+      alert(Error.message);
+      this.logger.error(Error.message);
+    }
   }
 
 }
