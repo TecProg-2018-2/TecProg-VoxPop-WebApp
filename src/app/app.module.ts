@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA,isDevMode } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, isDevMode } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -28,11 +28,12 @@ import { SeeCompatibleParliamenterianComponent } from './see-compatible-parliame
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PoliticaDePrivacidadeComponent } from './politica-de-privacidade/politica-de-privacidade.component';
-import { TermosDeServicoComponent } from './termos-de-servico/termos-de-servico.component';
+import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 import { MostFollowedComponent } from './most-followed/most-followed.component';
 import { PropositionComponent } from './proposition/proposition.component';
 import { HowToUseComponent } from './how-to-use/how-to-use.component';
 import { LoggerModule, Level } from '@ngx-toolkit/logger';
+import { ToastModule } from 'ng2-toastr';
 
 
 const appRoutes: Routes = [
@@ -94,7 +95,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'termos-de-servico',
-    component: TermosDeServicoComponent
+    component: TermsOfServiceComponent
   },
   {
     path: 'parlamentares-mais-seguidos',
@@ -131,7 +132,7 @@ const LOG_LEVEL: Level = isDevMode() ? Level.INFO : Level.ERROR;
     SeeCompatibleParliamenterianComponent,
     ContactUsComponent,
     PoliticaDePrivacidadeComponent,
-    TermosDeServicoComponent,
+    TermsOfServiceComponent,
     MostFollowedComponent,
     PropositionComponent,
     HowToUseComponent,
@@ -143,14 +144,15 @@ const LOG_LEVEL: Level = isDevMode() ? Level.INFO : Level.ERROR;
     HttpClientModule,
     FormsModule,
     RoundProgressModule,
-    LoggerModule.forRoot(LOG_LEVEL)
+    LoggerModule.forRoot(LOG_LEVEL),
+    ToastModule.forRoot()
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     RequestsService,
     CookieService,
     TokenService,
-    InputValidatorService
+    InputValidatorService,
   ],
   bootstrap: [AppComponent]
 })

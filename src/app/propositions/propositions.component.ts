@@ -13,12 +13,14 @@ import { VoteModel } from '../../models/vote'
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 import { AssertComponent } from '../../assert';
+import { LoggerService } from '@ngx-toolkit/logger';
 
 @Component({
   selector: 'app-propositions',
   templateUrl: './propositions.component.html',
   styleUrls: ['./propositions.component.css']
 })
+
 /**
  * Class to request all propositions with filter.
  * @class
@@ -38,7 +40,8 @@ export class PropositionsComponent implements OnInit {
     private router: Router,
     private requester: RequestsService,
     private cookieService: CookieService,
-    private token: TokenService
+    private token: TokenService,
+    private logger: LoggerService // Use um sistema de logging
   ) { }
 
   /**
@@ -64,7 +67,36 @@ export class PropositionsComponent implements OnInit {
     const requisition = this.requester.getProjects();
     this.assert.notEqual(requisition, 'null' || 'undefined');
     this.projectsHandler(requisition);
+    this.logger.error('Não foi possível realizar a requisição', requisition); // Use um sistema de logging
     return requisition;
+  }
+
+  // Ênfase para código mais importante
+  /**
+   * Answer a proposition, request sucessfully or not to vote.
+   * @param opinion
+   */
+  answerPL(opinion: string) {
+    var vote: VoteModel = {
+      proposition: this.proposition.id,
+      option: opinion
+    }
+    this.assert.notEqual(vote, 'null' || 'undefined');
+    this.requester.postVote(vote).subscribe(response => {
+      var status;
+      status = response.status;
+      /*
+      * If vote is successful, the div 'votes' is shown
+      */
+      if (!this.requester.didSucceed(status)) {
+        this.logger.error('Não foi possível registrar o voto', this.requester); // Use um sistema de logging
+        alert("Voto não registrado, favor tentar de novo mais tarde");
+      } else {
+        this.requester.getProjects().subscribe(response => {
+          this.proposition = response['body'];
+        });
+      }
+    });
   }
 
   proposition: any = {
@@ -88,35 +120,11 @@ export class PropositionsComponent implements OnInit {
   projectsHandler(request) {
     this.assert.notEqual(request, null);
     request.subscribe(response => {
-      response['parliamentariansApproval'] = parseFloat(response['parliamentariansApproval']);
-      response['populationApproval'] = parseFloat(response['populationApproval']);
+      var parliamentariansApproval: number = parseFloat(response['parliamentariansApproval']); // Faça conversão de tipos com cuidado
+      var populationApproval: number = parseFloat(response['populationApproval']); // Faça conversão de tipos com cuidado
+      response['parliamentariansApproval'] = parliamentariansApproval;
+      response['populationApproval'] = populationApproval;
       this.proposition = response['body'];
-    });
-  }
-
-  /**
-   * Answer a proposition, request sucessfully or not to vote.
-   * @param opinion
-   */
-  answerPL(opinion: string) {
-    var vote: VoteModel = {
-      proposition: this.proposition.id,
-      option: opinion
-    }
-    this.assert.notEqual(vote, 'null' || 'undefined');
-    this.requester.postVote(vote).subscribe(response => {
-      var status;
-      status = response.status;
-      /*
-      * If vote is successful, the div 'votes' is shown
-      */
-      if (!this.requester.didSucceed(status)) {
-        alert("Voto não registrado, favor tentar de novo mais tarde");
-      } else {
-        this.requester.getProjects().subscribe(response => {
-          this.proposition = response['body'];
-        });
-      }
     });
   }
 }
