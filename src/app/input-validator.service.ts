@@ -62,7 +62,7 @@ export class InputValidatorService {
       this.borderColor('username', this.colorSucess);
     }
 
-      /**
+    /**
      * Paragraph responsible for changing the color of the e-mail inputfield 
      * according to the filled data (correct or wrong)
      */ //T35
@@ -71,19 +71,34 @@ export class InputValidatorService {
     } else {
       this.borderColor('email', this.colorSucess);
     }
+  }
 
-}
 
-/**
-*  Method responsible for verify if all fields are filled,
-*  when registering.
-*/
-validatorRegisterUser() { 
-  if (this.statusPassword && this.statusUsername && this.statusEmail && this.statusValidPassword) {
+  /**
+  *  Method responsible for verify if all fields are filled,
+  *  when registering.
+  */
+  validatorRegisterUser() { //T36
+    if (this.statusPassword && this.statusUsername && this.statusEmail && this.statusValidPassword) {
+      this.successRegisterUser();
+    } else {
+      this.failedRegisterUser();
+    }
+  }
+
+    /**
+    * Style to successfully registered user. 
+    */
+  successRegisterUser(){ //T36 e T11
     document.getElementById('firstPart').style.display = 'none';
     document.getElementById('secondPart').style.display = 'block';
     document.querySelector('#registerBtn').removeAttribute('disabled');
-  } else {
+  }
+
+  /**
+   * Style for user not successfully registered.
+   */
+  failedRegisterUser(){ //T36 e T11
     document.getElementById('alert-invalid-inputs').style.display = 'block';
     this.valueInvalidInput = 'Por favor, preencha os campos obrigatórios';
 
@@ -119,7 +134,7 @@ validatorRegisterUser() {
       this.borderColor('email', this.colorDanger);
     }
   }
-}
+
   /**
   *  Method responsible for show the success message
   *  or danger message according with password validation
@@ -134,7 +149,7 @@ validatorRegisterUser() {
     
     /**
      * Paragraph responsible for changing the color of the password inputfield 
-     * according to the filled data (correct or wrong). Valid the data.
+     * according to the filled data (correct or wrong). Validates the data.
      */ //T35
     if(validPassword) {
       document.getElementById('alert-invalid-password').style.display = 'none';
@@ -146,7 +161,6 @@ validatorRegisterUser() {
       this.statusValidPassword = false;
       this.borderColor('password', this.colorDanger);
     }
-
   }
 
   /**
@@ -169,6 +183,10 @@ validatorRegisterUser() {
 
     const validUsername = this.isUsernameValid(username);
 
+    /**
+     * Paragraph responsible for changing the color of the username inputfield 
+     * according to the filled data (correct or wrong). Validates the data.
+     */ //T35
       if (validUsername) {
         document.getElementById('alert-username').style.display = 'none';
         this.valueUsername = '';
@@ -185,18 +203,21 @@ validatorRegisterUser() {
         this.statusUsername = false;
         this.borderColor('username', this.colorDanger);
       }
-
   }
 
   /**
   *  Method responsible for show the success message
-  *  or danger message according with user email validation
+  *  or danger message according with user e-mail validation
   *
   */
   onKeyEmail(eventEmail: any) {
-
     this.assert.ok(eventEmail === null || eventEmail === undefined, 'Dado inválido inserido' );
     const email = eventEmail.target.value;
+
+    /**
+     * Paragraph responsible for changing the color of the e-mail inputfield 
+     * according to the filled data (correct or wrong). Validates the data.
+     */ //T35
     if (this.isEmailValid(email)){
       document.getElementById('alert-email').style.display = 'none';
       this.valueEmail = '';
@@ -238,7 +259,6 @@ validatorRegisterUser() {
   *  is in  accordance with standart format.
   */
   isUsernameValid(username) {
-
     this.assert.ok(username === '' || username === undefined, 'Nome de usuário vazio ou indefinido');
     const format = /^[a-zA-Z0-9]+$/;
     if (format.test(username)) {
@@ -253,7 +273,6 @@ validatorRegisterUser() {
   *  is in  accordance with standart length.
   */
   isUsernameSizeValid(username) {
-
     this.assert.ok(username === '' || username === undefined, 'O nome de usuário inserido é inválido');
     if (username.length > 3 && username.length < 21) {
       return true;
@@ -267,7 +286,6 @@ validatorRegisterUser() {
   *  is in  accordance with standart format regex for emails.
   */
   isEmailValid(email) {
-
     this.assert.ok(email === '', 'O e-mail inserido está vazio');
     // tslint:disable-next-line:max-line-length
     const EMAILRGX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -306,43 +324,47 @@ validatorRegisterUser() {
     }
   }
 
-
-
   /**
   *  Method responsible for showing to the user
   *  the error in the field, when the response status
   *  500 or 400.
   */
- handleError(error: any) { // T31 e T32
+ handleError(error: any) { 
   const httpErrorCode = error.status;
   switch (httpErrorCode) {
     case 500:
-      document.getElementById('alert-invalid').style.display = 'block';
+      this.showErrorAlert()
       this.valueErrorHandler = 'Error interno, tente novamente mais tarde';
     break;
 
   case 400:
-    document.getElementById('alert-invalid').style.display = 'block';
+    this.showErrorAlert();
     this.valueErrorHandler = 'Nome de usuário já existente';
   break;
 
   default:
-  this.showError(InputValidatorService.REFRESH_PAGE_ON_TOAST_CLICK_MESSAGE);
+    this.showError(InputValidatorService.REFRESH_PAGE_ON_TOAST_CLICK_MESSAGE);
   }
 }
 
-private showError(message: string) { // T32
-  this.toastManager.error(message, InputValidatorService.DEFAULT_ERROR_TITLE, { dismiss: 'controlled'}).then((toast: Toast) => {
-          const currentToastId: number = toast.id;
-          this.toastManager.onClickToast().subscribe(clickedToast => {
-              if (clickedToast.id === currentToastId) {
-                  this.toastManager.dismissToast(toast);
-                  window.location.reload();
-              }
-          });
-      });
-}
+/**
+ * Shows an error alert message.
+ */
+  showErrorAlert(){ //T36 e T11
+    document.getElementById('alert-invalid').style.display = 'block'; 
+  }
 
+  private showError(message: string) { 
+    this.toastManager.error(message, InputValidatorService.DEFAULT_ERROR_TITLE, { dismiss: 'controlled'}).then((toast: Toast) => {
+            const currentToastId: number = toast.id;
+            this.toastManager.onClickToast().subscribe(clickedToast => {
+                if (clickedToast.id === currentToastId) {
+                    this.toastManager.dismissToast(toast);
+                    window.location.reload();
+                }
+            });
+    });
+  }
 
   /**
   *  Method responsible for set border color according id
@@ -359,7 +381,5 @@ private showError(message: string) { // T32
     document.getElementById('firstPart').style.display = 'block';
     document.getElementById('secondPart').style.display = 'none';
     document.querySelector('#registerBtn').setAttribute('disabled', 'disabled');
-}
-
-
+  }
 }

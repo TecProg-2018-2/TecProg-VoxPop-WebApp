@@ -109,7 +109,7 @@ export class RegisterFormComponent implements OnInit {
     },
       error => {
         const statusAuth = error.status;
-        this.validator.errorHandler(statusAuth);
+        this.validator.handleError(statusAuth);
       });
   }
 }

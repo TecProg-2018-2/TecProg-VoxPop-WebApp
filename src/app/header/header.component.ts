@@ -51,25 +51,27 @@ export class HeaderComponent {
        this.cookieService.set('sidebar', 'false');
        this.logger.info('Sidebar off  ');
        return false;
-     } else {
-      this.logger.info('Sidebar on  ');
+     }else {
+       this.logger.info('Sidebar on  ');
        this.cookieService.set('sidebar', 'true');
        return true;
      }
   }
   /**
    * Method responsible for show sidebar template. 
-   */
-  showSidebar(){ //T36
+   * @return sidebar status
+   */ 
+  showSidebar(){ //T36 e T11
     const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('active');
-      return sidebar;
+    sidebar.classList.toggle('active');
+    return sidebar;
   }
 
   /**
    *  Method responsible for show content of sidebar
+   * @return sidebar content
    */
-  showContentSidebar(){ //T36
+  showContentSidebar(){ //T36 e T11
     const content = document.getElementById('content');
     content.classList.toggle('active');
     return content;
@@ -77,10 +79,11 @@ export class HeaderComponent {
 
   /**
    * Method responsible for show elements of sidebar.
+   * @return elements of sidebar
    */
   showElementsSidebar(){ //T36
     const sidebar = this.showSidebar();
     const elementsSidebar = sidebar.classList.contains('active');
-     return elementsSidebar;
+    return elementsSidebar;
   }
 }
