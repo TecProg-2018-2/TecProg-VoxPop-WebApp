@@ -1,3 +1,9 @@
+/**********************************************************************
+* File: most-followed.component.ts
+* Purpose: MostFollowedComponent class implementation
+* Description File:  Get the most followed parliamentary's informations
+***********************************************************************/
+
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../token.service';
 import { RequestsService } from '../requests.service';
@@ -9,36 +15,53 @@ import { RequestsService } from '../requests.service';
 })
 export class MostFollowedComponent implements OnInit {
 
-  loading: boolean = true;
+  public loading: boolean = true;
+  logger: any;
 
   constructor(
-    private tokenService: TokenService, 
+    private tokenService: TokenService,
     private requestService: RequestsService,
   ) { }
 
+  /**
+   * Default routine to initialize component
+   */
   ngOnInit() {
+    /**
+     * Ensure that the token is validated
+    */
     const tokenValue: string = this.tokenService.getToken();
     this.tokenService.checkToken(tokenValue);
     this.parliamentariansMoreOften();
   }
-
   /**
-   * Requisita a API para pegar as estatísticas dos parlamentares.
+   * Request the API to get the statistics of the parliamentarians.
    */
-  parliamentariansMoreOften() { 
-    const request: any =  this.requestService.getMostFollowed();
-    this.handleParliamentariansMoreOften(request);
+  parliamentariansMoreOften() {
+
+    try {
+      const request: any = this.requestService.getMostFollowed();
+      this.handleParliamentariansMoreOften(request);
+    } catch (Error) {
+      alert(Error.message);
+    }
+
   }
 
   /**
-   * Carrega o objeto da página HTML com o valor recebido da requisição.
-   * @param request objeto que guarda o resultado de uma requisição
+   * Loads the HTML page object with the value received from the request.
+   * @param request object that stores the result of a request
    */
   handleParliamentariansMoreOften(request) {
-    request.subscribe( response => {
-      const parliamentariansMoreOftenValue: any[] = response['body']['results']; 
-      this.loading = false;
-    });
+    try {
+      request.subscribe(response => {
+        const parliamentariansMoreOftenValue: any[] = response['body']['results'];
+        this.loading = false;
+      });
+    } catch (Error) {
+      alert(Error.message);
+      this.logger.error(Error.message);
+    }
   }
 
 }
