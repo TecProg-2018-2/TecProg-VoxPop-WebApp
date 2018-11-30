@@ -5,6 +5,8 @@
 * Description File:  Verify the value of user fields
 ***********************************************************************/
 import { Injectable, NgModule } from '@angular/core';
+import {ToastsManager, Toast} from 'ng2-toastr';
+import { LoggerService } from '@ngx-toolkit/logger';
 
 
 @Injectable()
@@ -36,25 +38,88 @@ export class InputValidatorService {
   private colorDanger: string = '#d9534f'; /* Stores the color to be shown if the field is invalid*/
   private colorSucess: string = '#5cb85c'; /* Stores the color to be shown if the field is valid*/
   private assert = require('assert');
-
-
+  private toastManager: ToastsManager;
+  private logger: LoggerService;
+  static readonly REFRESH_PAGE_ON_TOAST_CLICK_MESSAGE: string = 'An error occurred: Please click this message to refresh';
+  static readonly DEFAULT_ERROR_TITLE: string = 'Something went wrong';
+  
   /**
-  *  Method responsible for showing to the user
-  *  the error in the field, when the response status
-  *  500 or 400.
+  *  Method responsible for verify if all fields are filled,
+  *  when editing.
   */
-  errorHandler(status: number) {
-    this.assert.ok(status !== 500 && status !== 400, 'Resposta não utilizável.');
-    if (status === 500) {
-      document.getElementById('alert-invalid').style.display = 'block';
-      this.valueErrorHandler = 'Error interno, tente novamente mais tarde';
+ validatorEditUser() {
+
+  document.getElementById('alert-invalid-inputs').style.display = 'block';
+  this.valueInvalidInput = 'Por favor, preencha os campos obrigatórios';
+    
+    /**
+     * Paragraph responsible for changing the color of the name inputfield 
+     * according to the filled data (correct or wrong)
+     */ //T35
+    if (!this.statusUsername) {
+      this.borderColor('username', this.colorDanger);
+    } else {
+      this.borderColor('username', this.colorSucess);
     }
-    if (status === 400) {
-      document.getElementById('alert-invalid').style.display = 'block';
-      this.valueErrorHandler = 'Nome de usuário já existente';
+
+      /**
+     * Paragraph responsible for changing the color of the e-mail inputfield 
+     * according to the filled data (correct or wrong)
+     */ //T35
+    if (!this.statusEmail) {
+      this.borderColor('email', this.colorDanger);
+    } else {
+      this.borderColor('email', this.colorSucess);
+    }
+
+}
+
+/**
+*  Method responsible for verify if all fields are filled,
+*  when registering.
+*/
+validatorRegisterUser() { 
+  if (this.statusPassword && this.statusUsername && this.statusEmail && this.statusValidPassword) {
+    document.getElementById('firstPart').style.display = 'none';
+    document.getElementById('secondPart').style.display = 'block';
+    document.querySelector('#registerBtn').removeAttribute('disabled');
+  } else {
+    document.getElementById('alert-invalid-inputs').style.display = 'block';
+    this.valueInvalidInput = 'Por favor, preencha os campos obrigatórios';
+
+    /**
+     * Paragraph responsible for changing the color of the password inputfield 
+     * according to the filled data (correct or wrong)
+     */ //T34 e T35
+    if (this.statusPassword) {
+      this.borderColor('password', this.colorSucess);
+      this.borderColor('confirm-password', this.colorSucess);
+    }else {
+      this.borderColor('password', this.colorDanger);
+      this.borderColor('confirm-password', this.colorDanger);
+    }
+
+    /**
+     * Paragraph responsible for changing the color of the username inputfield 
+     * according to the filled data (correct or wrong)
+     */ //T35
+    if (this.statusUsername) {
+      this.borderColor('username', this.colorSucess);
+    } else {
+      this.borderColor('username', this.colorDanger);
+    }
+
+    /**
+     * Paragraph responsible for changing the color of the e-mail inputfield 
+     * according to the filled data (correct or wrong)
+     */ //T35
+    if (this.statusEmail) {
+      this.borderColor('email', this.colorSucess);
+    } else {
+      this.borderColor('email', this.colorDanger);
     }
   }
-
+}
   /**
   *  Method responsible for show the success message
   *  or danger message according with password validation
@@ -66,7 +131,11 @@ export class InputValidatorService {
     this.assert.ok(this.password === null || undefined, 'O dado obtido é nulo.');
 
     const validPassword = this.isPasswordValid(this.password);
-
+    
+    /**
+     * Paragraph responsible for changing the color of the password inputfield 
+     * according to the filled data (correct or wrong). Valid the data.
+     */ //T35
     if(validPassword) {
       document.getElementById('alert-invalid-password').style.display = 'none';
       this.statusValidPassword = true;
@@ -237,63 +306,42 @@ export class InputValidatorService {
     }
   }
 
-   /**
-  *  Method responsible for verify if all fields are filled,
-  *  when editing.
-  */
-  validatorEditUser() {
 
-    document.getElementById('alert-invalid-inputs').style.display = 'block';
-    this.valueInvalidInput = 'Por favor, preencha os campos obrigatórios';
-
-
-      if (!this.statusUsername) {
-        this.borderColor('username', this.colorDanger);
-      } else {
-        this.borderColor('username', this.colorSucess);
-      }
-
-      if (!this.statusEmail) {
-        this.borderColor('email', this.colorDanger);
-      } else {
-        this.borderColor('email', this.colorSucess);
-      }
-
-  }
 
   /**
-  *  Method responsible for verify if all fields are filled,
-  *  when registering.
+  *  Method responsible for showing to the user
+  *  the error in the field, when the response status
+  *  500 or 400.
   */
-  validatorRegisterUser() {
-    if (this.statusPassword && this.statusUsername && this.statusEmail && this.statusValidPassword) {
-      document.getElementById('firstPart').style.display = 'none';
-      document.getElementById('secondPart').style.display = 'block';
-      document.querySelector('#registerBtn').removeAttribute('disabled');
-    } else {
-      document.getElementById('alert-invalid-inputs').style.display = 'block';
-      this.valueInvalidInput = 'Por favor, preencha os campos obrigatórios';
-      if (this.statusPassword) {
-        this.borderColor('password', this.colorSucess);
-        this.borderColor('confirm-password', this.colorSucess);
-      }else {
-        this.borderColor('password', this.colorDanger);
-        this.borderColor('confirm-password', this.colorDanger);
-      }
+ handleError(error: any) { // T31 e T32
+  const httpErrorCode = error.status;
+  switch (httpErrorCode) {
+    case 500:
+      document.getElementById('alert-invalid').style.display = 'block';
+      this.valueErrorHandler = 'Error interno, tente novamente mais tarde';
+    break;
 
-      if (this.statusUsername) {
-        this.borderColor('username', this.colorSucess);
-      } else {
-        this.borderColor('username', this.colorDanger);
-      }
+  case 400:
+    document.getElementById('alert-invalid').style.display = 'block';
+    this.valueErrorHandler = 'Nome de usuário já existente';
+  break;
 
-      if (this.statusEmail) {
-        this.borderColor('email', this.colorSucess);
-      } else {
-        this.borderColor('email', this.colorDanger);
-      }
-    }
- }
+  default:
+  this.showError(InputValidatorService.REFRESH_PAGE_ON_TOAST_CLICK_MESSAGE);
+  }
+}
+
+private showError(message: string) { // T32
+  this.toastManager.error(message, InputValidatorService.DEFAULT_ERROR_TITLE, { dismiss: 'controlled'}).then((toast: Toast) => {
+          const currentToastId: number = toast.id;
+          this.toastManager.onClickToast().subscribe(clickedToast => {
+              if (clickedToast.id === currentToastId) {
+                  this.toastManager.dismissToast(toast);
+                  window.location.reload();
+              }
+          });
+      });
+}
 
 
   /**

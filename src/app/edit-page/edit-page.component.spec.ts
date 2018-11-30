@@ -10,6 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
 import { InputValidatorService } from '../input-validator.service';
 import { LoggerService } from '@ngx-toolkit/logger';
+import { ISubscription } from "rxjs/Subscription";
 
 describe('EditPageComponent', () => {
   let component: EditPageComponent;
@@ -21,7 +22,7 @@ describe('EditPageComponent', () => {
         RouterTestingModule,
         HttpClientModule,
         FormsModule,
-        InputValidatorService,
+        InputValidatorService
       ],
       declarations: [ EditPageComponent ],
       providers: [
@@ -29,7 +30,7 @@ describe('EditPageComponent', () => {
         TokenService,
         CookieService,
         InputValidatorService,
-        LoggerService,
+        LoggerService //correção dos testes
       ]
     })
     .compileComponents();
@@ -46,13 +47,13 @@ describe('EditPageComponent', () => {
   });
     
   it('should check status error', () => {
-    expect(component.errorHandler(401)).toBeTruthy();
-    expect(component.errorHandler(500)).toBeTruthy();
-    expect(component.errorHandler(400)).toBeTruthy();
-    expect(component.errorHandler(404)).toBeFalsy();
+    expect(component.handleError(401)).toBeTruthy();
+    expect(component.handleError(500)).toBeTruthy();
+    expect(component.handleError(400)).toBeTruthy();
+    expect(component.handleError(404)).toBeFalsy();
   });
 
-  it('should not update the user', () => {
+  it('should not update the user', () => { // Teste realizado T32
     component.user = {
       username: '',
       first_name: '',
@@ -70,16 +71,15 @@ describe('EditPageComponent', () => {
     };
     let statusCode = 1;
     let token = 'token';
-    // expect(component.user.email).toEqual('');
 
-    // component.updateUser().subscribe( (resp) => {
-    //   statusCode = resp.status;
-    //   token = resp.body['token'];
-    //   expect(statusCode).toEqual('1');
-    // });
+    component.updateUser().unsubscribe( (resp) => {
+      statusCode = resp.status;
+      token = resp.body['token'];
+      expect(token).toBe('token');
+    });
   });
 
-  it('should update the user', () => {
+  it('should update the user', () => { // teste corrigido T32
     component.user = {
       username: 'potato',
       first_name: 'Mr Potato',
@@ -105,8 +105,8 @@ describe('EditPageComponent', () => {
     });
   });
 
-  // it('should destroy', () => {
-  //   component.ngOnDestroy();
-  //   expect(component.user).toBeNull();
-  // });
+  it('should destroy', () => { // T32
+    component.ngOnDestroy();
+    expect(component.user).toBeNull();
+  });
 });
