@@ -137,7 +137,11 @@ export class EditPageComponent implements OnInit, OnDestroy, ErrorHandler {
     );
   }
 
-  ngOnDestroy() { // T31
+
+  /**
+  *  Method responsible for destroy (unsubscribe) the user.
+  */
+  ngOnDestroy() { 
     this.user.updateUser().unsubscribe();
   }
 
@@ -146,21 +150,21 @@ export class EditPageComponent implements OnInit, OnDestroy, ErrorHandler {
   *  the error in editing, when the response status 401,
   *  500 or 400.
   */
-  handleError(error: any) { // T32
+  handleError(error: any) { 
     const httpErrorCode = error.status;
     switch (httpErrorCode) {
       case 401:
-        document.getElementById('alert-invalid').style.display = 'block';
+        this.showErrorAlert(); //T36
         this.router.navigateByUrl('/login');
         break;
 
       case 400:
-        document.getElementById('alert-invalid').style.display = 'block';
+        this.showErrorAlert(); //T36
         this.showError(error.message);
         break;
 
       case 500:
-        this.showError('Internal Server error');
+        this.showError('Internal Server error'); //T36
         break;
 
       default:
@@ -168,7 +172,14 @@ export class EditPageComponent implements OnInit, OnDestroy, ErrorHandler {
     }
 }
 
-  private showError(message: string) { // T32
+  /**
+   * Shows an error alert message.
+   */
+  showErrorAlert(){ //T36 e T11
+    document.getElementById('alert-invalid').style.display = 'block'; 
+}
+
+  private showError(message: string) { 
     this.toastManager.error(message, EditPageComponent.DEFAULT_ERROR_TITLE, { dismiss: 'controlled'}).then((toast: Toast) => {
             const currentToastId: number = toast.id;
             this.toastManager.onClickToast().subscribe(clickedToast => {
