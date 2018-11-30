@@ -1,3 +1,8 @@
+/**********************************************************************
+  * File: terms-of-service.component.ts
+  * Purpose: TermsOfServiceComponent class implementation
+  * Notice: All rights reserved.
+  ***********************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -10,9 +15,12 @@ import { AssertComponent } from '../../assert';
   styleUrls: ['./termos-de-servico.component.css']
 })
 
-export class TermosDeServicoComponent implements OnInit {
+
+/**
+  *  Responsible class for show law projects.
+  */
+export class TermsOfServiceComponent implements OnInit {
   tokenValue = '';
-  assert = require('assert');
 
   constructor(
     private requester: RequestsService,
@@ -24,6 +32,5 @@ export class TermosDeServicoComponent implements OnInit {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
 
-    this.assert.assert(this.tokenValue == null, 'Token vazio');
   }
 }
