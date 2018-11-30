@@ -28,7 +28,7 @@ import { SeeCompatibleParliamenterianComponent } from './see-compatible-parliame
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PoliticaDePrivacidadeComponent } from './politica-de-privacidade/politica-de-privacidade.component';
-import { TermosDeServicoComponent } from './termos-de-servico/termos-de-servico.component';
+import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 import { MostFollowedComponent } from './most-followed/most-followed.component';
 import { PropositionComponent } from './proposition/proposition.component';
 import { HowToUseComponent } from './how-to-use/how-to-use.component';
@@ -95,7 +95,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'termos-de-servico',
-    component: TermosDeServicoComponent
+    component: TermsOfServiceComponent
   },
   {
     path: 'parlamentares-mais-seguidos',
@@ -132,7 +132,7 @@ const LOG_LEVEL: Level = isDevMode() ? Level.INFO : Level.ERROR;
     SeeCompatibleParliamenterianComponent,
     ContactUsComponent,
     PoliticaDePrivacidadeComponent,
-    TermosDeServicoComponent,
+    TermsOfServiceComponent,
     MostFollowedComponent,
     PropositionComponent,
     HowToUseComponent,
