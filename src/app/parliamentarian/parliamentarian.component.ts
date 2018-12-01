@@ -105,19 +105,17 @@ export class ParliamentarianComponent implements OnInit {
     /**
      * According offset value the appearence of buttons change.
     */
+
+    //Paragraph to update beforeBtn
     if (offset === 1) {
-      document.getElementById('beforeBtn1').style.display = 'none';
-      document.getElementById('beforeBtn2').style.display = 'none';
-
+      this.updatePageElements('beforeBtn1', 'beforeBtn2', 'none');
       this.logger.log('Setting "none" to beforeBtn1 and 2. Offset: ' + offset);
-
     } else {
-      document.getElementById('beforeBtn1').style.display = 'block';
-      document.getElementById('beforeBtn2').style.display = 'block';
-
+      this.updatePageElements('beforeBtn1', 'beforeBtn2', 'block');
       this.logger.log('Blocking beforeBtn1 and 2. Offset: ' + offset);
-
     }
+
+    //Paragraph to update afterBtn
     if (offset === limit) {
       this.updatePageElements('afterBtn1', 'afterBtn2', 'none');
       this.logger.log('Setting "none" to afterBtn1 and 2. Offset: ' + offset);
@@ -125,6 +123,8 @@ export class ParliamentarianComponent implements OnInit {
       this.updatePageElements('afterBtn1', 'afterBtn2', 'block');
       this.logger.log('Blocking afterBtn1 and 2. Offset: ' + offset);
     }
+
+    //Paragraph to update pageBtn
     if (this.pages < 2) {
       this.updatePageElements('pageBtn1', 'pageBtn2', 'none');
       this.logger.log('Setting "none" to pageBtn1 and 2. Page number: ' + this.pages);
