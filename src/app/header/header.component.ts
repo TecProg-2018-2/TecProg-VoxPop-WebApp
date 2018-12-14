@@ -44,23 +44,46 @@ export class HeaderComponent {
   *  according to the click on the sidebar.
   */
   toggleMenu() {
-    const sidebar = document.getElementById('sidebar');
-     sidebar.classList.toggle('active');
-
-     const content = document.getElementById('content');
-     content.classList.toggle('active');
-
-     const elementsSidebar = sidebar.classList.contains('active');
+    const contentSidebar = this.showContentSidebar();
+    const elementsSidebar = this.showContentSidebar();
 
      if (elementsSidebar) {
        this.cookieService.set('sidebar', 'false');
        this.logger.info('Sidebar off  ');
        return false;
-     } else {
-      this.logger.info('Sidebar on  ');
+     }else {
+       this.logger.info('Sidebar on  ');
        this.cookieService.set('sidebar', 'true');
        return true;
      }
   }
+  /**
+   * Method responsible for show sidebar template. 
+   * @return sidebar status
+   */ 
+  showSidebar(){ //T36 e T11
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('active');
+    return sidebar;
+  }
 
+  /**
+   *  Method responsible for show content of sidebar
+   * @return sidebar content
+   */
+  showContentSidebar(){ //T36 e T11
+    const content = document.getElementById('content');
+    content.classList.toggle('active');
+    return content;
+  }
+
+  /**
+   * Method responsible for show elements of sidebar.
+   * @return elements of sidebar
+   */
+  showElementsSidebar(){ //T36
+    const sidebar = this.showSidebar();
+    const elementsSidebar = sidebar.classList.contains('active');
+    return elementsSidebar;
+  }
 }

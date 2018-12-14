@@ -15,7 +15,8 @@ import { RequestsService } from '../requests.service';
 })
 export class MostFollowedComponent implements OnInit {
 
-  loading: boolean = true;
+  public loading: boolean = true;
+  logger: any;
 
   constructor(
     private tokenService: TokenService,
@@ -33,27 +34,34 @@ export class MostFollowedComponent implements OnInit {
     this.tokenService.checkToken(tokenValue);
     this.parliamentariansMoreOften();
   }
-
   /**
-   * Get from API the informations of the most followed parliamentary.
-  */
+   * Request the API to get the statistics of the parliamentarians.
+   */
   parliamentariansMoreOften() {
-    const request: any =  this.requestService.getMostFollowed();
-    this.handleParliamentariansMoreOften(request);
+
+    try {
+      const request: any = this.requestService.getMostFollowed();
+      this.handleParliamentariansMoreOften(request);
+    } catch (Error) {
+      alert(Error.message);
+    }
+
   }
 
   /**
-   * Load the HTML page with the request's value.
-   * @param request Responsible request to receive the parliamentary's informations.
+   * Loads the HTML page object with the value received from the request.
+   * @param request object that stores the result of a request
    */
   handleParliamentariansMoreOften(request) {
-    /**
-     * Assign the result of the request to a variable to use in most-followed.component.html
-     */
-    request.subscribe( response => {
-      const parliamentariansMoreOftenValue: any[] = response['body']['results'];
-      this.loading = false;
-    });
+    try {
+      request.subscribe(response => {
+        const parliamentariansMoreOftenValue: any[] = response['body']['results'];
+        this.loading = false;
+      });
+    } catch (Error) {
+      alert(Error.message);
+      this.logger.error(Error.message);
+    }
   }
 
 }

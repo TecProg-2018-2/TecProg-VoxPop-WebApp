@@ -30,6 +30,7 @@ describe('InputValidatorService', () => {
 
   it('should check password lenght', inject([InputValidatorService], (service: InputValidatorService) => {
     expect(service.isPasswordValid('1aA*')).toBeFalsy('short password');
+    expect(service.isPasswordValid('1aBcA*')).toBeFalsy('short password'); //T30
     expect(service.isPasswordValid('')).toBeFalsy('empty password');
     expect(service.isPasswordValid('All Letters without a Number!')).toBeFalsy('no number password');
     expect(service.isPasswordValid('GfBirthdate0616')).toBeFalsy('No special characters');

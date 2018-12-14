@@ -8,29 +8,33 @@ import { RequestsService } from '../requests.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TokenService } from '../token.service';
 import { AssertComponent } from '../../assert';
+import { LoggerService } from '@ngx-toolkit/logger';
+
 
 @Component({
-  selector: 'app-termos-de-servico',
-  templateUrl: './termos-de-servico.component.html',
-  styleUrls: ['./termos-de-servico.component.css']
+  selector: 'app-terms-of-service',
+  templateUrl: './terms-of-service.component.html',
+  styleUrls: ['./terms-of-service.component.css']
 })
 
-
-/**
-  *  Responsible class for show law projects.
-  */
 export class TermsOfServiceComponent implements OnInit {
-  tokenValue = '';
+  private tokenValue = '';
+  public assert = require('assert');
+  private logger: LoggerService;
 
   constructor(
     private requester: RequestsService,
     private cookieService: CookieService,
     private token: TokenService
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.tokenValue = this.token.getToken();
     this.token.checkToken(this.tokenValue);
 
+    this.assert.assert(this.tokenValue == null, 'Token vazio');
+    if (this.token == null) {
+      this.logger.warn('Token Vazio!');
+    }
   }
 }
